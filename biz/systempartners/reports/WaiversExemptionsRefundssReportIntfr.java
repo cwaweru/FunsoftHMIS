@@ -7,7 +7,6 @@ package biz.systempartners.reports;
 
 import java.sql.SQLException;
 
-
 /**
  *
  * @author funsoft
@@ -40,29 +39,13 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         beginDateLbl = new javax.swing.JLabel();
         endDateLbl = new javax.swing.JLabel();
-        printBtn = new javax.swing.JButton();
         openReportBtn = new javax.swing.JButton();
-        saveReportBtn = new javax.swing.JButton();
-        schemeNameCmbx = new javax.swing.JComboBox();
+        typeCbx = new javax.swing.JComboBox();
         patientTypeCmbx = new javax.swing.JComboBox();
+        exeType = new javax.swing.JComboBox();
         reportBodyPanel = new javax.swing.JPanel();
         reportBodyJscrollPane = new javax.swing.JScrollPane();
-        reportBodyTable = new com.afrisoftech.dbadmin.JTable(){
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false,false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        };
+        reportBodyTable = new com.afrisoftech.dbadmin.JTable();
         buttonPanel = new javax.swing.JPanel();
         closeBtn = new javax.swing.JButton();
         reloadReportBtn = new javax.swing.JButton();
@@ -86,14 +69,14 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
         headerPanel.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(beginDatePicker, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -102,7 +85,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
         beginDateLbl.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -110,21 +93,11 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
         endDateLbl.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(endDateLbl, gridBagConstraints);
-
-        printBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Devices & Hardware/Printer 4.png"))); // NOI18N
-        printBtn.setMnemonic('p');
-        printBtn.setText("Print ...");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        headerPanel.add(printBtn, gridBagConstraints);
 
         openReportBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Desktop.png"))); // NOI18N
         openReportBtn.setMnemonic('o');
@@ -141,24 +114,19 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(openReportBtn, gridBagConstraints);
 
-        saveReportBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Globe 4.png"))); // NOI18N
-        saveReportBtn.setMnemonic('s');
-        saveReportBtn.setText("Save Report ...");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        headerPanel.add(saveReportBtn, gridBagConstraints);
-
-        schemeNameCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Exemptions", "Waivers", "Refunds" }));
+        typeCbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Exemptions", "Waivers", "Refunds" }));
+        typeCbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeCbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        headerPanel.add(schemeNameCmbx, gridBagConstraints);
+        headerPanel.add(typeCbx, gridBagConstraints);
 
         patientTypeCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--ALL--", "OUT Patient", "IN Patient" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -168,6 +136,15 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(patientTypeCmbx, gridBagConstraints);
+
+        exeType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Exemptions", "Exemptions Detailed", "Exemptions Departmental" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        headerPanel.add(exeType, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -200,6 +177,11 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        reportBodyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportBodyTableMouseClicked(evt);
             }
         });
         reportBodyJscrollPane.setViewportView(reportBodyTable);
@@ -287,7 +269,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(totalsPanel, gridBagConstraints);
 
-        setBounds(0, 0, 720, 379);
+        setBounds(0, 0, 960, 379);
     }// </editor-fold>//GEN-END:initComponents
 
     private void openReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openReportBtnActionPerformed
@@ -303,53 +285,87 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
         // TODO add your handling code here:
     }//GEN-LAST:event_reloadReportBtnActionPerformed
 
+    private void typeCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeCbxActionPerformed
+        // TODO add your handling code here:
+        if (!typeCbx.getSelectedItem().toString().contains("Exemptions")) {
+            exeType.setVisible(false);
+        } else {
+            exeType.setVisible(true);
+        }
+    }//GEN-LAST:event_typeCbxActionPerformed
+
+    private void reportBodyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportBodyTableMouseClicked
+        // TODO add your handling code here:
+        if (typeCbx.getSelectedItem().toString().contains("Exemptions")) {
+            if (!exeType.getSelectedItem().toString().toLowerCase().contains("Detailedd")) {
+                com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
+//
+            policyReport.PatientCardPdf(connectDB, beginDatePicker.getDate(), endDatePicker.getDate(), reportBodyTable.getValueAt(reportBodyTable.getSelectedRow(), 1).toString(),false);
+            }
+        }
+    }//GEN-LAST:event_reportBodyTableMouseClicked
+
     private void loadReport() {
 
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
 
-        if (schemeNameCmbx.getSelectedItem().toString().contains("Exemptions")) {
+        if (typeCbx.getSelectedItem().toString().contains("Exemptions")) {
+            if (!exeType.getSelectedItem().toString().equalsIgnoreCase("Exemptions")) {
+                if (exeType.getSelectedItem().toString().equalsIgnoreCase("Exemptions Detailed")) {
+                     reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, description, sum(credit-debit) as exempted_amount, user_name as operator,journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,4,6,7 "));
 
-            if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
+                }else{
+                     reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT (SELECT activity FROM pb_activity WHERE code = (select activity_code from  ac_cash_collection ac where ac.receipt_no = \n" +
+" ac1.receipt_no and ac.description ilike ac1.description and debit >0 LIMIT 1) )\n" +
+"as department ,  sum(credit-debit) as exempted_amount\n" +
+" FROM ac_cash_collection ac1 WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by  1 "));
 
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE (main_service ilike 'Exemption%' OR transaction_type ilike 'Exemption%') AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
-
-                this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
-
-                this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-            } else if (patientTypeCmbx.getSelectedItem().toString().contains("OUT")) {
-
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator, journal_no as Exemp_no FROM ac_cash_collection WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
-
-                this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
-
-                this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                }
 
             } else {
-                reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no FROM hp_patient_card WHERE (main_service ilike 'Exemption%' OR transaction_type ilike 'Exemption%') AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
 
-                this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
+                if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
-                this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            }
-            try {
-                for (int i = 0; i < reportBodyTable.getRowCount(); i++) {
-                    java.sql.Statement stmt = connectDB.createStatement();
+                    reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,journal_no as Exemp_no, AGE(date,(select year_of_birth::date from hp_patient_register where patient_no = ac.patient_no)) AS age FROM ac_cash_collection ac WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 UNION SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no,AGE(date,(select year_of_birth::date from hp_patient_register where patient_no = ac.patient_no)) AS age FROM hp_patient_card ac WHERE (main_service ilike 'Exemption%' OR transaction_type ilike 'Exemption%') AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6,7 order by 1,2"));
 
-                    //                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
-                    java.sql.ResultSet rset = stmt.executeQuery("SELECT DISTINCT user_name FROM hp_patient_billing WHERE patient_no = '" + reportBodyTable.getValueAt(i, 1).toString() + "' AND visit_id = '" + reportBodyTable.getValueAt(i, 5) + "'");
+                    this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
 
-                    while (rset.next()) {
-                        if (rset.getString(1) != null && !rset.getString(1).equalsIgnoreCase("")) {
-                            reportBodyTable.setValueAt(rset.getString(1), i, 4);
+                    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+                } else if (patientTypeCmbx.getSelectedItem().toString().contains("OUT")) {
+
+                    reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator, journal_no as Exemp_no, AGE(date,(select year_of_birth::date from hp_patient_register where patient_no = ac.patient_no)) AS age FROM ac_cash_collection ac WHERE transaction_type ilike 'Exemption%' AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6 order by 1,2"));
+
+                    this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
+
+                    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+                } else {
+                    reportBodyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date::date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, sum(credit-debit) as exempted_amount, user_name as operator,requisition_no, AGE(date,(select year_of_birth::date from hp_patient_register where patient_no = ac.patient_no UNION select year_of_birth::date from hp_inpatient_register where patient_no = ac.patient_no LIMIT 1 )) AS age FROM hp_patient_card ac WHERE (main_service ilike 'Exemption%' OR transaction_type ilike 'Exemption%') AND date between '" + beginDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' group by 1,2,3,5,6,7 order by 1,2"));
+
+                    this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
+
+                    this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                }
+                try {
+                    for (int i = 0; i < reportBodyTable.getRowCount(); i++) {
+                        java.sql.Statement stmt = connectDB.createStatement();
+
+                        //                java.sql.ResultSet rset = stmt.executeQuery("SELECT count(service) FROM hp_patient_card WHERE patient_no = '" + patient_no + "' AND visit_id = '"+visitIDTxt.getText()+"'");
+                        java.sql.ResultSet rset = stmt.executeQuery("SELECT DISTINCT user_name FROM hp_patient_billing WHERE patient_no = '" + reportBodyTable.getValueAt(i, 1).toString() + "' AND visit_id = '" + reportBodyTable.getValueAt(i, 5) + "'");
+
+                        while (rset.next()) {
+                            if (rset.getString(1) != null && !rset.getString(1).equalsIgnoreCase("")) {
+                                reportBodyTable.setValueAt(rset.getString(1), i, 4);
+                            }
                         }
                     }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
 
-        } else if (schemeNameCmbx.getSelectedItem().toString().contains("Waivers")) {
+        } else if (typeCbx.getSelectedItem().toString().contains("Waivers")) {
 
             if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
@@ -374,7 +390,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
 
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             }
-            
+
             try {
                 for (int i = 0; i < reportBodyTable.getRowCount(); i++) {
                     java.sql.Statement stmt = connectDB.createStatement();
@@ -392,7 +408,7 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
                 ex.printStackTrace();
             }
 
-        } else if (schemeNameCmbx.getSelectedItem().toString().contains("Refunds")) {
+        } else if (typeCbx.getSelectedItem().toString().contains("Refunds")) {
 
             if (patientTypeCmbx.getSelectedItem().toString().contains("--ALL--")) {
 
@@ -432,20 +448,19 @@ public class WaiversExemptionsRefundssReportIntfr extends javax.swing.JInternalF
     private javax.swing.JButton closeBtn;
     private javax.swing.JLabel endDateLbl;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JComboBox exeType;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton openReportBtn;
     private javax.swing.JComboBox patientTypeCmbx;
-    private javax.swing.JButton printBtn;
     private javax.swing.JButton reloadReportBtn;
     public static javax.swing.JScrollPane reportBodyJscrollPane;
     public static javax.swing.JPanel reportBodyPanel;
     public static javax.swing.JTable reportBodyTable;
-    private javax.swing.JButton saveReportBtn;
-    private javax.swing.JComboBox schemeNameCmbx;
     private javax.swing.JLabel spaceLable;
     private javax.swing.JTextField totalCreditSalesTxt;
     private javax.swing.JPanel totalsPanel;
+    private javax.swing.JComboBox typeCbx;
     // End of variables declaration//GEN-END:variables
 
 }

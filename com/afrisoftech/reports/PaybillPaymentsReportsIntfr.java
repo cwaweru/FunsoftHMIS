@@ -81,7 +81,7 @@ public class PaybillPaymentsReportsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         headerPanel.add(shiftNoTxt, gridBagConstraints);
 
-        paybillNoCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select paybill_no || ' - '||upper(code) FROM ac_cash_points ORDER BY 1"));
+        paybillNoCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union select paybill_no || ' - '||upper(code) FROM ac_cash_points ORDER BY 1"));
         paybillNoCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paybillNoCmbxActionPerformed(evt);
@@ -119,7 +119,10 @@ public class PaybillPaymentsReportsIntfr extends javax.swing.JInternalFrame {
                 shiftReportChkbxActionPerformed(evt);
             }
         });
-        headerPanel.add(shiftReportChkbx, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 0;
+        headerPanel.add(shiftReportChkbx, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -201,10 +204,15 @@ public class PaybillPaymentsReportsIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_closeFormBtnActionPerformed
 
     private void generateReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReportBtnActionPerformed
-        if (!shiftReportChkbx.isSelected()) {
-            paybillReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, receipt_time::time(0) as time, patient_no, initcap(dealer) as received_from, shift_no, receipt_no, account_no as payer_tel, journal_no as Trx_Id, sum(debit-credit) as amount, user_name as operator FROM ac_cash_collection WHERE date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND paybill_no = '" + paybillNumber + "' GROUP BY 1,2,3,4,5,6,7,8,10 ORDER BY 1,2,5,6"));
-        } else {
-            paybillReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, receipt_time::time(0) as time, patient_no, initcap(dealer) as received_from, paybill_no, receipt_no, account_no as payer_tel, journal_no as Trx_Id, sum(debit-credit) as amount, user_name as operator FROM ac_cash_collection WHERE shift_no = '" + shiftNoTxt.getText() + "'  GROUP BY 1,2,3,4,5,6,7,8,10 ORDER BY 1,2,5,6"));
+        if(paybillNoCmbx.getSelectedItem().toString().equalsIgnoreCase("-") && !shiftReportChkbx.isSelected()){
+             paybillReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, receipt_time::time(0) as time, patient_no, initcap(dealer) as received_from, shift_no, receipt_no, account_no as payer_tel, journal_no as Trx_Id, sum(debit-credit) as amount, user_name as operator,paybill_no  FROM ac_cash_collection WHERE paybill_no != '' and paybill_no is not null and paybill_no IN (select paybill_no  FROM ac_cash_points) AND  date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  GROUP BY 1,2,3,4,5,6,7,8,10,11 ORDER BY 1,2,5,6"));
+         
+        }else{
+            if (!shiftReportChkbx.isSelected()) {
+                paybillReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, receipt_time::time(0) as time, patient_no, initcap(dealer) as received_from, shift_no, receipt_no, account_no as payer_tel, journal_no as Trx_Id, sum(debit-credit) as amount, user_name as operator FROM ac_cash_collection WHERE date BETWEEN '" + startDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' AND paybill_no = '" + paybillNumber + "' GROUP BY 1,2,3,4,5,6,7,8,10 ORDER BY 1,2,5,6"));
+            } else {
+                paybillReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, receipt_time::time(0) as time, patient_no, initcap(dealer) as received_from, paybill_no, receipt_no, account_no as payer_tel, journal_no as Trx_Id, sum(debit-credit) as amount, user_name as operator FROM ac_cash_collection WHERE shift_no = '" + shiftNoTxt.getText() + "'  GROUP BY 1,2,3,4,5,6,7,8,10 ORDER BY 1,2,5,6"));
+            }
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_generateReportBtnActionPerformed

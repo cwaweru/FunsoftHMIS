@@ -782,7 +782,7 @@ public class InpatientTasksIntfr extends javax.swing.JInternalFrame implements j
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+              //  Thread.currentThread().destroy();
             }
             
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")){
@@ -866,7 +866,7 @@ public class InpatientTasksIntfr extends javax.swing.JInternalFrame implements j
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+               // Thread.currentThread().destroy();
             }
         }
     }

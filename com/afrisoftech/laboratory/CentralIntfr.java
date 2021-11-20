@@ -1068,7 +1068,7 @@ public class CentralIntfr extends javax.swing.JInternalFrame implements java.lan
         receiptNo =  jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
         
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo,jTable12.getValueAt(jTable12.getSelectedRow(), 0).toString());
         // Add your handling code here:
     }//GEN-LAST:event_jTable12MouseClicked
       private void cmboxActionPerformed(java.awt.event.ActionEvent evt){

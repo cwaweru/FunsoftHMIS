@@ -9534,7 +9534,7 @@ public class NursingCasualty extends javax.swing.JInternalFrame {
         policy.MOHPatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText(), "IP");
        
        com.afrisoftech.reports.PatientCardPdf policy1 = new com.afrisoftech.reports.PatientCardPdf();
-        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
+        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim(),false);
 
     }//GEN-LAST:event_jButton4ActionPerformed
     private String getUser() {

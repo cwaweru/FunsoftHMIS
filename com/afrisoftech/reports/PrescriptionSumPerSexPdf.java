@@ -433,7 +433,7 @@ public class PrescriptionSumPerSexPdf implements java.lang.Runnable {
                                 condition = "AND patient_source ilike 'IP%'";
                             }
 
-                            java.sql.ResultSet rset11 = st212.executeQuery("select COUNT(*)   from st_sub_stores where  (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) \n"
+                            java.sql.ResultSet rset11 = st212.executeQuery("select COUNT(*)   from st_sub_stores where store_name ilike '%pharmacy%' and   (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) \n"
                                     + "and   trans_date::date::date BETWEEN '" + beginDate + "' AND '" + endDate + "'  " + condition);
                             while (rset11.next()) {
 
@@ -448,13 +448,13 @@ public class PrescriptionSumPerSexPdf implements java.lang.Runnable {
                             // java.sql.ResultSet rset11 = st212.executeQuery("SELECT count(main_service) from hp_patient_diagnosis where date_discharged BETWEEN '"+beginDate+"' AND '"+endDate+"'");
 
                             for (int i = 0; i < listofAct.length; i++) {
-                                java.sql.ResultSet rset1k = st2k.executeQuery("SELECT  count(h.item) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Male' and h.item='" + listofAct[i] + "' " + condition + " UNION "
-                                        + "SELECT  count(h.item) FROM st_sub_stores h,hp_inpatient_register p where ( patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Male' and h.item='" + listofAct[i] + "' " + condition + " ");
-                                java.sql.ResultSet rset1l = st2l.executeQuery("SELECT count(h.item) FROM st_sub_stores h,hp_patient_register p where (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Female' and h.item='" + listofAct[i] + "' " + condition + " UNION "
-                                        + "SELECT count(h.item) FROM st_sub_stores h,hp_inpatient_register p where ( patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Female' and h.item='" + listofAct[i] + "' " + condition + " ");
+                                java.sql.ResultSet rset1k = st2k.executeQuery("SELECT  count(h.item) FROM st_sub_stores  h,hp_patient_register p where store_name ilike '%pharmacy%' and  (patient_source  ilike 'OP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Male' and h.item='" + listofAct[i] + "' " + condition + " UNION "
+                                        + "SELECT  count(h.item) FROM st_sub_stores h,hp_inpatient_register p where store_name ilike '%pharmacy%' and ( patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Male' and h.item='" + listofAct[i] + "' " + condition + " ");
+                                java.sql.ResultSet rset1l = st2l.executeQuery("SELECT count(h.item) FROM st_sub_stores h,hp_patient_register p where store_name ilike '%pharmacy%' and  (patient_source  ilike 'OP%'   ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Female' and h.item='" + listofAct[i] + "' " + condition + " UNION "
+                                        + "SELECT count(h.item) FROM st_sub_stores h,hp_inpatient_register p where store_name ilike '%pharmacy%' and ( patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and h.patient_no=p.patient_no and sex='Female' and h.item='" + listofAct[i] + "' " + condition + " ");
                                 
-                                java.sql.ResultSet rset1 = st2.executeQuery("SELECT item, count(item) FROM st_sub_stores where (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and  item='" + listofAct[i] + "' " + condition + " group by 1  ORDER BY 1 DESC");
-                                System.err.println("SELECT item, count(item) FROM st_sub_stores where (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and  item='" + listofAct[i] + "' " + condition + " group by 1  ORDER BY 1 DESC");
+                                java.sql.ResultSet rset1 = st2.executeQuery("SELECT item, count(item) FROM st_sub_stores where store_name ilike '%pharmacy%' and  (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and  item='" + listofAct[i] + "' " + condition + " group by 1  ORDER BY 1 DESC");
+                                System.err.println("SELECT item, count(item) FROM st_sub_stores where store_name ilike '%pharmacy%' and (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and  item='" + listofAct[i] + "' " + condition + " group by 1  ORDER BY 1 DESC");
                                 while (rset1.next()) {
                                     int femCount =0, malCount = 0;
                                     while (rset1k.next()) {
@@ -532,7 +532,7 @@ public class PrescriptionSumPerSexPdf implements java.lang.Runnable {
                             docPdf.add(table);
 
                         } catch (java.sql.SQLException SqlExec) {
-
+                            SqlExec.printStackTrace();
                             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                         }
@@ -583,8 +583,8 @@ public class PrescriptionSumPerSexPdf implements java.lang.Runnable {
             if (Categ.equalsIgnoreCase("IP")) {
                 condition = "AND patient_source ilike 'IP%'";
             }
-            System.err.println("SELECT DISTINCT item,COUNT(item) FROM st_sub_stores where (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' " + condition + " GROUP BY 1 ORDER BY 2 DESC");
-            rSet1 = stmt1.executeQuery("SELECT DISTINCT item,COUNT(item) FROM st_sub_stores where (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' " + condition + " GROUP BY 1 ORDER BY 2 DESC");
+            System.err.println("SELECT DISTINCT item,COUNT(item) FROM st_sub_stores where store_name ilike '%pharmacy%' and  (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' " + condition + " GROUP BY 1 ORDER BY 2 DESC");
+            rSet1 = stmt1.executeQuery("SELECT DISTINCT item,COUNT(item) FROM st_sub_stores where store_name ilike '%pharmacy%' and   (patient_source  ilike 'OP%' OR patient_source  ilike 'IP%'  ) AND trans_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' " + condition + " GROUP BY 1 ORDER BY 2 DESC");
 
             while (rSet1.next()) {
 

@@ -346,7 +346,7 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                             java.sql.Statement st1111 = connectDB.createStatement();
                             java.sql.Statement st2x = connectDB.createStatement();
                             java.sql.Statement stcc = connectDB.createStatement();
-                            java.sql.ResultSet rsetcc = stcc.executeQuery("SELECT DISTINCT visit_id FROM hp_patient_card WHERE invoice_no = '"+MNo+"'");
+                            java.sql.ResultSet rsetcc = stcc.executeQuery("SELECT DISTINCT visit_id FROM hp_patient_card WHERE invoice_no = '"+MNo+"' AND patient_no = '" + pMNo + "' ");
                            // String visitID = "";
                             while(rsetcc.next()){
                                 visitID = rsetcc.getString(1);
@@ -700,6 +700,23 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                                 table.addCell(phrase);
 
                             }
+                            
+                            String user = "";
+                            String sdate = "";
+                            
+                            java.sql.PreparedStatement pstmtUser = connectDB.prepareStatement("SELECT current_user, now()::date");
+                            java.sql.ResultSet rsetUser = pstmtUser.executeQuery();
+                            while (rsetUser.next()) {
+                                  sdate = rsetUser.getString(2);
+                                java.sql.PreparedStatement pstmtUserName = connectDB.prepareStatement("SELECT DISTINCT f_name || ' ' || l_name  FROM secure_menu_access WHERE login_name = ?");
+                                pstmtUserName.setString(1, rsetUser.getString(1));
+                                java.sql.ResultSet rsetUserName = pstmtUserName.executeQuery();
+                                while (rsetUserName.next()) {
+                                    user = rsetUserName.getString(1);
+                                  
+//                                    phrase = new Phrase("Printed by : ".toUpperCase() + rsetUserName.getString(1).toUpperCase(), pFontHeader1);
+                                }
+                            }
 
                             //}
                             table.getDefaultCell().setColspan(6);
@@ -713,7 +730,7 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(6);
 
                             //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                            phrase = new Phrase("Accounts Clearance (Name) :.................................................................".toUpperCase(), pFontHeader);
+                            phrase = new Phrase("Accounts Clearance (Name) : ".toUpperCase()+user.toUpperCase(), pFontHeader);
 
                             table.addCell(phrase);
 
@@ -725,7 +742,7 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(6);
 
                             //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                            phrase = new Phrase("SIGNATURE :.......................................................................".toUpperCase(), pFontHeader);
+                            phrase = new Phrase("SIGNATURE :  .......................................................................".toUpperCase(), pFontHeader);
 
                             table.addCell(phrase);
 
@@ -739,7 +756,7 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
                             table.getDefaultCell().setColspan(6);
 
                             //  table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                            phrase = new Phrase("DATE :..................................................................................", pFontHeader);
+                            phrase = new Phrase("DATE : "+sdate, pFontHeader);
 
                             table.addCell(phrase);
 
@@ -750,19 +767,10 @@ public class NHIFInvoicePdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
 
-                            java.sql.PreparedStatement pstmtUser = connectDB.prepareStatement("SELECT current_user");
-                            java.sql.ResultSet rsetUser = pstmtUser.executeQuery();
-                            while (rsetUser.next()) {
-                                java.sql.PreparedStatement pstmtUserName = connectDB.prepareStatement("SELECT DISTINCT f_name || ' ' || l_name  FROM secure_menu_access WHERE login_name = ?");
-                                pstmtUserName.setString(1, rsetUser.getString(1));
-                                java.sql.ResultSet rsetUserName = pstmtUserName.executeQuery();
-                                while (rsetUserName.next()) {
-                                    phrase = new Phrase("Printed by : ".toUpperCase() + rsetUserName.getString(1).toUpperCase(), pFontHeader1);
-                                }
-                            }
+                            
 
                             //HOSP. ADM :................................................................", pFontHeader);
-
+                            phrase = new Phrase("  ", pFontHeader1);
                             table.addCell(phrase);
                             /*
                              java.sql.PreparedStatement pstmtDueDate = connectDB.prepareStatement("SELECT date_part('day', (select discharge_date from hp_patient_discharge where patient_no = ? LIMIT 1) + 30) || '-'|| date_part('month', now()::date + 30) ||'-'|| date_part('year', now()::date + 30)");

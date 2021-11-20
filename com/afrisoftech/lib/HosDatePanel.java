@@ -682,6 +682,16 @@ public class HosDatePanel extends javax.swing.JDialog {
             }
             break;
             
+            case 9999: {
+                com.afrisoftech.reports.TotalSaleRepPdf policy = new com.afrisoftech.reports.TotalSaleRepPdf();
+ 
+                policy.TotalSaleRepPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate(),reportTypeCmbx.getSelectedItem().toString());
+
+                this.dispose();
+
+            }
+            break;
+            
             case 667: {
                 com.afrisoftech.reports.CashSaleRepAnalysisPdf policy = new com.afrisoftech.reports.CashSaleRepAnalysisPdf();
  
@@ -1464,6 +1474,19 @@ public class HosDatePanel extends javax.swing.JDialog {
 
                 //policy.CashMonthlyRevPdf1(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
                 com.afrisoftech.reports.DetailedCashSummaryPdf policy = new com.afrisoftech.reports.DetailedCashSummaryPdf();
+
+                policy.DetailedCashSummaryPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+
+                this.dispose();
+
+            }
+            break;
+            
+            case 8888: {
+                //com.afrisoftech.reports.CashMonthlyRevPdf1 policy = new com.afrisoftech.reports.CashMonthlyRevPdf1();
+
+                //policy.CashMonthlyRevPdf1(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
+                com.afrisoftech.reports.DetailedCashSchemeSummaryPdf policy = new com.afrisoftech.reports.DetailedCashSchemeSummaryPdf();
 
                 policy.DetailedCashSummaryPdf(connectDB, this.datePicker1.getDate(), this.datePicker2.getDate());
 

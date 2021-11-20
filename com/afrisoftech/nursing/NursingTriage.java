@@ -71,19 +71,33 @@ public class NursingTriage extends javax.swing.JInternalFrame {
     private String dateAdmitted;
     private String theatrePatients;
     private boolean underFive;
+    String src = "";
 
     /**
      * Creates new form NursingTriage
      */
-    public NursingTriage(java.sql.Connection connDb, String Ward) {
+    public NursingTriage(java.sql.Connection connDb, String Ward, String source) {
         ward = Ward;
         connectDB = connDb;
+        src = source;
 
         this.setTitle(ward);
         user = getUser();
         System.out.println("the ward is this one " + ward);
         initComponents();
         this.setTitle(ward);
+        
+        if(source.equalsIgnoreCase("Reg")){
+            
+            nursingTabbedPane.remove(7);
+            nursingTabbedPane.remove(6);
+            nursingTabbedPane.remove(5);
+            nursingTabbedPane.remove(4);
+            nursingTabbedPane.remove(3);
+            nursingTabbedPane.remove(2);
+            //nursingTabbedPane.remove(9);
+            
+        }
         
          
 //         com.afrisoftech.dbadmin.JTable predicateTable1 = (com.afrisoftech.dbadmin.JTable) occupancyTable;
@@ -208,6 +222,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         txtUrinary = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
         urgencyComboBox = new javax.swing.JComboBox();
+        jButton14 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         occpancygroup = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -941,6 +956,14 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         jSearchPanel2.add(jTextField113, gridBagConstraints);
 
+        jSearchTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jSearchTable2.setToolTipText("Click on the target row to select the patient from the search.");
         jSearchTable2.setShowHorizontalLines(false);
         /*javax.swing.table.TableColumn column = null;
@@ -1610,13 +1633,13 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         jLabel17.setText("Urinalysis");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jLabel17, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1625,15 +1648,29 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         jLabel46.setText("Patient Urgency");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         jPanel3.add(jLabel46, gridBagConstraints);
 
         urgencyComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Normal", "Emergency" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(urgencyComboBox, gridBagConstraints);
+
+        jButton14.setForeground(new java.awt.Color(255, 51, 153));
+        jButton14.setText("Register Allergies/Drug Reactions");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        jPanel3.add(jButton14, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -4794,7 +4831,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -8435,30 +8472,34 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
     nursingTabbedPane.addTab("Report This Patient", reportPanel);
 
     billingPanel.setLayout(new java.awt.GridBagLayout());
+    if(!src.equalsIgnoreCase("Reg")){
 
-    com.afrisoftech.hospital.GeneralBillingIntfr genBilling = new com.afrisoftech.hospital.GeneralBillingIntfr(connectDB,pConnDB);
-    java.awt.GridBagConstraints gridBagConstraintbilling = new java.awt.GridBagConstraints();
-    gridBagConstraintbilling.gridx = 0;
-    gridBagConstraintbilling.gridy = 0;
-    gridBagConstraintbilling.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraintbilling.weightx = 1.0;
-    gridBagConstraintbilling.weighty = 1.0;
-    billingPanel.add(genBilling.getContentPane(), gridBagConstraintbilling);
+        com.afrisoftech.hospital.GeneralBillingIntfr genBilling = new com.afrisoftech.hospital.GeneralBillingIntfr(connectDB,pConnDB);
+        java.awt.GridBagConstraints gridBagConstraintbilling = new java.awt.GridBagConstraints();
+        gridBagConstraintbilling.gridx = 0;
+        gridBagConstraintbilling.gridy = 0;
+        gridBagConstraintbilling.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraintbilling.weightx = 1.0;
+        gridBagConstraintbilling.weighty = 1.0;
+        billingPanel.add(genBilling.getContentPane(), gridBagConstraintbilling);
 
-    nursingTabbedPane.addTab("Services Posting", billingPanel);
+        nursingTabbedPane.addTab("Services Posting", billingPanel);
+    }
 
     medicinePanel.setLayout(new java.awt.GridBagLayout());
+    if(!src.equalsIgnoreCase("Reg")){
 
-    com.afrisoftech.hospinventory.PatientsBillingIntfr_  medicine = new com.afrisoftech.hospinventory.PatientsBillingIntfr_(connectDB,pConnDB);
-    java.awt.GridBagConstraints gridBagConstraintmedicine = new java.awt.GridBagConstraints();
-    gridBagConstraintmedicine.gridx = 0;
-    gridBagConstraintmedicine.gridy = 0;
-    gridBagConstraintmedicine.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraintmedicine.weightx = 1.0;
-    gridBagConstraintmedicine.weighty = 1.0;
-    medicinePanel.add(medicine.getContentPane(), gridBagConstraintmedicine);
+        com.afrisoftech.hospinventory.PatientsBillingIntfr_  medicine = new com.afrisoftech.hospinventory.PatientsBillingIntfr_(connectDB,pConnDB);
+        java.awt.GridBagConstraints gridBagConstraintmedicine = new java.awt.GridBagConstraints();
+        gridBagConstraintmedicine.gridx = 0;
+        gridBagConstraintmedicine.gridy = 0;
+        gridBagConstraintmedicine.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraintmedicine.weightx = 1.0;
+        gridBagConstraintmedicine.weighty = 1.0;
+        medicinePanel.add(medicine.getContentPane(), gridBagConstraintmedicine);
 
-    nursingTabbedPane.addTab("Medicine Posting", medicinePanel);
+        nursingTabbedPane.addTab("Medicine Posting", medicinePanel);
+    }
 
     jSplitPane1.setRightComponent(nursingTabbedPane);
 
@@ -8899,7 +8940,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
         policy.MOHPatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText(), "OP");
 
         com.afrisoftech.reports.PatientCardPdf policy1 = new com.afrisoftech.reports.PatientCardPdf();
-        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim());
+        policy1.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText().trim(),false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -9046,7 +9087,10 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
             sqe.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
         }
-        if (Objects.equals(checkPayment(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString(), jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 4).toString(), "op", jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString()), Boolean.TRUE)) {
+        System.err.println(">>>>>>>>>>>>>Populating");
+        String patTypee = "op";
+         if(src.equalsIgnoreCase("Reg"))  patTypee = "Registration";
+        if (Objects.equals(checkPayment(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString(), jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 4).toString(), patTypee, jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 3).toString()), Boolean.TRUE)) {
 
             years = Math.round((float) Double.parseDouble(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 2).toString()));
             nameNoTxt.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 0).toString().trim());
@@ -9802,11 +9846,16 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
     }//GEN-LAST:event_userTableMouseClicked
     private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
         Boolean patientPaid = false;
+        System.err.println("????"+patType);
         switch (patType.toLowerCase().trim()) {
             case "ip": {
                 patientPaid = true;
             }
             break;
+            case "registration": {
+                    patientPaid = true;
+                }
+                break;
             case "op": {
                 switch (paymentMode.toLowerCase().trim()) {
 
@@ -9821,6 +9870,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
                                 patientPaid = true;
                             }
                             break;
+                            
                             case "emergency": {
                                 patientPaid = true;
                             }
@@ -9859,6 +9909,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
             }
             break;
         }
+        System.err.println(">>>>>>>>>>>>>Populating 3"+ patientPaid);
         return patientPaid;
     }
     private void occupancyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupancyTableMouseClicked
@@ -9881,15 +9932,19 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
             sqe.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
         }
+        System.err.println(">>>>>>>>>>>>>Populating");
 
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         if (evt.getClickCount() == 1) {
-            if (Objects.equals(checkPayment(occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 0).toString(), occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 8).toString(), "op", occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 5).toString()), Boolean.TRUE)) {
+            String patTypee = "op";
+            if(src.equalsIgnoreCase("Reg"))  patTypee = "Registration";
+            if (Objects.equals(checkPayment(occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 0).toString(), occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 8).toString(), patTypee, occupancyTable.getValueAt(occupancyTable.getSelectedRow(), 5).toString()), Boolean.TRUE)) {
                 if (theatreChbx.isSelected() == true) {
                     bookingNo = null;
                     bookingNo = occupancyTable.getModel().getValueAt(occupancyTable.getSelectedRow(), 1).toString().trim();
                     operationstxt.setText(occupancyTable.getModel().getValueAt(occupancyTable.getSelectedRow(), 4).toString().trim());
                 }
+                System.err.println(">>>>>>>>>>>>>Populating 2");
 
                 try {
                     nameNoTxt.setText(occupancyTable.getModel().getValueAt(occupancyTable.getSelectedRow(), 0).toString().trim());
@@ -12475,6 +12530,16 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
     private void nameNoTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nameNoTxtCaretUpdate
         // TODO add your handling code here:
     }//GEN-LAST:event_nameNoTxtCaretUpdate
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        if(nameNoTxt.getText().isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "Select patient first!");
+        }else{
+            com.afrisoftech.lib.AllergiesIntfr chgPasswd = new com.afrisoftech.lib.AllergiesIntfr(new java.awt.Frame() , true, connectDB, nameNoTxt.getText(), patient_name);
+
+            chgPasswd.setVisible(true);
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
     private void diastolicBp(javax.swing.JProgressBar progressBar) {
         System.out.println("Print patient age : [" + years + "]");
         if (txtDiastolicBp.getText().equals("")) {
@@ -13174,6 +13239,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -13749,7 +13815,7 @@ java.util.Vector<org.jdesktop.swingx.decorator.Highlighter> tableHighlighters = 
     private javax.swing.JRadioButton veryIllPatient;
     private javax.swing.JTextField visitedTxt;
     private javax.swing.JCheckBox visittoiletchk1;
-    private javax.swing.JPanel vitalSigns;
+    public javax.swing.JPanel vitalSigns;
     private javax.swing.JComboBox vomitingcmb;
     private javax.swing.JSpinner vomitus;
     private com.afrisoftech.lib.DatePicker wardnursetime;

@@ -32,6 +32,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     java.lang.Thread getListThread;
     boolean getList;
     boolean labAll = false;
+    boolean lab_results_verification = true;
 
     public LabResultsIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -52,10 +53,11 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                 resultsVerifierCmbx.setSelectedItem(dbObject.getDBObject(rse121.getObject(1).toString().trim(), "-"));;
             }
 
-            java.sql.PreparedStatement pstmtTry = connectDB.prepareStatement("SELECT lab_all FROM pb_patient_names");
+            java.sql.PreparedStatement pstmtTry = connectDB.prepareStatement("SELECT lab_all,lab_results_verification FROM pb_patient_names");
             java.sql.ResultSet rsetTry = pstmtTry.executeQuery();
             while (rsetTry.next()) {
                 labAll = rsetTry.getBoolean(1);
+                lab_results_verification = rsetTry.getBoolean(2);
             }
 //        getList = true;
 //
@@ -185,7 +187,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         mainDatePicker2 = new com.afrisoftech.lib.DatePicker();
         machineCbx = new javax.swing.JComboBox<>();
         labSectionCbx = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        paidUpBtn = new javax.swing.JButton();
         jLabel71 = new javax.swing.JLabel();
         jTextField61 = new javax.swing.JTextField();
         jButton61 = new javax.swing.JButton();
@@ -274,15 +276,15 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         verifyScrollPane = new javax.swing.JScrollPane();
         posted2verifyTable = new com.afrisoftech.dbadmin.JXTable();
         jLabel24 = new javax.swing.JLabel();
-        datePicker11 = new com.afrisoftech.lib.DatePicker();
+        verifyStartDatePicker = new com.afrisoftech.lib.DatePicker();
         jButton32 = new javax.swing.JButton();
         jButton42 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
         jTextField62 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        verifyEndDatePicker = new com.afrisoftech.lib.DatePicker();
+        totalCount2VerifyLbl = new javax.swing.JLabel();
         verifiedResultsPanel = new javax.swing.JPanel();
         releasedResultsPanel = new javax.swing.JPanel();
         verifiedScrollPane = new javax.swing.JScrollPane();
@@ -297,6 +299,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         endDatePicker = new com.afrisoftech.lib.DatePicker();
         verifiedDatePicker = new com.afrisoftech.lib.DatePicker();
         jCheckBox1 = new javax.swing.JCheckBox();
+        reasedResultsRefreshBtn = new javax.swing.JButton();
+        totalCountReleasedResultsLbl = new javax.swing.JLabel();
         verifiedResultsPanel1 = new javax.swing.JPanel();
         releasedResultsPanel1 = new javax.swing.JPanel();
         verifiedScrollPane1 = new javax.swing.JScrollPane();
@@ -976,7 +980,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Laboratory Procedures/Tests Results");
+        setTitle("Laboratory LIMS Module : Procedures requests/Results");
         setFrameIcon(null);
         try {
             setSelected(true);
@@ -1675,7 +1679,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         javax.swing.table.TableColumn column2 = null;
         for (int i = 0; i < paidTable.getColumnCount(); i++) {
             column2 = paidTable.getColumnModel().getColumn(i);
-            if (i == 2) {
+            if (i == 3) {
 
                 column2.setPreferredWidth(500); // item description column is bigger
             } else {
@@ -1754,10 +1758,10 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel6.add(labSectionCbx, gridBagConstraints);
 
-        jButton2.setText("Refresh");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        paidUpBtn.setText("Refresh");
+        paidUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                paidUpBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1765,7 +1769,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel6.add(jButton2, gridBagConstraints);
+        jPanel6.add(paidUpBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2774,6 +2778,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         verificationPanel.add(jLabel24, gridBagConstraints);
+
+        verifyStartDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("Start date"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -2782,7 +2788,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-        verificationPanel.add(datePicker11, gridBagConstraints);
+        verificationPanel.add(verifyStartDatePicker, gridBagConstraints);
 
         jButton32.setMnemonic('l');
         jButton32.setText("Refresh listing of results to verify");
@@ -2793,7 +2799,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -2843,31 +2849,40 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         verificationPanel.add(jTextField62, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 200.0;
-        gridBagConstraints.weighty = 1.0;
-        verificationPanel.add(jLabel16, gridBagConstraints);
+
+        jButton1.setText("Verify marked results");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 200.0;
-        gridBagConstraints.weighty = 1.0;
-        verificationPanel.add(jLabel20, gridBagConstraints);
-
-        jButton1.setText("Verify Results highlighted results");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 14;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         verificationPanel.add(jButton1, gridBagConstraints);
 
-        labreportingTabbedPane.addTab("List of processed results", verificationPanel);
+        verifyEndDatePicker.setBorder(javax.swing.BorderFactory.createTitledBorder("End date"));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        verificationPanel.add(verifyEndDatePicker, gridBagConstraints);
+
+        totalCount2VerifyLbl.setForeground(new java.awt.Color(0, 51, 255));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        verificationPanel.add(totalCount2VerifyLbl, gridBagConstraints);
+
+        labreportingTabbedPane.addTab("Processed results - To be verified", verificationPanel);
 
         verifiedResultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         verifiedResultsPanel.setLayout(new java.awt.GridBagLayout());
@@ -3122,6 +3137,29 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         verifiedResultsPanel.add(jPanel5, gridBagConstraints);
+
+        reasedResultsRefreshBtn.setText("Refresh results listing");
+        reasedResultsRefreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reasedResultsRefreshBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        verifiedResultsPanel.add(reasedResultsRefreshBtn, gridBagConstraints);
+
+        totalCountReleasedResultsLbl.setForeground(new java.awt.Color(0, 51, 255));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        verifiedResultsPanel.add(totalCountReleasedResultsLbl, gridBagConstraints);
 
         labreportingTabbedPane.addTab("View released results", verifiedResultsPanel);
 
@@ -3532,30 +3570,41 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     }//GEN-LAST:event_clearVerifiedListingBtnActionPerformed
 
     private void releasedResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_releasedResultsTableMouseClicked
+        if(releasedResultsTable.getSelectedColumn() == 5){
         String receiptNo = null;
 
         // if (Boolean.valueOf(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),4).toString()) == java.lang.Boolean.TRUE) {
         receiptNo = releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 4).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);  // Add your handling code here:
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 0).toString()); 
+        
+        }// Add your handling code here:
     }//GEN-LAST:event_releasedResultsTableMouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,typeof_test as procedure_name, lab_no, false as results_read from hp_lab_results where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "'  ORDER BY date,lab_no"));
-        // Add your handling code here:
+
+        releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,typeof_test as procedure_name, lab_no, false as results_read, instrument_name as analyzer_used, (SELECT input_date::time(0) FROM hp_lab_results lr where hl.lab_no = lr.lab_no ORDER BY 1 DESC LIMIT 1) as result_time from hp_lab_results hl where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' and verified = true AND patient_no IS NOT NULL AND lab_no IS NOT NULL AND patient_no != '' AND lab_no != ''  ORDER BY date, patient_name"));
+
+        totalCountReleasedResultsLbl.setText("Total number of released procedures : [" + releasedResultsTable.getRowCount() + "]");
+        //       totalCountReleasedResultsLbl.setText("Total number of procedures released : ["+releasedResultsTable.getRowCount()+"]");
+
+// Add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void posted2verifyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_posted2verifyTableMouseClicked
+        if(posted2verifyTable.getSelectedColumn() == 8){
         String receiptNo = null;
+        receiptNo = posted2verifyTable.getValueAt(posted2verifyTable.getSelectedRow(), 4).toString();
 
-        // if (Boolean.valueOf(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),4).toString()) == java.lang.Boolean.TRUE) {
+        if (posted2verifyTable.getSelectedColumn() != 11) {
         receiptNo = posted2verifyTable.getValueAt(posted2verifyTable.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, posted2verifyTable.getValueAt(posted2verifyTable.getSelectedRow(), 0).toString());
+        }
 
-        //}  // Add your handling code here:
+        }  // Add your handling code here:
     }//GEN-LAST:event_posted2verifyTableMouseClicked
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
@@ -3684,7 +3733,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             pstmt.setString(11, "");
                             pstmt.setDouble(12, java.lang.Double.valueOf(pendingTable.getValueAt(t, 6).toString()));
                             pstmt.setDouble(13, 0.00);
-                            pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                            pstmt.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyStartDatePicker.getDate()));
                             pstmt.setObject(15, patientAcc);
                             pstmt.setString(16, rse121.getString(1));
                             pstmt.setDouble(17, java.lang.Double.valueOf(pendingTable.getValueAt(t, 5).toString()));
@@ -3727,7 +3776,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             pstmt24.setString(15, "Revenue");
                             pstmt24.setDouble(16, 0.00);
                             pstmt24.setDouble(17, java.lang.Double.valueOf(pendingTable.getValueAt(t, 6).toString()));
-                            pstmt24.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker11.getDate()));
+                            pstmt24.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyStartDatePicker.getDate()));
                             pstmt24.setObject(19, transNo);
                             pstmt24.setBoolean(20, false);
                             pstmt24.setBoolean(21, false);
@@ -3780,11 +3829,31 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
 
-        posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT date, patient_no, patient_name, lab_no, request_id, typeof_test, lab_domain, lab_station, false as verify FROM hp_lab_results WHERE verified = false ORDER BY 1,4"));
+        posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT date, patient_no, patient_name, lab_no, request_id, typeof_test, lab_domain, lab_station, false as verify,  instrument_name as analyzer_used, (SELECT input_date::time(0) FROM hp_lab_results lr where hl.lab_no = lr.lab_no ORDER BY 1 DESC LIMIT 1) as result_time,user_name AS performed_by FROM hp_lab_results hl WHERE verified = false and date  BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyStartDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyEndDatePicker.getDate()) + "' AND patient_no IS NOT NULL AND lab_no IS NOT NULL AND patient_no != '' AND lab_no != ''  ORDER BY 1,4"));
+
+        totalCount2VerifyLbl.setText("Total  number of procedures done : [" + posted2verifyTable.getRowCount() + "]");
+        pupulateLabUsersOnVerificationtable();
+        
 
         // Add your handling code here:
     }//GEN-LAST:event_jButton32ActionPerformed
 
+    private void pupulateLabUsersOnVerificationtable(){
+        javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox();
+        cmBox3.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION Select INITCAP(f_name||' '||l_name) FROM secure_menu_access WHERE group_name ILIKE '%lab%' ORDER BY 1"));
+        
+        cmBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //cmBox3ActionPerformed(evt);
+            }
+        });
+        javax.swing.table.TableColumn teditor3 = this.posted2verifyTable.getColumn("PERFORMED_BY");//
+        
+
+        teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));
+    }
+    
+    
     private void refreshListingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshListingsBtnActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         for (int k = 0; k < paidTable.getRowCount(); k++) {
@@ -3875,7 +3944,9 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             + "pb_doctors_request.patient_no::text))"
                             + " order by 1,12 "));
 
-                    this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+                    paidUpBtn.doClick();
+
+                    /*this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                             "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                             + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
                             + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
@@ -3907,7 +3978,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             + " pb_doctors_request.service = ac_cash_collection.description  and pb_doctors_request.trans_date > (now()::date - 2) and "
                             + "ac_cash_collection.patient_no::text = "
                             + "pb_doctors_request.patient_no::text) )"
-                            + " order by 1,12 "));
+                            + " order by 1,12 "));*/
                     System.out.println("Doing all lab");
                 } else {
 
@@ -3931,16 +4002,17 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             + "  pb_doctors_request.collected=false AND UPPER(request_id ) NOT IN (SELECT request_id FROM hp_specimen_register) "
                             + " order by 1,12 "));
 
-                    this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                            "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
-                            + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
-                            + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
-                            + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
-                            + " (SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id FROM pb_doctors_request where "
-                            + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
-                            + "   pb_doctors_request.paid=true and \n"
-                            + "  pb_doctors_request.collected=false AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) "
-                            + " order by 1,12 "));
+//                    this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
+//                            "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
+//                            + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
+//                            + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
+//                            + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
+//                            + " (SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id FROM pb_doctors_request where "
+//                            + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
+//                            + "   pb_doctors_request.paid=true and \n"
+//                            + "  pb_doctors_request.collected=false AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) "
+//                            + " order by 1,12 "));
+                    paidUpBtn.doClick();
                 }
                 this.pendingTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
                         "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
@@ -3952,29 +4024,18 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                         + " AND pb_doctors_request.bed_no NOT IN (SELECT DISTINCT inpatient_no FROM hp_patient_billing hp WHERE hp.inpatient_no = pb_doctors_request.bed_no AND hp.collected = true AND UPPER(pb_doctors_request.service) = UPPER(hp.service)) "
                         + "ORDER BY 1,12 "));
 
-                this.posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT trans_date,patient_no,patient_name, payment_mode,service,quantity,amount,inv_no,doctor,false as Approve,request_id as Request_No,curr_date::time(0)       \n"
-                        + ",visit_id,doctor "
-                        + "  FROM pb_doctors_request where"
-                        + " requisition_no='LAB' and results=true and "
-                        + "paid=true and collected=true  "
-                        + "and trans_date >='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' "
-                        + "ORDER BY trans_date asc"));
+                posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT date, patient_no, patient_name, lab_no, request_id, typeof_test, lab_domain, lab_station, false as verify, instrument_name as analyzer_used, (SELECT input_date::time(0) FROM hp_lab_results lr where hl.lab_no = lr.lab_no ORDER BY 1 DESC LIMIT 1) as result_time,user_name AS performed_by  FROM hp_lab_results hl WHERE verified = false and date = '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyStartDatePicker.getDate()) + "'  AND patient_no IS NOT NULL AND lab_no IS NOT NULL AND patient_no != '' AND lab_no != ''  ORDER BY 1,4"));
 
+                totalCount2VerifyLbl.setText("Total  number of procedures done : [" + posted2verifyTable.getRowCount() + "]");
+
+                releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,typeof_test as procedure_name, lab_no, false as results_read, instrument_name as analyzer_used, (SELECT input_date::time(0) FROM hp_lab_results lr where hl.lab_no = lr.lab_no ORDER BY 1 DESC LIMIT 1) as result_time  from hp_lab_results hl where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' and verified = true  AND patient_no IS NOT NULL AND lab_no IS NOT NULL AND patient_no != '' AND lab_no != ''  ORDER BY date,lab_no"));
+
+                totalCountReleasedResultsLbl.setText("Total number of released procedures : [" + releasedResultsTable.getRowCount() + "]");
+                pupulateLabUsersOnVerificationtable();
+//               
             }
             javax.swing.table.TableColumn column2 = null;
-            for (int i = 0; i < paidTable.getColumnCount(); i++) {
-                column2 = paidTable.getColumnModel().getColumn(i);
-                if (i == 2) {
-
-                    column2.setPreferredWidth(300); // item description column is bigger
-                } else if (i == 1 || i == 4) {
-
-                    column2.setPreferredWidth(150);
-
-                } else {
-                    column2.setPreferredWidth(100);
-                }
-            }
+            
 
             for (int i = 0; i < sampleTable.getColumnCount(); i++) {
                 column2 = sampleTable.getColumnModel().getColumn(i);
@@ -4541,7 +4602,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
     private void saveResultsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveResultsBtnActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        if (resultsVerifierCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
+        if (resultsVerifierCmbx.getSelectedItem().toString().equalsIgnoreCase("-") && !lab_results_verification) {
             javax.swing.JOptionPane.showMessageDialog(this, "Please Select RESULTS VERIFIED BY in red", "Information Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
         } else {
@@ -4629,8 +4690,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                         + "            request_id, type_of_specimen, specimen_condition, pathologist_comment, \n"
                                         + "            general_result, culture_process, referral_path, referral_result_received, \n"
                                         + "            cancer_infective_status, cancer_non_infective_status, specimen_source, \n"
-                                        + "            lab_domain, lab_station,  specimen_id)"
-                                        + " VALUES(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?)");
+                                        + "            lab_domain, lab_station,  specimen_id,verified)"
+                                        + " VALUES(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                 if (patientNumberTxt.getText() == "" || patientNumberTxt.getText() == null) {
                                     pstmt21.setString(1, labNumberTxt.getText());
                                 } else {
@@ -4678,6 +4739,11 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                 pstmt21.setObject(39, labDomainCmbx.getSelectedItem());
                                 pstmt21.setObject(40, labStationCmbx.getSelectedItem());
                                 pstmt21.setString(41, specimenIDTxt.getText());
+                                if (lab_results_verification) {
+                                    pstmt21.setBoolean(42, false);
+                                } else {
+                                    pstmt21.setBoolean(42, true);
+                                }
                                 pstmt21.executeUpdate();
                                 java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE pb_doctors_request set results=true, posted_to_lab='" + labNumberTxt.getText().trim() + "',collected = true WHERE "
                                         + " curr_date::time(0)='" + labRequestTimeTxt.getText().trim() + "' "
@@ -4701,8 +4767,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                         + "            request_id, type_of_specimen, specimen_condition, pathologist_comment, \n"
                                         + "            general_result, culture_process, referral_path, referral_result_received, \n"
                                         + "            cancer_infective_status, cancer_non_infective_status, specimen_source, \n"
-                                        + "            lab_domain, lab_station,  specimen_id)"
-                                        + " values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                        + "            lab_domain, lab_station,  specimen_id,verified)"
+                                        + " values(?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                 if (patientNumberTxt.getText() == "" || patientNumberTxt.getText() == null) {
                                     pstmt21.setString(1, labNumberTxt.getText());
@@ -4750,6 +4816,11 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                 pstmt21.setObject(39, labDomainCmbx.getSelectedItem());
                                 pstmt21.setObject(40, labStationCmbx.getSelectedItem());
                                 pstmt21.setString(41, specimenIDTxt.getText());
+                                if (lab_results_verification) {
+                                    pstmt21.setBoolean(42, false);
+                                } else {
+                                    pstmt21.setBoolean(42, true);
+                                }
                                 pstmt21.executeUpdate();
 
                                 java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE pb_doctors_request set results=true, posted_to_lab='" + labNumberTxt.getText().trim() + "',collected = true WHERE "
@@ -4922,7 +4993,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
                     com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, String.valueOf(com.afrisoftech.lib.ServerTime.getSQLDate(connectDB)));
 
                     for (int k = 0; k < resultsSITable.getRowCount(); k++) {
                         for (int r = 0; r < resultsSITable.getColumnCount(); r++) {
@@ -5209,27 +5280,27 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                         + " order by 1,12 "));
 
                 this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                        "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
+                        "SELECT pb_doctors_request.trans_date,patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                         + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
                         + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
                         + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no"
-                        + " UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
-                        + "(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id  FROM pb_doctors_request where "
+                        + " UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name"
+                        + "  FROM pb_doctors_request where "
                         + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
                         + "   pb_doctors_request.paid=true AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) and \n"
                         + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                         + " UNION "
-                        + " SELECT date::date as trans_date, patient_no, funsoft_get_patient_name(patient_no) as patient_name,"
+                        + " SELECT date::date as trans_date, patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(reference || '-' ||service  ) LIMIT 1) AS specimen_id, funsoft_get_patient_name(patient_no) as patient_name,"
                         + " payment_mode, service, dosage as quantity, debit, reference, '' as doctor, false as Carry_test, "
                         + " reference as Request_No, now()::time(0), visit_id, '' as Specimen, '' as Test_notes,"
-                        + "  reference as receipt_no, scheme as scheme_name, "
-                        + "(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(reference || '-' ||service  ) LIMIT 1) AS specimen_id FROM hp_patient_card WHERE main_service ilike '%Laboratory%' AND date >= now()::date - 2 "
+                        + "  reference as receipt_no, scheme as scheme_name "
+                        + " FROM hp_patient_card WHERE main_service ilike '%Laboratory%' AND date >= now()::date - 2 "
                         + " AND collected = false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' ) "
                         + "AND UPPER(reference || '-' ||service  )  IN (SELECT UPPER(request_id ||'-'||service) FROM hp_specimen_register)"
                         + " UNION "
-                        + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as carry_test,"
-                        + "transaction_no as request_no, now()::time(0), patient_no, '' as specimen, '' as test_notes, receipt_no, 'Cash' AS scheme_name, "
-                        + "(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(transaction_no || '-' ||description  )  LIMIT 1) AS specimen_id FROM ac_cash_collection WHERE "
+                        + "SELECT date as trans_date, patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(transaction_no || '-' ||description  )  LIMIT 1) AS specimen_id, dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as carry_test,"
+                        + "transaction_no as request_no, now()::time(0), patient_no, '' as specimen, '' as test_notes, receipt_no, 'Cash' AS scheme_name "
+                        + " FROM ac_cash_collection WHERE "
                         + "date >= now()::date - 2 AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR dealer ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                         + "AND UPPER(transaction_no || '-' ||description  )  IN (SELECT UPPER(request_id ||'-'||service) FROM hp_specimen_register) "
                         + "AND ac_cash_collection.activity_code::text = ((( SELECT DISTINCT pb_activity.code "
@@ -5256,18 +5327,13 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                         + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                         + " order by 1,12 "));
 
-//                this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-//                        "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,notes as Test_notes\n"
-//                        + " , (SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id) AS specimen_id FROM pb_doctors_request where requisition_no='LAB' AND pb_doctors_request.trans_date>='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' and "
-//                        + "   pb_doctors_request.paid=true AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) and \n"
-//                        + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
-//                        + " order by 1,12 "));
+
                 this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                        "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
+                        "SELECT pb_doctors_request.trans_date,patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id) AS specimen_id, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                         + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
                         + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
-                        + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
-                        + " (SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id) AS specimen_id FROM pb_doctors_request where "
+                        + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name"
+                        + "  FROM pb_doctors_request where "
                         + "requisition_no='LAB' AND pb_doctors_request.trans_date='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + "' and "
                         + "   pb_doctors_request.paid=true AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') and \n"
                         + "  pb_doctors_request.collected=false AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) "
@@ -5281,15 +5347,9 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                     + "  pb_doctors_request.collected=false AND (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
                     + " order by 1,12 "));
 
-            this.posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT trans_date,patient_no,patient_name, payment_mode,service,quantity,amount,inv_no,doctor,false as Approve,request_id as Request_No,curr_date::time(0)       \n"
-                    + ",visit_id,doctor "
-                    + "  FROM pb_doctors_request where"
-                    + " requisition_no='LAB' and results=true and "
-                    + "paid=true and collected=true  "
-                    + "and trans_date >='(" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()) + ")-1' "
-                    + "and (patient_no ilike '" + this.searchPatientTxt.getText().trim() + "%' OR patient_name ilike '" + this.searchPatientTxt.getText().trim() + "%') "
-                    + " ORDER BY trans_date asc"));
+            posted2verifyTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT date, patient_no, patient_name, lab_no, request_id, typeof_test, lab_domain, lab_station, false as verify,user_name AS performed_by FROM hp_lab_results WHERE verified = false and date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(verifyStartDatePicker.getDate()) + "'  ORDER BY 1,4"));
 
+//           
         }
     }//GEN-LAST:event_searchPatientTxtCaretUpdate
 
@@ -5297,15 +5357,15 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
 
         for (int t = 0; t < paidTable.getRowCount(); t++) {
-            if (this.paidTable.getValueAt(t, 9) == Boolean.TRUE) {
-                if (paidTable.getValueAt(t, 9) == Boolean.TRUE) {
+            if (this.paidTable.getValueAt(t, 10) == Boolean.TRUE) {
+                if (paidTable.getValueAt(t, 10) == Boolean.TRUE) {
                     this.patientNumberTxt.setText(paidTable.getValueAt(t, 1).toString());
-                    specimenIDTxt.setText(paidTable.getValueAt(t, 17).toString());
-                    this.patientNameTxt.setText(paidTable.getValueAt(t, 2).toString());
-                    this.labTestTable.setValueAt(paidTable.getValueAt(t, 4).toString(), 0, 0);
-                    this.reqidTextField.setText(paidTable.getValueAt(t, 10).toString().trim());
-                    this.labRequestTimeTxt.setText(paidTable.getValueAt(t, 11).toString().trim());
-                    this.resultsSITable.setValueAt(paidTable.getValueAt(t, 4).toString(), 0, 0);
+                    specimenIDTxt.setText(paidTable.getValueAt(t, 2).toString());
+                    this.patientNameTxt.setText(paidTable.getValueAt(t, 3).toString());
+                    this.labTestTable.setValueAt(paidTable.getValueAt(t, 5).toString(), 0, 0);
+                    this.reqidTextField.setText(paidTable.getValueAt(t, 11).toString().trim());
+                    this.labRequestTimeTxt.setText(paidTable.getValueAt(t, 12).toString().trim());
+                    this.resultsSITable.setValueAt(paidTable.getValueAt(t, 5).toString(), 0, 0);
 
                 }
 
@@ -5313,7 +5373,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
                     java.sql.Statement stmt1x = connectDB.createStatement();
                     java.sql.ResultSet rset1x = stmt1x.executeQuery("SELECT DISTINCT code,main_service FROM pb_operating_parameters "
-                            + "WHERE service_type = '" + paidTable.getValueAt(t, 4).toString().trim() + "'");
+                            + "WHERE service_type = '" + paidTable.getValueAt(t, 5).toString().trim() + "'");
                     while (rset1x.next()) {
                         labTestTable.setValueAt(rset1x.getObject(1), 0, 1);
                         labTestTable.setValueAt(rset1x.getObject(2), 0, 2);
@@ -5408,8 +5468,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
                     java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET "
                             + " collected = false where paid =true and  requisition_no='LAB' and "
-                            + "inv_no = '" + paidTable.getValueAt(paidTable.getSelectedRow(), 7).toString() + "' AND "
-                            + "service = '" + paidTable.getValueAt(paidTable.getSelectedRow(), 4).toString() + "'");
+                            + "inv_no = '" + paidTable.getValueAt(paidTable.getSelectedRow(), 8).toString() + "' AND "
+                            + "service = '" + paidTable.getValueAt(paidTable.getSelectedRow(), 5).toString() + "'");
                     pstmt46.executeUpdate();
 
                     // }
@@ -5417,7 +5477,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                     javax.swing.JOptionPane.showMessageDialog(this, "Insert Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     //}
-                    this.setTitle("PATIENT DETAILS :-" + this.paidTable.getValueAt(paidTable.getSelectedRow(), 1) + " " + this.paidTable.getValueAt(paidTable.getSelectedRow(), 2) + "  for SERVICE :'" + paidTable.getValueAt(paidTable.getSelectedRow(), 4) + "'");
+                    this.setTitle("PATIENT DETAILS :-" + this.paidTable.getValueAt(paidTable.getSelectedRow(), 1) + " " + this.paidTable.getValueAt(paidTable.getSelectedRow(), 3) + "  for SERVICE :'" + paidTable.getValueAt(paidTable.getSelectedRow(), 5) + "'");
                     connectDB.commit();
                     connectDB.setAutoCommit(true);
 
@@ -5537,7 +5597,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         if (patientNumberTxt.getText().length() > 2) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), patientNumberTxt.getText());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), patientNumberTxt.getText(),false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }
@@ -5552,7 +5612,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private void patientCardBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn1ActionPerformed
         if (pendingTable.getSelectedRow() != -1) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), pendingTable.getValueAt(pendingTable.getSelectedRow(), 1).toString());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), pendingTable.getValueAt(pendingTable.getSelectedRow(), 1).toString(), false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }    // TODO add your handling code here:
@@ -5561,7 +5621,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private void patientCardBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn2ActionPerformed
         if (paidTable.getSelectedRow() != -1) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), paidTable.getValueAt(paidTable.getSelectedRow(), 1).toString());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), paidTable.getValueAt(paidTable.getSelectedRow(), 1).toString(), false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }    // TODO add your handling code here:
@@ -5590,6 +5650,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         requestIDTxt.setText(sampleTable.getValueAt(sampleTable.getSelectedRow(), 10).toString());
         PayModeTxt.setText(sampleTable.getValueAt(sampleTable.getSelectedRow(), 3).toString());
         receiptNoTxtt.setText(sampleTable.getValueAt(sampleTable.getSelectedRow(), 15).toString());
+        
         specimenCmbx1.setSelectedItem("-");
         specimenSourceCmbx1.setSelectedItem("-");
         labDomainCmbx1.setSelectedItem("-");
@@ -5608,6 +5669,13 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             while (rset1.next()) {
                 //AgeTxt.setText(rset1.getObject(3).toString());
                 originTxt.setText(rset1.getObject(1).toString());
+            }
+            
+            rset1 = stmt1.executeQuery("select distinct specimen,specimen_source from pb_lab_standards where test ilike  '" + TestNameTxt.getText() + "'");
+            while (rset1.next()) {
+                //AgeTxt.setText(rset1.getObject(3).toString());
+                specimenCmbx1.setSelectedItem(rset1.getString(2));
+                labDomainCmbx1.setSelectedItem(rset1.getString(1));
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -5681,8 +5749,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     }//GEN-LAST:event_colseVerifiedBtn1ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        specimenReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no, patient_name,  service, \n"
-                + "       gender, age, specimen_id, specimen_type, specimen_source, specimen_condition, \n"
+        specimenReportTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT patient_no,specimen_id, patient_name,  service, \n"
+                + "       gender, age,  specimen_type, specimen_source, specimen_condition, \n"
                 + "       specimen_destination, specimen_time, specimen_user as user_name, origin, receipt_no, \n"
                 + "       request_id\n"
                 + "  FROM hp_specimen_register  where specimen_time::date  BETWEEN '" + verifiedDatePicker1.getDate() + "' AND '" + endDatePicker1.getDate() + "'  ORDER BY specimen_id"));
@@ -5728,13 +5796,13 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             Socket socketORM = new Socket(machineIPAddress, machinePort);
                             try {
                                 com.afrisoftech.laboratory.HL7LabMessaging25.createLaboratoryOrderMessage(socketORM, connectDB,
-                                        paidTable.getValueAt(t, 1).toString(), "OP", paidTable.getValueAt(t, 17).toString(), paidTable.getValueAt(t, 4).toString(), "FH",
-                                        paidTable.getValueAt(t, 8).toString(), paidTable.getValueAt(t, 0).toString(), paidTable.getValueAt(t, 18).toString(), paidTable.getValueAt(t, 19).toString(),machineModel,setPositioning);
+                                        paidTable.getValueAt(t, 1).toString(), "OP", paidTable.getValueAt(t, 2).toString(), paidTable.getValueAt(t, 5).toString(), "FH",
+                                        paidTable.getValueAt(t, 9).toString(), paidTable.getValueAt(t, 0).toString(), paidTable.getValueAt(t, 18).toString(), paidTable.getValueAt(t, 19).toString(), machineModel, setPositioning);
                                 try {
                                     java.sql.PreparedStatement pstmt31 = connectDB.prepareStatement("UPDATE hp_specimen_register SET rack_no = ?,tube_position = ?   WHERE specimen_id =  ? ");
                                     pstmt31.setObject(1, paidTable.getValueAt(t, 18));
                                     pstmt31.setObject(2, paidTable.getValueAt(t, 19));
-                                    pstmt31.setObject(3, paidTable.getValueAt(t, 17));
+                                    pstmt31.setObject(3, paidTable.getValueAt(t, 2));
                                     pstmt31.executeUpdate();
 
                                 } catch (SQLException e) {
@@ -5765,7 +5833,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCardBtn3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void paidUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidUpBtnActionPerformed
         String condition = "";
         String condition2 = "";
         if (!labSectionCbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
@@ -5776,26 +5844,27 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         if (labAll) {
 
             this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
+                    "SELECT pb_doctors_request.trans_date,patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                     + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
                     + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
-                    + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
-                    + "(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id) AS specimen_id,'' AS rack_no,'' AS tube_position  FROM pb_doctors_request where "
+                    + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register"
+                            + " WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
+                    + " '' AS rack_no,'' AS tube_position  FROM pb_doctors_request where "
                     + "requisition_no='LAB' AND pb_doctors_request.trans_date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker2.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker1.getDate()) + "'  and "
                     + "   pb_doctors_request.paid=true AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) and \n"
                     + "  pb_doctors_request.collected=false " + condition + " "
                     + " UNION "
-                    + " SELECT date::date as trans_date, patient_no, funsoft_get_patient_name(patient_no) as patient_name,"
+                    + " SELECT date::date as trans_date, patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(reference || '-' ||service  ) LIMIT 1) AS specimen_id, funsoft_get_patient_name(patient_no) as patient_name,"
                     + " payment_mode, service, dosage as quantity, debit, reference, '' as doctor, false as Carry_test, "
                     + " reference as Request_No, now()::time(0), visit_id, '' as Specimen, '' as Test_notes,"
-                    + "  reference as receipt_no, scheme as scheme_name,  (SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(reference || '-' ||service  ) LIMIT 1) AS specimen_id,'' AS rack_no,'' AS tube_position"
+                    + "  reference as receipt_no, scheme as scheme_name,  '' AS rack_no,'' AS tube_position"
                     + " FROM hp_patient_card WHERE main_service ilike '%Laboratory%' AND date  BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker2.getDate()) + "' AND "
                     + "'" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker1.getDate()) + "' " + condition + " "
                     + " AND collected = false AND UPPER(reference || '-' ||service  )  IN (SELECT UPPER(request_id ||'-'||service) FROM hp_specimen_register)"
                     + " UNION "
-                    + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as carry_test,"
+                    + "SELECT date as trans_date, patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(transaction_no || '-' ||description  )  LIMIT 1) AS specimen_id , dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as carry_test,"
                     + "transaction_no as request_no, now()::time(0), patient_no, '' as specimen, '' as test_notes, receipt_no, 'Cash' AS scheme_name , "
-                    + "(SELECT specimen_id FROM hp_specimen_register hsr WHERE UPPER(request_id ||'-'||service)  = UPPER(transaction_no || '-' ||description  )  LIMIT 1) AS specimen_id , '' AS rack_no,'' AS tube_position FROM ac_cash_collection WHERE "
+                    + " '' AS rack_no,'' AS tube_position FROM ac_cash_collection WHERE "
                     + " date >= now()::date - 2 AND UPPER(transaction_no || '-' ||description  )  IN (SELECT UPPER(request_id ||'-'||service) FROM hp_specimen_register) "
                     + "AND ac_cash_collection.activity_code::text = ((( SELECT DISTINCT pb_activity.code "
                     + "           FROM pb_activity "
@@ -5812,18 +5881,18 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             System.out.println("Doing all lab");
         } else {
             this.paidTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
-                    "SELECT pb_doctors_request.trans_date,patient_no, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
+                    "SELECT pb_doctors_request.trans_date,patient_no,(SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id LIMIT 1) AS specimen_id, patient_name, payment_mode,service,quantity,amount,inv_no,doctor,"
                     + "false as Carry_Test,request_id as Request_No,curr_date::time(0),visit_id,diagnosis as Specimen,notes as Test_notes, "
                     + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb_doctors_request.patient_no AND pb_doctors_request.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,"
                     + " (CASE WHEN payment_mode ilike 'scheme' THEN (SELECT description FROM (select date,description from hp_patient_register WHERE hp_patient_register.patient_no = pb_doctors_request.patient_no UNION select date,description from hp_inpatient_register WHERE hp_inpatient_register.patient_no = pb_doctors_request.patient_no ORDER BY date DESC LIMIT 1) as foo) ELSE '' END) as scheme_name,"
-                    + " (SELECT specimen_id FROM hp_specimen_register hsr WHERE hsr.request_id  = pb_doctors_request.request_id) AS specimen_id, '' AS rack_no,'' AS tube_position FROM pb_doctors_request where "
+                    + "  '' AS rack_no,'' AS tube_position FROM pb_doctors_request where "
                     + "requisition_no='LAB' AND pb_doctors_request.trans_date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker2.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker1.getDate()) + "' and "
                     + "   pb_doctors_request.paid=true and \n"
                     + "  pb_doctors_request.collected=false AND UPPER(request_id )  IN (SELECT request_id FROM hp_specimen_register) " + condition + " "
                     + " order by 1,12 "));
         }
 
-        java.lang.Object[] strCmb3 = {"1", "2","3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+        java.lang.Object[] strCmb3 = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
 
         javax.swing.JComboBox cmBox3 = new javax.swing.JComboBox(strCmb3);
 
@@ -5838,20 +5907,32 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         teditor3.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));
         teditor4.setCellEditor(new javax.swing.DefaultCellEditor(cmBox3));
         
-        
-        
+        javax.swing.table.TableColumn column2 = null;
+            for (int i = 0; i < paidTable.getColumnCount(); i++) {
+                column2 = paidTable.getColumnModel().getColumn(i);
+                if (i == 3) {
+
+                    column2.setPreferredWidth(300); // item description column is bigger
+                } else if (i == 1 || i == 5) {
+
+                    column2.setPreferredWidth(150);
+
+                } else {
+                    column2.setPreferredWidth(100);
+                }
+            }
 
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_paidUpBtnActionPerformed
 
     private void labSectionCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labSectionCbxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_labSectionCbxActionPerformed
 
     private void machineCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_machineCbxActionPerformed
-     javax.swing.JComboBox cmbox56 = new javax.swing.JComboBox();
+        javax.swing.JComboBox cmbox56 = new javax.swing.JComboBox();
 
-        cmbox56.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT rack_no  FROM hp_diagnostic_machine_racks WHERE machine_name ILIKE '"+machineCbx.getSelectedItem().toString()+"' "));
+        cmbox56.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT rack_no  FROM hp_diagnostic_machine_racks WHERE machine_name ILIKE '" + machineCbx.getSelectedItem().toString() + "' "));
 
         javax.swing.table.TableColumn seditor16 = this.paidTable.getColumn("RACK_NO");
 
@@ -5861,10 +5942,42 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-              //  cmbox5ActionPerformed(evt);
+                //  cmbox5ActionPerformed(evt);
             }
         });   // TODO add your handling code here:
     }//GEN-LAST:event_machineCbxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        for (int i = 0; i < posted2verifyTable.getRowCount(); i++) {
+            if (posted2verifyTable.getValueAt(i, 0) != null) {
+                if (Boolean.valueOf(posted2verifyTable.getValueAt(i, 8).toString())) {
+                    try {
+                        java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_lab_results"
+                                + " SET user_name ='" + posted2verifyTable.getValueAt(i, 11).toString().trim() + "', verified = true , user_verifying = current_user, verification_time = now(),lab_manager = current_user "
+                                + " where lab_no = '" + posted2verifyTable.getValueAt(i, 3).toString().trim() + "'");
+                        pstmt46.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Results Verification Successful", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        jButton32.doClick();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void reasedResultsRefreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reasedResultsRefreshBtnActionPerformed
+
+        releasedResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select distinct date,patient_no,patient_name,typeof_test as procedure_name, lab_no, false as results_read, instrument_name as analyzer_used, (SELECT input_date::time(0) FROM hp_lab_results lr where hl.lab_no = lr.lab_no ORDER BY 1 DESC LIMIT 1) as result_time from hp_lab_results hl where date  BETWEEN '" + verifiedDatePicker.getDate() + "' AND '" + endDatePicker.getDate() + "' and verified = true AND patient_no IS NOT NULL AND lab_no IS NOT NULL AND patient_no != '' AND lab_no != ''  ORDER BY date, patient_name"));
+
+        totalCountReleasedResultsLbl.setText("Total number of released procedures : [" + releasedResultsTable.getRowCount() + "]");
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reasedResultsRefreshBtnActionPerformed
     private class SearchThread extends java.lang.Thread {
 
         public void SearchThread() {
@@ -5961,7 +6074,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             // for (int l = 0; l < listofDays.length; l++) {
             java.sql.Statement stmtTable11 = connectDB.createStatement();
 
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  AND date >='" + datePicker11.getDate().toString() + "'");
+            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select count(distinct lab_no) from hp_lab_results where doc_read = false  AND date >='" + verifyStartDatePicker.getDate().toString() + "'");
 
             while (rsetTable11.next()) {
                 patNo = rsetTable11.getInt(1);
@@ -5971,7 +6084,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             //   jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='"+datePicker1.getDate().toString()+"'  ORDER BY date,lab_no"));
             java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='" + datePicker11.getDate().toString() + "'  ORDER BY date,lab_no");
+            java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select distinct date,patient_no,patient_name,lab_no,doc_read from hp_lab_results where doc_read = false AND date >='" + verifyStartDatePicker.getDate().toString() + "'  ORDER BY date,lab_no");
 
             while (rsetTable1.next()) {
 
@@ -6089,7 +6202,6 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JLabel commentsLabel;
     private javax.swing.JScrollPane commentsScrollPane;
     private javax.swing.JCheckBox culturedChkbx;
-    private com.afrisoftech.lib.DatePicker datePicker11;
     private javax.swing.JButton editResultsBtn;
     private com.afrisoftech.lib.DatePicker endDatePicker;
     private com.afrisoftech.lib.DatePicker endDatePicker1;
@@ -6100,7 +6212,6 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JButton helpBtn;
     private javax.swing.JCheckBox inpatientCheckBox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton52;
@@ -6121,12 +6232,10 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -6216,6 +6325,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JTextField originTxt;
     private javax.swing.JCheckBox outpatientCheckBox;
     private javax.swing.JTable paidTable;
+    private javax.swing.JButton paidUpBtn;
     private javax.swing.JPanel paidUpOrdersPanel;
     private javax.swing.JPanel paidUpOrdersPanel1;
     private javax.swing.JPanel paidupPanel;
@@ -6237,6 +6347,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JTable pendingTable;
     private javax.swing.JTable posted2verifyTable;
     private javax.swing.JButton raiserequestsButton;
+    private javax.swing.JButton reasedResultsRefreshBtn;
     private javax.swing.JTextField receiptNoTxtt;
     private javax.swing.JComboBox referralCmbx;
     private javax.swing.JCheckBox referralResultsChkbx;
@@ -6271,6 +6382,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JComboBox specimenSourceCmbx;
     private javax.swing.JComboBox specimenSourceCmbx1;
     private javax.swing.JTextField specimenTimeTxt;
+    private javax.swing.JLabel totalCount2VerifyLbl;
+    private javax.swing.JLabel totalCountReleasedResultsLbl;
     private javax.swing.JPanel verificationPanel;
     private com.afrisoftech.lib.DatePicker verifiedDatePicker;
     private com.afrisoftech.lib.DatePicker verifiedDatePicker1;
@@ -6278,6 +6391,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
     private javax.swing.JPanel verifiedResultsPanel1;
     private javax.swing.JScrollPane verifiedScrollPane;
     private javax.swing.JScrollPane verifiedScrollPane1;
+    private com.afrisoftech.lib.DatePicker verifyEndDatePicker;
     private javax.swing.JScrollPane verifyScrollPane;
+    private com.afrisoftech.lib.DatePicker verifyStartDatePicker;
     // End of variables declaration//GEN-END:variables
 }

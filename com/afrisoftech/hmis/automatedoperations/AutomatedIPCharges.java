@@ -265,15 +265,85 @@ public class AutomatedIPCharges {
                                     pstmt2r.executeUpdate();
 
                                 }
+                                
+                                
+                                //Charge Consumables
+                                service = "Consumables";
+                                rate = Double.parseDouble(jTable1.getValueAt(i, 8).toString());
+                                
+                                if (rate > 0) {
+                                    java.sql.PreparedStatement pstmtr = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?,?, ?, ?, ?, ?, ?,?,?,?,?,?,?)");
+                                    pstmtr.setObject(1, jTable1.getValueAt(i, 0).toString());
+                                    pstmtr.setObject(2, service);
+                                    pstmtr.setString(3, patientCat);
+                                    pstmtr.setString(4, payMode);
+                                    pstmtr.setString(5, transNo);
+                                    pstmtr.setString(7, scheme);
+                                    pstmtr.setString(6, cardNo);
+                                    pstmtr.setString(8, cardName);
+                                    pstmtr.setString(9, isurer);
+                                    pstmtr.setDate(10, null);
+                                    pstmtr.setString(11, "");
+                                    pstmtr.setDouble(12, Double.parseDouble(jTable1.getValueAt(i, 8).toString()));
+                                    pstmtr.setDouble(13, 0.00);
+                                    pstmtr.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmtr.setObject(15, patientAcc);
+                                    pstmtr.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB,  jTable1.getValueAt(i, 9).toString() ));
+                                    pstmtr.setDouble(17, Double.parseDouble(jTable1.getValueAt(i, 4).toString()));
+                                    pstmtr.setObject(18, staffNo);
+                                    pstmtr.setBoolean(19, false);
+                                    pstmtr.setString(20, "Billing");
+                                    pstmtr.setBoolean(21, false);
+                                    pstmtr.setString(22, AccDesc);
+                                    pstmtr.setString(23, visitid);
+                                    pstmtr.setString(24, user);
+                                    pstmtr.setString(25, billNo);
+                                    pstmtr.setString(26, "IP");
+                                    pstmtr.setTimestamp(27, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+                                    pstmtr.setString(28, visitid);
+                                    pstmtr.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt2r = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                    pstmt2r.setString(1,  jTable1.getValueAt(i, 9).toString() );
+                                    pstmt2r.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB,  jTable1.getValueAt(i, 9).toString() ));
+                                    pstmt2r.setObject(3, jTable1.getValueAt(i, 0).toString());
+                                    pstmt2r.setString(4, jTable1.getValueAt(i, 1).toString());
+                                    pstmt2r.setString(5, "");
+                                    pstmt2r.setString(6, "");
+                                    pstmt2r.setString(7, "");
+                                    pstmt2r.setString(8, "IP");
+                                    pstmt2r.setString(9, "");
+                                    pstmt2r.setString(10, payMode);
+                                    pstmt2r.setString(11, "");
+                                    pstmt2r.setString(12, "");
+                                    pstmt2r.setString(13, "");
+                                    pstmt2r.setString(14, service);
+                                    pstmt2r.setString(15, "Billing");
+                                    pstmt2r.setDouble(16, 0.00);
+                                    pstmt2r.setDouble(17, Double.parseDouble(jTable1.getValueAt(i, 8).toString()));
+                                    pstmt2r.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
+                                    pstmt2r.setString(19, transNo);
+                                    pstmt2r.setBoolean(20, false);
+                                    pstmt2r.setBoolean(21, false);
+                                    pstmt2r.setBoolean(22, false);
+                                    pstmt2r.setString(23, user);
+                                    pstmt2r.executeUpdate();
+
+                                }
+                                
+                                
 
                                 java.sql.Statement stm12qx = connectDB.createStatement();
-                                java.sql.ResultSet rse12qx = stm12qx.executeQuery("SELECT service_type, rate, main_service,  gl_account  FROM pb_operating_parameters WHERE auto_bill =true");
+                                java.sql.ResultSet rse12qx = stm12qx.executeQuery("SELECT service_type, rate, main_service,  gl_account,use_set_revenue_dept  FROM pb_operating_parameters WHERE auto_bill =true");
                                 while (rse12qx.next()) {
 
                                     service = rse12qx.getString(1);
                                     rate = rse12qx.getDouble(2);
                                     String mainservice = rse12qx.getString(3);
                                     String glaccount = rse12qx.getString(4);
+                                    
+                                    boolean use_set_revenue_dept = rse12qx.getBoolean(5);
+                                    
                                     System.err.println("Working on "+service);
                                     if (rate > 0) {
                                         System.err.println("Patiint No : "+jTable1.getValueAt(i, 0).toString());
@@ -294,7 +364,12 @@ public class AutomatedIPCharges {
                                         pstmtr.setDouble(13, 0.00);
                                         pstmtr.setDate(14, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker1.getDate()));
                                         pstmtr.setObject(15, patientAcc);
-                                        pstmtr.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));//mainservice);
+                                        if(use_set_revenue_dept){
+                                            pstmtr.setString(16, mainservice);//mainservice);
+                                        }else{
+                                           pstmtr.setString(16, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));//mainservice);
+                                         
+                                        }
                                         pstmtr.setDouble(17, 1.00);
                                         pstmtr.setObject(18, staffNo);
                                         pstmtr.setBoolean(19, false);
@@ -310,11 +385,13 @@ public class AutomatedIPCharges {
                                         pstmtr.executeUpdate();
 
                                         java.sql.PreparedStatement pstmt2r = connectDB.prepareStatement("insert into ac_ledger values(?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-//                                        pstmt2r.setString(1, glaccount);
-//                                        pstmt2r.setObject(2, mainService);
-                                        pstmt2r.setString(1, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString()));
-                                        pstmt2r.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
-                                
+                                        if(use_set_revenue_dept){
+                                            pstmt2r.setString(1, glaccount);
+                                            pstmt2r.setObject(2, mainService);
+                                        }else{
+                                            pstmt2r.setString(1, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString()));
+                                            pstmt2r.setObject(2, com.afrisoftech.lib.GLCodesFactory.getActivityDescription(connDB, com.afrisoftech.lib.WardGLAccountsFactory.getBedChargesGLAccount(connectDB, jTable1.getValueAt(i, 2).toString())));
+                                        }
                                         
                                         pstmt2r.setObject(3, jTable1.getValueAt(i, 0).toString());
                                         pstmt2r.setString(4, jTable1.getValueAt(i, 1).toString());
@@ -440,6 +517,8 @@ public class AutomatedIPCharges {
         bedsHeaderRowVector.addElement("Bed Fee");
         bedsHeaderRowVector.addElement("Nursing Fee");
         bedsHeaderRowVector.addElement("Visit ID");
+        bedsHeaderRowVector.addElement("Consumable Rate");
+        bedsHeaderRowVector.addElement("Consumable GL");
 
         int j = 0;
         int i = 0;
@@ -453,7 +532,9 @@ public class AutomatedIPCharges {
             java.sql.Statement stmtTable1 = connectDB.createStatement();
 
             java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT"
-                    + " patient_no,upper(patient_name) as name,ward,bed_no,deposit,nursing,visit_id "
+                    + " patient_no,upper(patient_name) as name,ward,bed_no,deposit,nursing,visit_id,\n" +
+                    " (SELECT consumable_rate from hp_bed_category  WHERE UPPER(category) = UPPER(wing) ) AS consumable_rate,\n" +
+                    " (select consumable_glcode from hp_wards WHERE UPPER(ward_name )= UPPER(ward) ) AS consumable_gl "
                     + " FROM hp_admission WHERE check_out = false AND (ward not ilike '%renal unit%' or ward NOT ILIKE '%EMERGENCY%')"
                     + " AND patient_no NOT IN (SELECT patient_no FROM hp_mortuary)"
                     + " ORDER BY visit_id");
@@ -497,6 +578,8 @@ public class AutomatedIPCharges {
                     columnDataVector.addElement(totalAmt);
                     columnDataVector.addElement(rsetTable1.getObject(6));
                     columnDataVector.addElement(rsetTable1.getObject(7));
+                    columnDataVector.addElement(rsetTable1.getObject(8));
+                    columnDataVector.addElement(rsetTable1.getObject(9));
                     i++;
                     bedsRowVector.addElement(columnDataVector);
 

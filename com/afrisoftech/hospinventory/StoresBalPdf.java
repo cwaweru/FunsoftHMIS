@@ -40,10 +40,11 @@ public class StoresBalPdf implements java.lang.Runnable {
     
     java.lang.Process prThread;
     Boolean itemsAboveZeroo = false;
+    String storeType = null;
     
     
     //public void OrderedItemsPdf(java.sql.Connection connDb,java.lang.String begindate,java.lang.String endate) {
-    public void StoresBalPdf(java.sql.Connection connDb,java.lang.String begindate, java.lang.String endate, java.lang.String cbox, java.lang.String stores, Boolean itemsAboveZero) {
+    public void StoresBalPdf(java.sql.Connection connDb,java.lang.String begindate, java.lang.String endate, java.lang.String cbox, java.lang.String stores, Boolean itemsAboveZero, String storeTypee) {
         
         connectDB = connDb;
         
@@ -53,6 +54,7 @@ public class StoresBalPdf implements java.lang.Runnable {
         
         Store = stores;
         itemsAboveZeroo =itemsAboveZero;
+        storeType = storeTypee;
         
         threadSample = new java.lang.Thread(this,"SampleThread");
         
@@ -576,7 +578,8 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             java.sql.Statement stmt1 = connectDB.createStatement();
             
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code, description FROM stock_balance_qty  WHERE department = '"+CBox+"' AND dates <= '"+endDate+"' AND item_code IS NOT NULL order by 2");
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code,description FROM st_stock_item WHERE UPPER(department) = '"+CBox.toUpperCase()+"' AND description NOT LIKE '%FEE' ORDER BY 2,1");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT item_code,description FROM st_stock_item WHERE UPPER(department) "
+                    + " IN  ( SELECT UPPER(store_name) FROM st_stores WHERE classification =   (SELECT classification FROM st_stores_type WHERE store_type_description = '"+storeType+"' ) ) AND description NOT LIKE '%FEE' ORDER BY 2,1");
             
             if(!rSet1.next()){
                 //javax.swing.JOptionPane.showMessageDialog(null, "Maina, I think we should run the query on st_stock_prices instead.");

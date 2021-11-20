@@ -361,6 +361,7 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
         refreshBtn1 = new javax.swing.JButton();
         reportTypeChooserCmbx1 = new javax.swing.JComboBox();
         spacerLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         occupancyReportPanel = new javax.swing.JPanel();
         occupationsHeaderTable = new javax.swing.JPanel();
         wardNameCmbx = new javax.swing.JComboBox();
@@ -3487,6 +3488,17 @@ public class AdmissionIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             admissionAnalysisPanel.add(spacerLabel1, gridBagConstraints);
 
+            jCheckBox1.setText("Show Admisions by Speciality");
+            jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jCheckBox1ActionPerformed(evt);
+                }
+            });
+            gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 1;
+            admissionAnalysisPanel.add(jCheckBox1, gridBagConstraints);
+
             admissionsTabbedPane.addTab("Admission analysis", admissionAnalysisPanel);
 
             occupancyReportPanel.setLayout(new java.awt.GridBagLayout());
@@ -5941,6 +5953,11 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
         // TODO add your handling code here:
     }//GEN-LAST:event_currentResidenceActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+     admissionAnalysisTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT speciality, count(speciality) FROM hp_admission  where date_admitted  between '" + startDatePicker1.getDate() + "' and '" + endDatePicker1.getDate() + "'  group by 1 order by 1"));
+               // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPanel;
     private javax.swing.JPanel admissionAnalysisPanel;
@@ -6064,6 +6081,7 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox21;
     private javax.swing.JDialog jDialog2;
@@ -7205,6 +7223,8 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
             String yrs = null;
             java.util.Date periodFrom = null;
             java.util.Date periodTo = null;
+            
+            boolean emergencyWard = false;
 
             String dateOfBirth = null;
             String name = null;
@@ -7291,6 +7311,11 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                     while (rsnzz.next()) {
                         manualNo = rsnzz.getBoolean(1);
                         useoneNumber = rsnzz.getString(2);
+                    }
+                    
+                    rsnzz = stmnzz.executeQuery("select emergency_ward from hp_wards WHERE ward_name ILIKE '"+admissionWardCmbx.getSelectedItem().toString()+"' ");
+                    while (rsnzz.next()) {
+                        emergencyWard = rsnzz.getBoolean(1);
                     }
                     if (newAdimissionRbtn.isSelected() && manualNo == true) {
                         manualNo = true;
@@ -7501,7 +7526,12 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                 } else {
 
                                     java.sql.Statement pss1x = connectDB.createStatement();
-                                    java.sql.ResultSet rss1x = pss1x.executeQuery("select nextval('inpatient_no_seq')");
+                                    java.sql.ResultSet rss1x = null;
+                                    if(!emergencyWard){
+                                        rss1x = pss1x.executeQuery("select nextval('inpatient_no_seq')");
+                                    }else{
+                                        rss1x = pss1x.executeQuery("select nextval('inpatient_no_emergency_seq')");
+                                    }
                                     while (rss1x.next()) {
                                         patNos = rss1x.getObject(1).toString();
                                     }
@@ -7511,6 +7541,9 @@ private void firstNameTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FI
                                         preFix = rsnz1.getString(1);
                                         digitNo = rsnz1.getInt(2);
                                         incYr = rsnz1.getBoolean(3);
+                                    }
+                                    if(emergencyWard){
+                                        preFix = "AE";
                                     }
                                     if (incYr) {
 

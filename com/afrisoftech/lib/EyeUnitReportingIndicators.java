@@ -48,12 +48,12 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?) ");//AND upper(patient_type) = upper(?)
             pstmt.setString(1, eyeCondition);
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(4, gender);
-            pstmt.setString(5, patientType);
+            //pstmt.setString(5, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -97,7 +97,7 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age >= 16 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age > 16 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?)");
             pstmt.setString(1, eyeCondition);
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
@@ -124,7 +124,7 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age BETWEEN ? AND ? AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age BETWEEN ? AND ? AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?) AND INITCAP(eye_condition) IN (SELECT DISTINCT INITCAP(condition_description) FROM public.eye_clinic_conditions WHERE condtion_type ilike 'Clinic' )");
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setDouble(3, visualAcuityLower);
@@ -152,7 +152,7 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age >= 16 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND visual_acuity_fraction BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age > 16 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?) AND INITCAP(eye_condition) IN (SELECT DISTINCT INITCAP(condition_description) FROM public.eye_clinic_conditions WHERE condtion_type ilike 'Clinic' )");
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setDouble(3, visualAcuityLower);
@@ -178,7 +178,7 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age < 5 AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age < 5 AND upper(patient_type) = upper(?) AND INITCAP(eye_condition) IN (SELECT DISTINCT INITCAP(condition_description) FROM public.eye_clinic_conditions WHERE condtion_type ilike 'Clinic' )");
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
@@ -201,7 +201,7 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age < 5 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND upper(patient_gender) = upper(?) AND patient_age < 5 AND upper(patient_type) = upper(?) AND upper(general_visual_acuity) = upper(?) AND INITCAP(eye_condition) IN (SELECT DISTINCT INITCAP(condition_description) FROM public.eye_clinic_conditions WHERE condtion_type ilike 'Clinic' )");
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
@@ -225,11 +225,12 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ?  AND upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ?  AND upper(patient_gender) = upper(?) AND upper(eye_condition) IN  (SELECT UPPER(condition_description) FROM eye_clinic_conditions WHERE condtion_type ilike ?  ) AND INITCAP(eye_condition) IN (SELECT DISTINCT INITCAP(condition_description) FROM public.eye_clinic_conditions WHERE condtion_type ilike ? ) ");//AND upper(patient_type) = upper(?)
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
             pstmt.setString(4, patientType);
+            pstmt.setString(5, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -248,12 +249,12 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND patient_age < 5 AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND patient_age < 5 AND  upper(patient_gender) = upper(?) ");//AND upper(patient_type) = upper(?)
             pstmt.setString(1, eyeCondition);
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(4, gender);
-            pstmt.setString(5, patientType);
+            //pstmt.setString(5, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -272,17 +273,17 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND patient_age < 5 AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND patient_age < 5 AND  upper(patient_gender) = upper(?) AND  upper(eye_condition) IN (SELECT UPPER(condition_description) FROM eye_clinic_conditions WHERE condtion_type ilike 'Surgery') ");// AND upper(patient_type) = upper(?)
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
-            pstmt.setString(4, patientType);
+            //pstmt.setString(4, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
             }
         } catch (SQLException ex) {
-                        ex.printStackTrace();             //ex.printStackTrace();
+                        ex.printStackTrace();             //ex.printStackTrace AND 
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
@@ -295,12 +296,12 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND patient_age >= 16 AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND patient_age > 16 AND  upper(patient_gender) = upper(?) ");//AND upper(patient_type) = upper(?)
             pstmt.setString(1, eyeCondition);
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(4, gender);
-            pstmt.setString(5, patientType);
+            //pstmt.setString(5, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -319,11 +320,11 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND patient_age >= 16 AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?)");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND patient_age > 16 AND  upper(patient_gender) = upper(?) AND  upper(eye_condition) in (SELECT UPPER(condition_description) FROM eye_clinic_conditions WHERE condtion_type ilike 'Surgery' ) ");//AND upper(patient_type) = upper(?)
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
-            pstmt.setString(4, patientType);
+            //pstmt.setString(4, patientType);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -342,14 +343,14 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?) AND patient_age BETWEEN ? AND ?");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE upper(eye_condition) = upper(?) AND input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?)  AND patient_age BETWEEN ? AND ?");//AND upper(patient_type) = upper(?)
             pstmt.setString(1, eyeCondition);
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(3, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(4, gender);
-            pstmt.setString(5, patientType);
-            pstmt.setInt(6, ageLower);
-            pstmt.setInt(7, ageHigher);
+           // pstmt.setString(5, patientType);
+            pstmt.setInt(5, ageLower);
+            pstmt.setInt(6, ageHigher);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);
@@ -368,13 +369,13 @@ public class EyeUnitReportingIndicators {
         int noofPatients = 0;
 
         try {
-            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?) AND upper(patient_type) = upper(?) AND patient_age BETWEEN ? AND ?");
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT COUNT(*) FROM public.eye_reporting_conditions WHERE input_date BETWEEN ? AND ? AND  upper(patient_gender) = upper(?)  AND patient_age BETWEEN ? AND ? AND  upper(eye_condition) IN (SELECT UPPER(condition_description) FROM eye_clinic_conditions WHERE condtion_type ilike 'Surgery') ");//AND upper(patient_type) = upper(?)
             pstmt.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
             pstmt.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
             pstmt.setString(3, gender);
-            pstmt.setString(4, patientType);
-            pstmt.setInt(5, ageLower);
-            pstmt.setInt(6, ageHigher);
+            //pstmt.setString(4, patientType);
+            pstmt.setInt(4, ageLower);
+            pstmt.setInt(5, ageHigher);
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 noofPatients = rset.getInt(1);

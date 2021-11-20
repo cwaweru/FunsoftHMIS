@@ -107,7 +107,7 @@ public class ServerTime {
     public static java.sql.Date getSQLDate(java.sql.Connection connDB) {
         java.sql.Date serverDate = null;
         try {
-            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT current_date");
+            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT now()::date");
             java.sql.ResultSet rset = pstmt.executeQuery();
             while (rset.next()) {
                 serverDate = rset.getDate(1);

@@ -3736,7 +3736,7 @@ public class PatientsDressingsBillingIntfr extends javax.swing.JInternalFrame {
                                 pstmt2a.setString(23, com.afrisoftech.lib.UserName.getUserName(connectDB));
                                 pstmt2a.executeUpdate();
 
-                                java.sql.PreparedStatement pstmt33 = connectDB.prepareStatement("insert into st_sub_stores values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)");
+                                java.sql.PreparedStatement pstmt33 = connectDB.prepareStatement("insert into st_sub_stores( store_name, item, receiving, issuing, price, total, sub_store_issiuing,  transaction_no, doctor, trans_date, user_name, units, sub_store,  issiued_to, buying_price, item_code, strength, manual_transfer_no,  security_release, security_officer,  procurement_method, remarks, patient_no, patient_source)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?)");
                                 pstmt33.setObject(1, storeCmbx.getSelectedItem().toString());
                                 pstmt33.setObject(2, dressingsBillingTable.getValueAt(i, 0).toString());
                                 pstmt33.setDouble(3, 0.00);

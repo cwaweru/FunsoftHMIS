@@ -700,7 +700,7 @@ public class CreditorsTasksIntfr extends javax.swing.JInternalFrame implements j
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+                Thread.currentThread().stop();
             }
             
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")){
@@ -761,7 +761,7 @@ public class CreditorsTasksIntfr extends javax.swing.JInternalFrame implements j
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+                Thread.currentThread().stop();
             }
         }
     }

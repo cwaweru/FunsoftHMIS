@@ -112,6 +112,55 @@ public class SaveBytea2DB {
             Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void insertByteArray(java.sql.Connection connDB, String documentRefNumber, byte[] documentData, String documentSource) {
+
+        connectDB = connDB;
+
+        try {
+
+            connectDB.setAutoCommit(false);
+
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO funsoft_image_graphics("
+                    + "            document_ref_no, "
+                    + "            document_data, document_source)"
+                    + "    VALUES (?, "
+                    + "            ?, ?);");
+
+            pstmt.setString(1, documentRefNumber);
+            pstmt.setBytes(2, documentData);
+            pstmt.setString(3, documentSource);
+
+            pstmt.execute();
+            connectDB.commit();
+            pstmt.close();
+
+            javax.swing.JOptionPane.showMessageDialog(null, "Fingerprint data registered successully.");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static byte[] getFingerprintImageByteArray(java.sql.Connection connDB, String documentRefNumber) {
+        byte[] imageBytes = null;
+        connectDB = connDB;
+        try {
+            java.sql.PreparedStatement pstmtR = connectDB.prepareStatement("SELECT DISTINCT document_data, data_capture_time FROM funsoft_image_graphics  WHERE document_ref_no = ? AND document_source = 'DIGITAL_AUTH_FINGERPRINT' AND document_data IS NOT NULL ORDER BY data_capture_time DESC LIMIT 1");
+            pstmtR.setString(1, documentRefNumber);
+            java.sql.ResultSet rs = pstmtR.executeQuery();
+            while (rs.next()) {
+                imageBytes = rs.getBytes(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(SaveBytea2DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return imageBytes;
+    }
 
     public static java.io.File getStoredImage(java.sql.Connection connDB, String documentRefNumber) {
         java.io.File tempFile = null;

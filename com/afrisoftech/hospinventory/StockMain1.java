@@ -1551,7 +1551,7 @@ com.afrisoftech.lib.HosOrdersPanel dates = new com.afrisoftech.lib.HosOrdersPane
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+            //destroy();
         }
     }
 

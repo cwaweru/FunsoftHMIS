@@ -3011,7 +3011,7 @@ public class LabResultsIntfrOLD extends javax.swing.JInternalFrame implements ja
         receiptNo = releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 4).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);  // Add your handling code here:
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, releasedResultsTable.getValueAt(releasedResultsTable.getSelectedRow(), 0).toString());  // Add your handling code here:
     }//GEN-LAST:event_releasedResultsTableMouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -3026,7 +3026,7 @@ public class LabResultsIntfrOLD extends javax.swing.JInternalFrame implements ja
         receiptNo = posted2verifyTable.getValueAt(posted2verifyTable.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, posted2verifyTable.getValueAt(posted2verifyTable.getSelectedRow(), 0).toString());
 
         //}  // Add your handling code here:
     }//GEN-LAST:event_posted2verifyTableMouseClicked
@@ -4454,7 +4454,7 @@ public class LabResultsIntfrOLD extends javax.swing.JInternalFrame implements ja
 
                     com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, labTestTable.getValueAt(labTestTable.getSelectedRow(), 0).toString());
 
                     for (int k = 0; k < resultsSITable.getRowCount(); k++) {
                         for (int r = 0; r < resultsSITable.getColumnCount(); r++) {
@@ -4988,7 +4988,7 @@ this.sampleTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(
         if (patientNumberTxt.getText().length() > 2) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), patientNumberTxt.getText());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), patientNumberTxt.getText(),false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }
@@ -5003,7 +5003,7 @@ this.sampleTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(
     private void patientCardBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn1ActionPerformed
         if (pendingTable.getSelectedRow() != -1) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), pendingTable.getValueAt(pendingTable.getSelectedRow(), 1).toString());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), pendingTable.getValueAt(pendingTable.getSelectedRow(), 1).toString(), false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }    // TODO add your handling code here:
@@ -5012,7 +5012,7 @@ this.sampleTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(
     private void patientCardBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtn2ActionPerformed
         if (paidTable.getSelectedRow() != -1) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
-            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), paidTable.getValueAt(paidTable.getSelectedRow(), 1).toString());
+            policyReport.PatientCardPdf(connectDB, mainDatePicker.getDate(), mainDatePicker.getDate(), paidTable.getValueAt(paidTable.getSelectedRow(), 1).toString(), false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card.");
         }    // TODO add your handling code here:

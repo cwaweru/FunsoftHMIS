@@ -4479,7 +4479,7 @@ public class InpatientRequestIntfr extends javax.swing.JInternalFrame implements
             receiptNo = jTable15.getValueAt(jTable15.getSelectedRow(), 3).toString();
             com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-            policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+            policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, jTable15.getValueAt(jTable15.getSelectedRow(), 0).toString());
 
         }
 

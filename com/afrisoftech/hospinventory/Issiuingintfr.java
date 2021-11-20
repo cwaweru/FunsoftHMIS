@@ -1912,6 +1912,9 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
             if (issuingItemsTable.getModel().getValueAt(issuingItemsTable.getSelectedRow(), 8) != null) {
                 float bal = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 4).toString());
                 float floatCol2 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 8).toString());
+                float requested = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 7).toString());
+                
+                if(floatCol2 <= requested){
 
                 float floatCol3 = java.lang.Float.parseFloat(issuingItemsTable.getValueAt(issuingItemsTable.getSelectedRow(), 9).toString());
 
@@ -1962,6 +1965,10 @@ public class Issiuingintfr extends javax.swing.JInternalFrame {
 
                     }
                 }
+            }else{
+                     javax.swing.JOptionPane.showMessageDialog(this, "You cannot issue more than the requested quantity", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                       
+            }
             }
         }
         // Add your handling code here:

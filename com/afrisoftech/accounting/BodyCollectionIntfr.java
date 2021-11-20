@@ -941,7 +941,7 @@ public class BodyCollectionIntfr extends javax.swing.JInternalFrame {
         } else {
             if (this.deceasedNameChkbx.isSelected()) {
 
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT annual_no, (upper(patient_name)) as name, tag_no, date_received as registration_date, (SELECT DISTINCT invoice_no FROM hp_patient_card WHERE hp_mortuary.annual_no = hp_patient_card.patient_no AND invoice_no ilike 'fw%') as invoice_no from hp_mortuary where patient_name ILIKE '%" + searchBoxTxt.getText() + "%' or tag_no ILIKE '" + searchBoxTxt.getText() + "%' or annual_no ILIKE '%" + searchBoxTxt.getText() + "%' and check_out = false order by 2"));
+                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT annual_no, (upper(patient_name)) as name, tag_no, date_received as registration_date, (SELECT DISTINCT invoice_no FROM hp_patient_card WHERE hp_mortuary.annual_no = hp_patient_card.patient_no AND invoice_no ilike 'fw%' LIMIT 1) as invoice_no from hp_mortuary where annual_no NOT IN (SELECT  patient_no  FROM public.hp_body_collector) AND (patient_name ILIKE '%" + searchBoxTxt.getText() + "%' or tag_no ILIKE '" + searchBoxTxt.getText() + "%' or annual_no ILIKE '%" + searchBoxTxt.getText() + "%') and check_out = false order by 2"));
 
 
                 jSearchTable2.setShowHorizontalLines(false);
@@ -950,7 +950,8 @@ public class BodyCollectionIntfr extends javax.swing.JInternalFrame {
 
 
             } else {
-                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT annual_no, (upper(patient_name)) as name, tag_no, date_received as registration_date, (SELECT DISTINCT invoice_no FROM hp_patient_card WHERE hp_mortuary.annual_no = hp_patient_card.patient_no AND invoice_no ilike 'fw%') as invoice_no  from hp_mortuary where patient_no ILIKE '" + searchBoxTxt.getText() + "%' or tag_no ILIKE '" + searchBoxTxt.getText() + "%'  or annual_no ILIKE '%" + searchBoxTxt.getText() + "%' and check_out = false order by 2"));
+                System.err.println("SELECT annual_no, (upper(patient_name)) as name, tag_no, date_received as registration_date, (SELECT DISTINCT invoice_no FROM hp_patient_card WHERE hp_mortuary.annual_no = hp_patient_card.patient_no AND invoice_no ilike 'fw%' LIMIT 1) as invoice_no  from hp_mortuary where annual_no NOT IN (SELECT  patient_no  FROM public.hp_body_collector) AND (patient_no ILIKE '" + searchBoxTxt.getText() + "%' or tag_no ILIKE '" + searchBoxTxt.getText() + "%'  or annual_no ILIKE '%" + searchBoxTxt.getText() + "%' ) and check_out = false order by 2");
+                jSearchTable2.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT annual_no, (upper(patient_name)) as name, tag_no, date_received as registration_date, (SELECT DISTINCT invoice_no FROM hp_patient_card WHERE hp_mortuary.annual_no = hp_patient_card.patient_no AND invoice_no ilike 'fw%' LIMIT 1) as invoice_no  from hp_mortuary where annual_no NOT IN (SELECT  patient_no  FROM public.hp_body_collector) AND  (patient_no ILIKE '" + searchBoxTxt.getText() + "%' or tag_no ILIKE '" + searchBoxTxt.getText() + "%'  or annual_no ILIKE '%" + searchBoxTxt.getText() + "%' ) and check_out = false order by 2"));
 
 
                 jSearchTable2.setShowHorizontalLines(false);

@@ -3337,8 +3337,9 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                // mainItemstbl.setValueAt(itemPrice, mainItemstbl.getSelectedRow(), 3);
                 mainItemstbl.setValueAt(total, mainItemstbl.getSelectedRow(), 5);
             }
+            
 
-            if (j > 0) {
+            //if (j > 0) {
                 System.err.println("select sum(qty) from stock_balance_qty where item_code ilike '" + medicinesSearchTable.getValueAt(medicinesSearchTable.getSelectedRow(), 3) + "' and department ilike '" + storetoCreditCmbx.getSelectedItem().toString() + "' AND dates::date <= '" + SQLDateFormat.getSQLDate(dispenseDatePicker.getDate()) + "'");
                 java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where item_code ilike '" + medicinesSearchTable.getValueAt(medicinesSearchTable.getSelectedRow(), 3) + "' and department ilike '" + storetoCreditCmbx.getSelectedItem().toString() + "' AND dates::date <= '" + SQLDateFormat.getSQLDate(dispenseDatePicker.getDate()) + "'");
 
@@ -3351,14 +3352,15 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
                     mainItemstbl.setValueAt(Qty, mainItemstbl.getSelectedRow(), 2);
 
                 }
-            } else {
-                mainItemstbl.setValueAt("0", mainItemstbl.getSelectedRow(), 2);
-            }
+            //} else {
+            //    mainItemstbl.setValueAt("0", mainItemstbl.getSelectedRow(), 2);
+            //}
         } catch (java.sql.SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
 
         medicinesSearchDialog.dispose();   // Add your handling code here:
+        String info = com.afrisoftech.lib.GetItemInfo.checkDrugReactions(connectDB, patientNumberTxt.getText(),patientNameTxt.getText(), mainItemstbl, 0);
     }//GEN-LAST:event_medicinesSearchTableMouseClicked
     private void cmbox13MouseClicked() {
 
@@ -4377,7 +4379,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
         if (patientNumberTxt.getText().length() > 2) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
             //
-            policyReport.PatientCardPdf(connectDB, dispenseDatePicker.getDate(), dispenseDatePicker.getDate(), patientNumberTxt.getText());
+            policyReport.PatientCardPdf(connectDB, dispenseDatePicker.getDate(), dispenseDatePicker.getDate(), patientNumberTxt.getText(),false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card");
         }

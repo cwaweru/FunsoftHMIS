@@ -2163,7 +2163,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private void patientCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtnActionPerformed
         com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText(),false);
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCardBtnActionPerformed
 

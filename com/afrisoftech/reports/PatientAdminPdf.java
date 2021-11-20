@@ -433,7 +433,7 @@ public class PatientAdminPdf implements java.lang.Runnable {
                         
                         phrase = new Phrase("Age",pFontHeader);
                         table.addCell(phrase);
-                        phrase = new Phrase("Bed No.",pFontHeader);
+                        phrase = new Phrase("ID No.",pFontHeader);
                         table.addCell(phrase);
                         phrase = new Phrase("Admitted By",pFontHeader);
                         table.addCell(phrase);
@@ -469,9 +469,9 @@ public class PatientAdminPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset3=null;
                                 
                                 if(servicepnt.equalsIgnoreCase("-"))
-                                        rset3 = st3.executeQuery("SELECT DISTINCT ad.date_admitted,ad.admission_no,initcap(ad.patient_name),ad.pat_age,bed_no,(ad.user_name),ad.mode_of_payment,ad.ward_code,sub_chief from hp_admission ad WHERE ad.ward ilike'"+listofAct[i]+"' AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
+                                        rset3 = st3.executeQuery("SELECT DISTINCT ad.date_admitted,ad.admission_no,initcap(ad.patient_name),ad.pat_age,id_no,(ad.user_name),ad.mode_of_payment,ad.ward_code,sub_chief from hp_admission ad WHERE ad.ward ilike'"+listofAct[i]+"' AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
                                 else
-                                        rset3 = st3.executeQuery("SELECT DISTINCT ad.date_admitted,ad.admission_no,initcap(ad.patient_name),ad.pat_age,bed_no,(ad.user_name),ad.mode_of_payment,ad.ward_code,sub_chief from hp_admission ad WHERE ad.ward ilike'"+listofAct[i]+"' and diagnosis3='"+servicepnt+"' AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
+                                        rset3 = st3.executeQuery("SELECT DISTINCT ad.date_admitted,ad.admission_no,initcap(ad.patient_name),ad.pat_age,id_no,(ad.user_name),ad.mode_of_payment,ad.ward_code,sub_chief from hp_admission ad WHERE ad.ward ilike'"+listofAct[i]+"' and diagnosis3='"+servicepnt+"' AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"'");
                              
                                 
                                 //  while (rset3.next()){

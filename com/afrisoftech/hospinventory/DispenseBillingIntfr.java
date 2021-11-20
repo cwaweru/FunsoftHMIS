@@ -2718,10 +2718,13 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
         }
 
         this.populateTable1(this.patientNoTxt.getText(), prescriptionNoTxt.getText());
+        
 
         sendBillBtn.setVisible(true);
 
         prescriptionsTabbedPane.setSelectedIndex(1);
+        
+        String info = com.afrisoftech.lib.GetItemInfo.checkDrugReactions(connectDB, patientNoTxt.getText(),nameTxt.getText(), prescriptionsTable, 0);
     }
         // Add your handling code here:
     }//GEN-LAST:event_doctorPrescriptionListingTableMouseClicked
@@ -2777,7 +2780,7 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();
 
-            policyReport.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker1.getDate(), patientNoTxt.getText());
+            policyReport.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker1.getDate(), patientNoTxt.getText(),false);
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the card");
@@ -3852,9 +3855,12 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
     private void jSearchTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTableMouseClicked
         jTextField11.setText("");
         prescriptionsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0), prescriptionsTable.getSelectedRow(), 0);
+        prescriptionsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 3), prescriptionsTable.getSelectedRow(), 10);
         prescriptionsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), prescriptionsTable.getSelectedRow(), 8);
+        prescriptionsTable.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 1), prescriptionsTable.getSelectedRow(), 9);
         //jTable1.setValueAt(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 2), jTable1.getSelectedRow(), 6);
-        //jTable1.setValueAt(new java.lang.Double(0), jTable1.getSelectedRow(), 4);
+        prescriptionsTable.setValueAt(1, prescriptionsTable.getSelectedRow(), 1);
+        prescriptionsTable.setValueAt("0", prescriptionsTable.getSelectedRow(), 2);
 
         int j = 0;
 
@@ -3926,7 +3932,7 @@ calculateTota();
 
     private void jTextField11CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11CaretUpdate
         if (jTextField11.getCaretPosition() > 0) {
-            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select product,selling_price,gl_code FROM st_stock_prices WHERE product ILIKE '%" + jTextField11.getText() + "%' AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' order by product"));
+            jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select product,selling_price,gl_code,product_id FROM st_stock_prices WHERE product ILIKE '%" + jTextField11.getText() + "%' AND department ilike '" + storeCmbx.getSelectedItem().toString() + "' order by product"));
 
             jSearchScrollPane.setViewportView(jSearchTable);
             System.out.println("Cannot sort out");

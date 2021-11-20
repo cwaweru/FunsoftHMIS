@@ -2215,7 +2215,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private void patientCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtnActionPerformed
         com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText(),false);
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCardBtnActionPerformed
 
@@ -2337,20 +2337,36 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 paidPatients = rsetTable11.getString(1);
 
             }
-            System.out.println("SELECT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,false as bill,inv_no as Receipt_No,time_due "
-                    + " FROM pb_doctors_request pb, pb_activity pa WHERE"
-                    + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' AND paid = true AND"
-                    + " results = false and trans_date >= (select current_timestamp(0)::date -1) ORDER BY trans_date asc");
-            this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
+            System.out.println("SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
                     + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
-                    + " FROM pb_doctors_request pb WHERE"
+                    + " FROM pb_doctors_request pb WHERE (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no \n" +
+                    " AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND "
                     + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
                     + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
                     + " UNION "
                     + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
                     + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes "
-                    + " FROM ac_cash_collection WHERE"
+                    + " FROM ac_cash_collection WHERE  receipt_no NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND  "
+                    + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes "
+                    + " FROM hp_patient_card WHERE collected = false AND "
+                    + " ((SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'XRAY') AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "ORDER BY 1 asc");
+            this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
+                    + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
+                    + " FROM pb_doctors_request pb WHERE (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no \n" +
+                    " AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND "
+                    + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes "
+                    + " FROM ac_cash_collection WHERE  receipt_no NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND  "
                     + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
                     + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
                     + " UNION "

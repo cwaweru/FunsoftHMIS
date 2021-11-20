@@ -790,7 +790,7 @@ public class NursingComboTasksIntfr extends javax.swing.JInternalFrame implement
 
                 stop();
 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
 
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")) {
@@ -864,7 +864,7 @@ public class NursingComboTasksIntfr extends javax.swing.JInternalFrame implement
 
                 stop();
 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
         }
     }

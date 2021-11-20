@@ -4509,7 +4509,7 @@ public class DentPendingRequestsIntfr extends javax.swing.JInternalFrame impleme
         if(patientNumberTxt.getText().length() > 2){   
         com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker1.getDate(),patientNumberTxt.getText()); 
+            policyReport.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker1.getDate(),patientNumberTxt.getText(),false); 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card");
         }        // TODO add your handling code here:

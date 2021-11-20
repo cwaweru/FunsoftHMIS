@@ -57,8 +57,8 @@ public class HosStores extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         storeNamecmbx = new javax.swing.JComboBox();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        mainStoreCbx = new javax.swing.JRadioButton();
+        subStoreCbx = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -146,11 +146,11 @@ public class HosStores extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel4.add(storeNamecmbx, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Main Store");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(mainStoreCbx);
+        mainStoreCbx.setText("Main Store");
+        mainStoreCbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                mainStoreCbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -159,13 +159,13 @@ public class HosStores extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jRadioButton2, gridBagConstraints);
+        jPanel4.add(mainStoreCbx, gridBagConstraints);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Sub Store");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(subStoreCbx);
+        subStoreCbx.setText("Sub Store");
+        subStoreCbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                subStoreCbxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -174,7 +174,7 @@ public class HosStores extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(jRadioButton1, gridBagConstraints);
+        jPanel4.add(subStoreCbx, gridBagConstraints);
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("All Stores");
@@ -201,6 +201,11 @@ public class HosStores extends javax.swing.JDialog {
         jPanel4.add(jLabel4, gridBagConstraints);
 
         storeTypeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '--ALL--' UNION SELECT DISTINCT store_type_description FROM st_stores_type ORDER BY 1"));
+        storeTypeCmbx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storeTypeCmbxActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -262,16 +267,16 @@ public class HosStores extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void subStoreCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subStoreCbxActionPerformed
         storeNamecmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select initcap(store_name) from st_stores  where store_name not ilike 'procurement%' ORDER BY store_name"));
         storeNamecmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 storeNamecmbxActionPerformed(evt);
             }
         });     // Add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_subStoreCbxActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void mainStoreCbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainStoreCbxActionPerformed
 //  jComboBox1.setM
         storeNamecmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  store_name as name from st_main_stores where store_name not like 'procurement%' order by name"));
         storeNamecmbx.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +285,7 @@ public class HosStores extends javax.swing.JDialog {
             }
         });
         // Add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_mainStoreCbxActionPerformed
 
     private void storeNamecmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeNamecmbxActionPerformed
         // Add your handling code here:
@@ -305,6 +310,28 @@ public class HosStores extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
+    private void storeTypeCmbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storeTypeCmbxActionPerformed
+       if(storeTypeCmbx.getSelectedItem().toString().equalsIgnoreCase("--ALL--")){
+           if(mainStoreCbx.isSelected())
+                mainStoreCbx.doClick();
+           if(subStoreCbx.isSelected())
+                subStoreCbx.doClick();
+       }else{
+           if(mainStoreCbx.isSelected()){
+               storeNamecmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  store_name as name from st_main_stores where store_name not like 'procurement%' AND classification =   (SELECT classification FROM st_stores_type WHERE store_type_description = '" + storeTypeCmbx.getSelectedItem().toString() + "' ) order by name"));
+      
+           }
+               
+           if(subStoreCbx.isSelected()){
+               storeNamecmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select initcap(store_name) from st_stores  where store_name not ilike 'procurement%' AND classification =   (SELECT classification FROM st_stores_type WHERE store_type_description = '" + storeTypeCmbx.getSelectedItem().toString() + "' ) ORDER BY store_name"));
+
+           }
+                
+       }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_storeTypeCmbxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -326,9 +353,9 @@ public class HosStores extends javax.swing.JDialog {
 
     public void getReport(int reportName) {
         String StoreName = "";
-        if (jRadioButton1.isSelected()) {
+        if (subStoreCbx.isSelected()) {
             StoreName = "SubStore";
-        } else if (jRadioButton2.isSelected()) {
+        } else if (mainStoreCbx.isSelected()) {
             StoreName = "MainStore";
         } else {
             StoreName = "All Stores";
@@ -347,9 +374,9 @@ public class HosStores extends javax.swing.JDialog {
             case 8: {
                 com.afrisoftech.hospinventory.StoresBalPdf policy = new com.afrisoftech.hospinventory.StoresBalPdf();
                 if (!StoreName.contains("All Stores")) {
-                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), storeNamecmbx.getSelectedItem().toString(), StoreName.toString(),jCheckBox1.isSelected());
+                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), storeNamecmbx.getSelectedItem().toString(), StoreName.toString(),jCheckBox1.isSelected(), storeTypeCmbx.getSelectedItem().toString());
                 } else {
-                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), "", StoreName.toString(),jCheckBox1.isSelected());
+                    policy.StoresBalPdf(connectDB, this.beginDpckr.getDate().toString(), this.endDpckr.getDate().toString(), "", StoreName.toString(),jCheckBox1.isSelected(),storeTypeCmbx.getSelectedItem().toString());
                 }
 
             }
@@ -394,10 +421,10 @@ public class HosStores extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton mainStoreCbx;
     private javax.swing.JComboBox storeNamecmbx;
     private javax.swing.JComboBox<String> storeTypeCmbx;
+    private javax.swing.JRadioButton subStoreCbx;
     // End of variables declaration//GEN-END:variables
 }

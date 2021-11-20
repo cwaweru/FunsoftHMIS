@@ -2171,7 +2171,7 @@ public class LabResultsIntfr1 extends javax.swing.JInternalFrame implements java
         receiptNo = jTable121.getValueAt(jTable121.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);  // Add your handling code here:
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, jTable121.getValueAt(jTable121.getSelectedRow(), 0).toString());  // Add your handling code here:
     }//GEN-LAST:event_jTable121MouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -2251,7 +2251,7 @@ public class LabResultsIntfr1 extends javax.swing.JInternalFrame implements java
         receiptNo = jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+        policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, jTable12.getValueAt(jTable12.getSelectedRow(), 0).toString());
 
         //}  // Add your handling code here:
     }//GEN-LAST:event_jTable12MouseClicked
@@ -3847,7 +3847,7 @@ public class LabResultsIntfr1 extends javax.swing.JInternalFrame implements java
 
                     com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo);
+                    policy.PatientLabResultsPdf(connectDB, receiptNo, receiptNo, jTable3.getValueAt(jTable3.getSelectedRow(), 0).toString());
 
                     for (int k = 0; k < jTable1.getRowCount(); k++) {
                         for (int r = 0; r < jTable1.getColumnCount(); r++) {

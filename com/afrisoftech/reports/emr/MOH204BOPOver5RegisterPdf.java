@@ -550,6 +550,10 @@ public class MOH204BOPOver5RegisterPdf implements java.lang.Runnable {
                             System.out.println("The array has been called...");
 
                             for (int i = 0; i < listofAct.length; i++) {
+                                String obj =  listofAct[i].toString();
+                                String[] splited = obj.split("<>");
+                                String patNo = splited[0];
+                                String datee = splited[1];
 
                                 java.sql.PreparedStatement stw = connectDB.prepareStatement("SELECT DISTINCT "
                                         + " date_part('day', date) ||'-'||date_part('month', date) ||'-'||date_part('year', date), patient_no,"
@@ -590,10 +594,10 @@ public class MOH204BOPOver5RegisterPdf implements java.lang.Runnable {
                                         + " (SELECT comments FROM hp_clinical_results WHERE hp_clinical_results.patient_no "
                                         + "= hp_patient_visit.patient_no AND hp_clinical_results.date = hp_patient_visit.date"
                                         + " ORDER BY 1 DESC LIMIT 1 )as comments FROM hp_patient_visit WHERE "
-                                        + " date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' "
+                                        + " date::date = '" + datee + "'  "
                                         + " AND patient_no = ?");
 
-                                stw.setObject(1, listofAct[i]);
+                                stw.setObject(1, patNo);
 
                                 java.sql.ResultSet rsetw = stw.executeQuery();
 
@@ -726,7 +730,7 @@ public class MOH204BOPOver5RegisterPdf implements java.lang.Runnable {
 
         try {
 
-            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, name,date FROM hp_patient_visit where date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::int >= 5 ORDER BY date,name ASC");
+            java.sql.PreparedStatement stmt1 = connectDB.prepareStatement("SELECT DISTINCT patient_no, name,date FROM hp_patient_visit where date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND age::int >= 5 ORDER BY date ASC");
 
             java.sql.ResultSet rSet1 = stmt1.executeQuery();
 
@@ -734,7 +738,7 @@ public class MOH204BOPOver5RegisterPdf implements java.lang.Runnable {
 
                 System.out.println("Patient names : [" + rSet1.getString(2) + "]");
 
-                listStaffNoVector.addElement(rSet1.getObject(1).toString());
+                listStaffNoVector.addElement(rSet1.getObject(1).toString()+"<>"+rSet1.getObject(3).toString());
 
             }
 

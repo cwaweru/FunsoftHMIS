@@ -1252,6 +1252,9 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        fingerPrintDialog = new javax.swing.JDialog();
+        fingerprintIconLabel = new javax.swing.JLabel();
+        pacsViewerIntfr = new javax.swing.JInternalFrame();
         mainPanel = new javax.swing.JPanel(){
 
             public void paintComponent(java.awt.Graphics g) {
@@ -1447,6 +1450,8 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         diseasesmnit = new javax.swing.JMenuItem();
         clinicsSpecialtiesmnit = new javax.swing.JMenuItem();
         allergiesmnit = new javax.swing.JMenuItem();
+        drugreactionmnit = new javax.swing.JMenuItem();
+        drugcomponentmnit = new javax.swing.JMenuItem();
         jSeparator65 = new javax.swing.JSeparator();
         staffmn = new javax.swing.JMenu();
         docnursmnit = new javax.swing.JMenuItem();
@@ -1558,6 +1563,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         bodycollectionmnit = new javax.swing.JMenuItem();
         permitcollectormnit = new javax.swing.JMenuItem();
         mortOccupancymnit = new javax.swing.JMenuItem();
+        releasepapermnit1 = new javax.swing.JMenuItem();
         employeeDigitizedFilemnit = new javax.swing.JMenuItem();
         nursing = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -1634,6 +1640,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         docRequestMn = new javax.swing.JMenu();
         consultationmnit = new javax.swing.JMenuItem();
         dconsultationmnit = new javax.swing.JMenuItem();
+        patcardOperationsmnit = new javax.swing.JMenuItem();
         jSeparator30 = new javax.swing.JSeparator();
         labmn = new javax.swing.JMenu();
         labtestsresultmnit = new javax.swing.JMenuItem();
@@ -2111,6 +2118,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         ipservicesmnit = new javax.swing.JMenuItem();
         debtshiftmnit = new javax.swing.JMenuItem();
         patcontrolaccountmnit = new javax.swing.JMenuItem();
+        combinedsalesmnit = new javax.swing.JMenuItem();
         jSeparator103 = new javax.swing.JPopupMenu.Separator();
         universalHealthcareReportsmn = new javax.swing.JMenu();
         creditSalesDepartmentReportsmnit = new javax.swing.JMenuItem();
@@ -2128,10 +2136,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         oprevbyaccmnit = new javax.swing.JMenuItem();
         iprevrptmnit = new javax.swing.JMenuItem();
         iprevbyaccmnit = new javax.swing.JMenuItem();
-        theatrescorecard = new javax.swing.JMenuItem();
+        theatrescorecardmnit = new javax.swing.JMenuItem();
         reveagainstmnit = new javax.swing.JMenuItem();
         revenuecountallmnit = new javax.swing.JMenuItem();
         revenuecountlmnit = new javax.swing.JMenuItem();
+        Cashanalysis1mnit = new javax.swing.JMenuItem();
         jSeparator18 = new javax.swing.JSeparator();
         oprevbrkdwnmnit = new javax.swing.JMenuItem();
         jSeparator47 = new javax.swing.JSeparator();
@@ -3133,13 +3142,31 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         jMenuItem11.setText("jMenuItem11");
 
+        fingerPrintDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        fingerprintIconLabel.setText("jLabel2");
+        fingerPrintDialog.getContentPane().add(fingerprintIconLabel, new java.awt.GridBagConstraints());
+
+        pacsViewerIntfr.setClosable(true);
+        pacsViewerIntfr.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        pacsViewerIntfr.setIconifiable(true);
+        pacsViewerIntfr.setMaximizable(true);
+        pacsViewerIntfr.setResizable(true);
+        pacsViewerIntfr.setTitle("Funsoft PACS/Dicom Viewer");
+        try {
+            pacsViewerIntfr.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        pacsViewerIntfr.setVisible(true);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -4360,6 +4387,22 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         medicalRecordsmn.add(allergiesmnit);
 
+        drugreactionmnit.setText("Drug Reactions");
+        drugreactionmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drugreactionmnitActionPerformed(evt);
+            }
+        });
+        medicalRecordsmn.add(drugreactionmnit);
+
+        drugcomponentmnit.setText("Drug Component");
+        drugcomponentmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drugcomponentmnitActionPerformed(evt);
+            }
+        });
+        medicalRecordsmn.add(drugcomponentmnit);
+
         setupmn.add(medicalRecordsmn);
         setupmn.add(jSeparator65);
 
@@ -4628,7 +4671,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
 
-        patientregstmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        patientregstmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         patientregstmnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Contacts 1.png"))); // NOI18N
         patientregstmnit.setText("OUT-Patient Registration");
         patientregstmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -4662,7 +4705,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         emrmn.add(inpprvvstmnit);
 
-        patientregnummnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        patientregnummnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         patientregnummnit.setText("Registration With OPD No.");
         patientregnummnit.setEnabled(false);
         patientregnummnit.addActionListener(new java.awt.event.ActionListener() {
@@ -5124,6 +5167,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         morturymn.add(mortOccupancymnit);
+
+        releasepapermnit1.setText("Farewell Release Paper");
+        releasepapermnit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                releasepapermnit1ActionPerformed(evt);
+            }
+        });
+        morturymn.add(releasepapermnit1);
 
         emrmn.add(morturymn);
 
@@ -5604,7 +5655,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
 
-        frontEndOperationsmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.SHIFT_MASK));
+        frontEndOperationsmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         frontEndOperationsmnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Devices & Hardware/PC Security 1.png"))); // NOI18N
         frontEndOperationsmnit.setMnemonic('O');
         frontEndOperationsmnit.setText("Front End Operations");
@@ -5663,6 +5714,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         docRequestMn.add(dconsultationmnit);
 
         patientmanagemn.add(docRequestMn);
+
+        patcardOperationsmnit.setText("Patient Card Review");
+        patcardOperationsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patcardOperationsmnitActionPerformed(evt);
+            }
+        });
+        patientmanagemn.add(patcardOperationsmnit);
         patientmanagemn.add(jSeparator30);
 
         labmn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16x16/Recent Documents.png"))); // NOI18N
@@ -5670,7 +5729,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
 
         labtestsresultmnit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         labtestsresultmnit.setForeground(new java.awt.Color(0, 0, 255));
-        labtestsresultmnit.setText("Lab Results");
+        labtestsresultmnit.setText("Laboratory LIMS Module");
         labtestsresultmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labtestsresultmnitActionPerformed(evt);
@@ -5937,7 +5996,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         receiptsmn.setText("Cash Sale");
 
         receiptsmnit.setAction(openShiftAction);
-        receiptsmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        receiptsmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         receiptsmnit.setText("Cash Sales");
         receiptsmnit.setEnabled(false);
         receiptsmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -6501,7 +6560,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         cashbkmn.add(creditallocmnit);
         cashbkmn.add(jSeparator74);
 
-        doctorsledgermnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        doctorsledgermnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         doctorsledgermnit.setText("Doctors Ledger");
         doctorsledgermnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8990,6 +9049,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         Salesmn.add(patcontrolaccountmnit);
+
+        combinedsalesmnit.setText("Combined Sales Report");
+        combinedsalesmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combinedsalesmnitActionPerformed(evt);
+            }
+        });
+        Salesmn.add(combinedsalesmnit);
         Salesmn.add(jSeparator103);
 
         universalHealthcareReportsmn.setText("Universal Healthcare Reports");
@@ -9105,13 +9172,13 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         RevRepotmd.add(iprevbyaccmnit);
 
-        theatrescorecard.setText("Theater Revenue");
-        theatrescorecard.addActionListener(new java.awt.event.ActionListener() {
+        theatrescorecardmnit.setText("Theater Revenue");
+        theatrescorecardmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                theatrescorecardActionPerformed(evt);
+                theatrescorecardmnitActionPerformed(evt);
             }
         });
-        RevRepotmd.add(theatrescorecard);
+        RevRepotmd.add(theatrescorecardmnit);
 
         reveagainstmnit.setText("Revenue vs Budget");
         reveagainstmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -9137,6 +9204,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         RevRepotmd.add(revenuecountlmnit);
+
+        Cashanalysis1mnit.setText("Cash Collected Analysis");
+        Cashanalysis1mnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cashanalysis1mnitActionPerformed(evt);
+            }
+        });
+        RevRepotmd.add(Cashanalysis1mnit);
 
         financeopermn.add(RevRepotmd);
         financeopermn.add(jSeparator18);
@@ -11492,7 +11567,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
 
-        cpactdatamnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        cpactdatamnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         cpactdatamnit.setText("Compact Data");
         cpactdatamnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11501,7 +11576,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(cpactdatamnit);
 
-        validatamnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        validatamnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         validatamnit.setText("Validate Data");
         validatamnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11510,7 +11585,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(validatamnit);
 
-        bkupmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        bkupmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         bkupmnit.setText("Back Up");
         bkupmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11519,7 +11594,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(bkupmnit);
 
-        optimdbmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        optimdbmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         optimdbmnit.setText("Database Optimization");
         optimdbmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11633,7 +11708,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(receiptPrefsmnit);
 
-        docsdir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        docsdir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         docsdir.setText("Set Documents Directory");
         docsdir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11643,7 +11718,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         utilitymn.add(docsdir);
         utilitymn.add(jSeparator1);
 
-        changeBackgoundImagemnit1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        changeBackgoundImagemnit1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         changeBackgoundImagemnit1.setText("Background Image");
         changeBackgoundImagemnit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11660,7 +11735,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(writeofflimitsmnit);
 
-        textPrintermnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        textPrintermnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         textPrintermnit.setText("Choose default text printer");
         textPrintermnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11669,7 +11744,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         utilitymn.add(textPrintermnit);
 
-        receiptPrinterMnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        receiptPrinterMnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         receiptPrinterMnit.setText("Set Receipt Printer");
         receiptPrinterMnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11795,7 +11870,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         helpmn.setMnemonic('H');
         helpmn.setText("Help");
 
-        hlpcontmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
+        hlpcontmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_DOWN_MASK));
         hlpcontmnit.setText("Help TOC");
         hlpcontmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11804,7 +11879,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         });
         helpmn.add(hlpcontmnit);
 
-        aboutmn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.SHIFT_MASK));
+        aboutmn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         aboutmn.setText("About ");
         aboutmn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -12965,11 +13040,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         // Add your handling code here:
     }//GEN-LAST:event_supplrmnitActionPerformed
 
-    private void theatrescorecardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theatrescorecardActionPerformed
+    private void theatrescorecardmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_theatrescorecardmnitActionPerformed
         com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, this.TheatreProc, connectDB);
 
         dates.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_theatrescorecardActionPerformed
+    }//GEN-LAST:event_theatrescorecardmnitActionPerformed
 
     private void detoprevmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detoprevmnitActionPerformed
         com.afrisoftech.lib.HosDepDatePanel dates = new com.afrisoftech.lib.HosDepDatePanel(this, pConnDB, true, this.DetOpRev, connectDB);
@@ -18545,12 +18620,12 @@ com.afrisoftech.lib.HosWardsDatePanel dates = new com.afrisoftech.lib.HosWardsDa
 
             if (System.getProperty("os.name").equalsIgnoreCase("Linux")) {
 
-                rt.exec("netscape");
+                rt.exec("firefox http://funsoft.systempartners.biz:8042/app/explorer.html#study?uuid=27f7126f-4f66fb14-03f4081b-f9341db2-53925988 &");
 
                 System.out.print(System.getProperty("os.name") + "  " + System.getProperty("os.version"));
             } else {
 
-                rt.exec("iexplore");
+                rt.exec("start microsoft-edge:http://funsoft.systempartners.biz:8042/app/explorer.html#study?uuid=27f7126f-4f66fb14-03f4081b-f9341db2-53925988");
 
                 System.out.print(System.getProperty("os.name") + "  " + System.getProperty("os.version"));
 
@@ -22476,6 +22551,51 @@ public void eventDispatched(java.awt.AWTEvent evt) {
         dates.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_CashsalesanalysismnitActionPerformed
 
+    private void releasepapermnit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_releasepapermnit1ActionPerformed
+    com.afrisoftech.lib.HosFarewellRPaperDatePanel dates = new com.afrisoftech.lib.HosFarewellRPaperDatePanel(this, pConnDB, true, this.rPaper, connectDB);
+
+        dates.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_releasepapermnit1ActionPerformed
+
+    private void drugreactionmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugreactionmnitActionPerformed
+     com.afrisoftech.records.DrugReactionIntfr comp = new com.afrisoftech.records.DrugReactionIntfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_drugreactionmnitActionPerformed
+
+    private void drugcomponentmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drugcomponentmnitActionPerformed
+     com.afrisoftech.records.DrugComponentIntfr comp = new com.afrisoftech.records.DrugComponentIntfr(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }     // TODO add your handling code here:
+    }//GEN-LAST:event_drugcomponentmnitActionPerformed
+
+    private void Cashanalysis1mnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cashanalysis1mnitActionPerformed
+      com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, 8888, connectDB);
+
+        dates.setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_Cashanalysis1mnitActionPerformed
+
+    private void combinedsalesmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combinedsalesmnitActionPerformed
+       com.afrisoftech.lib.HosDatePanel dates = new com.afrisoftech.lib.HosDatePanel(this, true, 9999, connectDB);
+
+        dates.setVisible(true);  // TODO add your handling code here:
+    }//GEN-LAST:event_combinedsalesmnitActionPerformed
+
+    private void patcardOperationsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patcardOperationsmnitActionPerformed
+       com.afrisoftech.hospital.PatientCardReview comp = new com.afrisoftech.hospital.PatientCardReview(connectDB, pConnDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_patcardOperationsmnitActionPerformed
+
     /**
      * Exit the Application
      */
@@ -23040,7 +23160,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             backup_proc = rt_backup.exec("pg_dump medic -f MEDIC_" + backup_date_stamp + ".sql");
 
             try {
-
+//Daily Cash Returns
                 backup_proc.waitFor();
 
             } catch (java.lang.InterruptedException IntruptExec) {
@@ -23307,7 +23427,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
 
                 stop();
 
-                Thread.currentThread().destroy();
+              //  Thread.currentThread().destroy();
             }
 
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")) {
@@ -23357,7 +23477,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
 
                 stop();
 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
         }
     }
@@ -25258,7 +25378,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
 
             }
             stop();
-            destroy();
+         //   destroy();
         }
     }
 
@@ -25293,7 +25413,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
                 //  this.destroy();
             }
             stop();
-            destroy();
+          //  destroy();
         }
     }
 
@@ -25315,7 +25435,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+//            destroy();
         }
     }
 
@@ -25337,7 +25457,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+//            destroy();
         }
     }
 
@@ -25360,7 +25480,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+//            destroy();
         }
     }
 
@@ -25380,7 +25500,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+//            destroy();
         }
     }
 
@@ -25400,7 +25520,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+//            destroy();
         }
     }
 
@@ -26157,6 +26277,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     public javax.swing.JMenuItem CashBookMangmnit;
     private javax.swing.JMenu CashBookmn;
     private javax.swing.JMenuItem CashSalesbrdmnit;
+    private javax.swing.JMenuItem Cashanalysis1mnit;
     private javax.swing.JMenuItem Cashanalysisdeptmnit;
     private javax.swing.JMenuItem Cashanalysismnit;
     private javax.swing.JMenu CashierRepmn;
@@ -26457,6 +26578,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JScrollPane columnSelectorScrollPane1;
     private javax.swing.JTable columnSelectorTable;
     private javax.swing.JTable columnSelectorTable1;
+    private javax.swing.JMenuItem combinedsalesmnit;
     private javax.swing.JMenuItem comfbankingmnit;
     private javax.swing.JPanel commBroadcastPanel;
     private javax.swing.JPanel commPanel;
@@ -26605,6 +26727,8 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem donormnit;
     private javax.swing.JMenuItem dormaccmnit;
     private javax.swing.JMenuItem dressingsPackagesmnit;
+    private javax.swing.JMenuItem drugcomponentmnit;
+    private javax.swing.JMenuItem drugreactionmnit;
     private javax.swing.JButton editButtn;
     private javax.swing.JMenuItem editPatientNamesmnit;
     private javax.swing.JMenuItem educationmnit;
@@ -26640,6 +26764,8 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenu financeopermn;
     private javax.swing.JMenu financialsmn;
     private javax.swing.JMenuItem financistmtmnit;
+    public static javax.swing.JDialog fingerPrintDialog;
+    public static javax.swing.JLabel fingerprintIconLabel;
     private javax.swing.JMenuItem fitnessLevelmnit;
     private javax.swing.JMenuItem fluidchartmnit;
     private javax.swing.JButton fmgrBttn;
@@ -27031,6 +27157,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem packagepricelistmnit;
     private javax.swing.JMenuItem packageslistmnit;
     private javax.swing.JMenuItem packagesmnit;
+    public static javax.swing.JInternalFrame pacsViewerIntfr;
     private javax.swing.JMenuItem paidupbyscmnit;
     private javax.swing.JMenuItem paidupperdebtmnit;
     private javax.swing.JMenuItem paidupsummmnit;
@@ -27039,6 +27166,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenu patacctmn;
     private javax.swing.JMenuItem patbedoccupancymnit;
     private javax.swing.JMenuItem patbillmergemnit;
+    private javax.swing.JMenuItem patcardOperationsmnit;
     private javax.swing.JMenuItem patcategmnit;
     private javax.swing.JMenuItem patcontrolaccountmnit;
     private javax.swing.JMenuItem patdischmnit;
@@ -27185,6 +27313,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem rehabilitationServicesmnit;
     private javax.swing.JMenuItem rehabmnitmnit;
     private javax.swing.JMenuItem releasepapermnit;
+    private javax.swing.JMenuItem releasepapermnit1;
     private javax.swing.JMenuItem religionmnit;
     private javax.swing.JMenuItem reportDesignerMnit;
     private javax.swing.JMenuItem reportincidenceMenuItemnit;
@@ -27329,7 +27458,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem theatrediagmnit;
     private javax.swing.JMenu theatremn;
     private javax.swing.JMenuItem theatreprocmnit;
-    private javax.swing.JMenuItem theatrescorecard;
+    private javax.swing.JMenuItem theatrescorecardmnit;
     private javax.swing.JMenuItem timelogmnit;
     private javax.swing.JMenuItem totalinpatrecmnit;
     private javax.swing.JMenuItem totalschemeinvlistmnit;

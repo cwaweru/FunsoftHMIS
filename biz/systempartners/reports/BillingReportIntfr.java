@@ -60,6 +60,7 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         openReportBtn = new javax.swing.JButton();
         beginDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -88,14 +89,14 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
@@ -116,19 +117,29 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(openReportBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(beginDatePicker, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(endDatePicker, gridBagConstraints);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Cash", "NHIF", "Other Schemes" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
+        jPanel1.add(jComboBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -217,36 +228,67 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         try {
             int count = 0;
             java.sql.Statement stmtTable1c = connectDB.createStatement();
-            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate())+"' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ");
+            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ");
             while (rsetTable1c.next()) {
                 count = rsetTable1c.getInt(1);
                 //count = 2;
             }
-            count = count * 3;
 
-            String[] COLUMNS = new String[count +6];
+            int deptMulttiplier = 3;
+            int addedColumns = 6;
+
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
+                deptMulttiplier = 1;
+                addedColumns = 4;
+            }
+
+            count = count * deptMulttiplier;
+
+            String[] COLUMNS = new String[count + addedColumns];
             COLUMNS[0] = "Date";
             int i = 1;
             rsetTable1c = stmtTable1c.executeQuery("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) ORDER BY 1  ");
             while (rsetTable1c.next()) {
                 System.err.println(">>>>>>>>>>>>>>>>>" + rsetTable1c.getString(1));
-                COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Cash";
+                if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Cash";
+                    i++;
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - NHIF";
+                    i++;
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Scheme";
+                    i++;
+                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Cash";
+                    i++;
+                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - NHIF";
+                    i++;
+                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
+                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Scheme";
+                    i++;
+                }
+            }
+            if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
+                COLUMNS[i] = "Total" + " - Cash";
                 i++;
-                COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - NHIF";
+                COLUMNS[i] = "Total" + " - NHIF";
                 i++;
-                COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Scheme";
+                COLUMNS[i] = "Total" + " - Scheme";
+                i++;
+            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
+                COLUMNS[i] = "Total" + " - Cash";
+                i++;
+            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
+                COLUMNS[i] = "Total" + " - NHIF";
+                i++;
+            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
+                COLUMNS[i] = "Total" + " - Scheme";
                 i++;
             }
-            COLUMNS[i] = "Total" + " - Cash";
-            i++;
-            COLUMNS[i] = "Total" + " - NHIF";
-            i++;
-            COLUMNS[i] = "Total" + " - Scheme";
-            i++;
-            
+
             COLUMNS[i] = "Exemptions";
             i++;
-            
+
             COLUMNS[i] = "Waivers";
             i++;
 
@@ -298,53 +340,73 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
                         double deptDayCash = 0.00;
                         double deptDayNHIF = 0.00;
                         double deptDayScheme = 0.00;
-                        
+
                         java.sql.Statement pstmt2 = connectDB.createStatement();
                         //System.err.println(" select * from funsoft_cash_sales_per_dept('"+listofAct[f]+"'::date,'"+listofAct[f]+"'::date,'"+rsetTable1c.getString(2)+"')");
-                        java.sql.ResultSet rs2 = pstmt2.executeQuery("  select * from funsoft_cash_sales_per_dept('"+listofAct[f]+"'::date,'"+listofAct[f]+"'::date,'"+rsetTable1c.getString(2)+"')");
+                        java.sql.ResultSet rs2 = pstmt2.executeQuery("  select * from funsoft_cash_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(2) + "')");
 
-                        while (rs2.next()){
+                        while (rs2.next()) {
                             deptDayCash = rs2.getDouble(1);
 
                         }
-                        
+
                         //funsoft_nhif_credit_sales_per_dept
-                        
                         rs2 = pstmt2.executeQuery("  select * from funsoft_nhif_credit_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(1) + "')");
                         while (rs2.next()) {
                             deptDayNHIF = rs2.getDouble(1);
 
                         }
-                        
+
                         rs2 = pstmt2.executeQuery("  select * from funsoft_not_nhif_credit_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(1) + "')");
                         while (rs2.next()) {
                             deptDayScheme = rs2.getDouble(1);
 
                         }
-                        
-                        revenueSummaryTbl.setValueAt(deptDayCash, f, pp);
-                        dayCash += deptDayCash;
-                        pp++;
-                        revenueSummaryTbl.setValueAt(deptDayNHIF, f, pp);
-                        dayNHIF += deptDayNHIF;
-                        pp++;
-                        revenueSummaryTbl.setValueAt(deptDayScheme, f, pp);
-                        dayScheme += deptDayScheme;
-                        pp++;
-                        
-                        
+
+                        if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
+                            revenueSummaryTbl.setValueAt(deptDayCash, f, pp);
+                            dayCash += deptDayCash;
+                            pp++;
+                            revenueSummaryTbl.setValueAt(deptDayNHIF, f, pp);
+                            dayNHIF += deptDayNHIF;
+                            pp++;
+                            revenueSummaryTbl.setValueAt(deptDayScheme, f, pp);
+                            dayScheme += deptDayScheme;
+                            pp++;
+                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
+                            revenueSummaryTbl.setValueAt(deptDayCash, f, pp);
+                            dayCash += deptDayCash;
+                            pp++;
+                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
+                            revenueSummaryTbl.setValueAt(deptDayNHIF, f, pp);
+                            dayNHIF += deptDayNHIF;
+                            pp++;
+                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
+                            revenueSummaryTbl.setValueAt(deptDayScheme, f, pp);
+                            dayScheme += deptDayScheme;
+                            pp++;
+                        }
 
                     }
 
-                    revenueSummaryTbl.setValueAt(dayCash, f, pp);
-                    pp++;
-                    revenueSummaryTbl.setValueAt(dayNHIF, f, pp);
-                    pp++;
-                    revenueSummaryTbl.setValueAt(dayScheme, f, pp);
-                    pp++;
-                    
-                    
-                    
+                    if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
+                        revenueSummaryTbl.setValueAt(dayCash, f, pp);
+                        pp++;
+                        revenueSummaryTbl.setValueAt(dayNHIF, f, pp);
+                        pp++;
+                        revenueSummaryTbl.setValueAt(dayScheme, f, pp);
+                        pp++;
+                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
+                        revenueSummaryTbl.setValueAt(dayCash, f, pp);
+                        pp++;
+                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
+                        revenueSummaryTbl.setValueAt(dayNHIF, f, pp);
+                        pp++;
+                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
+                        revenueSummaryTbl.setValueAt(dayScheme, f, pp);
+                        pp++;
+                    }
+
                     double waiver = 0.00;
                     double exemption = 0.00;
                     java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(debit-credit) FROM ac_ledger WHERE transaction_time::date = '" + listofAct[f] + "'  AND transaction_type ilike 'waiver%'");
@@ -359,13 +421,12 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
                     while (rsetwn2.next()) {
                         exemption = rsetwn2.getDouble(1);
-                    } 
-                    
+                    }
+
                     revenueSummaryTbl.setValueAt(waiver, f, pp);
                     pp++;
                     revenueSummaryTbl.setValueAt(exemption, f, pp);
                     pp++;
-                    
 
                     j++;
                 }
@@ -373,11 +434,10 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
             double total = 0.0;
 
-           
             revenueSummaryTbl.setValueAt("Total", j, 0);
-            for(int h = 1; h< revenueSummaryTbl.getColumnCount();h++)
+            for (int h = 1; h < revenueSummaryTbl.getColumnCount(); h++) {
                 revenueSummaryTbl.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(revenueSummaryTbl, h), j, h);
-            
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -436,6 +496,7 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
     private com.afrisoftech.lib.DatePicker beginDatePicker;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

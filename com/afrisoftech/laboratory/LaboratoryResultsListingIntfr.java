@@ -243,7 +243,7 @@ public class LaboratoryResultsListingIntfr extends javax.swing.JInternalFrame {
 
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo, labResultsTable.getValueAt(labResultsTable.getSelectedRow(), 0).toString());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_labResultsTableMouseClicked

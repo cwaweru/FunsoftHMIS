@@ -1401,12 +1401,12 @@ public class SendPayslipPerStaffPdf1 implements java.lang.Runnable {
                 biz.systempartners.claims.AdvancedSendFile.SendFile(connectDB, filesArray, emailsArray, null, null, "Payslip for : " + StaffNo + " " + com.afrisoftech.lib.StaffDetails.getStaffName(connectDB, StaffNo), "Payslip for : " + StaffNo + " " + com.afrisoftech.lib.StaffDetails.getStaffName(connectDB, StaffNo));
             // com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             
-            try {
-                    TimeUnit.SECONDS.sleep(3);
-                    System.err.println("Slept for 3 Seconds...");
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
+//            try {
+//                    TimeUnit.SECONDS.sleep(1);
+//                    System.err.println("Slept for 1 Seconds...");
+//                } catch (InterruptedException ex) {
+//                    ex.printStackTrace();
+//                }
             }
             tempFile.delete();
             tempFile1.delete();

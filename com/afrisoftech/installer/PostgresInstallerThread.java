@@ -147,7 +147,7 @@ public class PostgresInstallerThread extends java.lang.Thread  {
         
         installerThread.stop();
         
-        installerThread.destroy();
+//        installerThread.destroy();
         
     }
     

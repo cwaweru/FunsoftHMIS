@@ -818,7 +818,7 @@ public class HosPatientLabDatePanel extends javax.swing.JDialog {
             case 5267: {
                 com.afrisoftech.reports.PatientCardPdf policy = new com.afrisoftech.reports.PatientCardPdf();
 
-                policy.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), patientNoTxt.getText());
+                policy.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), patientNoTxt.getText(),false);
 
                 this.dispose();
 
@@ -835,7 +835,7 @@ public class HosPatientLabDatePanel extends javax.swing.JDialog {
                 
                 com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-                policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+                policy.PatientLabResultsPdf(connectDB, labNo, labNo, labResultsTable.getValueAt(labResultsTable.getSelectedRow(), 0).toString());
 
 //                com.afrisoftech.reports.PatientLabResultsDetPdf policy = new com.afrisoftech.reports.PatientLabResultsDetPdf();
 //

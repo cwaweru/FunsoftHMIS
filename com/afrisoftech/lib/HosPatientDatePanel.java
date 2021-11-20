@@ -70,6 +70,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         datePicker1 = new com.afrisoftech.lib.DatePicker();
         datePicker2 = new com.afrisoftech.lib.DatePicker();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -297,6 +298,16 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel1.add(datePicker2, gridBagConstraints);
+
+        jCheckBox1.setForeground(new java.awt.Color(0, 0, 255));
+        jCheckBox1.setText("Use Selected Date Range");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jCheckBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -760,7 +771,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
             case 5267: {
                 com.afrisoftech.reports.PatientCardPdf policy = new com.afrisoftech.reports.PatientCardPdf();
 
-                policy.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), jTextField36.getText());
+                policy.PatientCardPdf(connectDB, datePicker1.getDate(), datePicker2.getDate(), jTextField36.getText(), jCheckBox1.isSelected());
 
                 this.dispose();
 
@@ -793,6 +804,7 @@ public class HosPatientDatePanel extends javax.swing.JDialog {
     private javax.swing.JButton jButton412;
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton513;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;

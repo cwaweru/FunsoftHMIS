@@ -94,6 +94,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     String defaultServicePoint = null;
     private java.lang.Thread newPatientThread;
     boolean patientRunning = false;
+    boolean idTelEnforce = false;
+     private byte[] fingerPrintData = null;
 
     public PatientRegisterIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -106,6 +108,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         dbObject = new com.afrisoftech.lib.DBObject();
         branchTxt.setText(getCashPoint());
         jTextField22.setText(getShiftNumber());
+        idTelEnforce = enforceTelphone_id();
         this.initializeWebCam();
         // panel.start();
     }
@@ -231,6 +234,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         cardsSoldTxt = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         filesSoldTxt = new javax.swing.JTextField();
+        jLabel45 = new javax.swing.JLabel();
+        fileLocationTxt = new javax.swing.JTextField();
         billindDetailsTabbedPane = new javax.swing.JTabbedPane();
         bioDataPanel = new javax.swing.JPanel();
         patientSearchPanel = new javax.swing.JPanel();
@@ -311,7 +316,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jLabel5722 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField5821 = new javax.swing.JTextField();
+        cellPhoneNoTxt = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         currentResidenceTxt = new javax.swing.JTextField();
@@ -443,6 +448,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         previousPanel = new javax.swing.JPanel();
         previousVisitsScrollPane = new javax.swing.JScrollPane();
         previousVisitsTable = new com.afrisoftech.dbadmin.JXTable();
+        vitalsPanel = new javax.swing.JPanel();
         payModePanel = new javax.swing.JPanel();
         branchTxt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -472,7 +478,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         webCamPanel =  new javax.swing.JPanel();
         startBtn = new javax.swing.JButton(new StartAction());
         takeSnapBtn = new javax.swing.JButton();
-        fingerPrintReaderBtn = new javax.swing.JButton();
+        enrollFingerPrintBtn = new javax.swing.JButton();
+        fingerPrintBtn = new javax.swing.JButton();
 
         patientSearchDialog.setUndecorated(true);
         patientSearchDialog.setResizable(false);
@@ -1984,6 +1991,26 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         jPanel3.add(filesSoldTxt, gridBagConstraints);
 
+                                        jLabel45.setForeground(new java.awt.Color(255, 51, 51));
+                                        jLabel45.setText("Current File Location");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 9;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(jLabel45, gridBagConstraints);
+
+                                        fileLocationTxt.setBackground(new java.awt.Color(204, 204, 255));
+                                        fileLocationTxt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+                                        fileLocationTxt.setForeground(new java.awt.Color(0, 0, 255));
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 10;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 3.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        jPanel3.add(fileLocationTxt, gridBagConstraints);
+
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 3;
@@ -2916,7 +2943,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         otherPatientDetailsPanel.add(jLabel26, gridBagConstraints);
 
-                                        jTextField5821.setEditable(false);
+                                        cellPhoneNoTxt.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
                                         gridBagConstraints.gridy = 1;
@@ -2924,7 +2951,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        otherPatientDetailsPanel.add(jTextField5821, gridBagConstraints);
+                                        otherPatientDetailsPanel.add(cellPhoneNoTxt, gridBagConstraints);
 
                                         jLabel32.setForeground(new java.awt.Color(255, 0, 51));
                                         jLabel32.setText("Home Village");
@@ -4193,6 +4220,18 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         billindDetailsTabbedPane.addTab("Previous Visits", previousPanel);
 
+                                        vitalsPanel.setLayout(new java.awt.GridLayout(1, 0));
+                                        billindDetailsTabbedPane.addTab("Vital Signs", vitalsPanel);
+                                        //com.afrisoftech.hospital.GeneralBillingIntfr genBilling = new com.afrisoftech.hospital.GeneralBillingIntfr(connectDB,pConnDB);
+                                        com.afrisoftech.nursing.NursingTriage dismt = new com.afrisoftech.nursing.NursingTriage(connectDB,"OPD","Reg");
+                                        java.awt.GridBagConstraints gridBagConstraintbilling = new java.awt.GridBagConstraints();
+                                        gridBagConstraintbilling.gridx = 0;
+                                        gridBagConstraintbilling.gridy = 0;
+                                        gridBagConstraintbilling.fill = java.awt.GridBagConstraints.BOTH;
+                                        gridBagConstraintbilling.weightx = 1.0;
+                                        gridBagConstraintbilling.weighty = 1.0;
+                                        vitalsPanel.add(dismt.getContentPane(), gridBagConstraintbilling);
+
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 2;
@@ -4460,7 +4499,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 8;
+                                        gridBagConstraints.gridy = 10;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -4478,7 +4517,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.gridy = 11;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -4496,7 +4535,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 10;
+                                        gridBagConstraints.gridy = 12;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -4508,7 +4547,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         helpBtn.setPreferredSize(new java.awt.Dimension(30, 25));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 11;
+                                        gridBagConstraints.gridy = 13;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -4570,7 +4609,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 7;
+                                        gridBagConstraints.gridy = 8;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -4627,13 +4666,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 20.0;
                                         buttonPanel.add(webCameraPanel, gridBagConstraints);
 
-                                        fingerPrintReaderBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fingerprint_images.jpg"))); // NOI18N
-                                        fingerPrintReaderBtn.setText("Finger Print Reader");
-                                        fingerPrintReaderBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-                                        fingerPrintReaderBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-                                        fingerPrintReaderBtn.addActionListener(new java.awt.event.ActionListener() {
+                                        enrollFingerPrintBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fingerprint_images.jpg"))); // NOI18N
+                                        enrollFingerPrintBtn.setText("Registration");
+                                        enrollFingerPrintBtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                                fingerPrintReaderBtnActionPerformed(evt);
+                                                enrollFingerPrintBtnActionPerformed(evt);
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -4642,7 +4679,22 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        buttonPanel.add(fingerPrintReaderBtn, gridBagConstraints);
+                                        buttonPanel.add(enrollFingerPrintBtn, gridBagConstraints);
+
+                                        fingerPrintBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fingerprint_images.jpg"))); // NOI18N
+                                        fingerPrintBtn.setText("Retrieval");
+                                        fingerPrintBtn.addActionListener(new java.awt.event.ActionListener() {
+                                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                                fingerPrintBtnActionPerformed(evt);
+                                            }
+                                        });
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 7;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        buttonPanel.add(fingerPrintBtn, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 6;
@@ -4659,7 +4711,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         getContentPane().add(mainPanel, gridBagConstraints);
 
-                                        setBounds(0, 0, 1244, 550);
+                                        setBounds(0, 0, 1286, 550);
                                     }// </editor-fold>//GEN-END:initComponents
 
     private void reprintFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintFileBtnActionPerformed
@@ -4721,7 +4773,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField5821.setText("");
+        cellPhoneNoTxt.setText("");
         emailAddTxt.setText("");
         idPassportTxt.setText("");
         jTextField13.setText("");
@@ -4753,7 +4805,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         firstNameTxt.setText(claimFile.patientForenames);
         paymentModeCmbx.setSelectedItem("Scheme");
         jTextField5.setText(claimFile.patientAddress);
-        jTextField5821.setText(claimFile.patientTelephone);
+        cellPhoneNoTxt.setText(claimFile.patientTelephone);
         emailAddTxt.setText(claimFile.patientEmail);
         java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat();//.getInstance();
         dateFormat.applyPattern("yyyy-MM-dd");
@@ -4897,7 +4949,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 ageTxt.setText(rset.getString(3)); //(dbObject.getDBObject(rset.getObject(3), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(4), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(6), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(6), "-"));
 
                 if (rset.getObject(5).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -5085,7 +5137,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setEditable(false);
         jTextField7.setEditable(false);
         jTextField8.setEditable(false);
-        jTextField5821.setEditable(false);
+        cellPhoneNoTxt.setEditable(false);
         jTextField2.setEditable(false);
         surNameTxt.setEditable(false);
         firstNameTxt.setEditable(false);
@@ -5113,7 +5165,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField5821.setText("");
+        cellPhoneNoTxt.setText("");
         jTextField2.setText("");
         surNameTxt.setText("");
         jTextField20.setText("");
@@ -5166,7 +5218,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setEditable(true);
         jTextField7.setEditable(true);
         jTextField8.setEditable(true);
-        jTextField5821.setEditable(true);
+        cellPhoneNoTxt.setEditable(true);
         jTextField2.setEditable(true);
         surNameTxt.setEditable(true);
         firstNameTxt.setEditable(true);
@@ -5192,7 +5244,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField5821.setText("");
+        cellPhoneNoTxt.setText("");
         jTextField2.setText("");
         surNameTxt.setText("");
         jTextField20.setText("");
@@ -5332,7 +5384,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 if (rset.getObject(6).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -5953,7 +6005,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 if (rset.getObject(6).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -6023,7 +6075,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 countyofBirthCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(32), "-"));
                 countyofResidenceCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(33), "-"));
                 this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 oldFileNumberTxt.setText(dbObject.getDBObject(rset.getObject(34), "-"));
                 cSheetNoTxt.setText(dbObject.getDBObject(rset.getObject(35), "-"));
                 clinicNumberTxt.setText(dbObject.getDBObject(rset.getObject(36), "-"));
@@ -6193,7 +6245,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setEditable(true);
         jTextField7.setEditable(true);
         jTextField8.setEditable(true);
-        jTextField5821.setEditable(true);
+        cellPhoneNoTxt.setEditable(true);
         jTextField2.setEditable(false);
         surNameTxt.setEditable(true);
         firstNameTxt.setEditable(true);
@@ -6205,7 +6257,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setEditable(true);
         jTextField7.setEditable(true);
         jTextField8.setEditable(true);
-        jTextField5821.setEditable(true);
+        cellPhoneNoTxt.setEditable(true);
         jTextField2.setEditable(true);
         jTextField20.setEditable(true);
         firstNameTxt.setEditable(true);
@@ -6243,7 +6295,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 if (rset.getObject(6).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -6377,7 +6429,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField5821.setText("");
+        cellPhoneNoTxt.setText("");
         jTextField2.setText("");
         emailAddTxt.setText("");
         idPassportTxt.setText("");
@@ -6508,7 +6560,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                     if (ager < 5) {
                                                         patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
                                                     }
-                                                    if (category == null) {
+                                                    
+                                                        
+                                                    if(idPassportTxt.getText().trim().isEmpty() && idTelEnforce){
+                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must provide the ID/Passport No", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+     
+                                                    }else if(cellPhoneNoTxt.getText().trim().isEmpty() && idTelEnforce){
+                                                        javax.swing.JOptionPane.showMessageDialog(this, "You must provide the cell phone(Mobile) No", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+                                                    }else if (category == null) {
                                                         javax.swing.JOptionPane.showMessageDialog(this, "You must select patient category", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
                                                     } else {
@@ -6746,7 +6806,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                     pstmts.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker2.getDate()));
                                                                                     pstmts.setString(8, patientNumberTxt.getText());
                                                                                     pstmts.setString(9, user);
-                                                                                    pstmts.setString(10, jTextField5821.getText());
+                                                                                    pstmts.setString(10, cellPhoneNoTxt.getText());
                                                                                     pstmts.setObject(11, emailAddTxt.getText());
                                                                                     pstmts.setObject(12, specialtyClinicCmbx.getSelectedItem());
                                                                                     pstmts.setObject(13, "OP");
@@ -6787,7 +6847,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                             pstmt.setString(6, residenceTxt.getText());
                                                                                             pstmt.setString(7, jTextField5.getText());
                                                                                             pstmt.setDate(8, dateOfBirth);
-                                                                                            pstmt.setString(9, jTextField5821.getText());
+                                                                                            pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                             if (selectedchkbx == null) {
                                                                                                 javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                             } else {
@@ -6901,7 +6961,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(6, residenceTxt.getText());
                                                                                                 pstmt.setString(7, jTextField5.getText());
                                                                                                 pstmt.setDate(8, dateOfBirth);
-                                                                                                pstmt.setString(9, jTextField5821.getText());
+                                                                                                pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                                 if (selectedchkbx == null) {
                                                                                                     javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                                 } else {
@@ -6990,7 +7050,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(6, residenceTxt.getText());
                                                                                                 pstmt.setString(7, jTextField5.getText());
                                                                                                 pstmt.setDate(8, dateOfBirth);
-                                                                                                pstmt.setString(9, jTextField5821.getText());
+                                                                                                pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                                 if (selectedchkbx == null) {
                                                                                                     javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                                 } else {
@@ -7104,7 +7164,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                     pstmt.setString(6, residenceTxt.getText());
                                                                                                     pstmt.setString(7, jTextField5.getText());
                                                                                                     pstmt.setDate(8, dateOfBirth);
-                                                                                                    pstmt.setString(9, jTextField5821.getText());
+                                                                                                    pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                                     if (selectedchkbx == null) {
                                                                                                         javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                                     } else {
@@ -7262,7 +7322,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                         pstmt.setString(6, residenceTxt.getText());
                                                                                                                         pstmt.setString(7, jTextField5.getText());
                                                                                                                         pstmt.setDate(8, dateOfBirth);
-                                                                                                                        pstmt.setString(9, jTextField5821.getText());
+                                                                                                                        pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                                                         if (selectedchkbx == null) {
                                                                                                                             javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                                                         } else {
@@ -7376,7 +7436,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                             pstmt.setString(6, residenceTxt.getText());
                                                                                                                             pstmt.setString(7, jTextField5.getText());
                                                                                                                             pstmt.setDate(8, dateOfBirth);
-                                                                                                                            pstmt.setString(9, jTextField5821.getText());
+                                                                                                                            pstmt.setString(9, cellPhoneNoTxt.getText());
                                                                                                                             if (selectedchkbx == null) {
                                                                                                                                 javax.swing.JOptionPane.showMessageDialog(this, "You must tick patient Gender", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                                                                                                                             } else {
@@ -7664,7 +7724,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                     pstmt1.setString(5, residenceTxt.getText());
                                                                                     pstmt1.setString(6, jTextField5.getText());
                                                                                     pstmt1.setDate(7, dateOfBirth);
-                                                                                    pstmt1.setString(8, jTextField5821.getText());
+                                                                                    pstmt1.setString(8, cellPhoneNoTxt.getText());
                                                                                     pstmt1.setString(9, emailAddTxt.getText());
                                                                                     pstmt1.setString(10, idPassportTxt.getText());
                                                                                     pstmt1.setObject(11, jTextField20.getText());
@@ -8278,7 +8338,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 if (rset.getObject(6).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -8425,7 +8485,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setEditable(false);
         jTextField7.setEditable(false);
         jTextField8.setEditable(false);
-        jTextField5821.setEditable(false);
+        cellPhoneNoTxt.setEditable(false);
         jTextField2.setEditable(false);
         surNameTxt.setEditable(false);
         firstNameTxt.setEditable(false);
@@ -8453,7 +8513,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jTextField5.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
-        jTextField5821.setText("");
+        cellPhoneNoTxt.setText("");
         jTextField2.setText("");
         surNameTxt.setText("");
         jTextField20.setText("");
@@ -8951,15 +9011,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_servicePointCmbxActionPerformed
 
-    private void fingerPrintReaderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fingerPrintReaderBtnActionPerformed
-
-        com.afrisoftech.lib.biometric.SecuGen secugenFingerPrint = new com.afrisoftech.lib.biometric.SecuGen();
-
-        secugenFingerPrint.registerFingerPrint(connectDB, visitID);
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fingerPrintReaderBtnActionPerformed
-
     private void facilitySearchDialogFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_facilitySearchDialogFocusLost
 
         facilitySearchDialog.dispose();
@@ -8987,6 +9038,238 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE (patient_no ilike '%"+seachPatTxt.getText()+"%' OR name ilike '%"+seachPatTxt.getText()+"%') AND date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
          // TODO add your handling code here:
     }//GEN-LAST:event_seachPatTxtCaretUpdate
+
+    private void enrollFingerPrintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollFingerPrintBtnActionPerformed
+        if (patientNumberTxt.getText().length() > 3) {
+
+            fingerPrintData = null;
+
+            com.afrisoftech.lib.biometric.SecuGen secugenFingerPrint = new com.afrisoftech.lib.biometric.SecuGen();
+
+            fingerPrintData = secugenFingerPrint.registerFingerPrint(connectDB, patientNumberTxt.getText());
+
+            System.out.println(fingerPrintData.toString());
+            //         com.afrisoftech.lib.biometric.SecuGen.registerSCMFingerPrint(connectDB, usernameTxt.getText());
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "You must select a login account");
+        }
+
+        if (fingerPrintData != null) {
+
+            com.afrisoftech.lib.SaveBytea2DB.insertByteArray(connectDB, patientNumberTxt.getText(), fingerPrintData, "DIGITAL_AUTH_FINGERPRINT");
+
+        } else {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "You must select a login account and ensure that a fingerprint has been scanned.");
+
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enrollFingerPrintBtnActionPerformed
+public void getPatientDetails(String patientNo) {
+        inpatientActivation = false;
+        //  jComboBox2.setSelectedItem(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0));
+        patientNumberTxt.setText(patientNo);
+        //firstNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 1).toString());
+        //surNameTxt.setText(patientSearchTable.getValueAt(patientSearchTable.getSelectedRow(), 2).toString());
+        //patientSearchDialog.dispose();
+        // jSearchDialog4.dispose();
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT nok,residence,year_of_birth,tel_no,address,upper(sex) as sex,"
+                    + "pay_mode,last_visit,upper(second_name) as other_names, upper(first_name) as surname,emails,id_no,"
+                    + "information_source,education_level,occupation, emails, id_no, nok_add, pat_nationality, nok_telno,"
+                    + "nok_relationship, nok_residence, nok_email, pat_marital_status, tribe, district, locations,"
+                    + "sub_location, chief_name, sub_chief, (current_date-year_of_birth::date)/365,home_county,residence_county,patient_race,charge_sheet_no,tribe,refer_source "
+                    + ",year_of_birth::date, nhif_number, nhif_status, birth_place FROM hp_patient_register WHERE patient_no ILIKE '" + patientNumberTxt.getText() + "'");
+            while (rset.next()) {
+                //jComboBox1.setSelectedItem(dbObject.getDBObject(rset.getObject(7), "-"));
+                dateofLastVisitTxt.setText(dbObject.getDBObject(rset.getObject(8), "-"));
+                nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
+                residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
+                //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
+                if (rset.getObject(6).toString().startsWith("M")) {
+                    jCheckBox1111.setSelected(true);
+
+                } else {
+
+                    if (rset.getObject(6).toString().startsWith("F")) {
+                        jCheckBox2111.setSelected(true);
+                    } else {
+                    }
+                }
+                firstNameTxt.setText(dbObject.getDBObject(rset.getObject(9), "-"));
+                surNameTxt.setText(dbObject.getDBObject(rset.getObject(10), "-"));
+                // nationalityCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(19), "-"));
+                //  idNoTxt.setText(dbObject.getDBObject(rset.getObject(12), "-"));
+                //  emailAddTxt.setText(dbObject.getDBObject(rset.getObject(11), "-"));
+                this.informationSourceCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(13), "-"));
+                this.educationLevelCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(14), "-"));
+                this.occupationCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(15), "-"));
+                ////////
+                this.emailAddTxt.setText(dbObject.getDBObject(rset.getObject(16), "-"));
+                this.idPassportTxt.setText(dbObject.getDBObject(rset.getObject(17), "-"));
+                this.jTextField20.setText(dbObject.getDBObject(rset.getObject(18), "-"));
+                this.nationalityCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(19), "-"));
+                this.nokTelephoneTxt.setText(dbObject.getDBObject(rset.getObject(20), "-"));
+                this.nokRelationShipCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(21), "-"));
+                System.out.println("here is the nok  " + rset.getObject(21).toString());
+                this.nokResidenceTxt.setText(dbObject.getDBObject(rset.getObject(22), "-"));
+                this.emailAddTxt1.setText(dbObject.getDBObject(rset.getObject(23), "-"));
+                //       this.(dbObject.getDBObject(rset.getObject(24), "-"));
+                this.jTextField19.setText(dbObject.getDBObject(rset.getObject(25), "-"));
+                this.ageTxt.setText(dbObject.getDBObject(rset.getObject(31), "-"));
+                this.datePickerYOB.setDate(Date.valueOf(String.valueOf(dbObject.getDBObject(rset.getDate("year_of_birth"), ""))));
+                this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
+                this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
+                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.nhifNumberTxt.setText(rset.getString("nhif_number"));
+                this.placeOfBirthTxt.setText(rset.getString("birth_place"));
+                if (rset.getBoolean("nhif_status")) {
+                    nhifChbx.setSelected(true);
+                } else {
+                    nhifChbx.setSelected(false);
+                }
+                // jTextField12.setText(dbObject.getDBObject(rset.getObject(6), "-"));
+                //  dbObject.getDBObject(rset1.getObject(3), "-")
+
+                if (rset.getObject(24).toString().startsWith("S")) {
+                    jCheckBox1113.setSelected(true);
+
+                }
+                if (rset.getObject(24).toString().startsWith("M")) {
+                    jCheckBox2113.setSelected(true);
+
+                }
+                if (rset.getObject(24).toString().startsWith("D")) {
+                    jCheckBox3.setSelected(true);
+
+                } else {
+
+                    if (rset.getObject(24).toString().startsWith("W")) {
+                        jCheckBox11.setSelected(true);
+                    } else {
+                    }
+                }
+
+                countyofBirthCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(32), "-"));
+                countyofResidenceCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(33), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                oldFileNumberTxt.setText(dbObject.getDBObject(rset.getObject(34), "-"));
+                cSheetNoTxt.setText(dbObject.getDBObject(rset.getObject(35), "-"));
+                clinicNumberTxt.setText(dbObject.getDBObject(rset.getObject(36), "-"));
+                referralTypeCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(37), "-"));
+
+            }
+
+            java.sql.PreparedStatement pstmtFileLocation = connectDB.prepareStatement("SELECT dept_receiving FROM hp_trace_file WHERE patient_no = ? ORDER BY input_date DESC LIMIT 1");
+            pstmtFileLocation.setString(1, patientNumberTxt.getText());
+            java.sql.ResultSet rsetFileLocation = pstmtFileLocation.executeQuery();
+            while (rsetFileLocation.next()) {
+                fileLocationTxt.setText(rsetFileLocation.getString(1));
+            }
+            rsetFileLocation.close();
+            pstmtFileLocation.close();
+
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("Select not successful");
+            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
+        }
+        //   if(jComboBox1.getSelectedItem().equals("Scheme")){
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = stmt.executeQuery("select payer,description,account_no,member_name,expiry_date from hp_patient_register where patient_no ='" + patientNumberTxt.getText() + "'");
+            while (rset.next()) {
+                // jComboBox6.setSelectedItem(rset.getObject(1).toString());
+                jTextField2.setText(dbObject.getDBObject(rset.getObject(1), "-"));
+                jTextField361.setText(dbObject.getDBObject(rset.getObject(2), "-"));
+                jTextField15.setText(dbObject.getDBObject(rset.getObject(3), "-"));
+                jTextField36.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                jTextField18.setText(dbObject.getDBObject(rset.getObject(5), "-"));
+                nokNameTxt.setEditable(true);
+            }
+        } catch (java.sql.SQLException sqe) {
+            sqe.printStackTrace();
+            System.out.println("Select not successful");
+            javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
+        }
+//        try {
+
+        startBtn.setEnabled(true);
+        imageFile = null;
+        imageFile = com.afrisoftech.lib.SaveBytea2DB.getStoredImage(connectDB, patientNumberTxt.getText());
+        if (imageFile != null) {
+            System.out.println("The image has played");
+//                javax.swing.ImageIcon imgCapture = new javax.swing.ImageIcon(com.afrisoftech.lib.SaveBytea2DB.getStoredImage(connectDB, patientNumberTxt.getText()).toURL());
+//                javax.swing.JLabel photoButton = new javax.swing.JLabel(imgCapture);
+            webCameraPanel.remove(panel);
+            webCamPanel = new ImagePanel();
+//            webCamPanel.setSize(webCameraPanel.getSize());
+            //webCameraPanel.add(webCamPanel);
+            //  webCameraPanel.revalidate();
+            webCamPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+            webCamPanel.setMaximumSize(new java.awt.Dimension(142, 37));
+            webCamPanel.setLayout(new java.awt.GridBagLayout());
+            java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+            gridBagConstraints.gridwidth = 2;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints.weightx = 1.0;
+            gridBagConstraints.weighty = 10.0;
+            webCameraPanel.add(webCamPanel, gridBagConstraints);
+            imageFile.delete();
+        } else {
+            //    webCamPanel = new ImagePanel();
+            webCameraPanel.remove(webCamPanel);
+            if (panel != null) {
+                panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                panel.setMaximumSize(new java.awt.Dimension(142, 37));
+                panel.setLayout(new java.awt.GridBagLayout());
+                java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridwidth = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                gridBagConstraints.weightx = 1.0;
+                gridBagConstraints.weighty = 10.0;
+                webCameraPanel.add(panel, gridBagConstraints);
+            }
+        }
+        webCameraPanel.revalidate();
+        //  com.afrisoftech.lib.SaveBytea2DB.insertBytea(connectDB, file, "JPG", "image/jpeg", patientNumberTxt.getText(), file.getName(), "OUT_PATIENT_REGISTER");
+//        } catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
+        //}
+
+        //     emailAddTxt.setText("");
+        //     idNoTxt.setText("");
+        // jButton301.setEnabled(true);
+        patientSearchDialog.dispose();
+        residenceTxt.setEditable(true);
+        previousVisitsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT input_date::timestamp(0) as visit_date, clinic as speciality_visited, parameter as registration_point, user_name as registration_officer, marital_status, urgency as case_type FROM hp_patient_visit WHERE patient_no = '" + patientNumberTxt.getText() + "' UNION SELECT data_capture_time::timestamp(0) as visit_date, ward as speciality_visited, diagnosis3 as registration_point, user_name as registration_officer, marital_status, comments as case_type FROM hp_admission WHERE patient_no = '" + patientNumberTxt.getText() + "' ORDER BY 1"));
+        // Flagging patients whole accounts have outstanding bills
+        javax.swing.JOptionPane.showMessageDialog(this, "Patient Number [" + patientNumberTxt.getText() + "] outstanding bill status total : [" + com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.PatientAccountStatus.getOutstandillBill(connectDB, patientNumberTxt.getText()) + com.afrisoftech.lib.PatientAccountStatus.getPersonalDebtStatus(connectDB, patientNumberTxt.getText())) + "], Abscondment status bill : [" + com.afrisoftech.lib.PatientAccountStatus.getAbscondmentStatus(connectDB, patientNumberTxt.getText()) + "]");
+
+    }
+    private void fingerPrintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fingerPrintBtnActionPerformed
+
+        com.afrisoftech.lib.biometric.SecuGen verifyFingerprint = new com.afrisoftech.lib.biometric.SecuGen();
+
+        String patientNo = verifyFingerprint.verifyFingerRecord(connectDB, "DIGITAL_AUTH_FINGERPRINT");
+
+        if (patientNo != null) {
+            if (patientNo.length() > 3) {
+                getPatientDetails(patientNo);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "No matching record for this fingerprint identified. Check fingerprint and try again or enroll fingerprint afresh.");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fingerPrintBtnActionPerformed
     private void changeDate() {
         ageLabel.setText(com.afrisoftech.lib.PatientAge.getPatientActualAge(connectDB, this.datePickerYOB.getDate()));
         ageTxt.setText(String.valueOf(com.afrisoftech.lib.PatientAge.getPatientAge(connectDB, this.datePickerYOB.getDate())));
@@ -9025,7 +9308,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         patientSearchDialog.setVisible(true);
 
     }
-
+    
     public java.lang.String getShiftNumber() {
         try {
 
@@ -9050,6 +9333,32 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
     }
 
+    public boolean enforceTelphone_id() {
+        boolean mandatory = false;
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            
+
+            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT telephone_idno_mandatory FROM pb_patient_names ");
+
+            while (rset.next()) {
+
+                mandatory = rset.getBoolean(1);
+
+            }
+
+        } catch (java.sql.SQLException sqlExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
+        }
+
+        return mandatory;
+
+    }
+
     private void getPatientFile(java.lang.String patientNumber) {
         //  jComboBox2.setSelectedItem(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0));
         // jTextField3.setText(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0).toString());
@@ -9070,7 +9379,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 nokNameTxt.setText(dbObject.getDBObject(rset.getObject(1), "-"));
                 residenceTxt.setText(dbObject.getDBObject(rset.getObject(2), "-"));
                 //  jTextField14.setText(dbObject.getDBObject(rset.getObject(3), "-"));
-                jTextField5821.setText(dbObject.getDBObject(rset.getObject(4), "-"));
+                cellPhoneNoTxt.setText(dbObject.getDBObject(rset.getObject(4), "-"));
                 jTextField5.setText(dbObject.getDBObject(rset.getObject(5), "-"));
                 if (rset.getObject(6).toString().startsWith("M")) {
                     jCheckBox1111.setSelected(true);
@@ -9299,6 +9608,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel cardSerialNoLbl;
     private javax.swing.JTextField cardSerialNoTxt;
     private javax.swing.JTextField cardsSoldTxt;
+    private javax.swing.JTextField cellPhoneNoTxt;
     private javax.swing.JButton clearFieldsBtn;
     private javax.swing.JLabel clinicNumberLbl;
     private javax.swing.JTextField clinicNumberTxt;
@@ -9349,14 +9659,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField employerTelTxt;
     private javax.swing.JTextField employerTxt;
     private com.afrisoftech.lib.DatePicker endDatePicker;
+    private javax.swing.JButton enrollFingerPrintBtn;
     private static javax.swing.JDialog facilitySearchDialog;
     private javax.swing.JScrollPane facilitySearchJscrl;
     private javax.swing.JPanel facilitySearchMainPanel;
     private javax.swing.JTable facilitySearchTable;
     private javax.swing.JTextField facilitySearchTxt;
+    private javax.swing.JTextField fileLocationTxt;
     private javax.swing.JTextField filesSoldTxt;
+    private javax.swing.JButton fingerPrintBtn;
     public static javax.swing.JDialog fingerPrintDialog;
-    private javax.swing.JButton fingerPrintReaderBtn;
     public static javax.swing.JLabel fingerprintIconLabel;
     private javax.swing.JTextField firstNameTxt;
     private javax.swing.JPanel headerPanel;
@@ -9430,6 +9742,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -9520,7 +9833,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3611;
     private javax.swing.JTextField jTextField4111;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField5821;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
@@ -9624,6 +9936,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox typeofAccidentCmbx;
     private javax.swing.JLabel unitNumberLbl;
     private javax.swing.JComboBox urgencyCMBX;
+    private javax.swing.JPanel vitalsPanel;
     private javax.swing.JPanel webCamPanel;
     private javax.swing.JPanel webCameraPanel;
     // End of variables declaration//GEN-END:variables

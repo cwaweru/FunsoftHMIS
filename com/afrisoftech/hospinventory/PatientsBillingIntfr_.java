@@ -3333,7 +3333,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 //                                            Double calc_= Quant*price_;
                                             //Double total_=mainItemstbl.getModel().getValueAt(i, 5);
                                             if (mainItemsTbl.getModel().getValueAt(i, 0) != null && mainItemsTbl.getModel().getValueAt(i, 5) != null) {
-                                                if (Double.parseDouble(mainItemsTbl.getModel().getValueAt(i, 5).toString()) > 0) {
+                                                if (Double.parseDouble(mainItemsTbl.getModel().getValueAt(i, 5).toString()) >= 0) {
                                                     // if(Double.parseDouble(mainItemstbl.getModel().getValueAt(i, 5).toString()) == (Double.parseDouble(mainItemstbl.getModel().getValueAt(i, 1).toString()) + Double.parseDouble(mainItemstbl.getModel().getValueAt(i, 3).toString()))) {
                                                     String drug = null;
 
@@ -3719,7 +3719,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
                                     for (int i = 0; i < mainItemsTbl.getRowCount(); i++) {
                                         if (mainItemsTbl.getModel().getValueAt(i, 0) != null && mainItemsTbl.getModel().getValueAt(i, 5) != null) {
-                                            if (Double.parseDouble(mainItemsTbl.getModel().getValueAt(i, 5).toString()) > 0) {
+                                            if (Double.parseDouble(mainItemsTbl.getModel().getValueAt(i, 5).toString()) >= 0) {
                                                 String drug = null;
 
                                                 if (mainItemsTbl.getValueAt(i, 8).toString().equalsIgnoreCase("0") || mainItemsTbl.getValueAt(i, 8).toString().equalsIgnoreCase("-")) {
@@ -4117,6 +4117,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                 }
                                 jTextField32.setText("0.00");
                                 dispenseBillTotalTxt.setText("0.00");
+                                receiptTxt.setText("");
                                 jButton32.doClick();
                                 for (int k = 0; k < mainItemsTbl.getRowCount(); k++) {
                                     for (int r = 0; r < mainItemsTbl.getColumnCount(); r++) {
@@ -4253,19 +4254,29 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         //if (jTextField114.getCaretPosition() < 5) {
         //  if (jCheckBox7.isSelected()) {
         if (medicinesSearchTxt.getCaretPosition() > 3) {
-            if (packagesCbx.isSelected()) {
+            System.err.println("Value for receipt >"+receiptTxt.getText()+"<");
+            if (receiptTxt.getText().trim().length() > 1) {
+                if(mainStoreCbx.isSelected()){
+                     medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (   "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, pharmacyCmbx.getSelectedItem().toString())+" ))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) = 0.00"));// UNION "
+               
+                }else{
+                    
+                  medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product AS product, selling_price, '" + gLCodeTxt.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE department ilike  '" + pharmacyCmbx.getSelectedItem().toString() + "' AND (product_id ILIKE '%" + medicinesSearchTxt.getText().toString() + "%' OR product ILIKE '%" + medicinesSearchTxt.getText().toString() + "%') AND product not ilike '%dispensing%' and selling_price = 0  order by product"));
+                }
+            
+            }else if (packagesCbx.isSelected()) {
                 medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT package AS product, SUM(total) as price, '" + gLCodeTxt.getText() + "' AS gl_code,package_code, '' as strength FROM packages WHERE  (package_code ILIKE '%" + medicinesSearchTxt.getText().toString() + "%' OR package ILIKE '%" + medicinesSearchTxt.getText().toString() + "%') AND (department ilike '%Drug Store%' OR department ilike '%pharmacy%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (SELECT classification FROM st_stores WHERE upper(store_name) = '" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "'))) group by 1,4 order by package"));
 
             } else if(mainStoreCbx.isSelected()){
                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
                     System.err.println("Scheme Patient Markup " + schemeDrugsMarkup);
-                    medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, (" + schemeDrugsMarkup + " *(funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (    "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, pharmacyCmbx.getSelectedItem().toString())+" )))  GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00"));// UNION "
+                    medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, (" + schemeDrugsMarkup + " *(funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (    "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, pharmacyCmbx.getSelectedItem().toString())+" )))  GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) >= 0.00"));// UNION "
                
                     //medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product AS product, CEILING(selling_price * " + schemeDrugsMarkup + ") AS selling_price , '" + gLCodeTxt.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE  (product_id ILIKE '%" + medicinesSearchTxt.getText().toString() + "%' OR product ILIKE '%" + medicinesSearchTxt.getText().toString() + "%') AND product not ilike '%dispensing%'  order by product"));
                 } else {
                     System.err.println("Cash Patient Markup ");
-                    System.err.println("SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (     SELECT classification FROM st_stores WHERE upper(store_name) = '" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "'      ))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00");
-                    medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (   "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, pharmacyCmbx.getSelectedItem().toString())+" ))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) > 0.00"));// UNION "
+                    System.err.println("SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (     SELECT classification FROM st_stores WHERE upper(store_name) = '" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "'      ))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) >= 0.00");
+                    medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT description AS product, ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) as selling_price,'" + gLCodeTxt.getText() + "' AS gl_code, (item_code) as product_id, strength, '" + procurementMethodCmbx.getSelectedItem().toString() + "' AS Procurement_Method  from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + medicinesSearchTxt.getText() + "%' OR item_code ILIKE '%" + medicinesSearchTxt.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (   "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, pharmacyCmbx.getSelectedItem().toString())+" ))) GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.buying_price, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, '" + procurementMethodCmbx.getSelectedItem().toString() + "'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + pharmacyCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) >= 0.00"));// UNION "
                
                     //medicinesSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select DISTINCT product AS product, selling_price, '" + gLCodeTxt.getText() + "' AS gl_code,product_id, strength FROM stockprices WHERE  (product_id ILIKE '%" + medicinesSearchTxt.getText().toString() + "%' OR product ILIKE '%" + medicinesSearchTxt.getText().toString() + "%') AND product not ilike '%dispensing%'  order by product"));
                 }
@@ -4369,7 +4380,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                         mainItemsTbl.setValueAt(total, mainItemsTbl.getSelectedRow(), 5);
                     }
 
-                    if (j > 0) {
+                    //if (j > 0) {
                         java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where item_code ilike '" + medicinesSearchTable.getValueAt(medicinesSearchTable.getSelectedRow(), 3) + "' and department ilike '" + pharmacyCmbx.getSelectedItem().toString() + "' AND dates::date <= '" + SQLDateFormat.getSQLDate(dispenseDatePicker.getDate()) + "'");
 
                         //java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where description ilike '"+jSearchTable3.getValueAt(jSearchTable3.getSelectedRow(),0)+"' and department ilike '"+jTextField42.getText()+"' AND dates <= '"+datePicker1.getDate()+"'");
@@ -4381,9 +4392,9 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                             mainItemsTbl.setValueAt(Qty, mainItemsTbl.getSelectedRow(), 2);
 
                         }
-                    } else {
-                        mainItemsTbl.setValueAt("0", mainItemsTbl.getSelectedRow(), 2);
-                    }
+                    //} else {
+                    //    mainItemsTbl.setValueAt("0", mainItemsTbl.getSelectedRow(), 2);
+                    //}
                 }
             } else {
 
@@ -4447,7 +4458,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                 mainItemsTbl.setValueAt(Math.round(itemPrice * rsetSetCombiItems.getDouble(2)), currentRow, 5);
 
                             }
-                            if (j > 0) {
+                            //if (j > 0) {
                                 java.sql.ResultSet rs = pstmt.executeQuery("select sum(qty) from stock_balance_qty where item_code ilike '" + rsetSetCombiItems.getString(1) + "' and department ilike '" + pharmacyCmbx.getSelectedItem().toString() + "' AND dates::date <= '" + SQLDateFormat.getSQLDate(dispenseDatePicker.getDate()) + "'");
                                 System.err.println("select sum(qty) from stock_balance_qty where item_code ilike '" + rsetSetCombiItems.getString(1) + "' and department ilike '" + pharmacyCmbx.getSelectedItem().toString() + "' AND dates::date <= '" + SQLDateFormat.getSQLDate(dispenseDatePicker.getDate()) + "'");
 
@@ -4460,9 +4471,9 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                     mainItemsTbl.setValueAt(Qty, currentRow, 2);
 
                                 }
-                            } else {
-                                mainItemsTbl.setValueAt(0, currentRow, 2);
-                            }
+                            //} else {
+                            //    mainItemsTbl.setValueAt(0, currentRow, 2);
+                            //}
 
                         }
                         //---------------------------------------------------------
@@ -4478,6 +4489,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         }
 
         medicinesSearchdialog.dispose();
+        String info = com.afrisoftech.lib.GetItemInfo.checkDrugReactions(connectDB, patientNumberTxt.getText(),patientNameTxt.getText(), mainItemsTbl, 0);
 
         // Add your handling code here:
     }//GEN-LAST:event_medicinesSearchTableMouseClicked
@@ -4492,7 +4504,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
     }
     private void mainItemsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainItemsTblMouseClicked
-        if (receiptTxt.getText().length() < 1) {
+//        if (receiptTxt.getText().length() < 1) {
             if (mainItemsTbl.getSelectedColumn() == 0) {
                 if (gLCodeTxt.getText().toString().equalsIgnoreCase("") | gLCodeTxt.getText().toString().equalsIgnoreCase(" ") | pharmacyCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
                     javax.swing.JOptionPane.showMessageDialog(this, "You have to select department first", "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -4501,7 +4513,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                     this.cmbox13MouseClicked();
                 } 
             }
-        }// Add your handling code here:
+        //}// Add your handling code here:
     }//GEN-LAST:event_mainItemsTblMouseClicked
 
     private void jButton52121ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52121ActionPerformed
@@ -4622,6 +4634,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     private void jSearchTable2121MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable2121MouseClicked
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         jTextField32.setText("0.00");
+        receiptTxt.setText("");
         patientNumberTxt.setText("");
         prescriptionNoTxt.setText("");
         //java.lang.String a= jSearchTable2121.getValueAt(jSearcht, WIDTH)
@@ -4965,7 +4978,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         //jPanel1.setVisible(false);
         printInterimbtn.setEnabled(true);
         patientNumberTxt.setText(null);
-        receiptTxt.setText(null);
+        receiptTxt.setText("");
 
         patientSearchbtn.setEnabled(true);
         dispenseBodyPanel.setVisible(true);
@@ -5412,7 +5425,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     // }
     private void schemeptsChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schemeptsChkbxActionPerformed
         this.patientNameTxt.setEditable(false);
-        receiptTxt.setText(null);
+        receiptTxt.setText("");
         //  patientSearchbtn.setEnabled(false);
         /*
          * jPanel11.setVisible(false); jPanel1.setVisible(true);
@@ -5820,7 +5833,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         if (patientNumberTxt.getText().length() > 2) {
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, dispenseDatePicker.getDate(), dispenseDatePicker.getDate(), patientNumberTxt.getText());
+            policyReport.PatientCardPdf(connectDB, dispenseDatePicker.getDate(), dispenseDatePicker.getDate(), patientNumberTxt.getText(), false);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the patient card");
         }
@@ -5929,6 +5942,8 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame() , sqlExec.getMessage());
 
         }
+        
+         String info = com.afrisoftech.lib.GetItemInfo.checkDrugReactions(connectDB, patientNumberTxt.getText(),patientNameTxt.getText(), mainItemsTbl, 0);
     }
 
     private void startRunning() {

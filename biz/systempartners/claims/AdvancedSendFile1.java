@@ -107,7 +107,8 @@ public class AdvancedSendFile1 {
         //Session session = Session.getInstance(props, null);
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("kmh.epayslip@gmail.com", "U+@wala3020");
+                //return new PasswordAuthentication("kmh.epayslip@gmail.com", "U+@wala3020");
+                return new PasswordAuthentication("komarockmodern@gmail.com", "xknjbqdcdnirqnny");//@komautawala
 
             }
 

@@ -995,8 +995,11 @@ public class ChangePatPaymodeIntfr extends javax.swing.JInternalFrame {
             System.out.println("Nothing");
         } else {
 
-            jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1111.getText() + "%' and (allowed ilike 'Both' or allowed ilike 'IP%') order by scheme_name"));
-
+            if(outPatientRdbtn.isSelected())
+                jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1111.getText() + "%' and (allowed ilike 'Both' or allowed ilike 'OP%') order by scheme_name"));
+            else
+                jSearchTable11.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '" + jTextField1111.getText() + "%' and (allowed ilike 'Both' or allowed ilike 'IP%') order by scheme_name"));
+          
             /* try {
             
                 searchRowSet11.execute("SELECT account_no,scheme_name,payer_name from ac_schemes where scheme_name ILIKE '"+jTextField1111.getText()+"%' and (allowed ilike 'Both' or allowed ilike 'IP%') order by scheme_name");

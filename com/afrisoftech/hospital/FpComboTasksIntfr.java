@@ -833,7 +833,7 @@ public class FpComboTasksIntfr extends javax.swing.JInternalFrame implements jav
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+         //       Thread.currentThread().destroy();
             }
             
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")){
@@ -915,7 +915,7 @@ public class FpComboTasksIntfr extends javax.swing.JInternalFrame implements jav
                 
                 stop();
                 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
         }
     }

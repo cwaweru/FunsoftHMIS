@@ -34,10 +34,12 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
     //    endDate = endate;
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
+    java.lang.String labDate = null;
 
-    public void PatientLabResultsPdf(java.sql.Connection connDb, java.lang.String combox, java.lang.String combox1) {
+    public void PatientLabResultsPdf(java.sql.Connection connDb, java.lang.String combox, java.lang.String combox1, java.lang.String resultDate) {
         memNo = combox;
         memNo1 = combox1;
+        labDate = resultDate;
         // endDate = enddate;
         // beginDate = begindate;
 
@@ -339,11 +341,11 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset22 = st32.executeQuery("SELECT header_name,current_date FROM pb_header");
                                 //  java.sql.ResultSet rseta = sta.executeQuery("SELECT ad.ward,ad.bed_no,ad.doctor ,pr.adm_date,pr.discharge_date FROM hp_admission ad,hp_inpatient_register pr WHERE pr.patient_no = '"+memNo+"' and pr.patient_no = ad.patient_no");
 
-                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name),lab_no,age::numeric(5,0),gender,date,spec_time, instrument_name FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "' LIMIT 1 ");
-                                java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age::numeric(5,0),gender,date ,spec_time, lower_limit, upper_limit FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
-                                java.sql.ResultSet rset41 = st2.executeQuery("SELECT DISTINCT typeof_test FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset = st1.executeQuery("SELECT DISTINCT patient_no,initcap(patient_name),lab_no,age::numeric(5,0),gender,date,spec_time, instrument_name FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') LIMIT 1 ");
+                                java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age::numeric(5,0),gender,date ,spec_time, lower_limit, upper_limit FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
+                                java.sql.ResultSet rset41 = st2.executeQuery("SELECT DISTINCT typeof_test FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
 
-                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT user_name,lab_manager, pathologist,doctor, instrument_name FROM hp_lab_results WHERE lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "'");
+                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT user_name,lab_manager, pathologist,doctor, instrument_name FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
 
                                 String Date = null;
                                 System.out.println("No 1");
@@ -456,25 +458,25 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 //  for (int j = 0; j < listofStaffNos.length; j++) {
 
                                 System.out.println("From list : [" + listofStaffNos[j].toString() + "]");
-                                java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
+                                java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  input_date::date = '"+labDate+"'::date AND  (lab_no ilike '" + listofStaffNos[j].toString() + "' AND lab_no IS NOT NULL  ) or (request_id ilike '" + listofStaffNos[j].toString() + "' AND request_id IS NOT NULL)");
                                 //                              java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT initcap(code),typeof_test FROM hp_lab_results WHERE  lab_no ilike '" + listofStaffNos[j].toString() + "' or request_id ilike '" + listofStaffNos[j].toString() + "'");
 
                                 while (rset12.next()) {
                                     // table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    Test = rset12.getObject(1).toString();
+                                    Test = rset12.getString(1);
                                     System.out.println("From list : [" + Test + "]");
                                     testName = rset12.getObject(2).toString();
                                     java.sql.ResultSet rset4c = stc.executeQuery("SELECT DISTINCT status,notes FROM pb_lab_standards WHERE  code ilike '" + Test + "'");
                                     while (rset4c.next()) {
-                                        Status = rset4c.getString(1).toLowerCase();
+                                        Status = dbObject.getDBObject(rset4c.getString(1), "-"); //rset4c.getString(1).toLowerCase();
 
                                         Notice = dbObject.getDBObject(rset4c.getString(2), "-");
                                         System.out.println(Status);
                                     }
-                                    java.sql.ResultSet rset1 = st.executeQuery("SELECT parameter,out_come||' '||units,lower_limit,upper_limit, out_come FROM hp_lab_results WHERE code ilike '" + Test + "'  and (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') order by 1");
+                                    java.sql.ResultSet rset1 = st.executeQuery("SELECT DISTINCT parameter,out_come||' '||units,lower_limit,upper_limit, out_come FROM hp_lab_results WHERE input_date::date = '"+labDate+"'::date AND code ilike '" + Test + "'  AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') order by 1");
                                     // while (rset41.next()){
-                                    java.sql.ResultSet rset411 = st21.executeQuery("SELECT DISTINCT comments FROM hp_lab_results WHERE  (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') and code ilike '" + Test + "' ");
+                                    java.sql.ResultSet rset411 = st21.executeQuery("SELECT DISTINCT comments FROM hp_lab_results WHERE  input_date::date = '"+labDate+"'::date AND  (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "') AND code ilike '" + Test + "' ");
 
                                     if (Status.startsWith("t")) {
 

@@ -35,7 +35,6 @@ import javax.swing.JTextField;
 import org.jdesktop.swingx.decorator.ColorHighlighter;
 
 //
-
 /**
  *
  * @author SPL
@@ -7075,7 +7074,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         // receiptNo = labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 0).toString());
 
         //    }
         // Add your handling code here:
@@ -9585,10 +9584,8 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
         }
         // Add your handling code here:
     }//GEN-LAST:event_loadALLpatientsbtnActionPerformed
-    
-    
-    
-        private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
+
+    private java.lang.Boolean checkPayment(String patientNo, String paymentMode, String patType, String urgency) {
 
         int gracePariodDays = 2;
 
@@ -9667,7 +9664,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         return patientPaid;
     }
-        
+
     private void clerkingwaitingTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clerkingwaitingTableMouseClicked
         basicPaintCanvas.activeTool = 1;
         underFive = false;
@@ -9697,7 +9694,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
             patType = "ip";
         }
 
-        System.out.println("Patient Type : [" + patType + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString() + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString() + "] for patient no [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString()+"]");
+        System.out.println("Patient Type : [" + patType + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString() + "] and [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString() + "] for patient no [" + clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString() + "]");
 
         System.out.println("Testing clerking eligibility : [" + checkPayment(clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 0).toString(), clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 6).toString(), patType, clerkingwaitingTable.getValueAt(clerkingwaitingTable.getSelectedRow(), 4).toString()) + "]");
         //    if (evt.getClickCount() == 1) { +
@@ -10340,7 +10337,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 //            }
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
+            policyReport.PatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText(), false);
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the card");
@@ -11376,7 +11373,7 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
 
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 0).toString());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_displayLaboratoryResultsPDFBtnActionPerformed
@@ -11577,6 +11574,61 @@ public class EyeConsultationIntfr extends javax.swing.JInternalFrame implements 
                 pstmt21.setString(13, "");
 
                 pstmt21.executeUpdate();
+
+                int incDays = 0;
+
+                java.sql.Statement sts = connectDB.createStatement();
+                java.sql.Statement st = connectDB.createStatement();
+                java.sql.ResultSet rss = null;
+                java.sql.ResultSet rs = null;
+                String categ = "";
+                String marital = "";
+
+                java.sql.Statement stm121a = connectDB.createStatement();
+                java.sql.ResultSet rset24a = null;
+                rset24a = stm121a.executeQuery("SELECT gender FROM hp_patient_visit WHERE patient_no = '" + jTextField922.getText() + "' ORDER BY 1 DESC LIMIT 1");
+                while (rset24a.next()) {
+                    marital = rset24a.getString(1);
+                }
+
+                rs = st.executeQuery("SELECT ('" + transdatePicker.getDate() + "')::date-('" + transdatePicker.getDate() + "')::date");
+                while (rs.next()) {
+                    incDays = rs.getInt(1) + 1;
+                }
+
+                rss = sts.executeQuery(" SELECT DISTINCT classification FROM hp_opdisease_classification where classification ilike '%eye%'  ORDER BY 1 limit 1");
+                while (rss.next()) {
+                    categ = rss.getString(1);
+                }
+                PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_diagnosis VALUES"
+                        + "(?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,current_user,?)");
+                pstmt.setString(1, nameNoTxt.getText());
+                pstmt.setString(2, patientNametxt.getText());
+                pstmt.setObject(3, "EYE");
+                pstmt.setObject(4, eyeConditionCmbx.getSelectedItem().toString());
+                pstmt.setInt(5, 1);
+                pstmt.setString(6, jTextField8.getText());
+                pstmt.setDouble(7, 0.00);
+                pstmt.setString(8, this.clinicalExamineditor.getText());
+                pstmt.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
+                pstmt.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
+                pstmt.setString(11, "Discharge");
+                pstmt.setString(12, "");
+                pstmt.setString(13, categ);
+                pstmt.setString(14, "");
+                pstmt.setString(15, waitingclinicscmbx.getSelectedItem().toString());
+                pstmt.setString(16, this.clinicalExamineditor.getText());
+                pstmt.setString(17, cat);
+                pstmt.setDouble(18, java.lang.Double.valueOf(ageTxt.getText()));
+                pstmt.setString(19, Sex);
+                pstmt.setString(20, marital);
+                pstmt.setDate(21, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
+                pstmt.setDate(22, com.afrisoftech.lib.SQLDateFormat.getSQLDate(transdatePicker.getDate()));
+                pstmt.setTimestamp(23, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
+
+                pstmt.setInt(24, incDays);
+                pstmt.executeUpdate();
+
                 PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE hp_patient_visit SET nature = 'Cons',doctor_name  = current_user ,cons_time =current_timestamp where patient_no = '" + jTextField922.getText() + "' AND  nature = '1' ");
                 pstmt46.executeUpdate();
                 PreparedStatement pstmt46x = connectDB.prepareStatement("UPDATE hp_patient_register SET waiting_patient = false where patient_no = '" + jTextField922.getText() + "'");

@@ -33,11 +33,12 @@ public class PatientCardPdf implements java.lang.Runnable {
     com.itextpdf.text.Font pFontHeader12 = FontFactory.getFont(FontFactory.COURIER, 10, Font.BOLD);
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
+    boolean useDateRange = false;
 
-    public void PatientCardPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox) {
+    public void PatientCardPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox, boolean useDateRangee) {
 
         MNo = combox;
-
+        useDateRange = useDateRangee;
         dbObject = new com.afrisoftech.lib.DBObject();
         // dbObject = new com.chis.lib.DBObject();
 
@@ -541,7 +542,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         java.sql.ResultSet rset1 = st1.executeQuery("select DISTINCT curr_date::time(0) from pb_doctors_request where patient_no = '" + memNo + "' and curr_date::date  = '" + listofStaffNos[j] + "' ORDER BY 1 ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                                         java.sql.ResultSet rset12 = st12.executeQuery("SELECT DISTINCT weight,height,diastolic,"
                                                 + "systolic,pulse,temp,resp,"
-                                                + "blood_group,rhesus,rbs,initcap(comments),input_date::time(0),initcap(user_name) "
+                                                + "blood_group,rhesus,rbs,initcap(comments),input_date::time(0),initcap(user_name),bmi "
                                                 + "from hp_signs_record where patient_no = '" + memNo + "' and"
                                                 + " input_date::date  = '" + listofStaffNos[j] + "' ORDER BY input_date::time(0) ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                                         //java.sql.ResultSet rset13 = st13.executeQuery("select initcap(service),requisition_no,bed_no,time_due from pb_doctors_request where patient_no = '" + memNo + "' and revenue_code ilike '%labo%' and trans_date  = '" + listofStaffNos[j] + "' ORDER BY 1");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
@@ -657,7 +658,7 @@ public class PatientCardPdf implements java.lang.Runnable {
                                             table.getDefaultCell().setColspan(4);
 
                                             table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
-                                            phrase = new Phrase("Weight : " + dbObject.getDBObject(rset12.getObject(1), "-") + " " + "Height : " + dbObject.getDBObject(rset12.getObject(2), "-") + " "
+                                            phrase = new Phrase("Weight : " + dbObject.getDBObject(rset12.getObject(1), "-") + " " + "Height : " + dbObject.getDBObject(rset12.getObject(2), "-") +  "  BMI : " + dbObject.getDBObject(rset12.getObject(14), "-") + " "
                                                     + "\n Diastolic : " + dbObject.getDBObject(rset12.getObject(3), "-") + " " + "  Systolic : " + dbObject.getDBObject(rset12.getObject(4), "-") + " "
                                                     + "\n Pulse : " + dbObject.getDBObject(rset12.getObject(5), "-") + " " + "  Temp : " + dbObject.getDBObject(rset12.getObject(6), "-") + " "
                                                     + "\n Resp : " + dbObject.getDBObject(rset12.getObject(7), "-") + " " + "  Rhesus : " + dbObject.getDBObject(rset12.getObject(9), "-") + " "
@@ -675,6 +676,61 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                         }
                                         table.getDefaultCell().setColspan(1);
+                                        
+                                        //---------------------------------------
+                                        table.getDefaultCell().setColspan(1);
+                                        phrase = new Phrase("", pFontHeader);
+
+                                        table.addCell(phrase);
+                                        table.getDefaultCell().setColspan(4);
+                                        table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+
+                                        phrase = new Phrase("ALLERGIES ", pFontHeader11);
+
+                                        table.addCell(phrase);
+
+                                        table.getDefaultCell().setColspan(1);
+                                        phrase = new Phrase("", pFontHeader);
+
+                                        table.addCell(phrase);
+                                        java.sql.Statement st2cx = connectDB.createStatement();
+                                        java.sql.ResultSet rset2cx = st2cx.executeQuery("  select DISTINCT input_date::time(0), user_name from hp_patient_allergies  where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "'  "
+                                                + " ");
+                                        while (rset2cx.next()) {
+                                            table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                                            table.getDefaultCell().setColspan(1);
+                                            phrase = new Phrase(dbObject.getDBObject(rset2cx.getObject(1), "-"), pFontHeader);
+
+                                            table.addCell(phrase);
+                                            table.getDefaultCell().setColspan(4);
+                                            table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                            
+                                            String allergies = "";
+                                            String com = "";
+                                            int b=0;
+                                            java.sql.Statement st2cxx = connectDB.createStatement();
+                                            java.sql.ResultSet rset2cxx = st2cxx.executeQuery("  select DISTINCT description, comments from hp_patient_allergies  where user_name = '"+rset2cx.getString(2)+"' and input_date::time(0)= '"+rset2cx.getString(1)+"' AND patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "'  "
+                                                    + " ");
+                                            while (rset2cxx.next()) {
+                                                allergies += rset2cxx.getString(1)+"\n";
+                                                com = rset2cxx.getString(2);
+                                            
+                                            }
+                                            allergies += "\n"+com;
+
+
+                                            
+                                            phrase = new Phrase(allergies, pFontHeader);
+
+                                            table.addCell(phrase);
+                                            table.getDefaultCell().setColspan(1);
+                                            phrase = new Phrase(dbObject.getDBObject(rset2cx.getObject(2), "-"), pFontHeader);
+
+                                            table.addCell(phrase);
+                                            
+                                        }
+                                        
+                                        //---------------------------------------
 
                                         table.getDefaultCell().setColspan(1);
                                         phrase = new Phrase("", pFontHeader);
@@ -709,15 +765,23 @@ public class PatientCardPdf implements java.lang.Runnable {
                                             String familysocial = rset2c.getString("familysocial") != null ? rset2c.getString("familysocial") : "";
                                             String review = rset2c.getString("review") != null ? rset2c.getString("review") : "";
                                             String treatmentplan;
-                                            phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(1) + "\nEXTRA ORAL: "
-                                                    + extra_oral
-                                                    + "\nINTRA ORAL: " + intra_oral
-                                                    + "\nPDHX: " + pdhx + "\nPMHX: "
-                                                    + pmhx + "\nFAMILY SOCIAL: "
-                                                    + familysocial
-                                                    + "\nREVIEW: " + review, "-"), pFontHeader);
+                                            
+                                            phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(1) , "-"), pFontHeader);
 
-                                            table.addCell(phrase);
+                                                table.addCell(phrase);
+                                            
+                                            
+                                            if(!extra_oral.isEmpty() || !extra_oral.isEmpty() || !intra_oral.isEmpty() || !pdhx.isEmpty() || !pmhx.isEmpty() || !familysocial.isEmpty() || !review.isEmpty() ){
+                                                phrase = new Phrase(dbObject.getDBObject( "\nEXTRA ORAL: "
+                                                        + extra_oral
+                                                        + "\nINTRA ORAL: " + intra_oral
+                                                        + "\nPDHX: " + pdhx + "\nPMHX: "
+                                                        + pmhx + "\nFAMILY SOCIAL: "
+                                                        + familysocial
+                                                        + "\nREVIEW: " + review, "-"), pFontHeader);
+
+                                                table.addCell(phrase);
+                                            }
 
                                             table.getDefaultCell().setColspan(1);
                                             phrase = new Phrase(dbObject.getDBObject(rset2c.getObject(3), "-"), pFontHeader);
@@ -955,10 +1019,10 @@ public class PatientCardPdf implements java.lang.Runnable {
                                                         
                                                 // table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                                 table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
-                                                Test = rset121.getObject(1).toString();
-                                                testName = rset121.getObject(2).toString();
+                                                Test = rset121.getString(1);
+                                                testName = rset121.getString(2);
                                                 TimesD = inputTime;
-                                                Tech = "LabTech: " + rset121.getObject(4).toString() + "\n Conf By: " + rset121.getObject(5).toString();;
+                                                Tech = "LabTech: " + rset121.getString(4) + "\n Conf By: " + rset121.getString(5);;
                                                  System.err.println(Test+"<<<<<||||>>>>"+testName);
                                                 // Confermer = "";
 
@@ -1300,8 +1364,6 @@ public class PatientCardPdf implements java.lang.Runnable {
 
                                             table.addCell(phrase);
 
-                                            //table.addCell(phrase);
-                                            //table.addCell(phrase);
                                         }
 
                                         table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
@@ -1494,8 +1556,19 @@ public class PatientCardPdf implements java.lang.Runnable {
 
             //
             java.sql.Statement stmt1 = connectDB.createStatement();
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "'  order by date DESC");
+            java.sql.ResultSet rSet1 = null;
+            if(useDateRange){
+                rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
+                                    + " UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
+                                    + " UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
+                                    + " UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' AND trans_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
+                                    + " UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "' AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"'  order by date DESC");
 
+            }else{
+                rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "'  order by date DESC");
+
+            }
+            
             while (rSet1.next()) {
 
                 listStaffNoVector.addElement(rSet1.getObject(1).toString());
@@ -1503,7 +1576,7 @@ public class PatientCardPdf implements java.lang.Runnable {
             }
 
         } catch (java.sql.SQLException sqlExec) {
-
+            sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), sqlExec.getMessage());
 
         }
@@ -1526,7 +1599,7 @@ public class PatientCardPdf implements java.lang.Runnable {
 
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT patient_no FROM hp_patient_card WHERE date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' AND payment_mode = 'Scheme' AND isurer = '"+memNo+"' order by patient_no");
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT payee FROM ac_debtors WHERE date BETWEEN '"+beginDate+"' AND '"+endDate+"' and dealer ilike '"+memNo+"%' order by payee");
-            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' and date = '" + dates + "'::date order by lab_no");
+            java.sql.ResultSet rSet1x = stmt1.executeQuery("SELECT DISTINCT lab_no FROM hp_lab_results WHERE patient_no = '" + MNo + "' and date = '" + dates + "'::date AND verified = true order by lab_no");
 
             while (rSet1x.next()) {
 

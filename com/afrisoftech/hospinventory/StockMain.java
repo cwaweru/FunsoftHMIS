@@ -3012,7 +3012,7 @@ public class StockMain extends javax.swing.JFrame {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-            destroy();
+           // destroy();
         }
     }
 

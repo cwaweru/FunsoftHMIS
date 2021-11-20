@@ -975,7 +975,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
 
                 stop();
 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
 
         } else if (java.lang.Thread.currentThread().getName().matches("Cash")) {
@@ -1063,7 +1063,7 @@ public class ComboTasksIntfr extends javax.swing.JInternalFrame implements java.
 
                 stop();
 
-                Thread.currentThread().destroy();
+//                Thread.currentThread().destroy();
             }
         }
     }

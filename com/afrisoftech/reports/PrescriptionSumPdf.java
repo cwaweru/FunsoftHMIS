@@ -442,7 +442,7 @@ public class PrescriptionSumPdf implements java.lang.Runnable {
                                 if (Categ == "Ip") {
                                     condition = "AND patient_source ilike 'IP'";
                                 }
-                                    java.sql.ResultSet rset11 = st212.executeQuery("select COUNT(*)   from st_sub_stores where  (patient_source  ilike 'OP' OR patient_source  ilike 'IP' OR patient_source  ilike 'WI' ) \n" +
+                                    java.sql.ResultSet rset11 = st212.executeQuery("select COUNT(*)   from st_sub_stores where store_name ilike '%pharmacy%' and   (patient_source  ilike 'OP' OR patient_source  ilike 'IP' OR patient_source  ilike 'WI' ) \n" +
                                         "and   trans_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"'  "+condition);
                                     while (rset11.next()) {
 
@@ -454,7 +454,7 @@ public class PrescriptionSumPdf implements java.lang.Runnable {
                                         osBalance1 = rset11.getDouble(1);
                                     }
                                     // java.sql.ResultSet rset11 = st212.executeQuery("SELECT count(disease) from hp_patient_diagnosis where date_discharged BETWEEN '"+beginDate+"' AND '"+endDate+"'");
-                                    java.sql.ResultSet rset1 = st2.executeQuery("select item, COUNT(*)   from st_sub_stores where  (patient_source  ilike 'OP' OR patient_source  ilike 'IP' OR patient_source  ilike 'WI' ) \n" +
+                                    java.sql.ResultSet rset1 = st2.executeQuery("select item, COUNT(*)   from st_sub_stores where  store_name ilike '%pharmacy%' and  (patient_source  ilike 'OP' OR patient_source  ilike 'IP' OR patient_source  ilike 'WI' ) \n" +
                                         "and   trans_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "+condition+" GROUP BY 1 order by 2 desc");
                                     while (rset1.next()) {
                                         table.getDefaultCell().setColspan(1);

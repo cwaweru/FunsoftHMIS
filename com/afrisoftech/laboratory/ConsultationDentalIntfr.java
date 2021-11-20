@@ -6970,7 +6970,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
         // receiptNo = labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 3).toString();
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 0).toString());
 
         //    }
         // Add your handling code here:
@@ -10213,7 +10213,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
 //            }
             com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-            policyReport.PatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText());
+            policyReport.PatientCardPdf(connectDB, transdatePicker.getDate(), transdatePicker.getDate(), nameNoTxt.getText(),false);
 
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "You MUST select a patient file in order to view the card");
@@ -11290,7 +11290,7 @@ public class ConsultationDentalIntfr extends javax.swing.JInternalFrame implemen
 
         com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
-        policy.PatientLabResultsPdf(connectDB, labNo, labNo);
+        policy.PatientLabResultsPdf(connectDB, labNo, labNo, labresultsTable.getValueAt(labresultsTable.getSelectedRow(), 0).toString());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_displayLaboratoryResultsPDFBtnActionPerformed

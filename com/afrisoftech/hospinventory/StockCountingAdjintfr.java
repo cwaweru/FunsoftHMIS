@@ -28,6 +28,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
     private String actCode;
     private String Stock;
     private String activity;
+    boolean drugMainStoreSource = false;
 
     public StockCountingAdjintfr(java.sql.Connection connDb) {
 
@@ -36,6 +37,9 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
 //        pConnDB = pconnDB;
         initComponents();
+        if(com.afrisoftech.lib.StoreFactory.getDrugsSource(connectDB)){
+            drugMainStoreSource = true;
+        }
     }
 
     /**
@@ -894,7 +898,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
 
             getList = false;
-            getListThread.destroy();
+            getListThread.stop();
         }
 
         while (getList1) {
@@ -912,7 +916,7 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
             }
 
             getList1 = false;
-            getListThread1.destroy();
+           // getListThread1.stop();
         }
 
     }
@@ -1079,7 +1083,12 @@ public class StockCountingAdjintfr extends javax.swing.JInternalFrame implements
 
         } else if (subStorebtn.isSelected()) {
             if (jTextField111.getCaretPosition() > 0) {
-                jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT product_id,product,strength,units FROM st_stock_prices WHERE department ILIKE '" + storeCmbx.getSelectedItem() + "' AND (product ilike '%" + jTextField111.getText() + "%' or product_id ilike '%" + jTextField111.getText() + "%') ORDER BY 1"));
+                
+                if(drugMainStoreSource){
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT (item_code) as product_id,description AS product,   strength, units from st_stock_item WHERE packaging >= 1 AND (description ilike '%" + jTextField111.getText() + "%' OR item_code ILIKE '%" + jTextField111.getText() + "%') AND (department ilike '%dressing%' OR department ilike '%suture%' OR upper(department) IN (SELECT upper(store_name) FROM st_main_stores WHERE classification IN (    "+com.afrisoftech.lib.StoreFactory.getMainStoreClassificationCode(connectDB, storeCmbx.getSelectedItem().toString())+" )))  GROUP BY st_stock_item.description,st_stock_item.item_code, st_stock_item.strength, st_stock_item.units, st_stock_item.packaging HAVING ((funsoft_item_price(item_code, 'Tender'))*(SELECT mark_up FROM st_stores WHERE upper(store_name) = upper('" + storeCmbx.getSelectedItem().toString().toUpperCase() + "')))::numeric(15,0) >= 0.00"));// UNION "
+                }else{
+                    jSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT product_id,product,strength,units FROM st_stock_prices WHERE department ILIKE '" + storeCmbx.getSelectedItem() + "' AND (product ilike '%" + jTextField111.getText() + "%' or product_id ilike '%" + jTextField111.getText() + "%') ORDER BY 1"));
+                }
                 jSearchScrollPane.setViewportView(jSearchTable);
                 System.out.println("Cannot sort out");
             }

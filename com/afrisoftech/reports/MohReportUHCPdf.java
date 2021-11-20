@@ -1080,10 +1080,14 @@ public class MohReportUHCPdf implements java.lang.Runnable {
                                             "GROUP BY 1 HAVING sum(debit-credit) = (SELECT sum(debit-credit) FROM hp_patient_card where ac_debtors.invoice_no = hp_patient_card.invoice_no\n" +
                                             "and service not ilike '%Receipt%' and service not ilike '%invoice%') ) as foo )");
                                     
-                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND  payee = 'UNIVERSAL HEALTH CARE'  AND debit > 0"
-                                            + "AND invoice_no IN (select invoice_no from (SELECT invoice_no ,sum(debit-credit) from ac_debtors WHERE payee = 'UNIVERSAL HEALTH CARE' and date = '" + listofAct[i] + "'\n" +
-                                            "GROUP BY 1 HAVING sum(debit-credit) = (SELECT sum(debit-credit) FROM hp_patient_card where ac_debtors.invoice_no = hp_patient_card.invoice_no\n" +
-                                            "and service not ilike '%Receipt%' and service not ilike '%invoice%') ) as foo ) ");
+//                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND  payee = 'UNIVERSAL HEALTH CARE'  AND debit > 0"
+//                                            + "AND invoice_no IN (select invoice_no from (SELECT invoice_no ,sum(debit-credit) from ac_debtors WHERE payee = 'UNIVERSAL HEALTH CARE' and date = '" + listofAct[i] + "'\n" +
+//                                            "GROUP BY 1 HAVING sum(debit-credit) = (SELECT sum(debit-credit) FROM hp_patient_card where ac_debtors.invoice_no = hp_patient_card.invoice_no\n" +
+//                                            "and service not ilike '%Receipt%' and service not ilike '%invoice%') ) as foo ) ");
+                                    
+                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND  payee = 'UNIVERSAL HEALTH CARE'  "
+                                            + " ");
+                                    System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>  select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND  payee = 'UNIVERSAL HEALTH CARE' ");
                                     rsetwn1d = psetwn1d.executeQuery();
                                     while (rsetwn1d.next()) {
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
@@ -1091,11 +1095,14 @@ public class MohReportUHCPdf implements java.lang.Runnable {
                                         Tuhcdebts = Tuhcdebts + uhcdebts;
 
                                     }
+                                    System.err.println(listofAct[i]+">>>>>>"+uhcdebts);
                                     
-                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND payee = 'FREE ELDERLY H.S'  AND debit > 0"
-                                            + "AND invoice_no IN (select invoice_no from (SELECT invoice_no ,sum(debit-credit) from ac_debtors WHERE payee = 'FREE ELDERLY H.S' and date = '" + listofAct[i] + "'  \n" +
-                                            "GROUP BY 1 HAVING sum(debit-credit) = (SELECT sum(debit-credit) FROM hp_patient_card where ac_debtors.invoice_no = hp_patient_card.invoice_no\n" +
-                                            "and service not ilike '%Receipt%' and service not ilike '%invoice%') ) as foo ) ");
+//                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND payee = 'FREE ELDERLY H.S'  AND debit > 0"
+//                                            + "AND invoice_no IN (select invoice_no from (SELECT invoice_no ,sum(debit-credit) from ac_debtors WHERE payee = 'FREE ELDERLY H.S' and date = '" + listofAct[i] + "'  \n" +
+//                                            "GROUP BY 1 HAVING sum(debit-credit) = (SELECT sum(debit-credit) FROM hp_patient_card where ac_debtors.invoice_no = hp_patient_card.invoice_no\n" +
+//                                            "and service not ilike '%Receipt%' and service not ilike '%invoice%') ) as foo ) ");
+                                    
+                                    psetwn1d = connectDB.prepareStatement("select sum(debit-credit) from ac_debtors WHERE date = '" + listofAct[i] + "'  AND payee = 'FREE ELDERLY H.S' ");
                                     rsetwn1d = psetwn1d.executeQuery();
                                     while (rsetwn1d.next()) {
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);

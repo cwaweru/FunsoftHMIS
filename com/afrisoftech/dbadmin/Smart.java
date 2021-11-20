@@ -6,7 +6,7 @@
 
 package com.afrisoftech.dbadmin;
 import java.util.Vector;
-import com.sun.org.apache.xml.internal.serialize.*;
+//import com.sun.org.apache.xml.internal.serialize.*;
 import java.io.*;
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;

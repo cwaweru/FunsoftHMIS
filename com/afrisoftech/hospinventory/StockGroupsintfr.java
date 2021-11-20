@@ -2850,14 +2850,13 @@ try {
                             java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE st_stock_prices SET "
                                     + "product = ?,"
                                     + "transfer_price = ? ,strength = ?,"
-                                    + "units = ? WHERE product_id = ? "
-                                    + "AND department ilike ? ");
+                                    + "units = ? WHERE product_id = ? ");
                             pstmt311.setObject(1, itemsTable.getValueAt(i, 1).toString().toUpperCase());
                             pstmt311.setDouble(2, transfer / packing);
                             pstmt311.setObject(3, itemsTable.getValueAt(i, 2).toString());
                             pstmt311.setObject(4, itemsTable.getValueAt(i, 3).toString());
                             pstmt311.setObject(5, itemsTable.getModel().getValueAt(i, 0).toString());
-                            pstmt311.setObject(6, this.storeNameCmbx.getSelectedItem());
+                            //pstmt311.setObject(6, this.storeNameCmbx.getSelectedItem());
                             pstmt311.executeUpdate();
 
                         } else {//this always executes because the condition above will never be met
@@ -2902,14 +2901,13 @@ try {
                             java.sql.PreparedStatement pstmt311 = connectDB.prepareStatement("UPDATE st_stock_prices SET "
                                     + "product = ?,"
                                     + "transfer_price = ? ,strength = ?,"
-                                    + "units = ? WHERE product_id = ? "
-                                    + "AND department ilike ? ");
+                                    + "units = ? WHERE product_id = ?   ");
                             pstmt311.setObject(1, itemsTable.getValueAt(i, 1).toString().toUpperCase());
                             pstmt311.setDouble(2, transfer / packing);
                             pstmt311.setObject(3, itemsTable.getValueAt(i, 2).toString());
                             pstmt311.setObject(4, itemsTable.getValueAt(i, 3).toString());
                             pstmt311.setObject(5, itemsTable.getModel().getValueAt(i, 0).toString());
-                            pstmt311.setObject(6, this.storeNameCmbx.getSelectedItem());
+                            //pstmt311.setObject(6, this.storeNameCmbx.getSelectedItem());
                             pstmt311.executeUpdate();
                             // preparedStatementsVector.add(pstmt31);
 

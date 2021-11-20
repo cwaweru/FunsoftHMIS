@@ -7889,7 +7889,7 @@ packTable.addMouseListener(new java.awt.event.MouseAdapter() {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         com.afrisoftech.reports.PatientCardPdf policy = new com.afrisoftech.reports.PatientCardPdf();
-        policy.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText());
+        policy.PatientCardPdf(connectDB, headerDatePicker.getDate(), headerDatePicker.getDate(), nameNoTxt.getText(),false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed

@@ -857,7 +857,7 @@ public class StockAdditionintfr extends javax.swing.JInternalFrame implements ja
             }
 
             getList = false;
-            getListThread.destroy();
+//            getListThread.destroy();
         }
 
         while (getList1) {
@@ -875,7 +875,7 @@ public class StockAdditionintfr extends javax.swing.JInternalFrame implements ja
             }
 
             getList1 = false;
-            getListThread1.destroy();
+//            getListThread1.destroy();
         }
 
     }

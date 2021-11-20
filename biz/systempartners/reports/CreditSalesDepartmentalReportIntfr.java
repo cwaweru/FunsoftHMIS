@@ -41,6 +41,8 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         openReportBtn = new javax.swing.JButton();
         saveReportBtn = new javax.swing.JButton();
         schemeNameCmbx = new javax.swing.JComboBox();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         reportBodyPanel = new javax.swing.JPanel();
         reportBodyJscrollPane = new javax.swing.JScrollPane();
         reportBodyTable = new com.afrisoftech.dbadmin.JTable(){
@@ -66,6 +68,24 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         totalsPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         totalCreditSalesTxt = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        reportBodyJscrollPane1 = new javax.swing.JScrollPane();
+        reportBodyTable1 = new com.afrisoftech.dbadmin.JTable(){
+            Class[] types = new Class [] {
+                java.lang.String.class,java.lang.String.class, java.lang.String.class, java.lang.String.class,java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        };
 
         setClosable(true);
         setIconifiable(true);
@@ -172,6 +192,8 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(headerPanel, gridBagConstraints);
 
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
         reportBodyPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()));
         reportBodyPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -199,6 +221,11 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
                 return canEdit [columnIndex];
             }
         });
+        reportBodyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reportBodyTableMouseClicked(evt);
+            }
+        });
         reportBodyJscrollPane.setViewportView(reportBodyTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -213,7 +240,7 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 200.0;
-        getContentPane().add(reportBodyPanel, gridBagConstraints);
+        jPanel1.add(reportBodyPanel, gridBagConstraints);
 
         buttonPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -253,7 +280,7 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(buttonPanel, gridBagConstraints);
+        jPanel1.add(buttonPanel, gridBagConstraints);
 
         totalsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         totalsPanel.setLayout(new java.awt.GridBagLayout());
@@ -282,7 +309,38 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(totalsPanel, gridBagConstraints);
+        jPanel1.add(totalsPanel, gridBagConstraints);
+
+        jTabbedPane1.addTab("Credit Sales", jPanel1);
+
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        reportBodyTable1.setForeground(new java.awt.Color(0, 0, 255));
+        reportBodyTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        reportBodyJscrollPane1.setViewportView(reportBodyTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(reportBodyJscrollPane1, gridBagConstraints);
+
+        jTabbedPane1.addTab("Detailed Report", jPanel2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 10.0;
+        getContentPane().add(jTabbedPane1, gridBagConstraints);
 
         setBounds(0, 0, 917, 379);
     }// </editor-fold>//GEN-END:initComponents
@@ -299,6 +357,13 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         
         // TODO add your handling code here:
     }//GEN-LAST:event_reloadReportBtnActionPerformed
+
+    private void reportBodyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportBodyTableMouseClicked
+        // TODO add your handling code here:
+        
+        loadReportDetailed();
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_reportBodyTableMouseClicked
     
     private void loadReport() {
         
@@ -313,6 +378,19 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
         
     }
     
+    private void loadReportDetailed() {
+
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+
+        reportBodyTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT * FROM public.funsoft_departmental_credit_sales_detailed('" + beginDatePicker.getDate() + "','" + endDatePicker.getDate() + "', '" + schemeNameCmbx.getSelectedItem().toString() + "','"+reportBodyTable.getValueAt(reportBodyTable.getSelectedRow(), 1).toString()+"') order by 1"));
+
+        this.totalCreditSalesTxt.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(reportBodyTable, 3)));
+
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        // biz.systempartners.reports.TrialBalanceRpt trialBalanceReport = new biz.systempartners.reports.TrialBalanceRpt(connectDB, this.beginDatePicker.getDate(), this.endDatePicker.getDate());
+
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel beginDateLbl;
@@ -324,12 +402,17 @@ public class CreditSalesDepartmentalReportIntfr extends javax.swing.JInternalFra
     private javax.swing.JButton export2SpreadSheetBtn;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton openReportBtn;
     private javax.swing.JButton printBtn;
     private javax.swing.JButton reloadReportBtn;
     public static javax.swing.JScrollPane reportBodyJscrollPane;
+    public static javax.swing.JScrollPane reportBodyJscrollPane1;
     public static javax.swing.JPanel reportBodyPanel;
     public static javax.swing.JTable reportBodyTable;
+    public static javax.swing.JTable reportBodyTable1;
     private javax.swing.JButton saveReportBtn;
     private javax.swing.JComboBox schemeNameCmbx;
     private javax.swing.JLabel spaceLable;

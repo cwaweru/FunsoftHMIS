@@ -877,7 +877,7 @@ public class LabHierachyIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        labCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select  category_description from pb_lab_maincategory ORDER BY category_description "));
+        labCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select DISTINCT category_description from pb_lab_maincategory ORDER BY category_description "));
         labCategoryCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 labCategoryCmbxActionPerformed(evt);

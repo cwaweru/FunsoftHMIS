@@ -100,7 +100,7 @@ public class NursingClinics extends javax.swing.JDialog {
     
       if(occupancywardCMB.getSelectedIndex()>=0){
           System.out.println("the selected item is "+occupancywardCMB.getSelectedItem());
-        com.afrisoftech.nursing.NursingTriage dismt = new com.afrisoftech.nursing.NursingTriage(connectDB,occupancywardCMB.getSelectedItem().toString());
+        com.afrisoftech.nursing.NursingTriage dismt = new com.afrisoftech.nursing.NursingTriage(connectDB,occupancywardCMB.getSelectedItem().toString(),"");
               dismt.setVisible(true);
         saccopn.add(dismt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {

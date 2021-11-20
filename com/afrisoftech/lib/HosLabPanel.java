@@ -261,7 +261,7 @@ public class HosLabPanel extends javax.swing.JDialog {
                 com.afrisoftech.reports.PatientLabResultsPdf policy = new com.afrisoftech.reports.PatientLabResultsPdf();
 
                // com.afrisoftech.reports.PatientLabResultsPdf
-                policy.PatientLabResultsPdf(connectDB, this.jTextField2.getText(), this.jTextField3.getText());
+              //  policy.PatientLabResultsPdf(connectDB, this.jTextField2.getText(), this.jTextField3.getText());
                 
                 this.dispose();
                 

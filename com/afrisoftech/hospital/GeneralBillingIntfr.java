@@ -3076,7 +3076,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
             patientParticularsPanel.add(jLabel12, gridBagConstraints);
 
-            paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT payment_mode FROM pb_paymentmodes ORDER BY 1")
+            paymentModeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT Initcap(payment_mode) FROM pb_paymentmodes ORDER BY 1")
             );
             paymentModeCmbx.setEnabled(false);
             paymentModeCmbx.setMinimumSize(new java.awt.Dimension(75, 20));
@@ -6444,6 +6444,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
     private void jSearchTable21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSearchTable21MouseClicked
         consultantBillingPatientNameTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 1).toString());
         consultantBillingPatientNoTxt.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
+        paymentModeCmbx.setSelectedItem("Cash");
 
         try {
 
@@ -6849,6 +6850,7 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
         boolean appLimit = false;
         boolean smartcard = false;
         String memberno = null;
+        paymentModeCmbx.setSelectedItem("Cash");
         cardBalanceTxt.setText("0.00");
         //  saveAndPrintBillBtn.setEnabled(true);
         savebillBtn.setEnabled(true);
