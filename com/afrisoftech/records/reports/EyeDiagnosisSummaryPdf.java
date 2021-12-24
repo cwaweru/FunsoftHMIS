@@ -4,7 +4,7 @@
 //import java.lang.*;
 package com.afrisoftech.records.reports;
 
-import static com.afrisoftech.reports.PatientCardPdf.connectDB;
+//import static com.afrisoftech.reports.PatientCardPdf.connectDB;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import java.io.IOException;

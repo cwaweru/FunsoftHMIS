@@ -488,7 +488,48 @@ public class GetItemInfo {
 
         //return status;
     }
-    
+    public static java.lang.Boolean checkRadiologyItems(java.lang.String requestNo,String patientNo, java.sql.Connection connectDB) {
+        Boolean status = false;
+        int count = 0;
+        com.afrisoftech.lib.DBObject DBObject = new com.afrisoftech.lib.DBObject();
+        try {
+            
+            System.err.println("SELECT COUNT(*) FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+                    + " UNION "
+                    + "SELECT COUNT(*) FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT COUNT(*) FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+                    + " UNION "
+                    + "SELECT COUNT(*) FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
+            
+            
+            
+            
+            pst.setString(1, requestNo);
+            pst.setString(2, patientNo);
+            pst.setString(3, requestNo);
+            pst.setString(4, patientNo);
+            java.sql.ResultSet rsetdesc = pst.executeQuery();
+
+            while (rsetdesc.next()) {
+
+                if(rsetdesc.getInt(1) > 0){
+                    status = true;                   
+                }
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GetItemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(status){
+            System.err.println("Radiology Items Present ......Forward to PACs");
+        }else{
+            System.err.println("No Radiology Items Found .....Abort");
+        }
+
+        return status;
+
+    }
+
     
     public static boolean AutoDepartmentalServiceControl(java.sql.Connection connectDB) {
         boolean allow = false;

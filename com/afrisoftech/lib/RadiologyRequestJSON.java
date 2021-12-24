@@ -28,6 +28,47 @@ import org.json.JSONObject;
  */
 public class RadiologyRequestJSON {
 
+    public static String getOrthanoSystemInstanceUID(java.sql.Connection connectDB) {
+        String uid = "";
+        try {
+            String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+            String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+            
+            String url = "http://alice:alicePassword@"+PacsServerIP+":"+PacsPort+"/tools/generate-uid?level=study";
+            URL request_url = new URL(url);
+            HttpURLConnection http_conn = null;
+            try {
+                http_conn = (HttpURLConnection) request_url.openConnection();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            http_conn.setConnectTimeout(100000);
+            http_conn.setReadTimeout(100000);
+            http_conn.setInstanceFollowRedirects(true);
+            try {
+                //uid = String.valueOf(http_conn.getResponseMessage());
+                //Get Response
+                InputStream is = http_conn.getInputStream();
+                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+                StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    response.append(line);
+                    //response.append('\r');
+                }
+                rd.close();
+                uid =  response.toString();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.err.println(uid);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(RadiologyRequestJSON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return uid;
+    }
+
+    
     public static String getOrthanoSystemInstanceUID() {
         String uid = "";
         try {
@@ -333,7 +374,7 @@ public class RadiologyRequestJSON {
 
         return labRequester;
 
-    }
+    } 
 
     public static boolean isPacsEnabled(java.sql.Connection connectDB) {
 

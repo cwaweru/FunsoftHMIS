@@ -143,7 +143,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         dispensePanel = new javax.swing.JPanel();
         dispenseHeaderPanel = new javax.swing.JPanel();
         dispenseSearchPatientTypePanel = new javax.swing.JPanel();
-        schemeptsChkbx = new javax.swing.JCheckBox();
+        opSchemeptsChkbx = new javax.swing.JCheckBox();
         walkinPtchbx = new javax.swing.JCheckBox();
         inpatientChkbx = new javax.swing.JCheckBox();
         dispenseSearchPatientPanel = new javax.swing.JPanel();
@@ -771,21 +771,21 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
             }
             setVisible(true);
             addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-                public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                    formInternalFrameOpened(evt);
-                }
-                public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-                }
-                public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                }
-                public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-                }
-                public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-                }
                 public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                     formInternalFrameActivated(evt);
                 }
+                public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+                }
+                public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                }
                 public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                }
+                public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+                }
+                public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+                }
+                public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                    formInternalFrameOpened(evt);
                 }
             });
             addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -825,19 +825,19 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
             dispenseSearchPatientTypePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient category"));
             dispenseSearchPatientTypePanel.setLayout(new java.awt.GridBagLayout());
 
-            buttonGroup1.add(schemeptsChkbx);
-            schemeptsChkbx.setSelected(true);
-            schemeptsChkbx.setText("Out Patient(Scheme)");
-            schemeptsChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-            schemeptsChkbx.addActionListener(new java.awt.event.ActionListener() {
+            buttonGroup1.add(opSchemeptsChkbx);
+            opSchemeptsChkbx.setSelected(true);
+            opSchemeptsChkbx.setText("Out Patient(Scheme)");
+            opSchemeptsChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+            opSchemeptsChkbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    schemeptsChkbxActionPerformed(evt);
+                    opSchemeptsChkbxActionPerformed(evt);
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
             gridBagConstraints.weightx = 1.0;
-            dispenseSearchPatientTypePanel.add(schemeptsChkbx, gridBagConstraints);
+            dispenseSearchPatientTypePanel.add(opSchemeptsChkbx, gridBagConstraints);
 
             buttonGroup1.add(walkinPtchbx);
             walkinPtchbx.setText("Walk In Patient");
@@ -1541,10 +1541,10 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
             mainItemsTbl.addAncestorListener(new javax.swing.event.AncestorListener() {
                 public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 }
-                public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-                }
                 public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                     mainItemsTblAncestorMoved(evt);
+                }
+                public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 }
             });
             mainItemsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2724,7 +2724,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
             //     double presc = java.lang.Double.parseDouble(jTextField8.getText());
-            if (schemeptsChkbx.isSelected()) {
+            if (opSchemeptsChkbx.isSelected()) {
                 chbox = "OP";
             } else {
                 if (walkinPtchbx.isSelected()) {
@@ -2815,7 +2815,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
             //  double presc = java.lang.Double.parseDouble(jTextField8.getText());
-            if (schemeptsChkbx.isSelected()) {
+            if (opSchemeptsChkbx.isSelected()) {
                 chbox = "OP";
             } else {
                 if (walkinPtchbx.isSelected()) {
@@ -3203,7 +3203,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                             if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
                                 // presc = java.lang.Double.parseDouble(jTextField8.getText());
-                                if (schemeptsChkbx.isSelected()) {
+                                if (opSchemeptsChkbx.isSelected()) {
                                     chbox = "OP";
                                     patientSource = "OP";
                                 } else {
@@ -3224,7 +3224,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
                                 //  try {
                                 // connectDB.setAutoCommit(false);
-                                if (schemeptsChkbx.isSelected()) {
+                                if (opSchemeptsChkbx.isSelected()) {
                                     java.sql.Statement stmt1cz3 = connectDB.createStatement();
                                     java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE account_no  ILIKE '" + jTextField17.getText() + "'");
                                     while (rset1cz3.next()) {
@@ -3654,7 +3654,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                                 } else {
                                     /// Dealing with out-patients
 
-                                    if (schemeptsChkbx.isSelected()) {
+                                    if (opSchemeptsChkbx.isSelected()) {
 
                                         if (paymentModeCmbx.getSelectedItem().toString().equals("Scheme")) {
                                             java.sql.Statement stm1q = connectDB.createStatement();
@@ -4324,7 +4324,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
         try {
             if (individualItemsCbx.isSelected() || mainStoreCbx.isSelected()) {
                 boolean serviceSchemeExclusion = false;
-                if (paymentModeCmbx.getSelectedItem().toString().contains("Scheme") && schemeptsChkbx.isSelected()) {
+                if (paymentModeCmbx.getSelectedItem().toString().contains("Scheme") && opSchemeptsChkbx.isSelected()) {
                     serviceSchemeExclusion = com.afrisoftech.lib.GLCodesFactory.getServiceSchemeExclusionStatus(connectDB, jTextField14.getText(), medicinesSearchTable.getValueAt(medicinesSearchTable.getSelectedRow(), 0).toString(), gLCodeTxt.getText());
 
                 }
@@ -4711,7 +4711,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                         jTextField18.setText(rset1cz3.getObject(2).toString());
                         smartcard = rset1cz3.getBoolean(3);
                     }
-                    if (schemeptsChkbx.isSelected()) {
+                    if (opSchemeptsChkbx.isSelected()) {
                         if (smartcard) {
                             jButton12.setEnabled(false);
                             jButton121.setEnabled(false);
@@ -4800,7 +4800,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                         jTextField18.setText(rset1cz3.getObject(2).toString());
                         smartcard = rset1cz3.getBoolean(3);
                     }
-                    if (schemeptsChkbx.isSelected()) {
+                    if (opSchemeptsChkbx.isSelected()) {
                         if (smartcard) {
                             jButton12.setEnabled(false);
                             jButton121.setEnabled(false);
@@ -4906,7 +4906,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                 jSearchScrollPane2121.setViewportView(jSearchTable2121);
 
             }
-        } else if (this.schemeptsChkbx.isSelected()) {
+        } else if (this.opSchemeptsChkbx.isSelected()) {
             if (jTextField113121.getCaretPosition() > 4) {
 
                 jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
@@ -4928,7 +4928,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                 jSearchScrollPane2121.setViewportView(jSearchTable2121);
 
             }
-        } else if (this.schemeptsChkbx.isSelected() && this.searchNoChkbx.isSelected()) {
+        } else if (this.opSchemeptsChkbx.isSelected() && this.searchNoChkbx.isSelected()) {
             if (jTextField113121.getText().length() > 4) {
 
                 jSearchTable2121.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
@@ -5423,7 +5423,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
      *
      */
     // }
-    private void schemeptsChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schemeptsChkbxActionPerformed
+    private void opSchemeptsChkbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opSchemeptsChkbxActionPerformed
         this.patientNameTxt.setEditable(false);
         receiptTxt.setText("");
         //  patientSearchbtn.setEnabled(false);
@@ -5442,7 +5442,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
          * System.out.println(sqlex.getMessage()); }
          */
         // Add your handling code here:
-    }//GEN-LAST:event_schemeptsChkbxActionPerformed
+    }//GEN-LAST:event_opSchemeptsChkbxActionPerformed
 
     private void walkinPtchbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_walkinPtchbxActionPerformed
         /*
@@ -6279,7 +6279,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                         if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
 
                             // presc = java.lang.Double.parseDouble(jTextField8.getText());
-                            if (schemeptsChkbx.isSelected()) {
+                            if (opSchemeptsChkbx.isSelected()) {
                                 chbox = "OP";
                                 patientSource = "OP";
                             } else {
@@ -6300,7 +6300,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
                             //  try {
                             // connectDB.setAutoCommit(false);
-                            if (schemeptsChkbx.isSelected()) {
+                            if (opSchemeptsChkbx.isSelected()) {
                                 java.sql.Statement stmt1cz3 = connectDB.createStatement();
                                 java.sql.ResultSet rset1cz3 = stmt1cz3.executeQuery("SELECT account_no,payer_name,usesmartcard FROM ac_schemes WHERE account_no  ILIKE '" + jTextField17.getText() + "'");
                                 while (rset1cz3.next()) {
@@ -6717,7 +6717,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
                             } else {
                                 /// dealing with out-patients
 
-                                if (schemeptsChkbx.isSelected()) {
+                                if (opSchemeptsChkbx.isSelected()) {
 
                                     if (paymentModeCmbx.getSelectedItem().toString().equals("Scheme")) {
                                         java.sql.Statement stm1q = connectDB.createStatement();
@@ -7232,6 +7232,7 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     private javax.swing.JTextField medicinesSearchTxt;
     private javax.swing.JDialog medicinesSearchdialog;
     private javax.swing.JCheckBox opChbx;
+    private javax.swing.JCheckBox opSchemeptsChkbx;
     private javax.swing.JTextField outpatientTxt;
     private javax.swing.JRadioButton packagesCbx;
     private javax.swing.JPanel patientBillPanel;
@@ -7266,7 +7267,6 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
     private javax.swing.JTextField requisitionNoTxt;
     private javax.swing.JTable requisitionsformTBl;
     private javax.swing.JTextField schemepatientTxt;
-    private javax.swing.JCheckBox schemeptsChkbx;
     private javax.swing.JButton searchButton3;
     private javax.swing.JCheckBox searchDrugByCodeChkbx;
     private javax.swing.JCheckBox searchDrugByDescriptionChkbx;

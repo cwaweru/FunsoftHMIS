@@ -228,7 +228,16 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         try {
             int count = 0;
             java.sql.Statement stmtTable1c = connectDB.createStatement();
-            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ");
+            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
+                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
+                            + " OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
+                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
+                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
+                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
+                                    + "UNION ALL\n"
+                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
+                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
+                  //  rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ");
             while (rsetTable1c.next()) {
                 count = rsetTable1c.getInt(1);
                 //count = 2;
@@ -247,7 +256,24 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
             String[] COLUMNS = new String[count + addedColumns];
             COLUMNS[0] = "Date";
             int i = 1;
-            rsetTable1c = stmtTable1c.executeQuery("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) ORDER BY 1  ");
+            System.err.println("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
+                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
+                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
+                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
+                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
+                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
+                                    + "UNION ALL\n"
+                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
+                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1 ");
+            rsetTable1c = stmtTable1c.executeQuery("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
+                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
+                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
+                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
+                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
+                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
+                                    + "UNION ALL\n"
+                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
+                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
             while (rsetTable1c.next()) {
                 System.err.println(">>>>>>>>>>>>>>>>>" + rsetTable1c.getString(1));
                 if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
@@ -335,7 +361,16 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
                     System.err.println(">>>>>" + listofAct[f]);
                     revenueSummaryTbl.setValueAt(listofAct[f], f, pp);
                     pp++;
-                    rsetTable1c = stmtTable1c.executeQuery("select activity,code from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ORDER BY 1   ");
+                    //rsetTable1c = stmtTable1c.executeQuery("select activity,code from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ORDER BY 1   ");
+                    rsetTable1c = stmtTable1c.executeQuery("select activity,code from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
+                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
+                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
+                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
+                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
+                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
+                                    + "UNION ALL\n"
+                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
+                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
                     while (rsetTable1c.next()) {
                         double deptDayCash = 0.00;
                         double deptDayNHIF = 0.00;

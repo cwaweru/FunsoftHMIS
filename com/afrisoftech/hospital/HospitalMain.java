@@ -19225,6 +19225,7 @@ com.afrisoftech.lib.HosWardsDatePanel dates = new com.afrisoftech.lib.HosWardsDa
 }//GEN-LAST:event_dentalresultsmnitActionPerformed
 
     private void consultationmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultationmnitActionPerformed
+        System.err.println("Testing new interface..... > ");
         com.afrisoftech.laboratory.ConsultationIntfr comp = new com.afrisoftech.laboratory.ConsultationIntfr(connectDB, pConnDB, getMainClass());
         saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
         try {

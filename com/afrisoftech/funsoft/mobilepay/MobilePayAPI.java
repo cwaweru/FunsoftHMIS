@@ -809,6 +809,249 @@ public class MobilePayAPI {
         //return checkoutRequestStatus;
     }
 
+    
+    public static void sendRadiologyRequestToPACs(java.sql.Connection connectDB, String accessToken, String requestNo, String patientNo, String patientName, String paymentMode, String schemeName, String requesterAccount, String patientType,String reqID) {
+        try {
+
+            String doa = "";
+            String pd = "";
+            String comments = "";
+            String dpt = "";
+            String currentUser = "";
+            String address,dob,tel,weight,sex = weight = address = dob = tel  = "";
+
+            java.sql.Statement stm12p = connectDB.createStatement();
+            java.sql.ResultSet rse12p = null;
+
+            if (patientType.equalsIgnoreCase("OP")) {
+                rse12p = stm12p.executeQuery("select date,clinic from hp_patient_visit where date = current_date and patient_no = '" + patientNo + "' order by date desc limit 1 ");
+            } else {
+                rse12p = stm12p.executeQuery("select date_admitted,ward from hp_admission where patient_no = '" + patientNo + "' order by date_admitted desc limit 1");
+
+            }
+            while (rse12p.next()) {
+                doa = rse12p.getString(1);
+                dpt = rse12p.getString(2);
+            }//
+            
+            if (patientType.equalsIgnoreCase("OP")) {
+                rse12p = stm12p.executeQuery("select year_of_birth::date,tel_no,residence,sex from hp_patient_register where  patient_no = '" + patientNo + "' ");
+            } else {
+                rse12p = stm12p.executeQuery("select year_of_birth::date,tel_no,residence, sex from hp_inpatient_register where  patient_no = '" + patientNo + "'  ");
+
+            }
+            while (rse12p.next()) {
+                dob = rse12p.getString(1);
+                tel = rse12p.getString(2);
+                address = rse12p.getString(3);
+                sex = rse12p.getString(4);
+            }
+            System.err.println(">>>"+sex);
+            
+            
+            String sexx = String.valueOf(sex.charAt(0));
+            System.err.println(">>>"+sexx);
+
+            rse12p = stm12p.executeQuery("select  description,date from hp_clinical_results where patient_no = '" + patientNo + "' and date > current_date - 10 and description is not null and description !=''  order by date desc limit 1 ");
+            while (rse12p.next()) {
+                pd = rse12p.getString(1);
+            }
+
+            String modality = "";
+            System.err.println("Patient Typeeeeeee------->" + patientType);
+            System.err.println("SELECT inpatient_no, service, revenue_code, amount,trans_date,now()::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+                    + " UNION "
+                    + "SELECT reference, service, main_service, debit as amount,date::date,billing_time::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
+            java.sql.PreparedStatement pstmtLabRequestJSON = connectDB.prepareStatement("SELECT inpatient_no, service, revenue_code, amount,trans_date,now()::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde,(SELECT modality FROM clerking_requests_category ,clerking_requests WHERE request_category ilike request_name and request ilike service limit 1) AS modality FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+                    + " UNION "
+                    + "SELECT reference, service, main_service, debit as amount,date::date,billing_time::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde,(SELECT modality FROM clerking_requests_category ,clerking_requests WHERE request_category ilike request_name and request ilike service limit 1) AS modality FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
+            pstmtLabRequestJSON.setString(1, requestNo);
+            pstmtLabRequestJSON.setString(2, patientNo);
+            pstmtLabRequestJSON.setString(3, requestNo);
+            pstmtLabRequestJSON.setString(4, patientNo);
+            java.sql.ResultSet rsetlabRequestJSON = pstmtLabRequestJSON.executeQuery();
+            while (rsetlabRequestJSON.next()) {
+                String test = rsetlabRequestJSON.getString(2);
+                String testDate = rsetlabRequestJSON.getString(5);
+                String testTime= rsetlabRequestJSON.getString(6);
+                String testCode = rsetlabRequestJSON.getString(7);
+                modality = rsetlabRequestJSON.getString(8);
+                double amount = rsetlabRequestJSON.getDouble(4);
+
+                rse12p = stm12p.executeQuery("select  notes,trans_date,current_user from pb_doctors_request where patient_no = '" + patientNo + "' and upper(service) = '" + test.toUpperCase() + "' order by trans_date desc limit 1");
+                while (rse12p.next()) {
+                    comments = rse12p.getString(1);
+                    currentUser = rse12p.getString(3);;
+                }
+
+                boolean checkoutRequestStatus = true;
+                OkHttpClient client = new OkHttpClient();
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                dateFormat.setCalendar(calendar);
+                String timeStamp = dateFormat.format(calendar.getTime());
+                System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
+                MediaType mediaType = MediaType.parse("application/json");
+
+                String message = null;
+                JSONObject json = new JSONObject();
+                
+                String instanceUID = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemInstanceUID(connectDB);
+
+                try {
+                    //Sent to PACS
+                    json.put("AccessionNumber", requestNo);
+                    json.put("AdditionalPatientHistory", comments);
+                    json.put("AdmittingDiagnosesDescription", pd);
+                    json.put("Allergies", "");
+                    json.put("ImageComments", currentUser);
+                    json.put("MedicalAlerts", "");
+                    json.put("Modality", modality);
+                    json.put("Occupation", "");
+                    json.put("OperatorsName", currentUser);
+                    json.put("PatientAddress", address);
+                    json.put("PatientBirthDate", dob.replace("-", ""));
+                    json.put("PatientComments", "");
+                    json.put("PatientID", patientNo);
+                    json.put("PatientName", patientName);
+                    json.put("PatientSex", sexx);
+                    json.put("PatientSize", "");
+                    json.put("PatientTelecomInformation", tel);
+                    json.put("PatientWeight", weight);
+                    json.put("ReferringPhysicianIdentificationSequence", (Object) com.afrisoftech.lib.RadiologyRequestJSON.getPacsRequestingPhysicianIdentificationSeqMap(connectDB, requestNo, patientNo));
+                    json.put("ReferringPhysicianName", currentUser);
+                    json.put("ScheduledProcedureStepSequence", (Object) com.afrisoftech.lib.RadiologyRequestJSON.getScheduledProcedureStepSequence(connectDB, requestNo, patientNo,test,testDate.replace("-", ""),testTime.replace(":", ""),testCode,modality));
+                    json.put("SpecificCharacterSet", "ISO_IR 192");
+                    json.put("StudyDescription", test);
+                    json.put("StudyInstanceUID", instanceUID);
+                    /*
+     
+   
+   "":"0001:Scotti^Stephen^Douglas^Dr.",
+   "ScheduledProcedureStepSequence":[
+      {
+         "Modality":"MR",
+         "ScheduledProcedureStepDescription":"MRI BRAIN / BRAIN STEM - WITHOUT CONTRAST",
+         "ScheduledProcedureStepID":"0001",
+         "ScheduledProcedureStepStartDate":"20210704",
+         "ScheduledProcedureStepStartTime":"110000",
+         "ScheduledProtocolCodeSequence":[
+            {
+               "CodeMeaning":"[\"70551\"]",
+               "CodeValue":"70551",
+               "CodingSchemeDesignator":"C4"
+            }
+         ],
+         "ScheduledStationAETitle":"NmrEsaote"
+      }
+   ],
+   "SpecificCharacterSet":"ISO_IR 192",
+   "StudyInstanceUID":"1.3.6.1.4.1.56016.1.1.1.55.1626553968"
+                    */
+                    
+                    //json.put("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
+
+                    message = json.toString();
+                    System.out.println("This is the PACs request JSON String : " + message);
+//                    System.err.println("Lab Request" + com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
+
+                } catch (JSONException ex) {
+                    Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                RequestBody body = RequestBody.create(mediaType, message);
+                Request request = null;
+
+                String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+                String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+
+                request = new Request.Builder()
+                        .url("http://" + PacsServerIP + ":" + PacsPort+"/mwl/create_from_json") // for sandbox test cases        
+                        .post(body)
+                        //.addHeader("api_key", accessToken)
+                        //.addHeader("system_id", "fansoft_bg")
+                       // .addHeader("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments))
+                        .addHeader("content-type", "application/json")
+                        .build();
+                System.err.println("URL-------------> http://" + PacsServerIP + ":" + PacsPort+"/mwl/create_from_json");
+                System.err.println("Request : \n" + body);
+                System.err.println("Request : \n" + request);
+
+                try {
+                    System.err.println("Registering the request....");
+                    java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("INSERT INTO public.hp_lims_request(  patient_no, patien_name, request_no, test, json_string, response,uid,request_id)   VALUES (?, ?, ?, ?, ?, ?,?,?);");
+                    pstmt21.setString(1, patientNo);
+                    pstmt21.setString(2, patientName);
+                    pstmt21.setString(3, requestNo);
+                    pstmt21.setString(4, test);//com.afrisoftech.lib.LabRequestJSON.getLimsRequestMap(connectDB, requestNo, patientNo).toString());
+                    pstmt21.setObject(5, message);
+                    pstmt21.setObject(6, "");
+                    pstmt21.setString(7, instanceUID);
+                    pstmt21.setString(8, reqID);
+                    pstmt21.executeUpdate();
+                } catch (java.sql.SQLException sq) {
+                    sq.printStackTrace();
+
+                }
+
+                try {
+                    Response response = client.newCall(request).execute();
+                    JSONObject myJsonObject = null;
+                    //  System.err.println("Response :"+response.body().string());
+                    try {
+                        myJsonObject = new JSONObject(response.body().string());
+                    } catch (JSONException ex) {
+                        Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    if (myJsonObject.toString().contains("error")) {
+                        try {
+//                    checkoutRequestID = myJsonObject.getString("errorMessage");
+                            checkoutRequestStatus = false;
+                            System.err.println("Checkout Request ID : [" + myJsonObject.getString("status") + "]");
+                            javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("status") + ". Try again.");
+
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else if (myJsonObject.toString().contains("Success")) {
+                        try {
+                            checkoutRequestStatus = true;
+                            com.afrisoftech.hospital.GeneralBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            com.afrisoftech.hospinventory.PatientsBillingIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            com.afrisoftech.accounting.InpatientDepositIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            com.afrisoftech.accounting.InpatientRecpIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            com.afrisoftech.hospital.HospitalMain.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            com.afrisoftech.accounting.GovBillPaymentsIntfr.checkoutRequestID = myJsonObject.getString("CheckoutRequestID");
+                            System.err.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
+
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+                    try {
+                        java.sql.PreparedStatement pstmtCheckout = connectDB.prepareStatement("UPDATE hp_lims_request SET response = ? WHERE request_no = ?");
+                        pstmtCheckout.setString(1, myJsonObject.toString());
+                        pstmtCheckout.setString(2, requestNo);
+                        pstmtCheckout.executeUpdate();
+
+                    } catch (java.sql.SQLException sq) {
+                        sq.printStackTrace();
+
+                    }
+                    System.out.println("Response for Process Request : [" + myJsonObject.toString() + "]");
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (java.sql.SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        //return checkoutRequestStatus;
+    }
+
     public static void sendSMS(String accessToken, String telephoneNumber, String smsText) {
 
         boolean checkoutRequestStatus = true;

@@ -328,7 +328,7 @@ public class WardsPdf implements java.lang.Runnable {
                         
                         table.addCell(phrase);
                         
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                      
                          table.getDefaultCell().setColspan(2);
                         phrase = new Phrase("Printed On : "  +date , pFontHeader);
@@ -345,9 +345,11 @@ public class WardsPdf implements java.lang.Runnable {
                         phrase = new Phrase("Department",pFontHeader);
                         table.addCell(phrase);
                         
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                        
                         phrase = new Phrase("Max Beds",pFontHeader);
                         table.addCell(phrase);
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                        
                         
                         phrase = new Phrase("Deposit",pFontHeader);
                         table.addCell(phrase);
@@ -376,7 +378,7 @@ public class WardsPdf implements java.lang.Runnable {
                                 
                                 table.addCell(phrase);
                                 
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                 phrase = new Phrase(rset.getObject(3).toString(), pFontHeader1);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);

@@ -39,7 +39,7 @@ public class PatientAccountStatus {
         double abscondmentAmount = 0.00;
 
         try {
-            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT sum(debit-credit) FROM ac_debtors WHERE admission_no = ? AND (dealer ilike '%abscond%' OR payee ilike '%abscond%' or item ilike '%abscond%')");
+            java.sql.PreparedStatement pstmt = connDB.prepareStatement("SELECT sum(debit-credit) FROM ac_ledger WHERE patient_no = ? AND (dealer ilike '%abscond%' or  description ilike '%abscond%')");
 
             pstmt.setString(1, patientNumber);
             java.sql.ResultSet rset = pstmt.executeQuery();

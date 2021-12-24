@@ -520,8 +520,8 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 0;
+            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridy = 1;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 300.0;
             gridBagConstraints.weighty = 1.0;
@@ -556,7 +556,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 1;
+            gridBagConstraints.gridy = 2;
             gridBagConstraints.gridwidth = 3;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
@@ -566,7 +566,7 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             jButton421.setText("Select");
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 0;
+            gridBagConstraints.gridy = 1;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jSearchPanel21.add(jButton421, gridBagConstraints);
@@ -578,8 +578,8 @@ public class FinalizeSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 0;
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 1;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
             jSearchPanel21.add(jButton521, gridBagConstraints);
