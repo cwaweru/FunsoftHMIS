@@ -12341,7 +12341,7 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
                 String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
 
                 try {
-                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://pacs:Password_123@" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://pacs:Password_123@" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
                 } catch (IOException ex) {
                     Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -13813,6 +13813,22 @@ public class ConsultationIntfr extends javax.swing.JInternalFrame implements jav
 //                    }
                 }
             }
+            
+            
+            // Forward to PACs 
+            if (inpatientCheckBox.isSelected() || paymentModeTxt.getText().toString().contains("Scheme") && com.afrisoftech.lib.RadiologyRequestJSON.isPacsEnabled(connectDB)) {
+                if (com.afrisoftech.lib.GetItemInfo.checkRadiologyItems(String.valueOf(transNo), nameNoTxt.getText(), connectDB)) {
+                    String patType = null;
+                    if (outpatientCheckBox.isSelected()) {
+                        patType = "OP";
+                    } else {
+                        patType = "IP";
+                    }
+                    com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendRadiologyRequestToPACs(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", String.valueOf(transNo), nameNoTxt.getText(), patientNameTxt.getText(), paymentModeTxt.getText().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, String.valueOf(transNo), nameNoTxt.getText()), patType, billNo);
+                }
+            }
+            
+            
             // Forward request to LIMS
             if ((paymentModeTxt.getText().contains("Scheme") || inpatientCheckBox.isSelected()) && com.afrisoftech.lib.LabRequestJSON.isLIMSEnabled(connectDB)) {
                 if (com.afrisoftech.lib.GetItemInfo.checkLabItems(String.valueOf(transNo), nameNoTxt.getText(), connectDB)) {
