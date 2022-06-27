@@ -920,7 +920,7 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jPanel3, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All highlighted fields in RED are mandatory. Select date range and tick \"View Unbanked Amount\" check box to display unbanked shifts.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 0, 102)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "All highlighted fields in RED are mandatory. Select date range and tick \"View Unbanked Amount\" check box to display unbanked shifts.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 102))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setText("Begin Date");
@@ -1031,11 +1031,9 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (Boolean.valueOf(jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4).toString()) == java.lang.Boolean.TRUE) {
-            //  if (jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 4) != null) {
             if (jTable1.getSelectedColumn() == jTable1.getSelectedColumn()) {
-                // float qty = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+
                 float price = java.lang.Float.parseFloat(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
-                //  float total = qty*price;
                 jTable1.setValueAt(price, jTable1.getSelectedRow(), 3);
                 double totalSum = com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3);
                 jTextField72.setText(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totalSum));
@@ -1075,7 +1073,6 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
                 java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select cheque_no,payment_mode, sum(debit- credit) as amount,null::boolean as banked from ac_cash_collection where debit > 0 and date_reconcilled between '" + this.datePicker1.getDate().toString() + "' and  '" + this.datePicker2.getDate().toString() + "' group by cheque_no,payment_mode");
 
                 //  java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT voucher_no, sum(credit),sum(credit-debit),0.00 FROM ac_bills WHERE dealer = '"+patient_name+"' GROUP BY voucher_no order BY voucher_no");
-
                 while (rsetTable11.next()) {
 
                     System.out.println("Working at table row " + i);
@@ -1100,8 +1097,6 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
     }
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
 
-
-
         int j = 0;
         int i = 0;
         for (int k = 0; k < jTable1.getRowCount(); k++) {
@@ -1124,20 +1119,25 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("select cheque_no,payment_mode,amount,null::boolean as banked,date_reconcilled, shift_no from banking_view where date_reconcilled between '" + this.datePicker1.getDate().toString() + "' and  '" + this.datePicker2.getDate().toString() + "' and amount !=0 order by date_reconcilled");
 
             //  java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT voucher_no, sum(credit),sum(credit-debit),0.00 FROM ac_bills WHERE dealer = '"+patient_name+"' GROUP BY voucher_no order BY voucher_no");
-
             while (rsetTable11.next()) {
 
                 System.out.println("Working at table row " + i);
                 jTable1.setValueAt(rsetTable11.getObject(1), i, 0);
                 jTable1.setValueAt(rsetTable11.getObject(2), i, 1);
-                jTable1.setValueAt(rsetTable11.getObject(3), i, 2);
+                //jTable1.setValueAt(rsetTable11.getObject(3), i, 2);
+
+                java.sql.Statement stmtTable11x = connectDB.createStatement();
+                java.sql.ResultSet rsetTable11x = stmtTable11x.executeQuery("select SUM(amount),(select SUM(credit) FROM ac_cash_collection where transaction_type = 'Banking' AND shift_no =   '" + rsetTable11.getObject(6)+ "' and  payment_mode = '" + rsetTable11.getObject(2) + "' ) from ac_shift_collections where shift_no =   '" + rsetTable11.getObject(6)+ "' and  pay_mode = '" + rsetTable11.getObject(2) + "' ");
+                while (rsetTable11x.next()) {
+                    jTable1.setValueAt(rsetTable11x.getDouble(1)- rsetTable11x.getDouble(2), i, 2);
+                }
+
                 jTable1.setValueAt(rsetTable11.getObject(4), i, 4);
                 jTable1.setValueAt(rsetTable11.getObject(5), i, 5);
                 jTable1.setValueAt(rsetTable11.getObject(6), i, 6);
                 ///  jTable11.setValueAt(rsetTable11.getObject(6), i, 6);
 
                 i++;
-
 
             }
         } catch (java.sql.SQLException sqlExec) {
@@ -1175,16 +1175,12 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
                 jTextField2.setText(rset.getObject(3).toString());
             }
 
-
         } catch (java.sql.SQLException sqlex) {
             javax.swing.JOptionPane.showMessageDialog(this, sqlex.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
             System.out.println(sqlex.getMessage());
 
         }
-
-
-
 
         // Add your handling code here:
     }//GEN-LAST:event_accountNameCmbxActionPerformed
@@ -1194,7 +1190,6 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameActivated
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
 
         bankBranchTxt.setText("");
         jTextField71.setText("");
@@ -1213,260 +1208,255 @@ public class Bankingintfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(bankBranchTxt.getText().toCharArray().length > 0){
-        if(accountNameCmbx.getSelectedItem() != null) {
-        if (slipNumberTxt.getText().toCharArray().length > 0) {
-            java.util.Date periodFrom = null;
-            java.util.Date periodTo = null;
+        if (bankBranchTxt.getText().toCharArray().length > 0) {
+            if (accountNameCmbx.getSelectedItem() != null) {
+                if (slipNumberTxt.getText().toCharArray().length > 0) {
+                    java.util.Date periodFrom = null;
+                    java.util.Date periodTo = null;
 
-            try {
+                    try {
 
-                java.sql.Statement stmtf = connectDB.createStatement();
-                java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker3.getDate() + "' BETWEEN period_from AND period_to");
-                while (rsetf.next()) {
-                    periodFrom = rsetf.getDate(1);
-                    periodTo = rsetf.getDate(2);
-                }
-
-            } catch (java.sql.SQLException sq) {
-                javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                System.out.println(sq.getMessage());
-
-            }
-
-            if (periodFrom == null || periodTo == null) {
-                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set, \nContact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("PeriodFrom : [" + periodFrom + "] and PeriodTo : [" + periodTo + "");
-            }
-
-            if (datePicker1.getDate().before(periodFrom) || datePicker2.getDate().after(periodTo)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set, \nContact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                if (jTable1.isEditing()) {
-                    jTable1.getCellEditor().stopCellEditing();
-                }
-
-
-                java.util.Calendar calendar = java.util.Calendar.getInstance();
-
-                long dateNow = calendar.getTimeInMillis();
-
-                java.sql.Date datenowSql = new java.sql.Date(dateNow);
-
-                System.out.println(datenowSql.toString());
-
-
-                String glAcc = null;
-                String Activity = null;
-                String userName = null;
-                String cpoint = null;
-                String shift = null;
-                String slipNo = null;
-                String actCode = null;
-                String glCode = null;
-                String bankAcc = null;
-                String glCode1 = null;
-                String bankAcc1 = null;
-                String transNo = null;
-                String payMode = null;
-                String patCat = null;
-                String patientAcc = null;
-                String cardNo = null;
-                String scheme = null;
-                String cardName = null;
-                String isurer = null;
-                String expDate = null;
-                String staffNo = null;
-                String actNames = null;
-                String user = null;
-                try {
-                    connectDB.setAutoCommit(false);
-                    int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Are the amounts okay ?", "Caution before Finalising Invoice!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
-
-                    if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
-                        java.sql.Statement stm1 = connectDB.createStatement();
-                        java.sql.Statement pss = connectDB.createStatement();
-                        java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
-                        while (rss.next()) {
-                            transNo = rss.getObject(1).toString();
-                        }
-                        java.sql.Statement pssm = connectDB.createStatement();
-                        java.sql.ResultSet rssm = pssm.executeQuery("select nextval('slip_no_seq')");
-                        while (rssm.next()) {
-                            slipNo = rssm.getObject(1).toString();
-                        }
-                        java.sql.Statement pss1 = connectDB.createStatement();
-                        java.sql.ResultSet rsts = pss1.executeQuery("select code,activity from pb_activity where activity_category ='RC'");
-                        while (rsts.next()) {
-                            actCode = rsts.getObject(1).toString();
-                            actNames = rsts.getObject(2).toString();
+                        java.sql.Statement stmtf = connectDB.createStatement();
+                        java.sql.ResultSet rsetf = stmtf.executeQuery("SELECT period_from,period_to FROM period_setup WHERE period_status ilike 'Open' AND '" + datePicker3.getDate() + "' BETWEEN period_from AND period_to");
+                        while (rsetf.next()) {
+                            periodFrom = rsetf.getDate(1);
+                            periodTo = rsetf.getDate(2);
                         }
 
-                        java.sql.Statement pss11 = connectDB.createStatement();
-                        java.sql.ResultSet rsts1 = pss11.executeQuery("select current_user");
-                        while (rsts1.next()) {
-                            user = rsts1.getObject(1).toString();
+                    } catch (java.sql.SQLException sq) {
+                        javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                        System.out.println(sq.getMessage());
 
+                    }
+
+                    if (periodFrom == null || periodTo == null) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set, \nContact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println("PeriodFrom : [" + periodFrom + "] and PeriodTo : [" + periodTo + "");
+                    }
+
+                    if (datePicker1.getDate().before(periodFrom) || datePicker2.getDate().after(periodTo)) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "You cannot save before or after the accounting period set, \nContact head of accounts".toUpperCase(), "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    } else {
+                        if (jTable1.isEditing()) {
+                            jTable1.getCellEditor().stopCellEditing();
                         }
 
+                        java.util.Calendar calendar = java.util.Calendar.getInstance();
 
-                        for (int i = 0; i < jTable1.getRowCount(); i++) {
-                            if (jTable1.getModel().getValueAt(i, 3) != null) {
+                        long dateNow = calendar.getTimeInMillis();
 
-                                if (this.accountNameCmbx.getSelectedItem().toString().toUpperCase().startsWith("PETTY")) {
-                                    java.sql.Statement stm121 = connectDB.createStatement();
-                                    java.sql.ResultSet rse121 = stm121.executeQuery("select code,activity from pb_activity where activity_category = 'PC'");
-                                    while (rse121.next()) {
+                        java.sql.Date datenowSql = new java.sql.Date(dateNow);
 
-                                        glAcc = rse121.getObject(1).toString();
-                                        Activity = rse121.getObject(2).toString();
+                        System.out.println(datenowSql.toString());
 
-                                    }
+                        String glAcc = null;
+                        String Activity = null;
+                        String userName = null;
+                        String cpoint = null;
+                        String shift = null;
+                        String slipNo = null;
+                        String actCode = null;
+                        String glCode = null;
+                        String bankAcc = null;
+                        String glCode1 = null;
+                        String bankAcc1 = null;
+                        String transNo = null;
+                        String payMode = null;
+                        String patCat = null;
+                        String patientAcc = null;
+                        String cardNo = null;
+                        String scheme = null;
+                        String cardName = null;
+                        String isurer = null;
+                        String expDate = null;
+                        String staffNo = null;
+                        String actNames = null;
+                        String user = null;
+                        try {
+                            connectDB.setAutoCommit(false);
+                            int exitOption = javax.swing.JOptionPane.showConfirmDialog(this, "Are the amounts okay ?", "Caution before Finalising Invoice!", javax.swing.JOptionPane.YES_NO_CANCEL_OPTION);
 
-                                    java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("insert into ac_petty_cash values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
-                                    pstmt21.setObject(1, glAcc);
-                                    pstmt21.setString(2, Activity);
-                                    pstmt21.setString(3, user);
-                                    pstmt21.setObject(4, "Petty Cash");
-                                    pstmt21.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
-                                    pstmt21.setDouble(6, 0.00);
-                                    pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
-                                    pstmt21.setString(8, userName);
-                                    pstmt21.setBoolean(9, true);
-                                    pstmt21.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
-                                    pstmt21.setString(10, slipNumberTxt.getText());
-                                    pstmt21.setBoolean(12, true);
-                                    pstmt21.setString(13, "Accounts");
-                                    pstmt21.setString(14, userName);
-                                    pstmt21.setObject(15, "Petty Cash Reimbursment From Receipt Control");
-                                    pstmt21.setString(16, "");
-                                    pstmt21.setString(17, transNo);
-                                    pstmt21.setString(18, cpoint);
-                                    pstmt21.setString(19, shift);
-                                    pstmt21.setObject(20, actCode);
-                                    pstmt21.setObject(21, "");
-                                    pstmt21.executeUpdate();
+                            if (exitOption == javax.swing.JOptionPane.YES_OPTION) {
+                                java.sql.Statement stm1 = connectDB.createStatement();
+                                java.sql.Statement pss = connectDB.createStatement();
+                                java.sql.ResultSet rss = pss.executeQuery("select nextval('transaction_no_seq')");
+                                while (rss.next()) {
+                                    transNo = rss.getObject(1).toString();
+                                }
+                                java.sql.Statement pssm = connectDB.createStatement();
+                                java.sql.ResultSet rssm = pssm.executeQuery("select nextval('slip_no_seq')");
+                                while (rssm.next()) {
+                                    slipNo = rssm.getObject(1).toString();
+                                }
+                                java.sql.Statement pss1 = connectDB.createStatement();
+                                java.sql.ResultSet rsts = pss1.executeQuery("select code,activity from pb_activity where activity_category ='RC'");
+                                while (rsts.next()) {
+                                    actCode = rsts.getObject(1).toString();
+                                    actNames = rsts.getObject(2).toString();
+                                }
 
-                                } else {
-                                    java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("insert into ac_cash_book values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
-                                    pstmt21.setObject(1, actCode);
-                                    pstmt21.setObject(3, jTable1.getValueAt(i, 1).toString());
-                                    pstmt21.setString(2, "Banking");
-                                    if (jTable1.getValueAt(i, 1) == (null)) {
-                                        javax.swing.JOptionPane.showMessageDialog(this, "Mode Missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                    } else {
-                                        pstmt21.setObject(4, jTable1.getValueAt(i, 1).toString());
-                                    }
-                                    pstmt21.setString(5, "");
-                                    pstmt21.setString(6, "");
-                                    pstmt21.setString(7, "");
-                                    pstmt21.setString(8, "");
-                                    pstmt21.setObject(10, jTable1.getValueAt(i, 0).toString());
-                                    pstmt21.setString(9, jTextField2.getText());
-                                    pstmt21.setString(12, "");
-                                    pstmt21.setString(11, slipNumberTxt.getText());
-                                    pstmt21.setString(13, "");
-                                    pstmt21.setString(15, accountNameCmbx.getSelectedItem().toString());
-                                    if (jTextField71.getText().equals("")) {
-                                        javax.swing.JOptionPane.showMessageDialog(this, "account_name missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                                    } else {
-                                        pstmt21.setString(14, jTextField71.getText());
-                                    }
-                                    pstmt21.setObject(16, bankBranchTxt.getText());
-                                    pstmt21.setString(17, "Banking");
-                                    pstmt21.setDouble(18, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
-                                    pstmt21.setDate(20, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
-                                    pstmt21.setDouble(19, 0.00);
-                                    pstmt21.setString(21, transNo);
-                                    pstmt21.setBoolean(22, false);
-                                    pstmt21.setBoolean(23, false);
-                                    pstmt21.setBoolean(24, false);
-                                    pstmt21.setDate(25, null);
-                                    pstmt21.setDate(26, null);
-                                    pstmt21.setDate(27, null);
-                                    pstmt21.setString(28, user);
-                                    pstmt21.setObject(29, null);
-                                    pstmt21.setString(30, jTable1.getValueAt(i, 6).toString());
-                                    pstmt21.executeUpdate();
-
+                                java.sql.Statement pss11 = connectDB.createStatement();
+                                java.sql.ResultSet rsts1 = pss11.executeQuery("select current_user");
+                                while (rsts1.next()) {
+                                    user = rsts1.getObject(1).toString();
 
                                 }
-                                java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_cash_collection values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
-                                pstmt2.setObject(1, jTextField2.getText());
-                                pstmt2.setObject(3, "");
-                                pstmt2.setString(2, accountNameCmbx.getSelectedItem().toString());
-                                pstmt2.setObject(5, jTable1.getValueAt(i, 1).toString());
-                                pstmt2.setString(4, user);
-                                pstmt2.setString(6, "");
-                                pstmt2.setString(7, "");
-                                pstmt2.setString(8, "");
-                                pstmt2.setString(9, "");
-                                pstmt2.setString(10, actCode);
-                                pstmt2.setObject(11, jTable1.getValueAt(i, 0).toString());
-                                pstmt2.setString(12, "");
-                                pstmt2.setString(13, "");
-                                pstmt2.setObject(14, jTable1.getValueAt(i, 1).toString());
-                                pstmt2.setString(15, "Banking");
-                                pstmt2.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
-                                pstmt2.setDouble(16, 0.00);
-                                pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
-                                pstmt2.setString(19, transNo);
-                                pstmt2.setBoolean(20, false);
-                                pstmt2.setBoolean(21, true);
-                                pstmt2.setBoolean(22, false);
-                                pstmt2.setString(23, user);
-                                pstmt2.setString(24, "");
-                                pstmt2.setString(25, jTable1.getValueAt(i, 6).toString());
-                                pstmt2.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(jTable1.getValueAt(i, 5).toString())));
-                                pstmt2.executeUpdate();
 
+                                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                                    if (jTable1.getModel().getValueAt(i, 3) != null) {
+
+                                        if (this.accountNameCmbx.getSelectedItem().toString().toUpperCase().startsWith("PETTY")) {
+                                            java.sql.Statement stm121 = connectDB.createStatement();
+                                            java.sql.ResultSet rse121 = stm121.executeQuery("select code,activity from pb_activity where activity_category = 'PC'");
+                                            while (rse121.next()) {
+
+                                                glAcc = rse121.getObject(1).toString();
+                                                Activity = rse121.getObject(2).toString();
+
+                                            }
+
+                                            java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("insert into ac_petty_cash values(?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)");
+                                            pstmt21.setObject(1, glAcc);
+                                            pstmt21.setString(2, Activity);
+                                            pstmt21.setString(3, user);
+                                            pstmt21.setObject(4, "Petty Cash");
+                                            pstmt21.setDouble(5, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
+                                            pstmt21.setDouble(6, 0.00);
+                                            pstmt21.setDate(7, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
+                                            pstmt21.setString(8, userName);
+                                            pstmt21.setBoolean(9, true);
+                                            pstmt21.setDate(11, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
+                                            pstmt21.setString(10, slipNumberTxt.getText());
+                                            pstmt21.setBoolean(12, true);
+                                            pstmt21.setString(13, "Accounts");
+                                            pstmt21.setString(14, userName);
+                                            pstmt21.setObject(15, "Petty Cash Reimbursment From Receipt Control");
+                                            pstmt21.setString(16, "");
+                                            pstmt21.setString(17, transNo);
+                                            pstmt21.setString(18, cpoint);
+                                            pstmt21.setString(19, shift);
+                                            pstmt21.setObject(20, actCode);
+                                            pstmt21.setObject(21, "");
+                                            pstmt21.executeUpdate();
+
+                                        } else {
+                                            java.sql.PreparedStatement pstmt21 = connectDB.prepareStatement("insert into ac_cash_book values(?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                            pstmt21.setObject(1, actCode);
+                                            pstmt21.setObject(3, jTable1.getValueAt(i, 1).toString());
+                                            pstmt21.setString(2, "Banking");
+                                            if (jTable1.getValueAt(i, 1) == (null)) {
+                                                javax.swing.JOptionPane.showMessageDialog(this, "Mode Missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                            } else {
+                                                pstmt21.setObject(4, jTable1.getValueAt(i, 1).toString());
+                                            }
+                                            pstmt21.setString(5, "");
+                                            pstmt21.setString(6, "");
+                                            pstmt21.setString(7, "");
+                                            pstmt21.setString(8, "");
+                                            pstmt21.setObject(10, jTable1.getValueAt(i, 0).toString());
+                                            pstmt21.setString(9, jTextField2.getText());
+                                            pstmt21.setString(12, "");
+                                            pstmt21.setString(11, slipNumberTxt.getText());
+                                            pstmt21.setString(13, "");
+                                            pstmt21.setString(15, accountNameCmbx.getSelectedItem().toString());
+                                            if (jTextField71.getText().equals("")) {
+                                                javax.swing.JOptionPane.showMessageDialog(this, "account_name missing", "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                                            } else {
+                                                pstmt21.setString(14, jTextField71.getText());
+                                            }
+                                            pstmt21.setObject(16, bankBranchTxt.getText());
+                                            pstmt21.setString(17, "Banking");
+                                            pstmt21.setDouble(18, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
+                                            pstmt21.setDate(20, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
+                                            pstmt21.setDouble(19, 0.00);
+                                            pstmt21.setString(21, transNo);
+                                            pstmt21.setBoolean(22, false);
+                                            pstmt21.setBoolean(23, false);
+                                            pstmt21.setBoolean(24, false);
+                                            pstmt21.setDate(25, null);
+                                            pstmt21.setDate(26, null);
+                                            pstmt21.setDate(27, null);
+                                            pstmt21.setString(28, user);
+                                            pstmt21.setObject(29, null);
+                                            pstmt21.setString(30, jTable1.getValueAt(i, 6).toString());
+                                            pstmt21.executeUpdate();
+
+                                        }
+                                        java.sql.PreparedStatement pstmt2 = connectDB.prepareStatement("insert into ac_cash_collection values(?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)");
+                                        pstmt2.setObject(1, jTextField2.getText());
+                                        pstmt2.setObject(3, "");
+                                        pstmt2.setString(2, accountNameCmbx.getSelectedItem().toString());
+                                        pstmt2.setObject(5, jTable1.getValueAt(i, 1).toString());
+                                        pstmt2.setString(4, user);
+                                        pstmt2.setString(6, "");
+                                        pstmt2.setString(7, "");
+                                        pstmt2.setString(8, "");
+                                        pstmt2.setString(9, "");
+                                        pstmt2.setString(10, actCode);
+                                        pstmt2.setObject(11, jTable1.getValueAt(i, 0).toString());
+                                        pstmt2.setString(12, "");
+                                        pstmt2.setString(13, "");
+                                        pstmt2.setObject(14, jTable1.getValueAt(i, 1).toString());
+                                        pstmt2.setString(15, "Banking");
+                                        pstmt2.setDouble(17, java.lang.Double.valueOf(jTable1.getValueAt(i, 3).toString()));
+                                        pstmt2.setDouble(16, 0.00);
+                                        pstmt2.setDate(18, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker3.getDate()));
+                                        pstmt2.setString(19, transNo);
+                                        pstmt2.setBoolean(20, false);
+                                        pstmt2.setBoolean(21, true);
+                                        pstmt2.setBoolean(22, false);
+                                        pstmt2.setString(23, user);
+                                        pstmt2.setString(24, "");
+                                        pstmt2.setString(25, jTable1.getValueAt(i, 6).toString());
+                                        pstmt2.setDate(26, com.afrisoftech.lib.SQLDateFormat.getSQLDate(java.sql.Date.valueOf(jTable1.getValueAt(i, 5).toString())));
+                                        pstmt2.executeUpdate();
+
+                                    }
+                                }
+
+                                connectDB.commit();
+                                connectDB.setAutoCommit(true);
+
+                                javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                bankBranchTxt.setText("");
+                                jTextField71.setText("");
+                                //jComboBox2.setSelectedItem(null);
+                                for (int k = 0; k < jTable1.getRowCount(); k++) {
+                                    for (int r = 0; r < jTable1.getColumnCount(); r++) {
+                                        jTable1.getModel().setValueAt(null, k, r);
+                                    }
+                                }
                             }
+                            // crset4.execute();
+                        } catch (java.sql.SQLException sq) {
+                            sq.printStackTrace();
+                            try {
+                                connectDB.rollback();
+                            } catch (java.sql.SQLException sql) {
+                                javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
+                            }
+                            System.out.println(sq.getMessage());
+                            javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
                         }
 
-                        connectDB.commit();
-                        connectDB.setAutoCommit(true);
-
-                        javax.swing.JOptionPane.showMessageDialog(this, "Insert Done Successfully", "Comfirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
-
-                        bankBranchTxt.setText("");
-                        jTextField71.setText("");
-                        //jComboBox2.setSelectedItem(null);
-                        for (int k = 0; k < jTable1.getRowCount(); k++) {
-                            for (int r = 0; r < jTable1.getColumnCount(); r++) {
-                                jTable1.getModel().setValueAt(null, k, r);
-                            }
-                        }
                     }
-                    // crset4.execute();
-                } catch (java.sql.SQLException sq) {
-                    sq.printStackTrace();
-                    try {
-                        connectDB.rollback();
-                    } catch (java.sql.SQLException sql) {
-                        javax.swing.JOptionPane.showMessageDialog(this, sql.getMessage(), "Error Message!", javax.swing.JOptionPane.ERROR_MESSAGE);
-                    }
-                    System.out.println(sq.getMessage());
-                    javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+                } else {
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "Banking Slip or Bank Stansaction Number is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
                 }
+            } else {
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Account Name is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
             }
-
         } else {
 
-            javax.swing.JOptionPane.showMessageDialog(this,"Banking Slip or Bank Stansaction Number is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-        }
-                } else {
-
-            javax.swing.JOptionPane.showMessageDialog(this,"Account Name is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-        }
-                } else {
-
-            javax.swing.JOptionPane.showMessageDialog(this,"Bank branch information is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Bank branch information is manadatory", "ERROR MESSAGE!", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
 

@@ -119,6 +119,10 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         decisionTxt = new javax.swing.JLabel();
         shortCodeTxt = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        removeFoundBtn = new javax.swing.JButton();
+        removeNotFoundBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -323,20 +327,20 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
         setFrameIcon(null);
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameActivated(evt);
             }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -675,7 +679,7 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.weighty = 10.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 2, 0);
         jPanel5.add(jScrollPane1, gridBagConstraints);
 
@@ -735,6 +739,53 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel5.add(shortCodeTxt, gridBagConstraints);
+
+        jPanel12.setLayout(new java.awt.GridBagLayout());
+
+        removeFoundBtn.setBackground(new java.awt.Color(255, 255, 0));
+        removeFoundBtn.setText("Remove Rows Found");
+        removeFoundBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFoundBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(removeFoundBtn, gridBagConstraints);
+
+        removeNotFoundBtn.setBackground(new java.awt.Color(255, 0, 0));
+        removeNotFoundBtn.setText("Remove Rows not Found");
+        removeNotFoundBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeNotFoundBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel12.add(removeNotFoundBtn, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 20.0;
+        jPanel12.add(jLabel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jPanel12, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1503,7 +1554,7 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
             ClearTable.removeRow(mobileTransactionTbl, i);
         }
 
-        for (int i = 1; i < mobileTransactionTbl.getRowCount(); i++) {
+        for (int i = 0; i < mobileTransactionTbl.getRowCount(); i++) {
             mobileTransactionTbl.setValueAt(Boolean.valueOf("false"), i, 13);
         }
 
@@ -1571,6 +1622,29 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
             mobilepayTxSearchDialog.setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_transTblMouseClicked
+
+    private void removeFoundBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFoundBtnActionPerformed
+        // TODO add your handling code here:
+              
+        System.err.println("Rows "+mobileTransactionTbl.getRowCount());
+
+        for (int i = mobileTransactionTbl.getRowCount()-1; i >0 ; i--) {
+            System.err.println("Removing Rows "+mobileTransactionTbl.getValueAt(i, 13).toString() );
+            if(Boolean.valueOf(mobileTransactionTbl.getValueAt(i, 13).toString()))
+               ClearTable.removeRow(mobileTransactionTbl, i);
+        }
+    }//GEN-LAST:event_removeFoundBtnActionPerformed
+
+    private void removeNotFoundBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeNotFoundBtnActionPerformed
+                System.err.println("Rows "+mobileTransactionTbl.getRowCount());
+
+        for (int i = mobileTransactionTbl.getRowCount()-1; i > 0 ; i--) {
+            System.err.println("Removing Rows "+mobileTransactionTbl.getValueAt(i, 13).toString() );
+            if(!Boolean.valueOf(mobileTransactionTbl.getValueAt(i, 13).toString()))
+               ClearTable.removeRow(mobileTransactionTbl, i);
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_removeNotFoundBtnActionPerformed
     private void populateData(String file) {
         Vector dataHolder = com.afrisoftech.lib.ExportData.readMpesaXls(file);
         System.out.println(dataHolder.size());
@@ -1675,9 +1749,11 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1704,6 +1780,8 @@ public class ReconcileMobileTxintfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable receiptSearchTable1;
     private javax.swing.JTextField receiptSearchTxt1;
     private javax.swing.JCheckBox receiptedTransWithBalChbx;
+    private javax.swing.JButton removeFoundBtn;
+    private javax.swing.JButton removeNotFoundBtn;
     private javax.swing.JTextField shortCodeTxt;
     private javax.swing.JCheckBox transReceiptedAfterChbx;
     private javax.swing.JTable transTbl;

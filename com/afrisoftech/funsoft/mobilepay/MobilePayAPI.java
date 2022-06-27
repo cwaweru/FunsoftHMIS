@@ -36,6 +36,12 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import org.apache.directory.server.core.authn.PasswordUtil;
 //import org.apache.http.HttpResponse;
 //import org.apache.http.client.HttpClient;
@@ -50,6 +56,7 @@ import org.bouncycastle.util.encoders.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.*;
+import org.openide.util.Exceptions;
 //
 
 //import org.ow2.util.base64.Base64;
@@ -310,7 +317,7 @@ public class MobilePayAPI {
             JSONObject myJsonObject = null;
             try {
                 myJsonObject = new JSONObject(response.body().string());
-                System.out.println("JSON Object result: "+myJsonObject);
+                System.out.println("JSON Object result: " + myJsonObject);
             } catch (JSONException ex) {
                 Logger.getLogger(MobilePayAPI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -809,8 +816,7 @@ public class MobilePayAPI {
         //return checkoutRequestStatus;
     }
 
-    
-    public static void sendRadiologyRequestToPACs(java.sql.Connection connectDB, String accessToken, String requestNo, String patientNo, String patientName, String paymentMode, String schemeName, String requesterAccount, String patientType,String reqID) {
+    public static void sendRadiologyRequestToPACs(java.sql.Connection connectDB, String accessToken, String requestNo, String patientNo, String patientName, String paymentMode, String schemeName, String requesterAccount, String patientType, String reqID) {
         try {
 
             String doa = "";
@@ -818,7 +824,7 @@ public class MobilePayAPI {
             String comments = "";
             String dpt = "";
             String currentUser = "";
-            String address,dob,tel,weight,sex = weight = address = dob = tel  = "";
+            String address, dob, tel, weight, sex = weight = address = dob = tel = "";
 
             java.sql.Statement stm12p = connectDB.createStatement();
             java.sql.ResultSet rse12p = null;
@@ -833,7 +839,7 @@ public class MobilePayAPI {
                 doa = rse12p.getString(1);
                 dpt = rse12p.getString(2);
             }//
-            
+
             if (patientType.equalsIgnoreCase("OP")) {
                 rse12p = stm12p.executeQuery("select year_of_birth::date,tel_no,residence,sex from hp_patient_register where  patient_no = '" + patientNo + "' ");
             } else {
@@ -846,11 +852,11 @@ public class MobilePayAPI {
                 address = rse12p.getString(3);
                 sex = rse12p.getString(4);
             }
-            System.err.println(">>>"+sex);
-            
-            
+            if(sex.isEmpty()) sex = "WI";
+            System.err.println(">>>" + sex);
+
             String sexx = String.valueOf(sex.charAt(0));
-            System.err.println(">>>"+sexx);
+            System.err.println(">>>" + sexx);
 
             rse12p = stm12p.executeQuery("select  description,date from hp_clinical_results where patient_no = '" + patientNo + "' and date > current_date - 10 and description is not null and description !=''  order by date desc limit 1 ");
             while (rse12p.next()) {
@@ -862,7 +868,7 @@ public class MobilePayAPI {
             System.err.println("SELECT inpatient_no, service, revenue_code, amount,trans_date,now()::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
                     + " UNION "
                     + "SELECT reference, service, main_service, debit as amount,date::date,billing_time::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
-            java.sql.PreparedStatement pstmtLabRequestJSON = connectDB.prepareStatement("SELECT inpatient_no, service, revenue_code, amount,trans_date,now()::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde,(SELECT modality FROM clerking_requests_category ,clerking_requests WHERE request_category ilike request_name and request ilike service limit 1) AS modality FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+            java.sql.PreparedStatement pstmtLabRequestJSON = connectDB.prepareStatement("SELECT receipt_no, description, (SELECT activity FROM pb_activity where code = activity_code limit 1) as main_service, debit,date,now()::TIME(0),(select code from pb_operating_parameters where service_type ilike description limit 1) AS codde,(SELECT modality FROM clerking_requests_category ,clerking_requests WHERE request_category ilike request_name and request ilike description limit 1) AS modality FROM ac_cash_collection WHERE receipt_no = ? AND patient_no = ? AND UPPER(activity_code) IN (SELECT UPPER(code) FROM pb_activity WHERE department = 'XRY')"
                     + " UNION "
                     + "SELECT reference, service, main_service, debit as amount,date::date,billing_time::TIME(0),(select code from pb_operating_parameters where service_type ilike service limit 1) AS codde,(SELECT modality FROM clerking_requests_category ,clerking_requests WHERE request_category ilike request_name and request ilike service limit 1) AS modality FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
             pstmtLabRequestJSON.setString(1, requestNo);
@@ -871,9 +877,11 @@ public class MobilePayAPI {
             pstmtLabRequestJSON.setString(4, patientNo);
             java.sql.ResultSet rsetlabRequestJSON = pstmtLabRequestJSON.executeQuery();
             while (rsetlabRequestJSON.next()) {
+                
                 String test = rsetlabRequestJSON.getString(2);
+                System.err.println("Test >>>>>"+test);
                 String testDate = rsetlabRequestJSON.getString(5);
-                String testTime= rsetlabRequestJSON.getString(6);
+                String testTime = rsetlabRequestJSON.getString(6);
                 String testCode = rsetlabRequestJSON.getString(7);
                 modality = rsetlabRequestJSON.getString(8);
                 double amount = rsetlabRequestJSON.getDouble(4);
@@ -886,6 +894,7 @@ public class MobilePayAPI {
 
                 boolean checkoutRequestStatus = true;
                 OkHttpClient client = new OkHttpClient();
+
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 dateFormat.setCalendar(calendar);
@@ -895,8 +904,14 @@ public class MobilePayAPI {
 
                 String message = null;
                 JSONObject json = new JSONObject();
-                
-                String instanceUID = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemInstanceUID(connectDB);
+
+                String instanceUID = null;
+                try {
+                    instanceUID = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemInstanceUID(connectDB);
+                } catch (IOException ex) {
+                    //Exceptions.printStackTrace(ex);
+                    ex.printStackTrace();
+                }
 
                 try {
                     //Sent to PACS
@@ -920,10 +935,11 @@ public class MobilePayAPI {
                     json.put("PatientWeight", weight);
                     json.put("ReferringPhysicianIdentificationSequence", (Object) com.afrisoftech.lib.RadiologyRequestJSON.getPacsRequestingPhysicianIdentificationSeqMap(connectDB, requestNo, patientNo));
                     json.put("ReferringPhysicianName", currentUser);
-                    json.put("ScheduledProcedureStepSequence", (Object) com.afrisoftech.lib.RadiologyRequestJSON.getScheduledProcedureStepSequence(connectDB, requestNo, patientNo,test,testDate.replace("-", ""),testTime.replace(":", ""),testCode,modality));
-                    json.put("SpecificCharacterSet", "ISO_IR 192");
+                    json.put("ScheduledProcedureStepSequence", (Object) com.afrisoftech.lib.RadiologyRequestJSON.getScheduledProcedureStepSequence(connectDB, requestNo, patientNo, test, testDate.replace("-", ""), testTime.replace(":", ""), testCode, modality));
+                    json.put("SpecificCharacterSet", "ISO_IR 100");
                     json.put("StudyDescription", test);
                     json.put("StudyInstanceUID", instanceUID);
+                    json.put("RequestedProcedureDescription", test);
                     /*
      
    
@@ -947,10 +963,9 @@ public class MobilePayAPI {
    ],
    "SpecificCharacterSet":"ISO_IR 192",
    "StudyInstanceUID":"1.3.6.1.4.1.56016.1.1.1.55.1626553968"
-                    */
-                    
-                    //json.put("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
+                     */
 
+                    //json.put("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
                     message = json.toString();
                     System.out.println("This is the PACs request JSON String : " + message);
 //                    System.err.println("Lab Request" + com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments));
@@ -964,15 +979,19 @@ public class MobilePayAPI {
                 String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
                 String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
 
+                final String credentials = "pacs" + ":" + "Password_123";
+                final String basic = "Basic " + Base64.toBase64String(credentials.getBytes());
+
                 request = new Request.Builder()
-                        .url("http://" + PacsServerIP + ":" + PacsPort+"/mwl/create_from_json") // for sandbox test cases        
+                        .url("http://" + PacsServerIP + ":" + PacsPort + "/mwl/create_from_json") // for sandbox test cases        
+                        .addHeader("Authorization", basic)
                         .post(body)
                         //.addHeader("api_key", accessToken)
                         //.addHeader("system_id", "fansoft_bg")
-                       // .addHeader("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments))
-                        .addHeader("content-type", "application/json")
+                        // .addHeader("lab_request", com.afrisoftech.lib.LabRequestJSON.getLabRequestBlis(connectDB, accessToken, requestNo, patientNo, patientName, paymentMode, schemeName, requesterAccount, patientType, test, amount, doa, dpt, pd, comments))
+                       //// .addHeader("content-type", "application/json")  //cww
                         .build();
-                System.err.println("URL-------------> http://" + PacsServerIP + ":" + PacsPort+"/mwl/create_from_json");
+                System.err.println("URL-------------> http://" + PacsServerIP + ":" + PacsPort + "/mwl/create_from_json");
                 System.err.println("Request : \n" + body);
                 System.err.println("Request : \n" + request);
 
@@ -1137,7 +1156,7 @@ public class MobilePayAPI {
         String timeStamp = dateFormat.format(calendar.getTime());
         System.out.println("Timestamp : [" + dateFormat.format(calendar.getTime()) + "]");
         String password = "174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timeStamp;
-        String encodedPassword = Base64.toBase64String(password.getBytes());;
+        String encodedPassword = Base64.toBase64String(password.getBytes());
 
         System.out.println("Unencoded password : [" + password + "]");
         System.out.println("Encoded password : [" + encodedPassword + "]");
@@ -1262,7 +1281,7 @@ public class MobilePayAPI {
             json.put("ShortCode", shortCode);
             json.put("ConfirmationURL", callBackURL);
             json.put("ValidationURL", validationURL);
-            json.put("ResponseType", "Success");
+            json.put("ResponseType", "Completed");
             message = json.toString();
             System.out.println("This is the JSON String : " + message);
 
@@ -1273,14 +1292,14 @@ public class MobilePayAPI {
         Request request = null;
         if (com.afrisoftech.hospital.HospitalMain.mobileTxTest) {
             request = new Request.Builder()
-                    .url("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl") // for sandbox test cases        
+                    .url("https://sandbox.safaricom.co.ke/mpesa/c2b/v2/registerurl") // for sandbox test cases        
                     .post(body)
                     .addHeader("authorization", "Bearer " + accessToken)
                     .addHeader("content-type", "application/json")
                     .build();
         } else {
             request = new Request.Builder()
-                    .url("https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl")
+                    .url("https://api.safaricom.co.ke/mpesa/c2b/v2/registerurl")
                     .post(body)
                     .addHeader("authorization", "Bearer " + accessToken)
                     .addHeader("content-type", "application/json")
@@ -1299,8 +1318,8 @@ public class MobilePayAPI {
                 try {
 //                    checkoutRequestID = myJsonObject.getString("errorMessage");
                     checkoutRequestStatus = false;
-                    System.out.println("Checkout Request ID : [" + myJsonObject.getString("errorMessage") + "]");
-                    javax.swing.JOptionPane.showMessageDialog(null, "Payment Request Error : " + myJsonObject.getString("errorMessage") + ". Try again.");
+                    System.out.println("Error trying to register URL : [" + myJsonObject.getString("errorMessage") + "]");
+                    javax.swing.JOptionPane.showMessageDialog(null, "Error trying to register URL : " + myJsonObject.getString("errorMessage") + ". Try again.");
                 } catch (JSONException ex) {
                     ex.printStackTrace();
                 }
@@ -1308,7 +1327,7 @@ public class MobilePayAPI {
                 try {
                     checkoutRequestStatus = true;
 
-                    System.out.println("Checout Request ID : [" + myJsonObject.getString("CheckoutRequestID") + "]");
+                    System.out.println("Registration of URL successful : [" + myJsonObject.getString("CheckoutRequestID") + "]");
 
                 } catch (JSONException ex) {
                     ex.printStackTrace();
@@ -1322,4 +1341,45 @@ public class MobilePayAPI {
 
         return checkoutRequestStatus;
     }
+
+//    private static OkHttpClient getUnsafeOkHttpClient() {
+//        try {
+//            // Create a trust manager that does not validate certificate chains
+//            final TrustManager[] trustAllCerts = new TrustManager[]{
+//                new X509TrustManager() {
+//                    @Override
+//                    public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                    }
+//
+//                    @Override
+//                    public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+//                    }
+//
+//                    @Override
+//                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//                        return new java.security.cert.X509Certificate[]{};
+//                    }
+//                }
+//            };
+//
+//            // Install the all-trusting trust manager
+//            final SSLContext sslContext = SSLContext.getInstance("SSL");
+//            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+//            // Create an ssl socket factory with our all-trusting manager
+//            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+//
+//            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
+//            builder.hostnameVerifier(new HostnameVerifier() {
+//                public boolean verify(String hostname, SSLSession session) {
+//                    return true;
+//                }
+//            });
+//
+//            OkHttpClient okHttpClient = builder.build();
+//            return okHttpClient;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

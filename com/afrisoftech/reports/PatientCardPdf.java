@@ -581,11 +581,11 @@ public class PatientCardPdf implements java.lang.Runnable {
                                         }
 
                                         //     java.sql.ResultSet rseth2 = sth2.executeQuery(" select distinct narration from hp_patients_hist where patient_no = '" + memNo + "'  and date  = '" + listofStaffNos[j] + "' and hist_heading = '" + Hist + "'");
-                                        java.sql.ResultSet rset2c1 = st2c1.executeQuery("SELECT DISTINCT INITCAP(treatment),input_date::TIME(0),INITCAP(doctor), '' as notes "
+                                        java.sql.ResultSet rset2c1 = st2c1.executeQuery("SELECT DISTINCT INITCAP(treatment),input_date::TIME(0),INITCAP(doctor), '' as notes, '' as radiologist_notes "
                                                 + " FROM hp_clinical_results where patient_no = '" + memNo + "' and date  = '" + listofStaffNos[j] + "' AND treatment != '' AND comments IS NOT NULL  "
-                                                + " UNION ALL SELECT DISTINCT INITCAP(examination),input_date::TIME(0), INITCAP(doctor), notes"
+                                                + " UNION ALL SELECT DISTINCT INITCAP(examination),input_date::TIME(0), INITCAP(doctor), notes, radiologist_notes"
                                                 + " FROM hp_xray_results WHERE patient_no = '" + memNo + "' AND date  = '" + listofStaffNos[j] + "' "
-                                                + " UNION SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE ( revenue_code  ilike '%lab%' OR  revenue_code  ilike '%xray%' OR revenue_code  ilike '%radio%' OR revenue_code  ilike '%xray%' OR revenue_code  ilike '%Imagi%') AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
+                                                + " UNION SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes, '' as radiologist_notes FROM pb_doctors_request WHERE ( revenue_code  ilike '%lab%' OR  revenue_code  ilike '%xray%' OR revenue_code  ilike '%radio%' OR revenue_code  ilike '%xray%' OR revenue_code  ilike '%Imagi%') AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
                                         java.sql.ResultSet rset2c1c = st2c1c.executeQuery(" SELECT INITCAP(service), curr_date::TIME(0), initcap(doctor), '' as notes FROM pb_doctors_request WHERE ( revenue_code not ilike '%pharmacy%' and revenue_code not ilike '%lab%' and  revenue_code not ilike '%xray%' and revenue_code not ilike '%radio%' and revenue_code not ilike '%xray%' and revenue_code not ilike '%Imagi%') AND patient_no = '" + memNo + "' AND trans_date  = '" + listofStaffNos[j] + "' ORDER BY 2 ");
 
                                         java.sql.ResultSet rset2c11 = st2c11.executeQuery("SELECT DISTINCT INITCAP(description),input_date::TIME(0), initcap(doctor), '' as notes from hp_clinical_results "
@@ -952,8 +952,16 @@ public class PatientCardPdf implements java.lang.Runnable {
                                             table.getDefaultCell().setColspan(4);
                                             //  table.getDefaultCell().setBorderColor(com.itextpdf.text.BaseColor.WHITE);
                                             table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                            
+                                            String radOutcome = "";
+                                            if(rset2c1.getObject("notes") != null){
+                                                radOutcome = rset2c1.getString("notes")+"\n";
+                                            }
+                                            if(rset2c1.getObject("radiologist_notes") != null){
+                                                radOutcome += rset2c1.getString("radiologist_notes");
+                                            }
 
-                                            phrase = new Phrase(dbObject.getDBObject(rset2c1.getObject(1), "-") + " RESULTS : " + dbObject.getDBObject(rset2c1.getObject("notes"), "-"), pFontHeader);
+                                            phrase = new Phrase(dbObject.getDBObject(rset2c1.getObject(1), "-") + " RESULTS : " + radOutcome, pFontHeader);
 
                                             table.addCell(phrase);
 
@@ -1560,12 +1568,13 @@ public class PatientCardPdf implements java.lang.Runnable {
             if(useDateRange){
                 rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' AND date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
                                     + " UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL AND date_admitted::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
+                                    + " UNION SELECT distinct date::date as date FROM hp_xray_results WHERE patient_no = '" + MNo + "'  AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
                                     + " UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
                                     + " UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' AND trans_date::date BETWEEN '"+beginDate+"' AND '"+endDate+"' "
                                     + " UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "' AND date::date BETWEEN '"+beginDate+"' AND '"+endDate+"'  order by date DESC");
 
             }else{
-                rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "'  order by date DESC");
+                rSet1 = stmt1.executeQuery("SELECT DISTINCT date FROM hp_patient_visit where patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_xray_results WHERE patient_no = '" + MNo + "'  UNION SELECT date_admitted::date as date FROM hp_admission WHERE patient_no= '" + MNo + "' AND patient_no IS NOT NULL UNION SELECT distinct date::date as date FROM hp_lab_results WHERE patient_no = '" + MNo + "'  UNION SELECT distinct trans_date::date as date FROM pb_doctors_request WHERE patient_no = '" + MNo + "' UNION SELECT distinct date::date as date FROM hp_signs_record WHERE patient_no = '" + MNo + "'  order by date DESC");
 
             }
             

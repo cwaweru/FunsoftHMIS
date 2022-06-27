@@ -84,7 +84,7 @@ public class SendFile {
         filename = fileName;
         //boolean debug = Boolean.valueOf(System.getProperty("claims.debug.boolean")).booleanValue();
         boolean debug = true;
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+//        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
         String msgText1 = "Claim file : [" + fileName + "].\n";
         String subject = "Claim file : [" + fileName + "]";//"Sending a file";

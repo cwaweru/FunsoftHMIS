@@ -1161,7 +1161,7 @@
                     <Component class="javax.swing.JComboBox" name="storeNameCmbx">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select stores from store_allocation where user_name = current_user and type ilike &apos;bill&apos;&quot;)" type="code"/>
+                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;select &apos;-&apos; UNION select stores from store_allocation where user_name = current_user and type ilike &apos;bill&apos; ORDER BY 1&quot;)" type="code"/>
                         </Property>
                         <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="0" type="code"/>
@@ -1191,7 +1191,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="gLCodeTxt.setText(com.afrisoftech.lib.StoreFactory.getStoreName(connectDB));"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//gLCodeTxt.setText(com.afrisoftech.lib.StoreFactory.getStoreName(connectDB));"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

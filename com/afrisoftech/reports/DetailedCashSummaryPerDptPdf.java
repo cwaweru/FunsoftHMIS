@@ -29,6 +29,8 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
     private double cash = 0.00;
+    private double mobile = 0.00;
+    private double tMobile = 0.00;
     private double oth = 0.00;
     private double totals = 0.00;
     private double tCash = 0.00;
@@ -353,9 +355,9 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                     try {
 
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(10);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(11);
 
-                        int headerwidths[] = {10, 18, 12, 12, 12, 12, 12, 12, 13, 13};
+                        int headerwidths[] = {10, 18, 12, 12, 12, 12, 12,12, 12, 13, 13};
 
                         table.setWidths(headerwidths);
 
@@ -380,7 +382,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                             //  phrase = new Phrase(bank +" Report: " +dateFormat.format(formattedDate), pFontHeader);
 
                             //  table.addCell(phrase);
-                            table.getDefaultCell().setColspan(7);
+                            table.getDefaultCell().setColspan(8);
 
                             phrase = new Phrase("DAILY CASH COLLECTIONS BY CATEGORY  - Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
@@ -430,6 +432,8 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                             phrase = new Phrase("Chq", pFontHeader);
                             table.addCell(phrase);
                             phrase = new Phrase("Eft", pFontHeader);
+                            table.addCell(phrase);
+                            phrase = new Phrase("Mobile Pay", pFontHeader);
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(1);
                             phrase = new Phrase("Exemption", pFontHeader);
@@ -501,6 +505,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                     java.sql.Statement st5xc = connectDB.createStatement();
                                     java.sql.Statement st5ze = connectDB.createStatement();
                                     java.sql.Statement st5v = connectDB.createStatement();
+                                    java.sql.Statement st5m = connectDB.createStatement();
                                     /*   java.sql.ResultSet rset = st5.executeQuery("SELECT SUM(receipts) as amt FROM receipts_sum WHERE receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type NOT ILIKE 'Banking%' AND activity_code = '" + listofAct[i].toString() + "'  AND payment_mode ILIKE 'Cash%' ");
                                     java.sql.ResultSet rsetxc = st5xc.executeQuery("SELECT SUM(receipts) as amt FROM receipts_sum WHERE receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "' AND payment_mode ILIKE 'Cheque%' ");
                                     java.sql.ResultSet rsetze = st5ze.executeQuery("SELECT SUM(receipts) as amt FROM receipts_sum WHERE receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "' AND (payment_mode ILIKE 'EFT' OR payment_mode ILIKE 'E.F.T%')");
@@ -515,6 +520,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                      */
 
                                     java.sql.ResultSet rset = st5.executeQuery("SELECT sum(amount) as amt from cash_analysis WHERE receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "'  AND transaction_type ILIKE 'Cash%' ");
+                                    java.sql.ResultSet rsetm = st5m.executeQuery("SELECT sum(amount) as amt from cash_analysis WHERE receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "'  AND (transaction_type ILIKE 'MPAY' OR transaction_type ILIKE '%Mobile%' OR transaction_type ILIKE '%pesa%') ");
                                     java.sql.ResultSet rsetxc = st5xc.executeQuery("select sum(amount) from cash_analysis where receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' AND activity_code = '" + listofAct[i].toString() + "' AND transaction_type ILIKE 'Cheque%' ");
                                     java.sql.ResultSet rsetze = st5ze.executeQuery("select sum(amount) from cash_analysis where receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' and activity_code = '" + listofAct[i].toString() + "' AND (transaction_type ILIKE 'EFT' OR transaction_type ILIKE 'E.F.T%')");
                                     java.sql.ResultSet rsetx = st5x.executeQuery("select sum(amount) from cash_analysis where receipt_time BETWEEN '" + beginDate + "' AND '" + endDate + "' and activity_code = '" + listofAct[i].toString() + "' AND transaction_type ILIKE 'Exemptions%'");
@@ -547,6 +553,8 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                                 while (rsetze.next()) {
 
                                                     while (rsetv.next()) {
+                                                        
+                                                         while (rsetm.next()) {
 
 
                                                         table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
@@ -558,6 +566,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                                         //
                                                         cash = rset.getDouble(1);
+                                                        mobile = rsetm.getDouble(1);
                                                         cheques = rsetxc.getDouble(1);
                                                         tCheques = tCheques + rsetxc.getDouble(1);
                                                         subcheques = subcheques + rsetxc.getDouble(1);
@@ -583,18 +592,25 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(efts)), pFontHeader1);
 
                                                         table.addCell(phrase);
+                                                        
+                                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(mobile)), pFontHeader1);
+                                                        tMobile =tMobile+mobile;
+                                                        table.addCell(phrase);
 
 
+                                                        //exemption
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(cheque)), pFontHeader1);
                                                         tCheque = tCheque + cheque;
                                                         subcheque = subcheque + cheque;
                                                         table.addCell(phrase);
 
+                                                        //waiver
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(ccard)), pFontHeader1);
                                                         tCcard = tCcard + ccard;
                                                         subccard = subccard + ccard;
                                                         table.addCell(phrase);
 
+                                                        //refund
                                                         oth = rsetv.getDouble(1);
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(oth)), pFontHeader1);
                                                         table.addCell(phrase);
@@ -605,7 +621,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                                         //totals = cash - oth - cheque - ccard + efts + cheques;
 
-                                                        totals = cash + efts + cheques - cheque - ccard + oth;
+                                                        totals = cash + efts + cheques+mobile - cheque - ccard + oth;
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(totals)), pFontHeader1);
                                                         table.addCell(phrase);
 
@@ -614,6 +630,7 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
                                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                                                         phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subTotal)), pFontHeader1);
                                                         table.addCell(phrase);
+                                                    }
 
                                                     }
                                                 }
@@ -646,6 +663,9 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
 
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subefts)), pFontHeader);
                             table.addCell(phrase);
+                            
+                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(tMobile)), pFontHeader);
+                            table.addCell(phrase);
 
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subcheque)), pFontHeader);
                             table.addCell(phrase);
@@ -655,10 +675,10 @@ public class DetailedCashSummaryPerDptPdf implements java.lang.Runnable {
 
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(suboth)), pFontHeader);
                             table.addCell(phrase);
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subTotal+suboth)), pFontHeader);
+                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subTotal)), pFontHeader);
 
                             table.addCell(phrase);
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subTotal+suboth)), pFontHeader);
+                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(subTotal)), pFontHeader);
 
                             table.addCell(phrase);
 
@@ -810,7 +830,7 @@ docPdf.close();  com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
             // java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT ac.activity_code FROM ac_cash_collection ac, pb_activity pb WHERE receipt_time::DATE BETWEEN '" + beginDate + "' AND '" + endDate + "' AND transaction_type not ilike 'Bank%' AND pb.activity_category != 'IEDS' AND pb.activity_category != 'IEXE' AND ac.activity_code = pb.code ORDER BY activity_code");
 
             //java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT gl_account FROM pb_operating_parameters ac WHERE ac.category != 'IEDS' AND ac.category != 'IEXE' ORDER BY 1 ASC");
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT code FROM pb_activity ac WHERE ( ac.activity_category ILIKE 'I' or ac.activity_category ILIKE 'B' OR ac.activity_category ILIKE 'PLID' OR ac.activity_category ILIKE 'PR') AND  ac.activity_category != 'IEDS' AND ac.activity_category != 'IEXE' ORDER BY 1 ASC");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT code FROM pb_activity ac WHERE ( code IN (SELECT activity_code FROM ac_cash_collection where date BETWEEN '" + beginDate + "' AND '" + endDate + "') OR ac.activity_category ILIKE 'I' or ac.activity_category ILIKE 'B' OR ac.activity_category ILIKE 'PLID' OR ac.activity_category ILIKE 'PR') AND  ac.activity_category != 'IEDS' AND ac.activity_category != 'IEXE' ORDER BY 1 ASC");
 
 
 

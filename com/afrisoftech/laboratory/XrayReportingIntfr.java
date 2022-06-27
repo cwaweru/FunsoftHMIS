@@ -1388,7 +1388,7 @@ public class XrayReportingIntfr extends javax.swing.JInternalFrame implements ja
             javax.swing.JOptionPane.showMessageDialog(this, "Data Inserted Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-            policy.XrayResultPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), jTextField36.getText());
+            policy.XrayResultPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), jTextField36.getText(),false,"","");
 
             this.jButton1.setEnabled(true);
             jTextField36.setText("");

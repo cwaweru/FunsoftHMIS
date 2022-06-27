@@ -535,7 +535,7 @@ public class AutomatedIPCharges {
                     + " patient_no,upper(patient_name) as name,ward,bed_no,deposit,nursing,visit_id,\n" +
                     " (SELECT consumable_rate from hp_bed_category  WHERE UPPER(category) = UPPER(wing) ) AS consumable_rate,\n" +
                     " (select consumable_glcode from hp_wards WHERE UPPER(ward_name )= UPPER(ward) ) AS consumable_gl "
-                    + " FROM hp_admission WHERE check_out = false AND (ward not ilike '%renal unit%' or ward NOT ILIKE '%EMERGENCY%')"
+                    + " FROM hp_admission WHERE check_out = false AND (ward not ilike '%renal unit%' AND ward NOT ILIKE '%EMERGENCY%')"
                     + " AND patient_no NOT IN (SELECT patient_no FROM hp_mortuary)"
                     + " ORDER BY visit_id");
 

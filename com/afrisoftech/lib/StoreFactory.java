@@ -4,6 +4,7 @@
  */
 package com.afrisoftech.lib;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -135,6 +136,30 @@ public class StoreFactory {
         
     } 
     
+        public static boolean checkPrintPrescriptionLabels(java.sql.Connection connectDB){
+        
+        boolean print = false;
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT print_prescription_labels FROM pb_patient_names ");
+            
+            java.sql.ResultSet rset = pstmt.executeQuery();
+           
+            while(rset.next()){
+                
+                print = rset.getBoolean(1);
+                
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(StoreFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return print;
+        
+    }
+    
     public static String getMainStoreClassificationCode(java.sql.Connection connectDB,String store){
         
         String classification = "";
@@ -164,4 +189,27 @@ public class StoreFactory {
         return classification;
         
     } 
+
+    public static boolean checkPrintAllPrescription(Connection connectDB) {
+            
+        boolean print = false;
+        try {
+            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT print_all_prescription FROM pb_patient_names ");
+            
+            java.sql.ResultSet rset = pstmt.executeQuery();
+           
+            while(rset.next()){
+                
+                print = rset.getBoolean(1);
+                
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(StoreFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return print;   // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

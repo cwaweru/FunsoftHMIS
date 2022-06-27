@@ -3,6 +3,7 @@
 //Revision : Ver 1.0a
 //import java.lang.*;
 package com.afrisoftech.reports;
+
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 //import *;
@@ -17,7 +18,6 @@ import com.lowagie.text.pdf.PdfCell;
 //import com.sun.xml.internal.ws.api.ResourceLoader;
 
 ////import //java.awt.Desktop;
-
 public class PatientsAttSheetPdf implements java.lang.Runnable {
 
     java.util.Date beginDate = null;
@@ -333,60 +333,54 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
             com.itextpdf.text.Font pFontHeader11 = null;
             com.itextpdf.text.Font pFontHeader12 = null;
 
-         //  ResourceLoader loader = new ResourceLoader("/fonts/ARIALUNI.ttf");
-           
-           
-            
+            //  ResourceLoader loader = new ResourceLoader("/fonts/ARIALUNI.ttf");
+            pFontHeaderOrig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
+            pFontHeader1Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
+            pFontHeader11Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
+            pFontHeader12Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
 
-                        pFontHeaderOrig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
-                        pFontHeader1Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
-                        pFontHeader11Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
-                        pFontHeader12Orig = com.itextpdf.text.pdf.BaseFont.createFont("/fonts/ARIALUNI.ttf", com.itextpdf.text.pdf.BaseFont.IDENTITY_H, com.itextpdf.text.pdf.BaseFont.EMBEDDED);
+            pFontHeader = new com.itextpdf.text.Font(pFontHeaderOrig, 10f);
+            pFontHeader1 = new com.itextpdf.text.Font(pFontHeader1Orig, 9f);
+            pFontHeader11 = new com.itextpdf.text.Font(pFontHeader11Orig, 10f);
+            pFontHeader12 = new com.itextpdf.text.Font(pFontHeader12Orig, 10f);
 
-    
+            System.out.println("Font pFontHeader [" + pFontHeader + "]");
 
-                pFontHeader = new com.itextpdf.text.Font(pFontHeaderOrig, 10f);
-                pFontHeader1 = new com.itextpdf.text.Font(pFontHeader1Orig, 9f);
-                pFontHeader11 = new com.itextpdf.text.Font(pFontHeader11Orig, 10f);
-                pFontHeader12 = new com.itextpdf.text.Font(pFontHeader12Orig, 10f);
+            java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
 
-                System.out.println("Font pFontHeader [" + pFontHeader + "]");
+            tempFile.deleteOnExit();
 
-                java.io.File tempFile = java.io.File.createTempFile("REP" + this.getDateLable() + "_", ".pdf");
+            java.lang.Runtime rt = java.lang.Runtime.getRuntime();
 
-                tempFile.deleteOnExit();
+            java.lang.String debitTotal = null;
 
-                java.lang.Runtime rt = java.lang.Runtime.getRuntime();
+            java.lang.String creditTotal = null;
 
-                java.lang.String debitTotal = null;
+            //Document docPdf = new Document();
+            Document docPdf = new Document(PageSize.A4.rotate());
 
-                java.lang.String creditTotal = null;
-
-                //Document docPdf = new Document();
-               Document docPdf = new Document(PageSize.A4.rotate());
+            try {
 
                 try {
 
+                    PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
+
+                    String compName = null;
+                    String date = null;
                     try {
 
-                        PdfWriter.getInstance(docPdf, new java.io.FileOutputStream(tempFile));
+                        // java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+                        java.sql.Statement st3 = connectDB.createStatement();
+                        java.sql.Statement st4 = connectDB.createStatement();
 
-                        String compName = null;
-                        String date = null;
-                        try {
-
-                            // java.sql.Connection conDb = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-                            java.sql.Statement st3 = connectDB.createStatement();
-                            java.sql.Statement st4 = connectDB.createStatement();
-
-                            java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name from pb_hospitalprofile");
-                            java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
-                            while (rset2.next()) {
-                                compName = rset2.getObject(1).toString();
-                            }
-                            while (rset4.next()) {
-                                date = rset4.getObject(1).toString();
-                            }
+                        java.sql.ResultSet rset2 = st3.executeQuery("SELECT hospital_name from pb_hospitalprofile");
+                        java.sql.ResultSet rset4 = st4.executeQuery("SELECT date('now') as Date");
+                        while (rset2.next()) {
+                            compName = rset2.getObject(1).toString();
+                        }
+                        while (rset4.next()) {
+                            date = rset4.getObject(1).toString();
+                        }
 //                            HeaderFooter headerFoter = new HeaderFooter(new Phrase("" + compName + ""), false);// FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLDITALIC,java.awt.Color.blue)));
 //                            headerFoter.setAlignment(HeaderFooter.ALIGN_CENTER);
 //
@@ -394,261 +388,265 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 //                            headerFoter.setRight(5);
 //                            docPdf.setHeader(headerFoter);
 
-                        } catch (java.sql.SQLException SqlExec) {
+                    } catch (java.sql.SQLException SqlExec) {
 
-                            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
+                        javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
+                    }
+                    Header footer = new com.itextpdf.text.Header("", Header.AUTHOR);
+                    if (schemesName == null) {
+                        footer = new com.itextpdf.text.Header("Patients List Pay MODE :" + payMode.toUpperCase() + " - Page: ", Header.CREATIONDATE);// FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
+                    } else {
+                        footer = new Header("Patients List Pay MODE :" + payMode.toUpperCase() + " " + schemesName.toUpperCase() + " - Page: ", Header.CREATIONDATE);// FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));                      
+                    }
+                    docPdf.addHeader("PATIENT LISTING", Header.PRODUCER);
+
+                    docPdf.open();
+
+                    PdfPTable table = new PdfPTable(12);
+                    int headerwidths[] = {7, 15, 25, 15, 8, 30, 15, 10, 10, 10, 10, 10};
+                    table.setWidths(headerwidths);
+                    table.setHeaderRows(2);
+                    table.setWidthPercentage((100));
+                    // table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+                    // table.getDefaultCell().setColspan(5);
+                    Phrase phrase = new Phrase("", pFontHeader);
+                    try {
+                        java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
+
+                        java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
+                        java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
+
+                        System.out.println("" + endDate1);
+                        //  phrase = new Phrase(bank +" Report: " +dateFormat.format(formattedDate), pFontHeader);
+
+                        //  table.addCell(phrase);
+                        String paymentModes = "";
+                        if (schemesName != null) {
+                            paymentModes = payMode + " - " + schemesName;
                         }
-                        Header footer = new com.itextpdf.text.Header("",Header.AUTHOR);
-                        if (schemesName == null) {
-                            footer = new com.itextpdf.text.Header("Patients List Pay MODE :" + payMode.toUpperCase() + " - Page: ", Header.CREATIONDATE);// FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));
-                        } else {
-                            footer = new Header("Patients List Pay MODE :" + payMode.toUpperCase() + " " + schemesName.toUpperCase() + " - Page: ", Header.CREATIONDATE);// FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLDITALIC,java.awt.Color.blue));                      
-                        }
-                        docPdf.addHeader("PATIENT LISTING",Header.PRODUCER);
+                        table.getDefaultCell().setColspan(7);
+                        if (servicepnt.equalsIgnoreCase("--ALL--")) {
+                            if (patCat.equalsIgnoreCase("New")) {
+                                phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "   Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
-                        docPdf.open();
+                                table.addCell(phrase);
+                            } else {
+                                if (patCat.equalsIgnoreCase("Old")) {
+                                    phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
 
-                        PdfPTable table = new PdfPTable(11);
-                        int headerwidths[] = {7, 15, 25, 15, 8, 30, 15, 10, 10, 10, 10};
-                        table.setWidths(headerwidths);
-                        table.setHeaderRows(2);
-                        table.setWidthPercentage((100));
-                        // table.getDefaultCell().setBorder(Rectangle.BOTTOM);
-                        // table.getDefaultCell().setColspan(5);
-                        Phrase phrase = new Phrase("", pFontHeader);
-                        try {
-                            java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);//MEDIUM);
-                            
-                            java.util.Date endDate1 = dateFormat.parse(endDate.toLocaleString());//dateInstance.toLocaleString());
-                            java.util.Date endDate11 = dateFormat.parse(beginDate.toLocaleString());//dateInstance.toLocaleString());
-                            
-                            System.out.println("" + endDate1);
-                            //  phrase = new Phrase(bank +" Report: " +dateFormat.format(formattedDate), pFontHeader);
-                            
-                            //  table.addCell(phrase);
-                            String paymentModes = "";
-                            if (schemesName != null) {
-                                paymentModes = payMode + " - " + schemesName;
-                            }
-                            table.getDefaultCell().setColspan(7);
-                            if (servicepnt.equalsIgnoreCase("--ALL--")) {
-                                if (patCat.equalsIgnoreCase("New")) {
-                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "   Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
-                                    
                                     table.addCell(phrase);
                                 } else {
-                                    if (patCat.equalsIgnoreCase("Old")) {
-                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
-                                        
+                                    if (patCat.equalsIgnoreCase("--All--")) {
+                                        phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
+
                                         table.addCell(phrase);
+                                    }
+                                }
+                            }
+                        } else {
+
+                            if (patCat.equalsIgnoreCase("New")) {
+
+                                phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+
+                                table.addCell(phrase);
+                            } else {
+                                if (patCat.equalsIgnoreCase("Old")) {
+                                    phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+
+                                    table.addCell(phrase);
+                                } else {
+                                    if (patCat.equalsIgnoreCase("--All--")) {
+                                        phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
+
+                                        table.addCell(phrase);
+                                    }
+                                }
+                            }
+
+                        }
+
+                        table.getDefaultCell().setColspan(5);
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+
+                        phrase = new Phrase("Printed On  :" + date, pFontHeader);
+
+                        table.addCell(phrase);
+                    } catch (java.text.ParseException psExec) {
+
+                        javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
+
+                    }
+                    // Phrase phrase = new Phrase("Patients List As At:" +endDate, pFontHeader);
+                    //table.addCell(phrase);
+                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                    table.getDefaultCell().setColspan(1);
+                    //   table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
+                    phrase = new Phrase("No.", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Patient No.", pFontHeader);
+                    table.addCell(phrase);
+                    table.getDefaultCell().setColspan(1);
+                    phrase = new Phrase("Name", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Age", pFontHeader);
+                    table.addCell(phrase);
+                    table.getDefaultCell().setColspan(1);
+                    phrase = new Phrase("Gender", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Diagnosis", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Residence", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Date", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Time Registered", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Time Seen", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Seen By", pFontHeader);
+                    table.addCell(phrase);
+                    phrase = new Phrase("Registered By", pFontHeader);
+                    table.addCell(phrase);
+                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                    // table.addCell("Amount KShs.");
+                    //      table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
+                    //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                    try {
+                        java.lang.Object[] listofAct = this.getListofActivities();
+
+                        //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
+                        System.out.println(listofAct.length);
+
+                        //  java.sql.Statement pSet1 = connectDB.createStatement();
+                        //  java.sql.Statement st = connectDB.createStatement();
+                        //java.sql.ResultSet rsetTotals = st.executeQuery("select sum((ph.quantity * st.transfer_price)::numeric(10,2)), sum(amount)::numeric(10,2),sum(amount - ph.quantity * st.transfer_price)::numeric(10,2) from hp_pharmacy ph,st_stock_prices st WHERE (st.department = 'PHA' OR st.department = 'IP Pharmacy') AND ph.date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' AND ph.description = st.product");
+                        java.sql.Statement st11 = connectDB.createStatement();
+                        int cash = 0;
+                        int scheme = 0;
+                        int noSeq = 0;
+
+                        java.sql.PreparedStatement st1 = null;
+                        java.sql.PreparedStatement st = null;
+                        java.sql.PreparedStatement st2 = null;
+                        java.sql.ResultSet rset = null;
+                        java.sql.ResultSet rset1 = null;
+                        java.sql.ResultSet rset2 = null;
+                        // if (patCat.equalsIgnoreCase("All")) {
+                        // rset1 = st11.executeQuery("select count(distinct(patient_no)) from hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
+                        //java.sql.Statement st = connectDB.createStatement();
+
+                        double ages = 0;
+                        System.out.println("THIS IS THE LENGTH  " + listofAct.length);
+                        System.out.println("Paymode  [" + payMode + "]");
+                        for (int i = 0; i < listofAct.length; i++) {
+                            String coTime = "-";
+                            String seenBy = "-";
+                            String diagnosis = "-";
+                            System.out.println("item" + listofAct[i]);
+                            if (payMode == "--ALL--") {
+                                if (patCat.equalsIgnoreCase("--ALL--")) {
+                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                } else {
+                                    if (patCat.equalsIgnoreCase("New")) {
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
-                                        if (patCat.equalsIgnoreCase("--All--")) {
-                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1), pFontHeader);
-                                            
-                                            table.addCell(phrase);
+                                        if (patCat.equalsIgnoreCase("Old")) {
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         }
+                                    }
+                                }
+                            } else if (payMode == "Scheme") {
+                                if (schemesName == "--ALL--") {
+                                    if (patCat.equalsIgnoreCase("--ALL--")) {
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                    } else {
+                                        if (patCat.equalsIgnoreCase("New")) {
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                        } else {
+                                            if (patCat.equalsIgnoreCase("Old")) {
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            }
+                                        }
+
+                                    }
+                                } else {
+                                    // Fetch for particular scheme
+                                    if (patCat.equalsIgnoreCase("--ALL--")) {
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                    } else {
+                                        if (patCat.equalsIgnoreCase("New")) {
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                        } else {
+                                            if (patCat.equalsIgnoreCase("Old")) {
+                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
+                                            }
+                                        }
+
                                     }
                                 }
                             } else {
-                                
-                                if (patCat.equalsIgnoreCase("New")) {
-                                    
-                                    phrase = new Phrase("Patient List [New]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
-                                    
-                                    table.addCell(phrase);
+                                if (patCat.equalsIgnoreCase("--ALL--")) {
+                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                 } else {
-                                    if (patCat.equalsIgnoreCase("Old")) {
-                                        phrase = new Phrase("Patient List [Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
-                                        
-                                        table.addCell(phrase);
+                                    if (patCat.equalsIgnoreCase("New")) {
+                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                     } else {
-                                        if (patCat.equalsIgnoreCase("--All--")) {
-                                            phrase = new Phrase("Patient List [New & Revisit]: Pay MODE :" + paymentModes.toUpperCase() + "  Period : " + dateFormat.format(endDate11) + " - " + dateFormat.format(endDate1) + "  at " + servicepnt, pFontHeader);
-                                            
-                                            table.addCell(phrase);
+                                        if (patCat.equalsIgnoreCase("Old")) {
+                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
                                         }
                                     }
                                 }
-
                             }
-                            
-                            table.getDefaultCell().setColspan(4);
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                            
-                            phrase = new Phrase("Printed On  :" + date, pFontHeader);
-                            
-                            table.addCell(phrase);
-                        } catch (java.text.ParseException psExec) {
-                            
-                            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), psExec.getMessage());
-                            
-                        }
-                        // Phrase phrase = new Phrase("Patients List As At:" +endDate, pFontHeader);
-                        //table.addCell(phrase);
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                        table.getDefaultCell().setColspan(1);
-                        //   table.getDefaultCell().setBackgroundColor(java.awt.Color.LIGHT_GRAY);
-                        phrase = new Phrase("No.", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Patient No.", pFontHeader);
-                        table.addCell(phrase);
-                        table.getDefaultCell().setColspan(1);
-                        phrase = new Phrase("Name", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Age", pFontHeader);
-                        table.addCell(phrase);
-                        table.getDefaultCell().setColspan(1);
-                        phrase = new Phrase("Gender", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Diagnosis", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Residence", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Date", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Time Registered", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Time Seen", pFontHeader);
-                        table.addCell(phrase);
-                        phrase = new Phrase("Registered By", pFontHeader);
-                        table.addCell(phrase);
-                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                        // table.addCell("Amount KShs.");
-                  //      table.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
-                        //table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                        try {
-                            java.lang.Object[] listofAct = this.getListofActivities();
-                            
-                            //    java.sql.Connection conDb1 = java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/sako","postgres","pilsiner");
-                            System.out.println(listofAct.length);
-                            
-                            //  java.sql.Statement pSet1 = connectDB.createStatement();
-                            //  java.sql.Statement st = connectDB.createStatement();
-                            //java.sql.ResultSet rsetTotals = st.executeQuery("select sum((ph.quantity * st.transfer_price)::numeric(10,2)), sum(amount)::numeric(10,2),sum(amount - ph.quantity * st.transfer_price)::numeric(10,2) from hp_pharmacy ph,st_stock_prices st WHERE (st.department = 'PHA' OR st.department = 'IP Pharmacy') AND ph.date_prescribed BETWEEN '"+beginDate+"' AND '"+endDate+"' AND ph.description = st.product");
-                            java.sql.Statement st11 = connectDB.createStatement();
-                            int cash = 0;
-                            int scheme = 0;
-                            int noSeq = 0;
-                            
-                            java.sql.PreparedStatement st1 = null;
-                            java.sql.PreparedStatement st = null;
-                            java.sql.PreparedStatement st2 = null;
-                            java.sql.ResultSet rset = null;
-                            java.sql.ResultSet rset1 = null;
-                            java.sql.ResultSet rset2 = null;
-                            // if (patCat.equalsIgnoreCase("All")) {
-                            // rset1 = st11.executeQuery("select count(distinct(patient_no)) from hp_patient_visit WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
-                            //java.sql.Statement st = connectDB.createStatement();
-                            
-                            double ages = 0;
-                            System.out.println("THIS IS THE LENGTH  " + listofAct.length);
-                            System.out.println("Paymode  [" + payMode + "]");
-                            for (int i = 0; i < listofAct.length; i++) {
-                                String coTime = "-";
-                                String diagnosis = "-";
-                                System.out.println("item" + listofAct[i]);
-                                if (payMode == "--ALL--") {
-                                    if (patCat.equalsIgnoreCase("--ALL--")) {
-                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                    } else {
-                                        if (patCat.equalsIgnoreCase("New")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                        } else {
-                                            if (patCat.equalsIgnoreCase("Old")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                            }
-                                        }
-                                    }
-                                } else if (payMode == "Scheme") {
-                                    if (schemesName == "--ALL--") {
-                                        if (patCat.equalsIgnoreCase("--ALL--")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                        } else {
-                                            if (patCat.equalsIgnoreCase("New")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                            } else {
-                                                if (patCat.equalsIgnoreCase("Old")) {
-                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment = 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                                }
-                                            }
-                                            
-                                        }
-                                    } else {
-                                        // Fetch for particular scheme
-                                        if (patCat.equalsIgnoreCase("--ALL--")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "' and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                        } else {
-                                            if (patCat.equalsIgnoreCase("New")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                            } else {
-                                                if (patCat.equalsIgnoreCase("Old")) {
-                                                    st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date, hp.scheme FROM hp_patient_register pr,hp_patient_visit pb, credit_acc_slip hp WHERE  pb.payment = 'Scheme' AND pb.date::date = hp.date::date AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? AND UPPER(hp.scheme) = '" + schemesName.toUpperCase() + "'  and pb.patient_no = pr.patient_no AND pb.patient_no = hp.patient_no  AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                                }
-                                            }
-                                            
-                                        }
-                                    }
-                                } else {
-                                    if (patCat.equalsIgnoreCase("--ALL--")) {
-                                        st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                    } else {
-                                        if (patCat.equalsIgnoreCase("New")) {
-                                            st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'New' ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                        } else {
-                                            if (patCat.equalsIgnoreCase("Old")) {
-                                                st1 = connectDB.prepareStatement("SELECT DISTINCT pb.patient_no,initcap(pb.name),funsoft_patient_age(pr.year_of_birth::date), pb.gender,initcap(pb.services),initcap(pr.residence),pr.date::date,pb.date::date,pb.input_date::TIME(0),INITCAP(pb.user_name), pb.input_date FROM hp_patient_register pr,hp_patient_visit pb WHERE  pb.payment != 'Scheme' AND pb.date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? and pb.patient_no = pr.patient_no AND pb.comments ilike 'Old'  ORDER BY pb.input_date, pb.input_date::TIME(0) limit 1");
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                                st = connectDB.prepareStatement("SELECT INITCAP(disease) AS disease FROM hp_patient_diagnosis pr WHERE pr.date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ?");
-                                st2 = connectDB.prepareStatement("SELECT curr_date::TIME(0) FROM pb_doctors_request pr WHERE pr.curr_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? ORDER BY 1 ASC LIMIT 1");
-                                
-                                st1.setString(1, listofAct[i].toString());
-                                rset = st1.executeQuery();
-                                
-                                st.setString(1, listofAct[i].toString());
-                                rset1 = st.executeQuery();
-                                
-                                st2.setString(1, listofAct[i].toString());
-                                rset2 = st2.executeQuery();
-                                
-                                while (rset1.next()) {
-                                    
-                                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    diagnosis = dbObject.getDBObject(rset1.getObject(1), "-");
-                                    //      table.addCell(phrase);
-                                }
-                                
-                                while (rset2.next()) {
-                                    
-                                    // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    coTime = dbObject.getDBObject(rset2.getObject(1), "-");
-                                    //      table.addCell(phrase);
-                                }
-                                while (rset.next()) {
-                                    
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                    
-                                    table.getDefaultCell().setColspan(1);
-                                    noSeq = noSeq + 1;
-                                    phrase = new Phrase(java.lang.String.valueOf(noSeq), pFontHeader1);
-                                    table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(1);
-                                    
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
-                                    
-                                    table.addCell(phrase);
-                                    
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
-                                    
-                                    table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(1);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+
+                            st = connectDB.prepareStatement("SELECT INITCAP(disease) AS disease FROM hp_patient_diagnosis pr WHERE pr.date_discharged::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ?");
+                            st2 = connectDB.prepareStatement("SELECT input_date::TIME(0), doctor FROM hp_clinical_results pr WHERE pr.input_date::date BETWEEN '" + beginDate + "' AND '" + endDate + "' and pr.patient_no = ? ORDER BY 1 ASC LIMIT 1");
+
+                            st1.setString(1, listofAct[i].toString());
+                            rset = st1.executeQuery();
+
+                            st.setString(1, listofAct[i].toString());
+                            rset1 = st.executeQuery();
+
+                            st2.setString(1, listofAct[i].toString());
+                            rset2 = st2.executeQuery();
+
+                            while (rset1.next()) {
+
+                                // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                diagnosis = dbObject.getDBObject(rset1.getObject(1), "-");
+                                //      table.addCell(phrase);
+                            }
+
+                            while (rset2.next()) {
+
+                                // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                coTime = dbObject.getDBObject(rset2.getObject(1), "-");
+                                seenBy = dbObject.getDBObject(rset2.getObject(2), "-");
+                                //      table.addCell(phrase);
+                            }
+                            while (rset.next()) {
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+
+                                table.getDefaultCell().setColspan(1);
+                                noSeq = noSeq + 1;
+                                phrase = new Phrase(java.lang.String.valueOf(noSeq), pFontHeader1);
+                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(1);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
+
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+
+                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 //                                    ages = rset.getString(3);
 //                                    if (ages < 1) {
 //                                        phrase = new Phrase("<1", pFontHeader1);
@@ -660,85 +658,90 @@ public class PatientsAttSheetPdf implements java.lang.Runnable {
 //
 //                                        table.addCell(phrase);
 //                                    }
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
-table.addCell(phrase);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-"), pFontHeader1);
+                                table.addCell(phrase);
 
-table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(1);
 
-table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
 
-table.addCell(phrase);
+                                table.addCell(phrase);
 
-table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 //  phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "-"), pFontHeader1);
-phrase = new Phrase(diagnosis, pFontHeader1);
+                                phrase = new Phrase(diagnosis, pFontHeader1);
 
-table.addCell(phrase);
+                                table.addCell(phrase);
 
-table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-"), pFontHeader1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-"), pFontHeader1);
 
-table.addCell(phrase);
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(8), "-"), pFontHeader1);
+                                table.addCell(phrase);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(8), "-"), pFontHeader1);
 
-table.addCell(phrase);
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(9), "-"), pFontHeader1);
+                                table.addCell(phrase);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(9), "-"), pFontHeader1);
 
-table.addCell(phrase);
-phrase = new Phrase(coTime, pFontHeader1);
+                                table.addCell(phrase);
+                                phrase = new Phrase(coTime, pFontHeader1);
 
-table.addCell(phrase);
+                                table.addCell(phrase);
+                                
+                                phrase = new Phrase(seenBy, pFontHeader1);
 
-phrase = new Phrase(dbObject.getDBObject(rset.getObject(10), "-"), pFontHeader1);
+                                table.addCell(phrase);
 
-table.addCell(phrase);
+                                phrase = new Phrase(dbObject.getDBObject(rset.getObject(10), "-"), pFontHeader1);
 
-                                }
+                                table.addCell(phrase);
+
                             }
-                            table.getDefaultCell().setColspan(10);
-                            
-                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase(" ", pFontHeader1);
-                            table.addCell(phrase);
-                            
-                            docPdf.add(table);
-                            
-                        } catch (java.sql.SQLException SqlExec) {
-                            
-                            SqlExec.printStackTrace();
-                            
-                            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
-                            
                         }
-                        //
-                        // }
+                        table.getDefaultCell().setColspan(12);
 
-                    } catch (java.io.FileNotFoundException fnfExec) {
+                        table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                        phrase = new Phrase(" ", pFontHeader1);
+                        table.addCell(phrase);
 
-                        javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), fnfExec.getMessage());
+                        docPdf.add(table);
+
+                    } catch (java.sql.SQLException SqlExec) {
+
+                        SqlExec.printStackTrace();
+
+                        javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), SqlExec.getMessage());
 
                     }
-                } catch (DocumentException lwDocexec) {
+                    //
+                    // }
 
-                    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), lwDocexec.getMessage());
+                } catch (java.io.FileNotFoundException fnfExec) {
+
+                    javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), fnfExec.getMessage());
 
                 }
+            } catch (DocumentException lwDocexec) {
 
-                docPdf.close();
-                docPdf.close();
-                com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-
-                //com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
-            } catch (java.io.IOException IOexec) {
-
-                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
+                javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), lwDocexec.getMessage());
 
             }
 
+            docPdf.close();
+            docPdf.close();
+            com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+
+            //com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+        } catch (java.io.IOException IOexec) {
+
+            javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), IOexec.getMessage());
+
         }
-        ////*********THE CHANGE DONE CASTED THE input_date::date
+
+    }
+    ////*********THE CHANGE DONE CASTED THE input_date::date
+
     public java.lang.Object[] getListofActivities() {
 
         java.lang.Object[] listofActivities = null;

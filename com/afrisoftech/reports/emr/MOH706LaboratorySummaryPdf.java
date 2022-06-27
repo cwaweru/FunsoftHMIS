@@ -4,11 +4,10 @@
 //import java.lang.*;
 /**
  * @author Charles Waweru <cwaweru@systempartners.biz>
- * 
-*/
+ *
+ */
 package com.afrisoftech.reports.emr;
 
-import com.afrisoftech.records.reports.*;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.*;
 import java.awt.Color;
@@ -30,6 +29,8 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
     String Gender = null;
     java.lang.Thread threadSample;
     com.lowagie.text.Font pFontHeader = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.BOLD);
+    com.lowagie.text.Font pFontHeaderx = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.BOLD);
+    com.lowagie.text.Font pFontHeaderxx = FontFactory.getFont(FontFactory.HELVETICA, 7, Font.BOLD);
     com.lowagie.text.Font pFontHeader1 = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.NORMAL);
     com.lowagie.text.Font pFontHeader11 = FontFactory.getFont(FontFactory.HELVETICA, 8, Font.BOLD);
     com.lowagie.text.Font pFontHeader2 = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD);
@@ -100,6 +101,29 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
 
         }
 
+    }
+
+    public void addWhiteSpace(com.lowagie.text.pdf.PdfPTable table, Phrase phrase,int cols) {
+        table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+        table.getDefaultCell().setColspan(cols);
+        phrase = new Phrase(" ", pFontHeaderx);
+        table.addCell(phrase);
+        table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+    }
+    
+    public void addLightGrayBackgroundCell(com.lowagie.text.pdf.PdfPTable table, Phrase phrase,int cols){
+        table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
+        table.getDefaultCell().setColspan(cols);
+        phrase = new Phrase(" ", pFontHeader1);
+        table.addCell(phrase);
+        table.getDefaultCell().setBackgroundColor(Color.WHITE);
+    }
+    
+    public void addTableCell(com.lowagie.text.pdf.PdfPTable table, Phrase phrase,int cols, String text, com.lowagie.text.Font font, int align){
+        table.getDefaultCell().setHorizontalAlignment(align);
+        table.getDefaultCell().setColspan(cols);
+        phrase = new Phrase(text, font);
+        table.addCell(phrase);
     }
 
     public java.lang.String getDateLable() {
@@ -334,9 +358,9 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
 
                         try {
 
-                            com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(15);
+                            com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(22);
 
-                            int headerwidths[] = {10, 5, 8, 3, 5, 5, 5, 10, 10, 10, 3, 5, 8, 8, 8};
+                            int headerwidths[] = {12, 6, 6, 6, 2, 12, 6, 6, 6, 2, 10, 6, 6, 6, 2, 10, 4, 4, 2, 10, 5, 5};
 
                             table.setWidths(headerwidths);
 
@@ -365,7 +389,7 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
                                 java.lang.String yearString = dateFormatters.getDateString();
 
                                 table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
-                                table.getDefaultCell().setColspan(15);
+                                table.getDefaultCell().setColspan(22);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 table.getDefaultCell().setFixedHeight(50);
@@ -375,3122 +399,1671 @@ public class MOH706LaboratorySummaryPdf implements java.lang.Runnable {
 
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(3);
+                                table.getDefaultCell().setColspan(4);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
                                 phrase = new Phrase("LABORATORY SUMMARY REPORT", pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(3);
+                                table.getDefaultCell().setColspan(4);
                                 phrase = new Phrase("HEALTH FACILITY : " + compName, pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(3);
+                                table.getDefaultCell().setColspan(4);
                                 phrase = new Phrase("County", pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(3);
+                                table.getDefaultCell().setColspan(4);
                                 phrase = new Phrase("Sub-County : " + compName, pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(3);
                                 phrase = new Phrase("MONTH : " + monthString.toUpperCase(), pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setColspan(3);
                                 phrase = new Phrase("YEAR : " + yearString.toUpperCase(), pFontHeader);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
 
                                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement(District);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase,22);
 
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("1. URINE ANALYSIS", pFontHeader);
+                                //Urine Section
+                                addTableCell(table, phrase,4, "1. URINE ANALYSIS", pFontHeader, PdfCell.ALIGN_CENTER);
+      
+                                //Space Section
+                                addWhiteSpace(table, phrase,1);
+
+                                //Parasit Section
+                                addTableCell(table, phrase,4, "3. PARASITOLOGY", pFontHeader, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Bact Section
+                                addTableCell(table, phrase,4, "5. BACTERIOLOGY", pFontHeader, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo Section
+                                addTableCell(table, phrase,7, "6. HISTOLOGY AND CYTOLOGY", pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "Malaria Test", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "Bacteriological Sample", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Total Cultures", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "No. Culture Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "Smears", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Malignant", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.1 Urine Chemistry", pFontHeader, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getTestCount(connectDB, "Urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.1 Malaria BS(< 5 yrs)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExtByAge(connectDB, "malaria", "mps", beginDate, endDate,0,5)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExtByAge(connectDB, "malaria", "mps", beginDate, endDate,0,5)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.1. Urine", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "Urine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "Urine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "Urine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.1 PAP Smears", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.2 Glucose", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "glucose", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.2 Malaria BS(5 yrs & above)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExtByAge(connectDB, "malaria", "mps", beginDate, endDate, 5, 999)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExtByAge(connectDB, "malaria", "mps", beginDate, endDate, 5, 999)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1); 
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.2. Pus Swabs", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "pus swabs", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "pus swabs", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "pus swabs", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.2 Touch Preparations", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.3 Ketones", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "ketone", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.3 Malaria Rapid Diag Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "malaria r", "malaria r", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "malaria r", "malaria r", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1); 
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.3. High Vaginal Swabs", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "high vaginal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "high vaginal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "high vaginal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.3 Tissue Impressions", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Tisuue imp", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Tisuue imp", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.4 Proteins", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "protein", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "Stool Examination", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getTestCount(connectDB, "stool", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1); 
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.4. Throat Swabs", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "throat swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "throat swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "throat swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "Fine Needle Aspirates", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Malignant", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.5 Urine Microscopy", pFontHeader, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getTestCount(connectDB, "Urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.4 Taenia spp.", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "taenia", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.5. Rectal Swabs", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "rectal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "rectal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "rectal swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.4 Thyroid", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.6 Pus cells(>5/hpf)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositivePus(connectDB, "pus", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.5 Hymenolepis nana", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hymenolepis", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.6. Blood", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "blood swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "blood swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "blood swab", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.5 Lymph nodes", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lymph", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "lymph", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.7 S haematobium", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "haematobium", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.6 Hookworm", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hookworm", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.7. Water", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "water", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "water", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "water", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.6 Liver", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "liver", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "liver", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.8 T Vaginalis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "vaginalis", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.7 Roundworms", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "roundworm", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.8 food", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "food", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "food", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "food", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.7 Breast", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "breast", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "breast", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.9 Yeast Cells", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "yeast", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.8 S mansoni", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "mansoni", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 1, "5.9 Urethral Swab", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "urethral", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "urethral", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "urethral", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.8 Soft Tissue Masses", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase, 1, "1.10 Bacteria", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "bacteria", "urin", beginDate, endDate)), pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.9 Trichuris trichura", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "trichur", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "Bacterial enteric pathogens", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "Fluid Cytology", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Malignant", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 5);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "3.10 Amoeba", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "amoeba", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.10 Stool Cultures", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "stool%cul", "stool%cul", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "stool%cul", "stool%cul", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.9 Ascitic fluid", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Ascitic", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Ascitic", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Urine Section
+                                addTableCell(table, phrase,4, "2. BLOOD CHEMISTRY", pFontHeader, PdfCell.ALIGN_CENTER);
+      
+                                //Space Section
+                                addWhiteSpace(table, phrase,6);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "Stool Isolates", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.10 CFS", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "CFS", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "CFS", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "Blood Sugar Test", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Low", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "High", pFontHeaderx, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase,4, "4. HAEMATOLOGY", pFontHeader, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.11 Salmonella Typhi", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "typhi", "typhi", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.11 Pleural Fluid", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pleural", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "pleural", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.1 Blood Sugar", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "rbs--blood sugar", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "rbs--blood sugar", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "rbs--blood sugar", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "Haematology tests", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "HB <5 g/dl", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "HB between 5 & 10 g/dl", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.12 Shigella - dysenteriae type 1", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "Shigella", "dysentry", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.12 Urine", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "urine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.2 OGTT", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "OGTT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "OGTT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "OGTT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "4.1 Full Blood count", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "full haem", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "hgb", "", 5, beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountOutsideRange(connectDB, "hgb", 5, 10, beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.13 E.coli O 157:H7", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "coli", "coli", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "Tissue Histology", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Malignant", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.3 Renal Function ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "renal profile", "renal function", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Parasit Section
+                                addTableCell(table, phrase, 1, "4.2 HB estimation test(other techniques)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hgb", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "hgb", "", 5, beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountOutsideRange(connectDB, "hgb", 5, 10, beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 2, "5.14 V cholerae O1", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "cholera", "cholera", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.13 Cervix", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.4 Creatinine", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "creatinine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "creatinine", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 2, "", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number <500", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 2, "5.15 V cholerae O139", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositiveExt(connectDB, "cholera", "cholera", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.14 Prostate", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "prostate", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "prostate", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.5 Sodium", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "sodium", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "sodium", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 2, "4.3 CD4 count", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2,  Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "cd4", "", 500, beginDate, endDate)) , pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 4, "Bacterial meningitis", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "6.15 Breast Tissue", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Breast Tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Breast Tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.5 Potassium", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "potassium", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "potassium", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 4, "", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 1, "Bacterial meningitis", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Number contaminated", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 3, "6.16 Ovary", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.6 Chloride", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "chloride", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "chloride", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "Other Haemalogogy tests", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 1, "5.16 CSF", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "csf", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "csf", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "csf", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 3, "6.17 Uterus", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Uterus", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Uterus", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.3 Liver Function Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "liver function", "lfts", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.4 Sickling test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sickling", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "sickling", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "Bacterial meningitis serotypes", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                addTableCell(table, phrase, 3, "6.18 Skin", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Skin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Skin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                
+                                 //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.9 Direct Bilirubin", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Direct Bilirubin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Direct Bilirubin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.5 Peripheral blood films", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "blood film", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.17 Neissseria meningitidis A", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB,  "Neissseria meningitidis A", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.19 Head and neck", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Head and neck", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Head and neck", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                
+                                 //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.10 Total Bilirubin", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Total Bilirubin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Total Bilirubin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.6 BMA", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bma", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.18 Neissseria meningitidis B", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB,  "Neissseria meningitidis B", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.20 Dental", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "dental", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "dentals", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.11 ASAT (SGOT)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "SGOT--AST/GOT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "SGOT--AST/GOT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.7 coagulation Profile", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "coagulation P", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.19 Neissseria meningitidis C", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB,  "Neissseria meningitidis C", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.21 GIT", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "git", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "git", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.12 ALAT (SGPT)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "SGPT--ALAT-GPT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "SGPT--ALAT/GPT", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.8 Reticulocyte count", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Reticulocyte P", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.20 Neissseria meningitidis W135", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Neissseria meningitidis W135", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.22 Lymph nodes Tissue", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Lymph nodes Tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Lymph nodes Tissue", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.13 Serum Protein", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Serum Protein--Total Protein", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "serum Protein--Total Protein", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 2, "High", pFontHeaderx, PdfCell.ALIGN_LEFT);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.21 Neissseria meningitidis X", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Neissseria meningitidis X", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histology Section
+                                addTableCell(table, phrase, 3, "Bone Marrow Studies ", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "Malignant", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.14 Albumin", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Albumin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "albumin", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 1, "4.9 Erythrocyte Sedimentation rate", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ESR", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "esr", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.22 Neissseria meningitidis Y", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Neissseria meningitidis Y", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.23 Bone Marrow Aspirate", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Bone Marrow Aspirate", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Bone Marrow Aspirate", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.15 Alkaline Phosphate", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Alkaline p", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Alkaline p", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 4, " ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.23 N meningitidis (Intermediate)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Neissseria meningitidis Y", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Histo section
+                                addTableCell(table, phrase, 3, "6.24 Trephine Biopsy", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Trephine Biopsy", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Trephine Biopsy", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.16 Lipid Profile", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "lipid profile", "lipid profile", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addLightGrayBackgroundCell(table, phrase, 2);
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 2, "Blood grouping", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, "Number", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.24 Streptococcus pneumoniae", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Streptococcus pneumon", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 8);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.17 Total Cholestorol", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Total Cholestor", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Total Cholestor", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 2, "4.10 Total blood group tests", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "blood group", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.25 Haemophilus influenzae (type b)", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Haemophilus influenzae", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 5);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase,3, "8. SPECIMEN REFERRAL TO HIGHER LEVELS", pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.18 Triglycerides", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Triglyceride", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Triglyceride", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 2, "4.11 Blood units grouped", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "blood%grouped", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.26 Cryptococcal Menengitis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Cryptococcal Menengitis", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serelogy Section
+                                addTableCell(table, phrase,3, "7. SERELOGY", pFontHeader, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "Specimen Referral", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "No. of Specimen", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Results Received", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.19 LDL", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addLightGrayBackgroundCell(table, phrase, 1);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "ldl", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "ldl", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "Blood Safety", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Number", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 4, "Bacterial pathogens from other types of specimen", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                               //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "Serological test", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "No. Positiv", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.1 CD4 ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "CD4", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "CD4", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "Hormonal test", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Low", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "High", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.12 Blood units received from blood transfusion centers", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.27 anthracis ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "anthracis", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.1 VDRL", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "vdrl", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "vdrl", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.2 Viral Load ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Viral Load", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Viral Load", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.20 T3", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "T3", "T3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "T3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "T3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.13 Blood units collected at facility", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.28 Y. Pestis ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 2, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pestis", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.2 TPHA", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tpha", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tpha", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.3 EID ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "EID", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "EID", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.21 T4", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "T4", "T4", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "T4", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "T4", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.14 Blood units transfused", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 4,  "  ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                
+                                 //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.3 ASOT", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "asot", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "asot", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.4 Discondant /discripant ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Discondant", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Discondant", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.22 TSH", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "TSH", "TSH", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "TSH", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "TSH", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.15 Transfusion reactions reported and investigated", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 4,  "  ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                
+                                 //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.4 HIV", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "HIV", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hiv", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.5 TB Culture", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "tb", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "tb", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.23 PSA", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "PSA", "PSA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "PSA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "PSA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.16 Blood grouping and cross matched", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "SPUTUM", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.5 Brucella", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "brucella", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "brucella", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.6 Virological ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Virological", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Virological", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "Tumor Markers", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Low", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "High", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.17 Blood units discarded", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.29 Total TB Smears ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb smears", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb smears", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.6 Rheumatoid factor", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Rheumatoid factor", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Rheumatoid factor", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.7 Clinical Chemistry ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Clinical Chemistry", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Clinical Chemistry", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.24 CEA", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "CEA", "CEA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "CEA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "CEA", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "Blood Screening at facility", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Number Positive", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.30 TB new suspects ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb new suspect", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb new suspect", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.7 Helicobacter pylori", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pylori", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "pylori", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.8 Histoloy/cytology  ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Histoloy%cytology", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Histoloy%cytology", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.25 C15-3", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "C15-3", "C15-3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "C15-3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "C15-3", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.18 HIV", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hiv", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.31 TB Follow up ", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb follow up", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb follow up", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.8 Hepatitis A Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Hepatitis A", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Hepatitis A", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.9 Haematological", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Haematolog", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Haematolog", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "CSF Chemistry", pFontHeaderx, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, "Total Exam", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Low", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "High", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.19 Hepatitis B", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Hepatitis B", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.32 Rifampicin Resistant TB", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Rifampicin Resistant TB", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Rifampicin Resistant TB", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.9 Hepatitis B Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Hepatitis b", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Hepatitis b", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.10 Parasitological", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "parasit", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "parasit", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.26 Proteins", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "Proteins", "Proteins", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Proteins", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Proteins", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.20 Hepatitis C", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Hepatitis C", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Bact Section
+                                addTableCell(table, phrase, 2, "5.33 MDR TB", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "MDR TB", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "MDR TB", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+//                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.10 Hepatitis C Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Hepatitis c", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Hepatitis c", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Refferal Section
+                                addTableCell(table, phrase, 1, "8.11 Blood Samples for transfusion screening", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "transfusion screening", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "transfusion screening", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                //Blood Chem Section
+                                addTableCell(table, phrase, 1, "2.27 Glucose", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCountExt(connectDB, "Glucose", "Glucose", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountLow(connectDB, "Glucose", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountHigh(connectDB, "Glucose", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 1);
+                                
+                                //Haematology Section
+                                addTableCell(table, phrase, 3, "4.21 Syphyllis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "Syphyllis", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 6);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.11 HCG", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "HCG", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "HCG", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 4);
+                                
+                                //Space Section
+                                addWhiteSpace(table, phrase, 15);
+                                
+                                //Serology Section
+                                addTableCell(table, phrase, 1, "7.12 CRAIG Test", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "CRAIG Test", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "CRAIG Test", beginDate, endDate)), pFontHeader1, PdfCell.ALIGN_CENTER);
+
+                                //Space Section
+                                addWhiteSpace(table, phrase, 4);
+                                
+                                //---------------------------------------------------------------------
+                                
+                                table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                                table.getDefaultCell().setColspan(44);
+                                phrase = new Phrase(" ", pFontHeaderx);
                                 table.addCell(phrase);
+                                table.addCell(phrase);
+                                table.addCell(phrase);
+                                
+                                
+                                //---------------------------------
+                                
+                                //Drug Sensitivity Pattern
+                                addTableCell(table, phrase, 22, "Drug Susceptibility Testing", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                                addTableCell(table, phrase, 2, "Drug Sensitivity Pattern", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "a. Ampicillin", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "b. Chloramphenicol", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "c. Ceftriaxone", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "d. Penicillin", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "e. Oxacillin", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "f. Ciprofloxacin", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "g. Nalidixic acid", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "h. Trimethoprim sulphamethoxazol", pFontHeaderxx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "i. Tetracycline", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 2, "j. Augmentin", pFontHeaderx, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensit", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resist", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensit", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Sensitive", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, "Resistant", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.1 Haemophilus influanzae", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.2 Neisseria meningitidis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.3 Streptococcus pnuemoniae", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.4 Salmonella serotype Typhi", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.5 Shigella", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.6 Vibrio Cholerae", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.7 B. anthracis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                addTableCell(table, phrase, 2, "9.8 Y. Pestis", pFontHeader1, PdfCell.ALIGN_LEFT);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                addTableCell(table, phrase, 1, " ", pFontHeader1, PdfCell.ALIGN_CENTER);
+                                
+                                
+                                
+                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                                table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                                table.getDefaultCell().setColspan(44);
+                                phrase = new Phrase(" ", pFontHeaderx);
+                                table.addCell(phrase);
+                                table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
+                                table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
+                                table.getDefaultCell().setColspan(44);
+                                phrase = new Phrase(" ", pFontHeaderx);
+                                table.addCell(phrase);
+                                
+                                table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
+                                
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                table.getDefaultCell().setColspan(6);
+                                phrase = new Phrase("Report Compiled By : ______________________________ ", pFontHeader);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("3.HAEMATOLOGY", pFontHeader);
+                                phrase = new Phrase("Designation : ___________________________", pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("7.PARASITOLOGY", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Number Positive", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Type of examination", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("HB < 5g/dl", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("5 < HB <10g/dl", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("Blood smears", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.1 Urine Chemistry", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.WHITE);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.1 Full blood count(automated)", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "fbc", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "fbc", "", 5, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountRange(connectDB, "fbc", 5, 10, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Positive", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.2 Glucose", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.2 HB tests (by a HB meter)", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hbc", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "hbc", "", 5, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountRange(connectDB, "hbc", 5, 10, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.1 Malaria", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "malaria", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "malaria", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.3 Ketones", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ketone", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "ketones", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.3 CD4/CD8", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No. tests", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("<200", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("200-300", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Stool examinations", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.4 Proteins", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "protein", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "protein", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.3 CD4/CD8", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cd4/cd8", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "cd4/cd8", "", 200, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountRange(connectDB, "cd4/cd8", 200, 300, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.2 Total Exams", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenPositiveCount(connectDB, "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.5 HCG", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hcg", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hcg", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.4 CD4%", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No. of Tests", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("<25%", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(">25%", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Microscopic findings", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.6 Urine microscopy", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.lightGray);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.WHITE);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.4 CD4%", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cd4", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentBelow(connectDB, "cd4", "", 25, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPercentOver(connectDB, "cd4", "", 25, beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.3 Taenia spp.", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "taenia", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "taenia", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.7 Pus cells (>5hpf)", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pus", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "pus", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Type of examination", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Positive", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.4 Hymenoiepis nana.", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hymenoiepis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hymenoiepis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.8 S. haematobium", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "haematobium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "haematobium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.5 Sickling test", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sickling", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "sickling", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.5 Hookworm", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hookworm", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hookworm", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.9 T. vaginalis", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "vaginalis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "vaginalis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.6 Manual WBC counts", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "wbc", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "wbc", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.6 Roundworms", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "roundworms", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "roundworms", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.10 Yeast cells", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "yeast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.lightGray);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "yeast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setBackgroundColor(Color.WHITE);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.7 Peripheral blood films", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "blood films", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.7 S. Mansoni", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "mansoni", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "mansoni", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.11 Red blood cells", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "red blood cells", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "rbc", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("3.8 Erythrocyte Sedimentation rate", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "erythrocyte", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "erythrocyte", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.8 Trichuris trichura", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "trichura", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "trichura", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.12 Bacteria", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bacteria", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "bacteria", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.9 E. histolytica", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "histolytica", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "histolytica", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("1.13 Spermatozoa", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "spermatozoa", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "spermatozoa", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("4. BLOOD GROUPING AND CROSSMATCH", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("7.10 Giardia lambila", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lambila", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "lamblia", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
+                                
+                                table.getDefaultCell().setColspan(5);
+                                phrase = new Phrase("Date : _______________________", pFontHeader);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("Measure", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Number", pFontHeader1);
+                                phrase = new Phrase("Signature : _______________________", pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
+                                
 
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setColspan(22);
                                 phrase = new Phrase(" ", pFontHeader);
                                 table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
                                 table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No. outside normal range", pFontHeader1);
                                 table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("4.1 Total groupings done", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "grouping", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("8. SEROLOGY", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.1 Blood sugar", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sugar", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "sugar", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("4.1 Total groupings done", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "grouping", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Serological test", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total exam", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Positive", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.2 OGTT", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ogtt", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "ogtt", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("4.2 Blood units grouped", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "grouping", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.1 Rapid Plasma Region", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "plasma", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "plasma", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No outside normal range", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("4.3 Transfusion reactions", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "transfusion", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.2 TPHA", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tpha", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tpha", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.3 Renal function tests", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "renal function", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "renal function", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("4.4 Blood cross matches", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cross match", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.3 ASOT", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "asot", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "asot", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.4 Creatinine", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "creatinine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "creatinine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.4 HIV", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hiv", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hiv", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.5 Urea", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urea", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "urea", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("5. BLOOD SAFETY ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.5 Widal", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "widal", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "widal", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.6 Sodium", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sodium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "sodium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("Measure", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Number", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.6 Brucella", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "brucella", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "brucella", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.7 Potasium", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "potasium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "potasium", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.1 Blood units collected from regional blood transfusion centres", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.7 Rheumatoid factor", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "rheumatoid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "rheumatoid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.8 Chlorides", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "chlorides", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "chlorides", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.2 Blood units collected from other centres and screened at facility", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.8 Helicobacter pylori", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pylori", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "pyroli", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No outside normal range", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.3 Blood units screened at facility that are HIV positive", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hiv", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.9 Hepatitis A test", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hepatitis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.9 Liver function tests", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "liver function", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "liver function", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.4 Blood units screened at facility that are Hepatitis B positive", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.10 Hepatitis B test", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis b", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hepatitis b", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.10 Direct Bilirubin", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bilirubin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "birirubin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.5 Blood units screened at facility that are Hepatitis C positive", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.11 Hepatitis C test", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "hepatitis c", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "hepatitis c", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.11 Total Bilirubin", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "bilirubin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "bilirubin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.6 Blood units positive for other infections", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("8.12 Viral load", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "viral load", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "viral load", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.12 ASAT(SGOT)", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "sgot", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "sgot", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("5.7 Blood units transfused", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.13 ALAT(SGPT)", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "spgt", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "spgt", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("6. HISTOLOGY AND CYTOLOGY", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("9 BACTERIOLOGY TESTS", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.14 Serum Protein", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "serum", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "serum", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("SMEARS", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Infective", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Non Infective", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("9.1 Total bacteriological tests", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.15 Albumin", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "albumin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "albumin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Benign", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Malignant", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Sample", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total exam", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Cultures done", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.16 Alkaline Phosphatase", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "alkaline", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "alkaline", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.1 PAP smear", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "pap smear", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.2 Urine", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "Urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "Urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.17 Gamma GT", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "gamma", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                //to decorate
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "gamma", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.2 Touch prep", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Touch prep", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.3 Pus swabs", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "pus swabs", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "pus swabs", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total exam", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No outside normal range", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.3 Tissue impressions", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tissue impressions", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "tissue impressions", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "tissue impressions", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "tissue impressions", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.4 High Vaginal Swab", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "vaginal swab", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "vaginal swab", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.18 Lipid profile", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lipid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("FINE NEEDLE ASPIRATES (FNA)", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.6 Stool", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "Stool", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "Stool", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.19 Total cholesterol", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "cholesterol", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "cholesterol", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.4 Thyroid", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "thyroid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.8 Blood", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "blood", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "blood", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.20 Triglycerides", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "triglycerides", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "triglycerides", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.5 Lymph nodes", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.9 CSF", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.22 LDL", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "ldl", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "ldl", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.7 Breast", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Breast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "Breast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "Breast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Breast", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.10 Water", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "water", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "water", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exams", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No. outside normal range", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.8 Soft tissue masses", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Soft tissue masses", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "Soft tissue masses", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "Soft tissue masses", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Soft tissue masses", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("9.11 Food", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCount(connectDB, "food", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getSpecimenCultureCount(connectDB, "food", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.23 CSF Chemistry", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "csf chemistry", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.9 Others", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "Others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "Others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "Others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.24 Proteins", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "proteins", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "proteins", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("FLUID CYTOLOGY", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("10.SPUTUM", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.25 Glucose", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.11 CSF", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "csf", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total exam", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Positive", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No outside normal margin", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.12 Pleural fluid", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "pleural fluid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "pleural fluid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "pleural fluid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "pleural fluid", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("10.1 TB new suspects", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb new suspect", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb new suspect", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.26 Body fuids", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "body fluids", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "body fluids", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.13 Urine", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "urine", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("10.2 Followup", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb followup", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb followup", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.27 Proteins", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "proteins", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "proteins", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("6.14 Others", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "others", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("10.3 TB smears", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tb smears", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tb smears", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.28 Glucose", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "glucose", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "glucode", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(6);
-                                phrase = new Phrase("TISSUE HISTOLOGY", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("10.4 MDR TB", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "mdr tb", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "mdr tb", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Hormones", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("No. outside mormal range", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.15 Cervix", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "cervix", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.29 T3", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "t3", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "t3", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.16 Prostrate", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "prostrate", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "prostrate", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "prostrate", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase("11. SPECIMEN REFERRAL TO HIGHER LEVELS", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.30 T4", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "t4", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "t4", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.18 Ovary", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "ovary", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Specimen", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Specimen", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Results received", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.31 TSH", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "tsh", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "tsh", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.19 Uterus", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "uterus", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "uterus", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "uterus", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("11.1 Referred to County Hospital", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Referred to County Hospital", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Referred to County Hospital", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("2.32 PSA", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterCount(connectDB, "psa", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterResultCountPositive(connectDB, "psa", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.20 Skin", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "skin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "skin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "skin", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("11.2 Referred to National Hospitals", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Referred to National Hospitals", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Referred to National Hospitals", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.21 Head and Neck", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "head and neck", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "head and neck", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "head and neck", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("11.3 Referred to National Reference Lab", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Referred to National Reference Lab", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Referred to National Reference Lab", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.22 Dental", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "dental", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "dental", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "dental", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("11.4 Referred to KEMRI", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Referred to KEMRI", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Referred to KEMRI", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.23 GIT", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "git", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "git", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "git", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("11.5 Referred for Quality Analysis", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralCount(connectDB, "Referred for Quality Analysis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getReferralResultsCount(connectDB, "Referred for Quality Analysis", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.24 Lymph nodes", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveBenignCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "lymph nodes", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("BONE MARROW STUDIES", pFontHeader);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Total Exam", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Malignant", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.25 Bone marrow apirate", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "bone marrow aspirate", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "bone marrow aspirate", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("6.26 Trephine biopsy", pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerInfectiveCount(connectDB, "Trephine biopsy", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getCancerNonInfectiveMalignantCount(connectDB, "Trephine biopsy", beginDate, endDate)), pFontHeader1);
-                                table.addCell(phrase);
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(4);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(15);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(15);
-                                phrase = new Phrase("12.BACTERIOLOGY ISOLATES", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase("12.1 Total Sensitivity tests done", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(10);
-                                phrase = new Phrase("12.2 Total antibiotic resistant cases detected", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(15);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(15);
-                                //table.getDefaultCell().setHorizontalAlignment(PDFcell.);
-                                phrase = new Phrase("ISOLATE", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Urine", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Pus", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("HVS", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Throat", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Stool", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Blood", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("CSF", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase("Water", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Food", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.3 Neissseria gonorrhoeae", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria gonorrhoeae", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-//    String specimentType[] = {"Urine","Pus","HVS","Throat","Stool", "Blood", "CSF", "Water","Food"};
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.4 Neissseria meningitidis", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.5 Klebsiella", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Klebsiella", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.6 Staphyloccoci", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Staphyloccoci", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.7 Streptococcus", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Streptococcus", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.8 Proteus", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Proteus", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.9 Shigella flex", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "HVS", beginDate, endDate)), pFontHeader);
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Shigella flex", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.10 Salmonella", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Salmonella", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.11 V cholera", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "V cholera", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.12 E. coli", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "E. coli", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.13 C. neoformans", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "C. neoformans", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.14 Cardinella vaginalis", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Cardinella vaginalis", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.15 Haemophilus", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Haemophilus", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Neissseria meningitidis", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.16 Bordotella pertusis", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Bordotella pertusis", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.17 Psuedomonas", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Psuedomonas", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.18 Coliforms", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Coliforms", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.19 Faecal coliforms", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Faecal coliforms", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("12.20 Enterococcus faecalis", pFontHeader1);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Urine", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Pus", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "HVS", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Throat", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Stool", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Blood", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "CSF", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Water", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase(Integer.toString(com.afrisoftech.lib.LabReportCounts.getParameterIsolate(connectDB, "Enterococcus faecalis", "Food", beginDate, endDate)), pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Report Compiled By:", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Date:", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Designation:", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(5);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(2);
-                                phrase = new Phrase("Signature:", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(1);
-                                phrase = new Phrase(" ", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(15);
-                                phrase = new Phrase(" \n\n\n", pFontHeader);
-                                table.addCell(phrase);
-
-                                table.getDefaultCell().setColspan(11);
-                                phrase = new Phrase("This form should be completed at facility in duplicate; Original copy sent to the DMLT to reach by 5th of every month for entry into DHIS and duplicate copy remains as the facility record.", pFontHeaderItallic);
-                                table.addCell(phrase);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                                table.getDefaultCell().setColspan(4);
+                                table.getDefaultCell().setColspan(22);
                                 phrase = new Phrase("Courtesy of Funsoft I-HMIS", pFontHeaderItallicB);
                                 table.addCell(phrase);
 

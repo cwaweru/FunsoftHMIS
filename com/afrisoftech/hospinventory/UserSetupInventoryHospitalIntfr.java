@@ -253,7 +253,7 @@ public class UserSetupInventoryHospitalIntfr extends javax.swing.JInternalFrame 
         gridBagConstraints.weighty = 1.0;
         removeGroupPanel.add(dropGroupBtn, gridBagConstraints);
 
-        removeGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        removeGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname "));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -380,7 +380,7 @@ public class UserSetupInventoryHospitalIntfr extends javax.swing.JInternalFrame 
         gridBagConstraints.gridy = 0;
         assignGroupMembersPanel.add(targetGroupLbl, gridBagConstraints);
 
-        targetGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        targetGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname "));
         targetGroupCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 targetGroupCmbxActionPerformed(evt);
@@ -569,7 +569,7 @@ public class UserSetupInventoryHospitalIntfr extends javax.swing.JInternalFrame 
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(targetGroupLbl1, gridBagConstraints);
 
-        removeGroupCmbx2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        removeGroupCmbx2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

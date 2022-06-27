@@ -95,9 +95,12 @@ public class AdvancedSendFile {
         props.put("mail.smtp.auth", "true"); //enable authentication
         props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
 
-        final String fromEmail = "kmhepayslips@komarockmodernhealthcare.org"; //requires valid gmail id//needs to come from a properties file or db
-        final String password = "KOMA@3020!"; // correct password for gmail id
+       // final String fromEmail = "kmhepayslips@komarockmodernhealthcare.org"; //requires valid gmail id//needs to come from a properties file or db
+       // final String password = "KOMA@3020!"; // correct password for gmail id
        // final String toEmail = "myemail@yahoo.com";
+       
+       final String fromEmail = "salaries@matharihospital.go.ke"; //requires valid gmail id//needs to come from a properties file or db
+        final String password = "salaries@2021#"; 
         
 
 

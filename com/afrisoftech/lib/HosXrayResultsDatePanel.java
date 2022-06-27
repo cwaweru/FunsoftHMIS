@@ -510,7 +510,7 @@ public class HosXrayResultsDatePanel extends javax.swing.JDialog {
             {
                 com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
                 
-                policy.XrayResultPdf(connectDB,datePicker2.getDate(),datePicker21.getDate(),jTextField36.getText());
+                policy.XrayResultPdf(connectDB,datePicker2.getDate(),datePicker21.getDate(),jTextField36.getText(),false,"","");
                 
                 
                 this.dispose();

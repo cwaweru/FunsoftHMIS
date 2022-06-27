@@ -2327,7 +2327,7 @@ if(jTextField36.getText().isEmpty()){
 
             com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-            policy.XrayResultPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), jTextField36.getText());
+            policy.XrayResultPdf(connectDB, datePicker11.getDate(), datePicker11.getDate(), jTextField36.getText(),false,"","");
 
             this.jButton1.setEnabled(true);
             jTextField36.setText("");

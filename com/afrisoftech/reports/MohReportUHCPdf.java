@@ -27,6 +27,7 @@ public class MohReportUHCPdf implements java.lang.Runnable {
     double Tdebtors = 0.00;
     double Treceived = 0.00;
     double Unhif = 0.00;
+    double othersTotal=0.00;
     double Udebtors = 0.00;
     double Uwaivers = 0.00;
     double Uexemp = 0.00;
@@ -1431,7 +1432,7 @@ public class MohReportUHCPdf implements java.lang.Runnable {
 //                                        
 
                                         amtt = rsetwb.getDouble(2) ;
-                                        Unhif = Unhif + amtt;
+                                        othersTotal = othersTotal + amtt;
                                         int len = rsetwb.getString(1).length();
                                         if (len > 10) {
                                             actvity = actvity + rsetwb.getString(1).toLowerCase().substring(0, 10) + "\n";
@@ -1552,7 +1553,7 @@ public class MohReportUHCPdf implements java.lang.Runnable {
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(Unhif), "0.00")), pFontHeader1);
+                            phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(java.lang.String.valueOf(othersTotal), "0.00")), pFontHeader1);
                             table.addCell(phrase);
 
                             table.getDefaultCell().setBorder(Rectangle.TOP);

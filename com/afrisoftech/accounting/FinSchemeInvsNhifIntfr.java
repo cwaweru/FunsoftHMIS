@@ -559,8 +559,9 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 0;
+            gridBagConstraints.gridwidth = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 300.0;
             gridBagConstraints.weighty = 1.0;
@@ -596,7 +597,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 0;
             gridBagConstraints.gridy = 1;
-            gridBagConstraints.gridwidth = 3;
+            gridBagConstraints.gridwidth = 4;
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 20.0;
@@ -604,7 +605,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
 
             jButton421.setText("Select");
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 2;
+            gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -617,7 +618,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 }
             });
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.gridx = 0;
+            gridBagConstraints.gridx = 2;
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.weighty = 1.0;
@@ -755,7 +756,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weightx = 1.0;
                 getContentPane().add(jLabel5, gridBagConstraints);
 
-                jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Highlighted fields in RED are mandatory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 0, 51))); // NOI18N
+                jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Highlighted fields in RED are mandatory", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
 
                 jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "For NHIF,  Select Patient No., Set Card Maturity date,  Tick All and select \"NHIF/NHIS Rebate\", select rebate category then finalize bill.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                 jPanel11.setLayout(new java.awt.GridBagLayout());
@@ -1660,7 +1661,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 jPanel5.add(consolidateDepositTxt, gridBagConstraints);
 
-                jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type your comments here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 255))); // NOI18N
+                jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Type your comments here", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(51, 51, 255))); // NOI18N
 
                 commentsTxt.setColumns(20);
                 commentsTxt.setRows(5);
@@ -1685,7 +1686,7 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                 gridBagConstraints.weighty = 1.0;
                 jPanel11.add(jPanel5, gridBagConstraints);
 
-                jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient to pay \"Net\" amount", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 255))); // NOI18N
+                jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Patient to pay \"Net\" amount", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
                 jPanel7.setLayout(new java.awt.GridBagLayout());
 
                 jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -4568,8 +4569,13 @@ public class FinSchemeInvsNhifIntfr extends javax.swing.JInternalFrame {
                                 java.sql.PreparedStatement pstmtSCHEMES = connectDB.prepareStatement("SELECT distinct  dealer  FROM ac_debtors where  invoice_no='" + invoiceNo + "' group by 1 having sum(debit-credit)>0 order by 1 asc");
                                 java.sql.ResultSet rsetSCHEMES = pstmtNHIF.executeQuery();
                                 while (rsetSCHEMES.next()) {
-                                    com.afrisoftech.reports.DetailedPatientFinalInvpdf policy = new com.afrisoftech.reports.DetailedPatientFinalInvpdf();
-                                    policy.DetailedPatientFinalInvpdf(connectDB, visitIDTxt.getText().trim(), invoiceNo, rsetSCHEMES.getString(1).trim());
+                                    
+                                    com.afrisoftech.reports.StatementPatientInvoicePdf policy = new com.afrisoftech.reports.StatementPatientInvoicePdf();
+
+                                    policy.StatementPatientInvoicePdf(connectDB, visitIDTxt.getText().trim(), invoiceNo ,rsetSCHEMES.getString(1).trim() );
+
+//                                    com.afrisoftech.reports.DetailedPatientFinalInvpdf policy = new com.afrisoftech.reports.DetailedPatientFinalInvpdf();
+//                                    policy.DetailedPatientFinalInvpdf(connectDB, visitIDTxt.getText().trim(), invoiceNo, rsetSCHEMES.getString(1).trim());
                                 }
                             }
 

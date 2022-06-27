@@ -1826,7 +1826,7 @@ public class UltrasoundResIntfr extends javax.swing.JInternalFrame {
 
                             com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-                            policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+                            policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText(),false,"","");
 
                             this.saveresultsButton.setEnabled(true);
                             patientNoTxt.setText("");
@@ -2414,7 +2414,7 @@ public class UltrasoundResIntfr extends javax.swing.JInternalFrame {
         }
         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString());
+        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString(),false,"","");
 
         // TODO add your handling code here:
     }//GEN-LAST:event_radiologyResultsTableMouseClicked

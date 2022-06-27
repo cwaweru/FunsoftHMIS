@@ -38,6 +38,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import javax.swing.JPasswordField;
 import com.afrisoftech.hospital.LockScreen;
+import org.openide.util.Exceptions;
 
 //
 
@@ -56,6 +57,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
     public static String mobileTxType = null;
     public static boolean mobileTxTest = false;
     public static boolean mobileTxAutoInsert = false;
+    public static String radiologyPdfPath = null;
     
     private TrayIcon icon = null;
 
@@ -1565,6 +1567,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         mortOccupancymnit = new javax.swing.JMenuItem();
         releasepapermnit1 = new javax.swing.JMenuItem();
         employeeDigitizedFilemnit = new javax.swing.JMenuItem();
+        patientDigitizedFilemnit = new javax.swing.JMenuItem();
         nursing = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         triagemnit = new javax.swing.JMenuItem();
@@ -2411,6 +2414,12 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         jSeparator101 = new javax.swing.JPopupMenu.Separator();
         gisReportermnit = new javax.swing.JMenuItem();
         viewsmn = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        inpatientbillingmnit = new javax.swing.JMenuItem();
+        outpatientbillingmnit = new javax.swing.JMenuItem();
+        mortuaryillingmnit = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         namesearchmnit = new javax.swing.JMenuItem();
         departmentmnit = new javax.swing.JMenuItem();
         patstmtsmnit = new javax.swing.JMenuItem();
@@ -2519,6 +2528,7 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         salesPrefsmnit = new javax.swing.JMenuItem();
         jSeparator77 = new javax.swing.JPopupMenu.Separator();
         accessControlMnit = new javax.swing.JMenuItem();
+        isRemoteConnectionMn = new javax.swing.JCheckBoxMenuItem();
         helpmn = new javax.swing.JMenu();
         hlpcontmnit = new javax.swing.JMenuItem();
         aboutmn = new javax.swing.JMenuItem();
@@ -3394,6 +3404,11 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
         helpButton.setBorderPainted(false);
         helpButton.setMaximumSize(new java.awt.Dimension(48, 32));
         helpButton.setMinimumSize(new java.awt.Dimension(26, 26));
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpButtonActionPerformed(evt);
+            }
+        });
         jToolBar31.add(helpButton);
         jToolBar31.add(jLabel1);
 
@@ -5185,6 +5200,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         emrmn.add(employeeDigitizedFilemnit);
+
+        patientDigitizedFilemnit.setText("Patient Digitized File");
+        patientDigitizedFilemnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientDigitizedFilemnitActionPerformed(evt);
+            }
+        });
+        emrmn.add(patientDigitizedFilemnit);
 
         jMenuBar1.add(emrmn);
 
@@ -11078,6 +11101,55 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
 
+        jMenu8.setText("Billing Reporter");
+        jMenu8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu8ActionPerformed(evt);
+            }
+        });
+
+        inpatientbillingmnit.setText("Billing Report");
+        inpatientbillingmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inpatientbillingmnitActionPerformed(evt);
+            }
+        });
+        jMenu8.add(inpatientbillingmnit);
+
+        outpatientbillingmnit.setText("Out-Patient Billing Report");
+        outpatientbillingmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outpatientbillingmnitActionPerformed(evt);
+            }
+        });
+        jMenu8.add(outpatientbillingmnit);
+
+        mortuaryillingmnit.setText("Farewell Billing Report");
+        mortuaryillingmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mortuaryillingmnitActionPerformed(evt);
+            }
+        });
+        jMenu8.add(mortuaryillingmnit);
+
+        jMenuItem13.setText("Receipts  Breakdown");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem13);
+
+        jMenuItem14.setText("Debtors Accounts Summary");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem14);
+
+        viewsmn.add(jMenu8);
+
         namesearchmnit.setText("Name Search");
         namesearchmnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -11864,6 +11936,14 @@ public class HospitalMain extends javax.swing.JFrame implements java.lang.Runnab
             }
         });
         utilitymn.add(accessControlMnit);
+
+        isRemoteConnectionMn.setText("Check for Remote Connection");
+        isRemoteConnectionMn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isRemoteConnectionMnActionPerformed(evt);
+            }
+        });
+        utilitymn.add(isRemoteConnectionMn);
 
         jMenuBar1.add(utilitymn);
 
@@ -22597,6 +22677,95 @@ public void eventDispatched(java.awt.AWTEvent evt) {
         } // TODO add your handling code here:
     }//GEN-LAST:event_patcardOperationsmnitActionPerformed
 
+    private void inpatientbillingmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpatientbillingmnitActionPerformed
+        // TODO add your handling code here:
+        biz.systempartners.reports.BillingReportIntfr comp = new biz.systempartners.reports.BillingReportIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+    }//GEN-LAST:event_inpatientbillingmnitActionPerformed
+
+    private void outpatientbillingmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outpatientbillingmnitActionPerformed
+        biz.systempartners.reports.OPBillingReportIntfr comp = new biz.systempartners.reports.OPBillingReportIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_outpatientbillingmnitActionPerformed
+
+    private void mortuaryillingmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mortuaryillingmnitActionPerformed
+        biz.systempartners.reports.FarewellBillingReportIntfr comp = new biz.systempartners.reports.FarewellBillingReportIntfr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_mortuaryillingmnitActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        biz.systempartners.reports.RevenueBreakdownReporterIntFr comp = new biz.systempartners.reports.RevenueBreakdownReporterIntFr(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        com.afrisoftech.reports.DebtorsAccViewSummary comp = new com.afrisoftech.reports.DebtorsAccViewSummary(connectDB, null);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu8ActionPerformed
+
+    private void isRemoteConnectionMnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isRemoteConnectionMnActionPerformed
+
+        if (isRemoteConnectionMn.isSelected()) {
+            System.setProperty("remote.access", "true");
+            appProp.setProperty("remote.access", "true");
+            //this.storePreferences();
+        } else {
+            System.setProperty("remote.access", "false");
+            appProp.setProperty("remote.access", "false");
+            /// this.storePreferences();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_isRemoteConnectionMnActionPerformed
+
+    private void patientDigitizedFilemnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientDigitizedFilemnitActionPerformed
+        com.afrisoftech.laboratory.PatientDocumentManager comp = new com.afrisoftech.laboratory.PatientDocumentManager(connectDB);
+        saccopn.add(comp, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        comp.setSize(saccopn.getSize());
+        try {
+            comp.setSelected(true);
+        } catch (java.beans.PropertyVetoException pvt) {
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patientDigitizedFilemnitActionPerformed
+
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
+        // TODO add your handling code here:
+        /*String instanceUID ="";
+        try {
+            instanceUID = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemInstanceUID(connectDB);
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        System.err.println(">>>"+instanceUID);*/
+    }//GEN-LAST:event_helpButtonActionPerformed
+
     /**
      * Exit the Application
      */
@@ -26834,6 +27003,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem incomestmdtlmnit;
     private javax.swing.JMenuItem incomestmtsummnit;
     public javax.swing.JMenuItem inpatcashinvmnit;
+    private javax.swing.JMenuItem inpatientbillingmnit;
     private javax.swing.JMenu inpatientmn;
     private javax.swing.JMenuItem inpatientstmtmnit;
     private javax.swing.JMenu inpatmn;
@@ -26870,17 +27040,21 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem iprevbyaccmnit;
     private javax.swing.JMenuItem iprevrptmnit;
     private javax.swing.JMenuItem ipservicesmnit;
+    private javax.swing.JCheckBoxMenuItem isRemoteConnectionMn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu8;
     public static javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
@@ -27092,6 +27266,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem mortOccupancymnit;
     private javax.swing.JMenuItem mortTransferMnit;
     private javax.swing.JMenuItem mortdischmnit;
+    private javax.swing.JMenuItem mortuaryillingmnit;
     private javax.swing.JMenu morturymn;
     private javax.swing.JCheckBoxMenuItem motiflnfmnit1;
     private javax.swing.JLabel msgRecipientLbl;
@@ -27152,6 +27327,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem otherVouchermnit;
     public javax.swing.JMenuItem otherprmnit;
     public javax.swing.JMenuItem otherrecptmnit;
+    private javax.swing.JMenuItem outpatientbillingmnit;
     private javax.swing.JMenu outpatmn;
     private javax.swing.JMenuItem outstandingcomitmnit;
     private javax.swing.JMenuItem outstandingordersmnit;
@@ -27173,6 +27349,7 @@ public void eventDispatched(java.awt.AWTEvent evt) {
     private javax.swing.JMenuItem patdischmnit;
     private javax.swing.JMenuItem patdocstmtmnit;
     private javax.swing.JMenu patientCategorymn;
+    private javax.swing.JMenuItem patientDigitizedFilemnit;
     private javax.swing.JMenuItem patientRegistrationPointsmnit;
     private javax.swing.JMenuItem patientRegistrationmnit;
     private javax.swing.JMenuItem patientReleasemnit;

@@ -369,6 +369,89 @@ public class ProcessingPayroll {
                             }
 
                             //------------------End Pension Control Self------------
+                            
+                            
+                            //----------------------------------------------------------------------------------------------------
+                            nhifz = 0.00;
+                            java.sql.Statement pstmtnh = connectDB.createStatement();
+
+                            java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND (bp.allowance_deduction::text ILIKE 'Earning%'::text OR  bp.allowance_deduction::text ILIKE 'Non Cash%'::text) AND bp.staff_no ILIKE '" + listofStaffNos[j] + "' AND UPPER(bp.description::text) NOT IN (SELECT UPPER(description) FROM public.deductions_allowances WHERE taxable = false ) ");
+                            //java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT staff_no,sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  group by staff_no");
+                            while (rstnh.next()) {
+                                nhifz = rstnh.getDouble(1);
+                            }
+
+                            java.sql.Statement pstmt15 = connectDB.createStatement();
+                            java.sql.ResultSet rs12 = pstmt15.executeQuery("select charge from tax_bracket where " + nhifz + " between lower_limit AND upper_limit and (tax_type ILIKE 'NHIF%' OR tax_type ILIKE 'N.H.I.F%')");
+
+                            while (rs12.next()) {
+                                nhifs = rs12.getDouble(1);
+                            }
+
+                            java.sql.Statement pstmt13 = connectDB.createStatement();
+                            java.sql.ResultSet rst14 = pstmt13.executeQuery("SELECT nhifexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "' ");
+
+                            while (rst14.next()) {
+                                exempt = rst14.getBoolean(1);
+                                desc = "N.H.I.F";
+                                type = "Deduction";
+                            }
+//                            if (nhifs > 320) {
+//                                nhifs = 320;
+//                            } else {
+//                                nhifs = nhifs;
+//                            }
+                            java.sql.PreparedStatement pstmt14 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                            pstmt14.setString(1, staffNo);
+                            pstmt14.setString(2, staffName);
+                            pstmt14.setString(3, desc.toUpperCase());
+                            if (exempt == false) {
+                                pstmt14.setDouble(4, nhifs);
+                            } else {
+                                pstmt14.setDouble(4, 0.00);
+                            }
+                            pstmt14.setString(5, type);
+                            pstmt14.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                            pstmt14.setBoolean(7, true);
+                            pstmt14.setString(8, user);
+                            pstmt14.setBoolean(9, false);
+                            pstmt14.setDouble(10, 0.00);
+                            pstmt14.setBoolean(11, false);
+                            pstmt14.setString(12, " ");
+                            pstmt14.setString(13, " ");
+                            pstmt14.setObject(14, compName);
+                            pstmt14.executeUpdate();
+                            System.out.println("Has inserted succesfully 4");
+                            
+                            
+                            desc = "NHIF Insurance Relief";
+                            pstmt14 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                            pstmt14.setString(1, staffNo);
+                            pstmt14.setString(2, staffName);
+                            pstmt14.setString(3, desc.toUpperCase());
+                            if (exempt == false) {
+                                pstmt14.setDouble(4, nhifs * 0.15);
+                            } else {
+                                pstmt14.setDouble(4, 0.00);
+                            }
+                            pstmt14.setString(5, "Monthly Personal Relief");
+                            pstmt14.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+                            pstmt14.setBoolean(7, true);
+                            pstmt14.setString(8, user);
+                            pstmt14.setBoolean(9, false);
+                            pstmt14.setDouble(10, 0.00);
+                            pstmt14.setBoolean(11, false);
+                            pstmt14.setString(12, " ");
+                            pstmt14.setString(13, " ");
+                            pstmt14.setObject(14, compName);
+                            pstmt14.executeUpdate();
+                            
+                            //------------------------------------------
+                            
+                            
+                            
+                            
+                            
                             java.sql.Statement pstmt151q = connectDB.createStatement();
                             java.sql.ResultSet rs121q = pstmt151q.executeQuery("select description,rate,acc_balances from deductions_allowances where allowance_deduction ILIKE 'Less Relief%' and rate >0");
                             while (rs121q.next()) {
@@ -502,7 +585,15 @@ public class ProcessingPayroll {
                              System.out.println(charge);
                              */
                             
-                             paye1 = (charge + tax1) - (Prelief + Prelief1);
+                            double Prelief3 = 0.00;
+                            ps = connectDB.createStatement();
+                            rs = ps.executeQuery("SELECT sum(amount) from  posting where staff_no ilike '" + listofStaffNos[j] + "' and (date between '" + beginDate + "' and '" + endDate + "'  ) AND description ilike 'NHIF Insurance Relief' ");
+                            while (rs.next()) {
+                                Prelief3 = rs.getDouble(1);
+                                System.err.println(">>>>> "+Prelief3);
+                            }
+                            
+                            paye1 = (charge + tax1) - (Prelief + Prelief1 + Prelief3);
                             System.out.println("--------------------------------------");
                             System.out.println("Paye -- "+paye1);
                             System.out.println("charge -- "+charge);
@@ -808,57 +899,7 @@ public class ProcessingPayroll {
                                 }
                             }
 
-                            //----------------------------------------------------------------------------------------------------
-                            nhifz = 0.00;
-                            java.sql.Statement pstmtnh = connectDB.createStatement();
-
-                            java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT sum(bp.amount) from posting bp WHERE bp.processed = false AND (bp.allowance_deduction::text ILIKE 'Earning%'::text OR  bp.allowance_deduction::text ILIKE 'Non Cash%'::text) AND bp.staff_no ILIKE '" + listofStaffNos[j] + "' AND UPPER(bp.description::text) NOT IN (SELECT UPPER(description) FROM public.deductions_allowances WHERE taxable = false ) ");
-                            //java.sql.ResultSet rstnh = pstmtnh.executeQuery("SELECT staff_no,sum(amount) from total_net_taxable_amount1 where staff_no ilike '" + listofStaffNos[j] + "'  group by staff_no");
-                            while (rstnh.next()) {
-                                nhifz = rstnh.getDouble(1);
-                            }
-
-                            java.sql.Statement pstmt15 = connectDB.createStatement();
-                            java.sql.ResultSet rs12 = pstmt15.executeQuery("select charge from tax_bracket where " + nhifz + " between lower_limit AND upper_limit and (tax_type ILIKE 'NHIF%' OR tax_type ILIKE 'N.H.I.F%')");
-
-                            while (rs12.next()) {
-                                nhifs = rs12.getDouble(1);
-                            }
-
-                            java.sql.Statement pstmt13 = connectDB.createStatement();
-                            java.sql.ResultSet rst14 = pstmt13.executeQuery("SELECT nhifexempt from master_file st where st.employee_no ILIKE '" + listofStaffNos[j] + "' ");
-
-                            while (rst14.next()) {
-                                exempt = rst14.getBoolean(1);
-                                desc = "N.H.I.F";
-                                type = "Deduction";
-                            }
-//                            if (nhifs > 320) {
-//                                nhifs = 320;
-//                            } else {
-//                                nhifs = nhifs;
-//                            }
-                            java.sql.PreparedStatement pstmt14 = connectDB.prepareStatement("insert into posting values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                            pstmt14.setString(1, staffNo);
-                            pstmt14.setString(2, staffName);
-                            pstmt14.setString(3, desc.toUpperCase());
-                            if (exempt == false) {
-                                pstmt14.setDouble(4, nhifs);
-                            } else {
-                                pstmt14.setDouble(4, 0.00);
-                            }
-                            pstmt14.setString(5, type);
-                            pstmt14.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
-                            pstmt14.setBoolean(7, true);
-                            pstmt14.setString(8, user);
-                            pstmt14.setBoolean(9, false);
-                            pstmt14.setDouble(10, 0.00);
-                            pstmt14.setBoolean(11, false);
-                            pstmt14.setString(12, " ");
-                            pstmt14.setString(13, " ");
-                            pstmt14.setObject(14, compName);
-                            pstmt14.executeUpdate();
-                            System.out.println("Has inserted succesfully 4");
+                            
 
                             benefit1111 = 0.00;
 

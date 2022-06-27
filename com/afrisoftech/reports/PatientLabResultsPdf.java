@@ -345,7 +345,7 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset4 = sta.executeQuery("SELECT DISTINCT lab_no,age::numeric(5,0),gender,date ,spec_time, lower_limit, upper_limit FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
                                 java.sql.ResultSet rset41 = st2.executeQuery("SELECT DISTINCT typeof_test FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
 
-                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT user_name,lab_manager, pathologist,doctor, instrument_name FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
+                                java.sql.ResultSet rset4111 = st22.executeQuery("SELECT DISTINCT user_name,lab_manager, pathologist, doctor, instrument_name FROM hp_lab_results WHERE input_date::date = '"+labDate+"' ::date AND (lab_no ilike '" + listofStaffNos[j] + "' or request_id ilike '" + listofStaffNos[j] + "')");
 
                                 String Date = null;
                                 System.out.println("No 1");
@@ -546,17 +546,27 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
                                             // table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             phrase = new Phrase(dbObject.getDBObject(rset1.getObject(4), "-"), pFontHeader);
                                             table.addCell(phrase);
+                                            
+                                            String highLow = "";
+                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
 
-                                            if (rset1.getDouble(5) > rset1.getDouble(3) && rset1.getDouble(5) < rset1.getDouble(4)) {
+                                            if (rset1.getDouble(5) >= rset1.getDouble(3) && rset1.getDouble(5) <= rset1.getDouble(4)) {
                                                 table.getDefaultCell().setBackgroundColor(Color.GREEN);
                                             } else {
+                                                if (rset1.getDouble(5) < rset1.getDouble(3)){
+                                                    highLow = "L";
+                                                }else{
+                                                    highLow = "H";
+                                                }
                                                 table.getDefaultCell().setBackgroundColor(Color.RED);
                                             }
                                             table.getDefaultCell().setColspan(1);
-                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                            phrase = new Phrase(" ", pFontHeader);
+                                            
+                                            phrase = new Phrase(highLow, pFontHeader);
+                                            
 
                                             table.addCell(phrase);
+                                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                             table.getDefaultCell().setBackgroundColor(Color.WHITE);
 
                                         }
@@ -640,7 +650,7 @@ public class PatientLabResultsPdf implements java.lang.Runnable {
 
                                     table.getDefaultCell().setColspan(3);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase(dbObject.getDBObject(rset4111.getObject(1), "-"), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rset4111.getObject(3), "-"), pFontHeader1);
                                     table.addCell(phrase);
                                     phrase = new Phrase(dbObject.getDBObject(rset4111.getObject(2), "-"), pFontHeader1);
                                     table.addCell(phrase);

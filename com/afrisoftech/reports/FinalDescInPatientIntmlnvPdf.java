@@ -366,6 +366,7 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                             table1.getDefaultCell().setFixedHeight(70);
                             table1.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                             table1.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                            
                             //table1.addCell("");
                             System.out.println("Logo Path : [" + com.afrisoftech.lib.CompanyLogo.getPath2Logo() + "]");
                             table1.getDefaultCell().setFixedHeight(16);
@@ -1079,7 +1080,43 @@ public class FinalDescInPatientIntmlnvPdf implements java.lang.Runnable {
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance - osBalance2)), pFontHeader1);
 
                             //table.addCell(phrase);
+                            
                             table.addCell(phrase);
+                            
+                            double deposit = 0.00;
+                            java.sql.Statement st2x4 = connectDB.createStatement();
+                            rsetTotals1 = st2x4.executeQuery("select round(sum(credit-debit),2) from ac_ledger "
+                                    + "where voucher_no = '" + memNo + "' AND transaction_type='Unutilized patient deposit'");
+                            while (rsetTotals1.next()) {
+                                deposit = rsetTotals1.getDouble(1);
+                            
+
+                                table.getDefaultCell().setColspan(5);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_LEFT);
+                                phrase = new Phrase(" ", pFontHeader);
+
+                                //  table.addCell(phrase);
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+                                phrase = new Phrase("Total Un-Utilized Deposits", pFontHeader1);
+
+                                table.addCell(phrase);
+
+                                table.getDefaultCell().setColspan(3);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(rsetTotals1.getString(1)), pFontHeader);
+
+                                //table.addCell(phrase);
+                                phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(deposit)), pFontHeader1);
+
+                                table.addCell(phrase);
+
+                                //phrase = new Phrase(" ");
+                            }
+                            
+                            
                             table.getDefaultCell().setColspan(8);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);

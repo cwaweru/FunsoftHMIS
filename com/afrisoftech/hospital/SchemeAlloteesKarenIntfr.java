@@ -1418,7 +1418,7 @@ public class SchemeAlloteesKarenIntfr extends javax.swing.JInternalFrame {
         }
         int i = 0;
       
-         jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select staff_no,staff_name,expiry_date,limit_amount,iplimit,department from hp_schemestaff WHERE account_no ilike '"+jTextField2.getText()+"'ORDER BY staff_name"));
+         jTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"select staff_no,staff_name,expiry_date,limit_amount,iplimit,department from hp_schemestaff WHERE account_no ilike '"+jTextField2.getText()+"' AND suspended != 'true' ORDER BY staff_name"));
     
          cmbox2 = new javax.swing.JComboBox();
 

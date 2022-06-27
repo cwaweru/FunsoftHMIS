@@ -1467,9 +1467,14 @@ public class WardOccupancyIntfr extends javax.swing.JInternalFrame {
 
     private void occupationTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_occupationTableMouseClicked
 
-        com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf policy = new com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf();
+        //com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf policy = new com.afrisoftech.reports.FinalDescInPatientIntmlnvPdf();
 
-        policy.FinalDescInPatientIntmlnvPdf(connectDB, occupationTable.getValueAt(occupationTable.getSelectedRow(), 1).toString(), occupationTable.getValueAt(occupationTable.getSelectedRow(), 0).toString());
+        //policy.FinalDescInPatientIntmlnvPdf(connectDB, occupationTable.getValueAt(occupationTable.getSelectedRow(), 1).toString(), occupationTable.getValueAt(occupationTable.getSelectedRow(), 0).toString());
+        com.afrisoftech.reports.FinalInterimPatientlnvSummPdf policy = new com.afrisoftech.reports.FinalInterimPatientlnvSummPdf();
+
+                policy.FinalInterimPatientlnvSummPdf(connectDB, occupationTable.getValueAt(occupationTable.getSelectedRow(), 1).toString(), occupationTable.getValueAt(occupationTable.getSelectedRow(), 0).toString());
+        
+        
         
         // TODO add your handling code here:
     }//GEN-LAST:event_occupationTableMouseClicked

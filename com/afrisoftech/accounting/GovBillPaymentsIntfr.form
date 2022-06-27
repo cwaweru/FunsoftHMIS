@@ -2270,7 +2270,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel132">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Gl Acc. No"/>
+                            <Property name="text" type="java.lang.String" value="Gl Acc. No."/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2347,7 +2347,7 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel113">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Receipt No"/>
+                            <Property name="text" type="java.lang.String" value="Receipt No."/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

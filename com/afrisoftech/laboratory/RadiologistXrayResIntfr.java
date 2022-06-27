@@ -5,10 +5,21 @@
  */
 package com.afrisoftech.laboratory;
 
+import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//import javafx.scene.web.WebView;
+//import javafx.application.Platform;
+//import javafx.embed.swing.JFXPanel;
+//import javafx.scene.Scene;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 //
 
 /**
@@ -25,6 +36,13 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     boolean getList;
     private String paidPatients;
     private String pendingPatients;
+    javax.swing.JInternalFrame pacsInternalFrame = com.afrisoftech.hospital.HospitalMain.pacsViewerIntfr;
+    private int pacsCount = 0;
+    //private WebView webView;
+    String uuid = null;
+    //javax.swing.JTextField patientNameTxt = null;
+    //javax.swing.JTextField uidTxt = null;
+    //final JFXPanel jfxPanel = new JFXPanel();
 
     public RadiologistXrayResIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -79,6 +97,8 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         xrayTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         doctorTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        uidTxt = new javax.swing.JTextField();
         radiologistScrollPane = new javax.swing.JScrollPane();
         radiologistReportTxt = new javax.swing.JEditorPane();
         jLabel7 = new javax.swing.JLabel();
@@ -95,6 +115,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         clearButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        pacsDicomViewerBtn1 = new javax.swing.JButton();
         ClinicalReviewPanel = new javax.swing.JPanel();
         clinicalHistoryScrollPane = new javax.swing.JScrollPane();
         clinicalHistoryTxt = new javax.swing.JTextArea();
@@ -133,13 +154,20 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         radiologyResultsPanel = new javax.swing.JPanel();
         radiologyResultsScrollPane = new javax.swing.JScrollPane();
         radiologyResultsTable = new com.afrisoftech.dbadmin.JXTable();
+        pacsDicomViewerBtn = new javax.swing.JButton();
+        resultsButtonPanel = new javax.swing.JPanel();
+        closeFormBtn = new javax.swing.JButton();
+        refreshResultsListingBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
         mainHeaderPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        xraydatePicker = new com.afrisoftech.lib.DatePicker();
+        xrayEndDatePicker = new com.afrisoftech.lib.DatePicker();
         refreshbutton = new javax.swing.JButton();
         searchTextField = new javax.swing.JTextField();
         outPatientChkbx = new javax.swing.JCheckBox();
         inPatientChkbx = new javax.swing.JCheckBox();
+        xrayStartDatePicker = new com.afrisoftech.lib.DatePicker();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -803,7 +831,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 1;
         gridBagConstraints.weightx = 10.0;
@@ -848,6 +876,26 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         xrayTestPanel.add(doctorTextField, gridBagConstraints);
+
+        jLabel4.setText("UID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        xrayTestPanel.add(jLabel4, gridBagConstraints);
+
+        uidTxt.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        xrayTestPanel.add(uidTxt, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -915,7 +963,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -930,7 +978,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -945,7 +993,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -954,11 +1002,25 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         jButton5.setMnemonic('h');
         jButton5.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(jButton5, gridBagConstraints);
+
+        pacsDicomViewerBtn1.setText("PACS/Dicom Viewer");
+        pacsDicomViewerBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacsDicomViewerBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(pacsDicomViewerBtn1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1187,10 +1249,69 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         radiologyResultsScrollPane.setViewportView(radiologyResultsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 100.0;
+        radiologyResultsPanel.add(radiologyResultsScrollPane, gridBagConstraints);
+
+        pacsDicomViewerBtn.setText("Click to view Dicom images");
+        pacsDicomViewerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacsDicomViewerBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        radiologyResultsPanel.add(pacsDicomViewerBtn, gridBagConstraints);
+
+        resultsButtonPanel.setLayout(new java.awt.GridBagLayout());
+
+        closeFormBtn.setText("Close form");
+        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(closeFormBtn, gridBagConstraints);
+
+        refreshResultsListingBtn.setText("Refresh results listing");
+        refreshResultsListingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshResultsListingBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(refreshResultsListingBtn, gridBagConstraints);
+
+        spacerLbl.setForeground(new java.awt.Color(0, 51, 255));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(spacerLbl, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        radiologyResultsPanel.add(radiologyResultsScrollPane, gridBagConstraints);
+        radiologyResultsPanel.add(resultsButtonPanel, gridBagConstraints);
 
         radiologistReportingTabbedPane.addTab("Results Listing", radiologyResultsPanel);
 
@@ -1205,19 +1326,19 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         mainHeaderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick category...", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 153))); // NOI18N
         mainHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel6.setText("Date");
+        jLabel6.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         mainHeaderPanel.add(jLabel6, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        mainHeaderPanel.add(xraydatePicker, gridBagConstraints);
+        mainHeaderPanel.add(xrayEndDatePicker, gridBagConstraints);
 
         refreshbutton.setText("Refresh Requests Listing");
         refreshbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -1242,7 +1363,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1269,6 +1390,21 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         mainHeaderPanel.add(inPatientChkbx, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainHeaderPanel.add(xrayStartDatePicker, gridBagConstraints);
+
+        jLabel1.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        mainHeaderPanel.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -1276,7 +1412,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(mainHeaderPanel, gridBagConstraints);
 
-        setBounds(0, 0, 786, 499);
+        setBounds(0, 0, 1138, 499);
     }// </editor-fold>//GEN-END:initComponents
 
     private void paidResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidResultsTableMouseClicked
@@ -1285,6 +1421,9 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         receiptNoTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 12).toString());
         xrayTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString());
         doctorTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 8).toString());
+        if (paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 14) != null) {
+            uidTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 14).toString());
+        }
         getList = false;
         try {
 
@@ -1369,7 +1508,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             }
-            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND date::date > '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY input_date DESC LIMIT 1");
+            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND date::date > '" + xrayStartDatePicker.getDate() + "'::date - 2 ORDER BY input_date DESC LIMIT 1");
 
             java.sql.ResultSet rsetClinical = pstmtClinicals.executeQuery();
 
@@ -1436,6 +1575,11 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
 
     private void saveresultsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveresultsButtonActionPerformed
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        if (uuid != null) {
+            if (!uuid.isEmpty()) {
+                uuid = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemUUID(connectDB, uidTxt.getText());
+            }
+        }
         try {
             //        if (java.lang.Double.valueOf(nooffilmTextField.getText()) > 0) {
 
@@ -1498,17 +1642,19 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                             xrayTestTable.getCellEditor().stopCellEditing();
                         }
 
+                        String xrayNo = null;
                         for (int i = 0; i < xrayTestTable.getRowCount(); i++) {
                             if (xrayTestTable.getModel().getValueAt(i, 2) != null) {
                                 if (Boolean.parseBoolean(xrayTestTable.getValueAt(0, 2).toString())) {
                                     int docCount = 0;
-                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_xray_results WHERE patient_no = ? AND doc_no = ? AND examination ilike ? AND doc_no != '' AND radiologist_notes IS NULL");
+                                    java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no),xray_no FROM hp_xray_results WHERE patient_no = ? AND examination ilike ? AND ((doc_no = ?  AND doc_no != '') or uuid = '" + uuid + "') AND (radiologist_notes IS NULL OR radiologist_notes = '' ) GROUP BY 2");
                                     pstmt1.setString(1, patientNoTxt.getText());
-                                    pstmt1.setString(2, receiptNoTxt.getText());
-                                    pstmt1.setObject(3, xrayTestTable.getValueAt(0, 0));
+                                    pstmt1.setString(3, receiptNoTxt.getText());
+                                    pstmt1.setObject(2, xrayTestTable.getValueAt(0, 0));
                                     java.sql.ResultSet rset1 = pstmt1.executeQuery();
                                     while (rset1.next()) {
                                         docCount = rset1.getInt(1);
+                                        xrayNo = rset1.getString(1);
                                     }
                                     System.out.println("Doc Count : [" + docCount + "]");
                                     if (docCount < 1) {
@@ -1518,12 +1664,13 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                                         pstmt.setString(1, patientNoTxt.getText());
                                         pstmt.setString(2, patientNameTxt.getText());
                                         pstmt.setString(3, billNo);
+                                        xrayNo = billNo;
                                         pstmt.setObject(4, ageTxt.getText());
                                         pstmt.setObject(5, Sex);
                                         pstmt.setString(6, null);
                                         pstmt.setString(7, xrayTestTable.getValueAt(0, 0).toString());
                                         pstmt.setDate(8, com.afrisoftech.lib.ServerTime.getSQLDate(connectDB));
-                                      //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
+                                        //                           pstmt.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()));
                                         pstmt.setTimestamp(9, com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB));
                                         pstmt.setDouble(10, java.lang.Double.valueOf(xrayTestTable.getValueAt(0, 1).toString()));
                                         pstmt.setString(11, Categ);
@@ -1549,36 +1696,37 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                                         pstmt.execute();
 
                                     } else {
-                                        java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET radiologist_notes = ? WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
+                                        java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET radiologist_notes = ? WHERE patient_no = ? AND ((doc_no = ? AND doc_no IS NOT NULL AND doc_no != '') OR  uuid = '" + uuid + "' ) ");
                                         pstmtUpdate.setString(1, radiologistReportTxt.getText());
                                         pstmtUpdate.setString(2, patientNoTxt.getText());
                                         pstmtUpdate.setString(3, receiptNoTxt.getText());
                                         pstmtUpdate.executeUpdate();
 
-                                        System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
-                                                + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                                + " requisition_no='X-RAY' and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
-
-                                        java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
-                                                + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                                + " requisition_no='X-RAY'  and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
-                                        pstmt46.executeUpdate();
-
-                                        java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
-                                                + "WHERE "
-                                                + " service = '" + xrayTestTable.getValueAt(0, 0).toString() + "' "
-                                                + "AND patient_no = '" + patientNoTxt.getText() + "' and "
-                                                + " doctor = '" + xrayTestTable.getValueAt(0, 4).toString() + "' ");
-                                        pstmt462.executeUpdate();
-
-                                        java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
-                                                + "WHERE "
-                                                + " upper(service) = '" + xrayTestTable.getValueAt(0, 0).toString().toUpperCase() + "' "
-                                                + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xrayTestTable.getValueAt(0, 3).toString() + "' "
-                                                + "  ");
-                                        pstmtPatientCard.executeUpdate();
-
                                     }
+
+                                    System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
+                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                            + " requisition_no='X-RAY' and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+
+                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
+                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                            + " requisition_no='X-RAY'  and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+                                    pstmt46.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
+                                            + "WHERE "
+                                            + " service = '" + xrayTestTable.getValueAt(0, 0).toString() + "' "
+                                            + "AND patient_no = '" + patientNoTxt.getText() + "' and "
+                                            + " doctor = '" + xrayTestTable.getValueAt(0, 4).toString() + "' ");
+                                    pstmt462.executeUpdate();
+
+                                    java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
+                                            + "WHERE "
+                                            + " upper(service) = '" + xrayTestTable.getValueAt(0, 0).toString().toUpperCase() + "' "
+                                            + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xrayTestTable.getValueAt(0, 3).toString() + "' "
+                                            + "  ");
+                                    pstmtPatientCard.executeUpdate();
+
                                 }
                             }
                         }
@@ -1586,11 +1734,11 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                         connectDB.setAutoCommit(true);
                         this.saveresultsButton.setEnabled(false);
 
-                        javax.swing.JOptionPane.showMessageDialog(this, "X-RAY RESULTS POSTED Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
                         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-                        policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+                        policy.XrayResultPdf(connectDB, xrayStartDatePicker.getDate(), xrayEndDatePicker.getDate(), patientNoTxt.getText(), true, uuid, xrayNo);
+
+                        javax.swing.JOptionPane.showMessageDialog(this, "X-RAY RESULTS POSTED Successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                         this.saveresultsButton.setEnabled(true);
                         patientNoTxt.setText("");
@@ -2107,49 +2255,67 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private void refreshbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshbuttonActionPerformed
         runGetListThread();
         runconfirmGetListThread();
-        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY 1,3,4"));
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, uid,uuid, doc_read as read FROM hp_xray_results WHERE date::date BETWEEN '" + xrayStartDatePicker.getDate() + "'::date AND '" + xrayEndDatePicker.getDate() + "'::date ORDER BY 1,3,4"));
+                
+        spacerLbl.setText("Displaying " + radiologyResultsTable.getRowCount() + " reported procedures.");
+
     }//GEN-LAST:event_refreshbuttonActionPerformed
 
     private void searchTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextFieldCaretUpdate
         if (outPatientChkbx.isSelected()) {
             if (searchTextField.getCaretPosition() >= 3) {
+                
+                
                 this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                        + "false as Approve,request_id as Request_id,time_due,notes "
-                        + " FROM pb_doctors_request pb WHERE"
-                        + " (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY') and  paid = true AND"
-                        + " trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60 "
-                        + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') "
-                        + " UNION "
-                        + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description as service, quantity, debit, "
-                        + "receipt_no as Request_no, '' as doctor, false as Approve, receipt_no as Request_id, now()::time(0)::varchar as time_due, '' as notes from ac_cash_collection WHERE patient_no ilike '%" + searchTextField.getText() + "%' AND "
-                        + "date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 4 AND patient_no NOT IN (SELECT DISTINCT patient_no FROM pb_doctors_request WHERE "
-                        + "(revenue_code ilike 'X-RAY' OR revenue_code ilike 'XRAY') and  paid = true AND trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60) AND "
-                        + " ((SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) "
-                        + " ILIKE 'X-RAY' OR (SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') "
-                        + "ORDER BY trans_date asc"));
+                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                    + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, "
+                        + "(SELECT uid FROM hp_lims_request hlr WHERE (pb.bed_no = hlr.request_id OR hlr.request_id = (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) ) and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM pb_doctors_request pb WHERE patient_no ilike '%" + searchTextField.getText() + "%' and"
+                    + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 )  AS uid"
+                    + " FROM ac_cash_collection  WHERE patient_no ilike '%" + searchTextField.getText() + "%' and "
+                    + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY'  ) AND "
+                    + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM hp_patient_card hpc WHERE collected = false AND patient_no ilike '%" + searchTextField.getText() + "%' and "
+                    + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + "ORDER BY 1 asc"));
 
                 this.confirmRequestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                         + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb"
                         + " WHERE (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY')"
-                        + " and paid = false AND collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2"
+                        + " and paid = false AND collected = false and trans_date  BETWEEN '" + xrayStartDatePicker.getDate() + "'::date AND '" + xrayStartDatePicker.getDate() + "'::date "
                         + " and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') ORDER BY trans_date asc"));
 
             }
         } else {
             if (searchTextField.getCaretPosition() >= 3) {
                 this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                        + "false as Approve,request_id as Request_id,time_due,notes "
-                        + " FROM pb_doctors_request pb WHERE"
-                        + " (pb.revenue_code ilike 'X-RAY' OR pb.revenue_code ilike 'XRAY') AND"
-                        + " collected = false and trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
-                        + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_admission WHERE patient_no ILIKE '%" + searchTextField.getText() + "%' AND discharge = false)"
-                        + "UNION SELECT DISTINCT date::date as trans_date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, payment_mode, service, dosage as quantity,"
-                        + " debit as amount, reference AS Request_no, '' as doctor, false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, '' as notes FROM hp_patient_card WHERE upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND collected = false AND date::date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
-                        + "  and patient_no ilike '%" + searchTextField.getText() + "%' ORDER BY trans_date asc"));
-
+                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                    + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, (SELECT uid FROM hp_lims_request hlr WHERE pb.bed_no = hlr.request_id and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM pb_doctors_request pb WHERE patient_no ilike '%" + searchTextField.getText() + "%' and"
+                    + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 )  AS uid"
+                    + " FROM ac_cash_collection  WHERE patient_no ilike '%" + searchTextField.getText() + "%' and "
+                    + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY'  ) AND "
+                    + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + " UNION "
+                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM hp_patient_card hpc WHERE collected = false AND patient_no ilike '%" + searchTextField.getText() + "%' and "
+                    + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                    + "ORDER BY 1 asc"));
 //                this.confirmrequeststable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
 //                        + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
 //                        + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb"
@@ -2163,7 +2329,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private void patientCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtnActionPerformed
         com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText(),false);
+        policyReport.PatientCardPdf(connectDB, xrayStartDatePicker.getDate(), xrayStartDatePicker.getDate(), patientNoTxt.getText(), false);
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCardBtnActionPerformed
 
@@ -2174,6 +2340,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private void radiologyResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiologyResultsTableMouseClicked
 
         java.util.Date dates = null;
+        uuid = radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 8).toString();
 
         try {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT ?::date");
@@ -2188,7 +2355,9 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         }
         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString());
+        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString(), false, "", radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 3).toString());
+
+        pacsDicomViewerBtn.doClick();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_radiologyResultsTableMouseClicked
@@ -2241,6 +2410,164 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getList = true;// TODO add your handling code here:
     }//GEN-LAST:event_cancleBtnActionPerformed
+
+    private void pacsDicomViewerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacsDicomViewerBtnActionPerformed
+
+        if (uuid != null && !uuid.isEmpty()) {
+
+            if (java.awt.Desktop.isDesktopSupported()) {
+
+                String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+                String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+
+                try {
+                    //                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://pacs:Password_123@" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
+                } catch (IOException ex) {
+                    Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+//                //        SwingUtilities.invokeLater(() -> {
+//                    // PacsViewerMain jFrameTest = new PacsViewerMain();
+//                    //new javax.swing.JInternalFrame("Pulseset HMIS :: Orthanc Dicom/PACS Viewer");
+//                    // jFrameTest.setTitle("Orthanc Dicom/PACS Viewer");
+//                    // jFrameTest.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//                    //        pacsInternalFrame = new javax.swing.JInternalFrame("Pulseset HMIS PACS/Dicom Viewer");
+//                    //        com.afrisoftech.hospital.HospitalMain.saccopn.add(pacsInternalFrame);//, javax.swing.JLayeredPane.DEFAULT_LAYER);
+//                //        try {
+//                    //            pacsInternalFrame.setSelected(true);
+//                    //        } catch (java.beans.PropertyVetoException pvt) {
+//                    //        }
+//                //        pacsInternalFrame.setVisible(false);
+//                pacsInternalFrame.setDefaultCloseOperation(javax.swing.JInternalFrame.HIDE_ON_CLOSE);
+//
+//                pacsCount = pacsCount++;
+//                pacsInternalFrame.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
+//
+//                Platform.runLater(() -> {
+//
+//                    //  jFrameTest.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+//                    if (pacsCount < 1) {
+//                        // jfxPanel =
+//                        //  jFrameTest.add(jfxPanel);
+//                        pacsInternalFrame.add(jfxPanel);
+//                        webView = new WebView();
+//                        jfxPanel.setScene(new Scene(webView));
+//                    }
+//                    //jFrameTest.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
+//                    //    jFrameTest.setVisible(true);
+//                    pacsInternalFrame.setVisible(true);
+//                    pacsInternalFrame.setEnabled(true);
+//                    pacsInternalFrame.setMaximizable(true);
+//                    pacsInternalFrame.setClosable(true);
+//                    pacsInternalFrame.setResizable(true);
+//                    pacsInternalFrame.setIconifiable(true);
+//                    //            try {
+//                        //                pacsInternalFrame.setSelected(true);
+//                        //            } catch (PropertyVetoException ex) {
+//                        //                ex.printStackTrace();
+//                        //            }
+//                    try {
+//                        pacsInternalFrame.setMaximum(true);
+//                    } catch (PropertyVetoException ex) {
+//                        ex.printStackTrace();
+//                    }
+//                    //            try {
+//                        //                pacsInternalFrame.setIcon(true);
+//                        //            } catch (PropertyVetoException ex) {
+//                        //                ex.printStackTrace();
+//                        //            }
+//                    //);
+//                // Create a trust manager that does not validate certificate chains
+//                TrustManager[] trustAllCerts = new TrustManager[]{
+//                    new X509TrustManager() {
+//                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//                            return null;
+//                        }
+//
+//                        public void checkClientTrusted(
+//                            java.security.cert.X509Certificate[] certs, String authType) {
+//                        }
+//
+//                        public void checkServerTrusted(
+//                            java.security.cert.X509Certificate[] certs, String authType) {
+//                        }
+//                    }
+//                };
+//
+//                // Install the all-trusting trust manager
+//                try {
+//                    SSLContext sc = SSLContext.getInstance("SSL");
+//                    sc.init(null, trustAllCerts, new java.security.SecureRandom());
+//                    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+//                } catch (GeneralSecurityException e) {
+//                }
+//                webView.getEngine().setJavaScriptEnabled(true);
+//                webView.getEngine().getCreatePopupHandler(); //setOnAlert(null);
+//                //webView.getEngine().load("http://localhost:8042/");
+//
+//                String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+//                String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+//                //String uuid = radiologyResultsTbl.getValueAt(radiologyResultsTbl.getSelectedRow(), 5).toString();
+//
+//                System.out.println("Selected study UUID [" + uuid + "]");
+//
+//                webView.getEngine().load("http://" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid);
+//            });
+//            //        });
+//
+//    //      com.afrisoftech.laboratory.PatHistIntfr comp = new com.afrisoftech.laboratory.PatHistIntfr(connectDB, pConnDB);
+//    //       if (!pacsInternalFrame.isClosed()) {
+//        //       } else {
+//        pacsInternalFrame.setVisible(true);
+//
+//        //       }
+//        this.invalidate();
+//        this.validate();
+//        this.updateUI();
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a patient Dicom study to view", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacsDicomViewerBtnActionPerformed
+
+    private void pacsDicomViewerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacsDicomViewerBtn1ActionPerformed
+        
+        if (!uidTxt.getText().trim().isEmpty()) {
+
+            uuid = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemUUID(connectDB, uidTxt.getText());
+
+            System.err.println(">>>>" + uuid);
+
+            if (uuid != null && !uuid.isEmpty()) {
+                pacsDicomViewerBtn.doClick();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "UID "+uidTxt.getText()+" has no associated image on the PACs server", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "The selected request is has no UID to link to the PACs server", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+       
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacsDicomViewerBtn1ActionPerformed
+
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
+
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeFormBtnActionPerformed
+
+    private void refreshResultsListingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshResultsListingBtnActionPerformed
+
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, ( doctor) AS doctor_requesting, user_name as radiologist,uid,uuid, doc_read as read FROM hp_xray_results WHERE date::date BETWEEN '" + xrayStartDatePicker.getDate() + "' AND '" + xrayEndDatePicker.getDate() + "' ORDER BY 1,3,4"));
+
+        spacerLbl.setText("Displaying " + radiologyResultsTable.getRowCount() + " reported procedures.");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshResultsListingBtnActionPerformed
     private void populateTable1(java.lang.String patient_no) {
     }
 
@@ -2277,46 +2604,47 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtTable11 = connectDB.createStatement();
 
             // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select date,patient_no,name,payment,'false' as bill from hp_patient_visit where transaction_type ilike 'reg%' and date = current_date  ORDER BY date");
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) FROM  pb_doctors_request pb, pb_activity pa"
-                    + " WHERE pb.requisition_no ilike 'X-RAY' "
-                    + " and paid = true AND collected = false and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' ");
-
-            while (rsetTable11.next()) {
-                patNo = rsetTable11.getInt(1);
-                paidPatients = rsetTable11.getString(1);
-
-            }
+//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) FROM  pb_doctors_request pb, pb_activity pa"
+//                    + " WHERE pb.requisition_no ilike 'X-RAY' "
+//                    + " and paid = true AND collected = false and trans_date  BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayenddatePicker.getDate()) + "' ");
+//
+//            while (rsetTable11.next()) {
+//                patNo = rsetTable11.getInt(1);
+//                paidPatients = rsetTable11.getString(1);
+//
+//            }
             System.out.println("SELECT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,false as bill,inv_no as Receipt_No,time_due "
                     + " FROM pb_doctors_request pb, pb_activity pa WHERE"
                     + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' AND paid = true AND"
                     + " results = false and trans_date >= (select current_timestamp(0)::date -1) ORDER BY trans_date asc");
             this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                    + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
+                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                    + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, "
+                    + "(SELECT uid FROM hp_lims_request hlr WHERE (pb.bed_no = hlr.request_id OR hlr.request_id = (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) ) and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
                     + " FROM pb_doctors_request pb WHERE"
                     + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
-                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
                     + " UNION "
-                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes "
-                    + " FROM ac_cash_collection WHERE"
-                    + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, receipt_no as  Request_No,'' as doctor,"
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 )  AS uid"
+                    + " FROM ac_cash_collection  WHERE"
+                    + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY'  ) AND "
+                    + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
                     + " UNION "
-                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes "
-                    + " FROM hp_patient_card WHERE collected = false AND "
-                    + " ((SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, reference as  Request_No,'' as doctor,"
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM hp_patient_card hpc WHERE collected = false AND "
+                    + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
                     + "ORDER BY 1 asc"));
 
             //}
             if (patNo > 5) {
 
-                this.jLabel14.setText("Queue Long '" + patNo + "' Patients Are Waiting For Xray");
+                this.jLabel14.setText("Queue Long '" + paidResultsTable.getRowCount() + "' Patients are waiting for radiology services");
                 this.jLabel14.setForeground(new java.awt.Color(255, 0, 51));
             } else {
-                this.jLabel14.setText("Queue Going Smoothly Only '" + patNo + "' Patients Waiting");
+                this.jLabel14.setText("Queue has '" + paidResultsTable.getRowCount() + "' patients waiting");
                 this.jLabel14.addNotify();
 
                 this.jLabel14.setForeground(new java.awt.Color(51, 51, 255));
@@ -2346,7 +2674,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
             java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) from pb_doctors_request pb, pb_activity pa"
                     + " WHERE  pb.posted_to_lab='DOC POSTING' and  "
                     + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' and paid = false AND collected = false "
-                    + "and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' ");
+                    + "and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayStartDatePicker.getDate()) + "' ");
 
             while (rsetTable11.next()) {
                 patNo = rsetTable11.getInt(1);
@@ -2362,7 +2690,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
                     + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                     + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb "
                     + " WHERE (pb.requisition_no ilike 'X-RAY' OR pb.requisition_no ilike 'XRAY') "
-                    + " and paid = false AND collected = false and trans_date::date  >= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2"
+                    + " and paid = false AND collected = false and trans_date::date   BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayStartDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "' "
                     + "  ORDER BY trans_date asc"));
 
         } catch (Exception sqlExec) {
@@ -2435,6 +2763,7 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton clearButton;
     private javax.swing.JScrollPane clinicalHistoryScrollPane;
     private javax.swing.JTextArea clinicalHistoryTxt;
+    private javax.swing.JButton closeFormBtn;
     private javax.swing.JTable confirmRequestsTable;
     private javax.swing.JScrollPane confirmScrollPane;
     private javax.swing.JTextField doctorTextField;
@@ -2443,9 +2772,11 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox inPatientChkbx;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel mainHeaderPanel;
@@ -2453,6 +2784,8 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane otherInformationScrollPane;
     private javax.swing.JTextArea otherInformationTxt;
     private javax.swing.JCheckBox outPatientChkbx;
+    private javax.swing.JButton pacsDicomViewerBtn;
+    private javax.swing.JButton pacsDicomViewerBtn1;
     private javax.swing.JPanel paidResultsMainPanel;
     private javax.swing.JPanel paidResultsPanel;
     private javax.swing.JTable paidResultsTable;
@@ -2478,16 +2811,21 @@ public class RadiologistXrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTable radiologyResultsTable;
     private javax.swing.JLabel receiptNoLbl;
     private javax.swing.JTextField receiptNoTxt;
+    private javax.swing.JButton refreshResultsListingBtn;
     private javax.swing.JButton refreshbutton;
+    private javax.swing.JPanel resultsButtonPanel;
     private javax.swing.JButton saveresultsButton;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel spacerLabel;
+    private javax.swing.JLabel spacerLbl;
     private javax.swing.JButton submitForPayBtn;
+    private javax.swing.JTextField uidTxt;
     private javax.swing.JPanel waitingListActionsPanel;
+    private com.afrisoftech.lib.DatePicker xrayEndDatePicker;
+    private com.afrisoftech.lib.DatePicker xrayStartDatePicker;
     private javax.swing.JPanel xrayTestPanel;
     private javax.swing.JScrollPane xrayTestScrollPane;
     private javax.swing.JTable xrayTestTable;
     private javax.swing.JTextField xrayTextField;
-    private com.afrisoftech.lib.DatePicker xraydatePicker;
     // End of variables declaration//GEN-END:variables
 }

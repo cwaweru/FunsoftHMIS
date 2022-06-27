@@ -698,7 +698,7 @@ public class MergingPatientNoIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5221ActionPerformed
     
     private void jTextField11321CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField11321CaretUpdate
-        if(this.jTextField1132.getCaretPosition() < 0){
+        if(this.jTextField11321.getCaretPosition() < 5){
             System.out.print("Nothing");
         }else{
             
@@ -844,7 +844,7 @@ public class MergingPatientNoIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton522ActionPerformed
     
     private void jTextField1132CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1132CaretUpdate
-        if(this.jTextField1132.getCaretPosition() < 0){
+        if(this.jTextField1132.getCaretPosition() < 5){
             System.out.print("Nothing");
         } else {
             

@@ -95,7 +95,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     private java.lang.Thread newPatientThread;
     boolean patientRunning = false;
     boolean idTelEnforce = false;
-     private byte[] fingerPrintData = null;
+    private byte[] fingerPrintData = null;
 
     public PatientRegisterIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -104,11 +104,14 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        
+        specialtyClinicCmbx2.setVisible(false);
 
         dbObject = new com.afrisoftech.lib.DBObject();
         branchTxt.setText(getCashPoint());
         jTextField22.setText(getShiftNumber());
         idTelEnforce = enforceTelphone_id();
+
         this.initializeWebCam();
         // panel.start();
     }
@@ -270,7 +273,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         ageYrsTxt = new javax.swing.JFormattedTextField();
         jLabel60 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
         disabilityCmbx = new javax.swing.JComboBox();
+        authorityCbx = new javax.swing.JComboBox<>();
+        specialtyClinicCmbx2 = new javax.swing.JComboBox();
         otherDetailsPanel = new javax.swing.JPanel();
         physicalResidenceLbl = new javax.swing.JLabel();
         residenceTxt = new javax.swing.JTextField();
@@ -289,6 +295,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         nokRelationShipCmbx = new javax.swing.JComboBox();
         nokChkbx = new javax.swing.JCheckBox();
         samaritanChkbx = new javax.swing.JCheckBox();
+        gsAddressTxt = new javax.swing.JTextField();
+        gSRelationshipTxt = new javax.swing.JTextField();
+        gsTelephoneNoTxt = new javax.swing.JTextField();
+        gsNameTxt = new javax.swing.JTextField();
         referredFromLbl = new javax.swing.JLabel();
         unitNumberLbl = new javax.swing.JLabel();
         oldFileNumberTxt = new javax.swing.JTextField();
@@ -327,6 +337,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         countyofBirthCmbx = new javax.swing.JComboBox();
         countyofResidenceCmbx = new javax.swing.JComboBox();
         locationTxt = new javax.swing.JComboBox<>();
+        jPanel11 = new javax.swing.JPanel();
+        noOfChildrenTxt = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
@@ -348,9 +360,11 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         districtCmbx = new javax.swing.JComboBox();
         jLabel33 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        chiefTxt = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        subChiefTxt = new javax.swing.JTextField();
+        jLabel50 = new javax.swing.JLabel();
+        purposeCbx = new javax.swing.JComboBox();
         insuranceDetailsPanel = new javax.swing.JPanel();
         insurerDetailsPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -1672,20 +1686,20 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                                            }
+                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                                                 formInternalFrameClosing(evt);
                                             }
-                                            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                                            }
-                                            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
                                             }
-                                            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
                                             }
-                                            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+                                            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                                             }
                                         });
                                         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -1789,7 +1803,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         headerPanel.add(jLabel13, gridBagConstraints);
 
-                                        patientCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT patient_type FROM pb_patient_categories ORDER BY 1"));
+                                        patientCategoryCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT '-' UNION SELECT patient_type FROM pb_patient_categories ORDER BY 1"));
                                         patientCategoryCmbx.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                                 patientCategoryCmbxActionPerformed(evt);
@@ -1829,6 +1843,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         createOldFileRbtn.setForeground(new java.awt.Color(51, 51, 255));
                                         createOldFileRbtn.setText("Create old patient file");
                                         createOldFileRbtn.setEnabled(false);
+                                        if(allowManualNos()){
+                                            createOldFileRbtn.setEnabled(true);
+                                        }
                                         createOldFileRbtn.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                                 createOldFileRbtnActionPerformed(evt);
@@ -2223,7 +2240,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         dateofLastVisitLbl.setText("Date of last visit");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 10;
+                                        gridBagConstraints.gridy = 11;
                                         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
@@ -2238,7 +2255,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
-                                        gridBagConstraints.gridy = 10;
+                                        gridBagConstraints.gridy = 11;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -2371,10 +2388,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         datePickerYOB.addInputMethodListener(new java.awt.event.InputMethodListener() {
+                                            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                                            }
                                             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                                                 datePickerYOBInputMethodTextChanged(evt);
-                                            }
-                                            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
                                             }
                                         });
                                         datePickerYOB.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -2425,21 +2442,46 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jLabel60.setText("Patient with disability");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.gridy = 10;
                                         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         patientSearchPanel.add(jLabel60, gridBagConstraints);
 
+                                        jPanel10.setLayout(new java.awt.GridBagLayout());
+
                                         disabilityCmbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N", "Y" }));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 1;
-                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 0;
                                         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
-                                        patientSearchPanel.add(disabilityCmbx, gridBagConstraints);
+                                        jPanel10.add(disabilityCmbx, gridBagConstraints);
+
+                                        authorityCbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Voluntary", "Involuntary" }));
+                                        authorityCbx.setBorder(javax.swing.BorderFactory.createTitledBorder("Authority"));
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 0;
+                                        jPanel10.add(authorityCbx, gridBagConstraints);
+
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 10;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                                        patientSearchPanel.add(jPanel10, gridBagConstraints);
+
+                                        specialtyClinicCmbx2.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' union SELECT distinct clinics FROM pb_clinics ORDER BY 1"));
+                                        specialtyClinicCmbx2.setNextFocusableComponent(cSheetNoTxt);
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 4;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        patientSearchPanel.add(specialtyClinicCmbx2, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
@@ -2524,7 +2566,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         nokResidenceTxt.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 6;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
@@ -2532,7 +2574,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                         nokDetails.add(nokResidenceTxt, gridBagConstraints);
 
-                                        NokEmailLbl.setText("Email Address");
+                                        NokEmailLbl.setText("ID. No");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 3;
                                         gridBagConstraints.gridy = 7;
@@ -2544,7 +2586,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         emailAddTxt1.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 7;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
@@ -2554,7 +2596,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         jTextField20.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 3;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.ipadx = 90;
@@ -2586,7 +2628,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                         nokTelephoneTxt.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 5;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
@@ -2601,7 +2643,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                             }
                                         });
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 2;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.ipadx = 90;
@@ -2610,9 +2652,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                         nokDetails.add(nokNameTxt, gridBagConstraints);
 
-                                        nokRelationShipCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT DISTINCT relation_description FROM nok_relationship order by 1"));
+                                        nokRelationShipCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB,"SELECT DISTINCT UPPER(relation_description) FROM nok_relationship order by 1"));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 4;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -2624,10 +2666,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         nokChkbx.setBackground(new java.awt.Color(153, 255, 204));
                                         nokbuttonGroup.add(nokChkbx);
                                         nokChkbx.setSelected(true);
-                                        nokChkbx.setText("Next of Kin");
+                                        nokChkbx.setText("Next of Kin(NOK)");
                                         nokChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 3;
+                                        gridBagConstraints.gridx = 5;
                                         gridBagConstraints.gridy = 0;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                                         gridBagConstraints.weightx = 1.0;
@@ -2640,13 +2682,33 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         samaritanChkbx.setText("Good Samaritan");
                                         samaritanChkbx.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
-                                        gridBagConstraints.gridx = 4;
+                                        gridBagConstraints.gridx = 6;
                                         gridBagConstraints.gridy = 0;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                         nokDetails.add(samaritanChkbx, gridBagConstraints);
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 6;
+                                        gridBagConstraints.gridy = 6;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        nokDetails.add(gsAddressTxt, gridBagConstraints);
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 6;
+                                        gridBagConstraints.gridy = 4;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        nokDetails.add(gSRelationshipTxt, gridBagConstraints);
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 6;
+                                        gridBagConstraints.gridy = 5;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        nokDetails.add(gsTelephoneNoTxt, gridBagConstraints);
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 6;
+                                        gridBagConstraints.gridy = 2;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        nokDetails.add(gsNameTxt, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
@@ -2788,8 +2850,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jPanel9.setPreferredSize(new java.awt.Dimension(48, 20));
                                         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-                                        referralFacilityNameTxt.setMinimumSize(new java.awt.Dimension(5, 19));
-                                        referralFacilityNameTxt.setPreferredSize(new java.awt.Dimension(5, 19));
                                         referralFacilityNameTxt.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                                 referralFacilityNameTxtActionPerformed(evt);
@@ -2849,7 +2909,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 9;
-                                        gridBagConstraints.gridwidth = 4;
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
@@ -3057,6 +3116,21 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weighty = 1.0;
                                         otherPatientDetailsPanel.add(locationTxt, gridBagConstraints);
 
+                                        jPanel11.setLayout(new java.awt.GridBagLayout());
+
+                                        noOfChildrenTxt.setBorder(javax.swing.BorderFactory.createTitledBorder("No. of children"));
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.weightx = 1.0;
+                                        jPanel11.add(noOfChildrenTxt, gridBagConstraints);
+
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.gridwidth = 3;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        otherPatientDetailsPanel.add(jPanel11, gridBagConstraints);
+
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 2;
                                         gridBagConstraints.gridy = 1;
@@ -3222,14 +3296,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
                                         jPanel8.add(jTextField19, gridBagConstraints);
 
-                                        jLabel5.setText("District (Regional Branch)");
+                                        jLabel5.setText("Purpose");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
-                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.gridy = 7;
                                         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         jPanel8.add(jLabel5, gridBagConstraints);
 
+                                        districtCmbx.setEditable(true);
                                         districtCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT district_name FROM pb_district ORDER BY district_name"));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
@@ -3249,7 +3324,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         jPanel8.add(jLabel33, gridBagConstraints);
 
-                                        jTextField25.setEditable(false);
+                                        chiefTxt.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
                                         gridBagConstraints.gridy = 12;
@@ -3257,7 +3332,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                                        jPanel8.add(jTextField25, gridBagConstraints);
+                                        jPanel8.add(chiefTxt, gridBagConstraints);
 
                                         jLabel34.setText("Name of Sub Chief");
                                         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3267,7 +3342,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
                                         jPanel8.add(jLabel34, gridBagConstraints);
 
-                                        jTextField26.setEditable(false);
+                                        subChiefTxt.setEditable(false);
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 1;
                                         gridBagConstraints.gridy = 13;
@@ -3275,7 +3350,27 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         gridBagConstraints.weightx = 1.0;
                                         gridBagConstraints.weighty = 1.0;
                                         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-                                        jPanel8.add(jTextField26, gridBagConstraints);
+                                        jPanel8.add(subChiefTxt, gridBagConstraints);
+
+                                        jLabel50.setText("District (Regional Branch)");
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 0;
+                                        gridBagConstraints.gridy = 9;
+                                        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                                        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+                                        jPanel8.add(jLabel50, gridBagConstraints);
+
+                                        purposeCbx.setEditable(true);
+                                        purposeCbx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TreatMent in OPD", "Mental Assessment", "Admission" }));
+                                        gridBagConstraints = new java.awt.GridBagConstraints();
+                                        gridBagConstraints.gridx = 1;
+                                        gridBagConstraints.gridy = 7;
+                                        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                                        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+                                        gridBagConstraints.weightx = 1.0;
+                                        gridBagConstraints.weighty = 1.0;
+                                        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
+                                        jPanel8.add(purposeCbx, gridBagConstraints);
 
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -3912,8 +4007,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         diseaseChooserPanel.setLayout(new java.awt.GridBagLayout());
 
                                         diseaseFieldTxt.setEditable(false);
-                                        diseaseFieldTxt.setMinimumSize(new java.awt.Dimension(5, 19));
-                                        diseaseFieldTxt.setPreferredSize(new java.awt.Dimension(5, 19));
                                         gridBagConstraints = new java.awt.GridBagConstraints();
                                         gridBagConstraints.gridx = 0;
                                         gridBagConstraints.gridy = 0;
@@ -4353,8 +4446,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                         jPanel6.setPreferredSize(new java.awt.Dimension(48, 20));
                                         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-                                        patientNumberTxt.setMinimumSize(new java.awt.Dimension(5, 19));
-                                        patientNumberTxt.setPreferredSize(new java.awt.Dimension(5, 19));
+                                        patientNumberTxt.setEditable(false);
                                         patientNumberTxt.addActionListener(new java.awt.event.ActionListener() {
                                             public void actionPerformed(java.awt.event.ActionEvent evt) {
                                                 patientNumberTxtActionPerformed(evt);
@@ -4758,9 +4850,9 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         selectedStatusgender = selectedchkbx;
         selectedStatus = selectedchkbx1;
 
-        com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
-////        com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
-////        regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
+        //com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
+        com.afrisoftech.reports.PsychiatryRegFormPdf regForm = new com.afrisoftech.reports.PsychiatryRegFormPdf();
+        regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
 
 //        // TODO add your handling code here:
 
@@ -5130,7 +5222,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         searchbyNameChkbx.setEnabled(true);
         searchbyNumberChkbx.setEnabled(true);
         searchButton1.setEnabled(true);
-        patientNumberTxt.setEditable(true);
+        patientNumberTxt.setEditable(false);
         residenceTxt.setEditable(false);
         nokNameTxt.setEditable(false);
         //   datePickerYOB.setEditable(false);
@@ -5146,8 +5238,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setEditable(false);
         locationTxt.setEditable(false);
         currentResidenceTxt.setEditable(false);
-        jTextField25.setEditable(false);
-        jTextField26.setEditable(false);
+        chiefTxt.setEditable(false);
+        subChiefTxt.setEditable(false);
         idPassportTxt.setEditable(false);
         emailAddTxt.setEditable(false);
         jTextField20.setEditable(false);
@@ -5180,8 +5272,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setText("");
         locationTxt.setSelectedItem("-");
         currentResidenceTxt.setText("");
-        jTextField25.setText("");
-        jTextField26.setText("");
+        chiefTxt.setText("");
+        subChiefTxt.setText("");
         // jButton301.setEnabled(true);
         //jButton3.setEnabled(true);
 
@@ -5196,7 +5288,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         // Add your handling code here:
     }//GEN-LAST:event_createNewFileRbtnActionPerformed
 
-    private void createNewPatient() {                                                  
+    private void createNewPatient() {
         servicePointCmbx.setSelectedItem(defaultServicePoint);
         serviceStartTime = com.afrisoftech.lib.ServerTime.getSQLTimeStamp(connectDB);
         paymentModeCmbx.setSelectedItem("Cash");
@@ -5235,8 +5327,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setEditable(true);
         locationTxt.setEditable(true);
         currentResidenceTxt.setEditable(true);
-        jTextField25.setEditable(true);
-        jTextField26.setEditable(true);
+        chiefTxt.setEditable(true);
+        subChiefTxt.setEditable(true);
         patientNumberTxt.setText("");
         residenceTxt.setText("");
         nokNameTxt.setText("");
@@ -5259,8 +5351,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setText("");
         locationTxt.setSelectedItem("-");
         currentResidenceTxt.setText("");
-        jTextField25.setText("");
-        jTextField26.setText("");
+        chiefTxt.setText("");
+        subChiefTxt.setText("");
         oldFileNumberTxt.setText("");
         clinicNumberTxt.setText("");
         referralTypeCmbx.setSelectedItem("-");
@@ -5283,6 +5375,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             stmtx.close();
             if (autonumber) {
                 patientNumberTxt.setEditable(false);
+
+            }
+            if (allowManualNos()) {
+                createOldFileRbtn.setEnabled(true);
+                patientNumberTxt.setEditable(true);
+            }
+            if (createNewFileRbtn.isSelected()) {
+                patientNumberTxt.setEditable(false);
+
             }
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -5292,7 +5393,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
         // Add your handling code here:
     }
-    
+
     private void savePrintRegistrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePrintRegistrationBtnActionPerformed
         String cmbx1 = paymentModeCmbx.getSelectedItem().toString();
         saveRegistrationBtnActionPerformed(evt);
@@ -6032,7 +6133,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 this.nationalityCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(19), "-"));
                 this.nokTelephoneTxt.setText(dbObject.getDBObject(rset.getObject(20), "-"));
                 this.nokRelationShipCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(21), "-"));
-                 //System.out.println("here is the nok  " + rset.getObject(21).toString());
+                //System.out.println("here is the nok  " + rset.getObject(21).toString());
                 this.nokResidenceTxt.setText(dbObject.getDBObject(rset.getObject(22), "-"));
                 this.emailAddTxt1.setText(dbObject.getDBObject(rset.getObject(23), "-"));
                 //       this.(dbObject.getDBObject(rset.getObject(24), "-"));
@@ -6041,8 +6142,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 this.datePickerYOB.setDate(Date.valueOf(String.valueOf(dbObject.getDBObject(rset.getDate("year_of_birth"), ""))));
 
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
-                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
-                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.chiefTxt.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.subChiefTxt.setText(dbObject.getDBObject(rset.getObject(30), "-"));
                 this.nhifNumberTxt.setText(rset.getString("nhif_number"));
                 this.placeOfBirthTxt.setText(rset.getString("birth_place"));
                 if (rset.getBoolean("nhif_status")) {
@@ -6276,8 +6377,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setEditable(true);
         locationTxt.setEditable(true);
         currentResidenceTxt.setEditable(true);
-        jTextField25.setEditable(true);
-        jTextField26.setEditable(true);
+        chiefTxt.setEditable(true);
+        subChiefTxt.setEditable(true);
         emailAddTxt1.setEditable(true);
         // emailAddTxt1.setText("");
 
@@ -6329,8 +6430,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 this.ageTxt.setText(dbObject.getDBObject(rset.getObject(31), "-"));
                 this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
-                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
-                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.chiefTxt.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.subChiefTxt.setText(dbObject.getDBObject(rset.getObject(30), "-"));
                 paymentModeCmbx.setSelectedItem(dbObject.getDBObject(rset.getObject(7), "-"));
                 // jTextField12.setText(dbObject.getDBObject(rset.getObject(6), "-"));
                 //  dbObject.getDBObject(rset1.getObject(3), "-")
@@ -6456,8 +6557,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setText("");
         locationTxt.setSelectedItem("-");
         currentResidenceTxt.setText("");
-        jTextField25.setText("");
-        jTextField26.setText("");
+        chiefTxt.setText("");
+        subChiefTxt.setText("");
         this.clearForm();
         // Add your handling code here:
     }//GEN-LAST:event_clearFieldsBtnActionPerformed
@@ -6553,7 +6654,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                 if (paymentModeCmbx.getSelectedItem() != null) {
                                     if (!countyofResidenceCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
                                         if (!locationTxt.getSelectedItem().toString().equalsIgnoreCase("-") && !locationTxt.getSelectedItem().toString().equalsIgnoreCase("")) {
-                                            if (patientCategoryCmbx.getSelectedItem() != null) {
+                                            if (patientCategoryCmbx.getSelectedItem() != null && !patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("-")) {
                                                 if (urgencyCMBX.getSelectedIndex() > 0) {
                                                     Object category = paymentModeCmbx.getSelectedItem();
                                                     double ager = java.lang.Double.valueOf(ageTxt.getText().toString());
@@ -6561,14 +6662,16 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                         patientCategoryCmbx.setSelectedItem("Under 5 Yrs".toUpperCase());
                                                     }
                                                     
-                                                        
-                                                    if(idPassportTxt.getText().trim().isEmpty() && idTelEnforce){
+                                                    if (createOldFileRbtn.isSelected()   && patientNumberTxt.getText().trim().isEmpty() ) {
+                                                           javax.swing.JOptionPane.showMessageDialog(this, "You MUST provide the old patient file number", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+                                                    }else if (idPassportTxt.getText().trim().isEmpty() && idTelEnforce) {
                                                         javax.swing.JOptionPane.showMessageDialog(this, "You must provide the ID/Passport No", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
-     
-                                                    }else if(cellPhoneNoTxt.getText().trim().isEmpty() && idTelEnforce){
+
+                                                    } else if (cellPhoneNoTxt.getText().trim().isEmpty() && idTelEnforce) {
                                                         javax.swing.JOptionPane.showMessageDialog(this, "You must provide the cell phone(Mobile) No", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
-                                                    }else if (category == null) {
+                                                    } else if (category == null) {
                                                         javax.swing.JOptionPane.showMessageDialog(this, "You must select patient category", "Warning Message!", javax.swing.JOptionPane.WARNING_MESSAGE);
 
                                                     } else {
@@ -6832,7 +6935,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                             java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,? ,?,?)");
 
                                                                                             pstmt.setString(1, patientNumberTxt.getText());
 
@@ -6879,8 +6982,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                             pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
                                                                                             pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                             pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                            pstmt.setString(36, jTextField25.getText());
-                                                                                            pstmt.setString(37, jTextField26.getText());
+                                                                                            pstmt.setString(36, chiefTxt.getText());
+                                                                                            pstmt.setString(37, subChiefTxt.getText());
                                                                                             pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                             pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                             pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -6899,6 +7002,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                             pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                             pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                             pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                            pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                            pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                            pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                            pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                            pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                            pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
 
                                                                                             pstmt.executeUpdate();
                                                                                             javax.swing.JOptionPane.showMessageDialog(this, "Patient File Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -6946,7 +7058,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                                 java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? ,?,? )");
 
                                                                                                 pstmt.setString(1, patientsNo);
 
@@ -6993,8 +7105,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(33, this.districtCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                                 pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                pstmt.setString(36, jTextField25.getText());
-                                                                                                pstmt.setString(37, jTextField26.getText());
+                                                                                                pstmt.setString(36, chiefTxt.getText());
+                                                                                                pstmt.setString(37, subChiefTxt.getText());
                                                                                                 pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -7013,6 +7125,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                 pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                                pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                                pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                                pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                                pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                                pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
 
                                                                                                 pstmt.executeUpdate();
                                                                                                 // javax.swing.JOptionPane.showMessageDialog(this, "Patient Registered Successfully for Pateint Number :["++"] and Name : ["++"]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -7035,7 +7156,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                             } else {
                                                                                                 java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
 
                                                                                                 pstmt.setString(1, patientNumberTxt.getText());
 
@@ -7082,8 +7203,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(33, ageTxt.getText());
                                                                                                 pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                                 pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                pstmt.setString(36, jTextField25.getText());
-                                                                                                pstmt.setString(37, jTextField26.getText());
+                                                                                                pstmt.setString(36, chiefTxt.getText());
+                                                                                                pstmt.setString(37, subChiefTxt.getText());
                                                                                                 pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -7102,6 +7223,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                 pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                 pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                 pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                                pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                                pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                                pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                                pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                                pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                                pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
                                                                                                 pstmt.executeUpdate();
 
                                                                                                 //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -7149,7 +7279,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                                     java.sql.Statement stm = connectDB.createStatement();
 
-                                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                    java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
 
                                                                                                     pstmt.setString(1, patientsNo);
 
@@ -7196,8 +7326,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                     pstmt.setString(33, ageTxt.getText());
                                                                                                     pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                                     pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                    pstmt.setString(36, jTextField25.getText());
-                                                                                                    pstmt.setString(37, jTextField26.getText());
+                                                                                                    pstmt.setString(36, chiefTxt.getText());
+                                                                                                    pstmt.setString(37, subChiefTxt.getText());
                                                                                                     pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                                     pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                                     pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -7216,6 +7346,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                     pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                     pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                     pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                                    pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                                    pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                                    pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                                    pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                                    pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                                    pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
                                                                                                     pstmt.executeUpdate();
 
                                                                                                     //  this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -7307,7 +7446,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                         pstmt11.executeUpdate();
                                                                                                                         javax.swing.JOptionPane.showMessageDialog(this, "Patient Activated Successfully", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                                                                                                                     } else {
-                                                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                        java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? )");
 
                                                                                                                         pstmt.setString(1, patientNumberTxt.getText());
 
@@ -7354,8 +7493,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                         pstmt.setString(33, ageTxt.getText());
                                                                                                                         pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                                                         pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                                        pstmt.setString(36, jTextField25.getText());
-                                                                                                                        pstmt.setString(37, jTextField26.getText());
+                                                                                                                        pstmt.setString(36, chiefTxt.getText());
+                                                                                                                        pstmt.setString(37, subChiefTxt.getText());
                                                                                                                         pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                                                         pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                                                         pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -7374,6 +7513,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                         pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                         pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                                         pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                                                        pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                                                        pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                                                        pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                                                        pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                                                        pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                                                        pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
                                                                                                                         pstmt.executeUpdate();
 
                                                                                                                         // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -7421,7 +7569,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                                 }
                                                                                                                             }
 
-                                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                                                                                                            java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_patient_register VALUES(upper(?), upper(?), upper(?), upper(?), ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? ,?,?)");
 
                                                                                                                             pstmt.setString(1, patientsNo);
 
@@ -7468,8 +7616,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                             pstmt.setString(33, ageTxt.getText());
                                                                                                                             pstmt.setString(34, locationTxt.getSelectedItem().toString());
                                                                                                                             pstmt.setString(35, currentResidenceTxt.getText());
-                                                                                                                            pstmt.setString(36, jTextField25.getText());
-                                                                                                                            pstmt.setString(37, jTextField26.getText());
+                                                                                                                            pstmt.setString(36, chiefTxt.getText());
+                                                                                                                            pstmt.setString(37, subChiefTxt.getText());
                                                                                                                             pstmt.setString(38, informationSourceCmbx.getSelectedItem().toString());
                                                                                                                             pstmt.setString(39, educationLevelCmbx.getSelectedItem().toString());
                                                                                                                             pstmt.setString(40, occupationCmbx.getSelectedItem().toString());
@@ -7488,7 +7636,15 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                                                             pstmt.setString(53, this.cSheetNoTxt.getText());
                                                                                                                             pstmt.setString(54, this.specialtyClinicCmbx.getSelectedItem().toString());
                                                                                                                             pstmt.setString(55, this.disabilityCmbx.getSelectedItem().toString());
-
+                                                                                                                            pstmt.setString(56, this.noOfChildrenTxt.getText());
+                                                                                                                            pstmt.setString(57, this.authorityCbx.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(58, this.gsNameTxt.getText());
+                                                                                                                            pstmt.setString(59, this.gSRelationshipTxt.getText());
+                                                                                                                            pstmt.setString(60, this.gsAddressTxt.getText());
+                                                                                                                            pstmt.setString(61, this.gsTelephoneNoTxt.getText());
+                                                                                                                            pstmt.setString(62, this.specialtyClinicCmbx2.getSelectedItem().toString());
+                                                                                                                            pstmt.setString(63, this.purposeCbx.getSelectedItem().toString());
+                                                                                            
                                                                                                                             pstmt.executeUpdate();
 
                                                                                                                             // this.registrationStatusLbl.setText("PATIENT REGISTRATION SUCCESSFUL");
@@ -7551,7 +7707,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                         patientsNo = patientNumberTxt.getText();
                                                                                     }
                                                                                 }
-                                                                                System.err.println("Patient No : <><><>"+patientsNo);
+                                                                                System.err.println("Patient No : <><><>" + patientsNo);
 
                                                                                 java.sql.PreparedStatement pstmt21a = connectDB.prepareStatement("INSERT INTO hp_patient_visit("
                                                                                         + "patient_no, name, ip_no, payment, visit_no, services, quantity,"
@@ -7611,6 +7767,18 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                 pstmt21a.setObject(35, referralFacilityNameTxt.getText());
                                                                                 pstmt21a.executeUpdate();
 
+                                                                                if (createOldFileRbtn.isSelected()) {
+                                                                                    javax.swing.JOptionPane.showMessageDialog(this, "Patient registration successful for Patient Number :[" + patientNumberTxt.getText() + "] and Name : [" + firstNameTxt.getText() + " " + surNameTxt.getText() + "]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                                                                                    if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("PSYCHIATRY")) {
+                                                                                        com.afrisoftech.reports.PsychiatryRegFormPdf regForm = new com.afrisoftech.reports.PsychiatryRegFormPdf();
+                                                                                        regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
+                                                                                    } else {
+                                                                                        com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
+                                                                                        regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
+                                                                                    }
+                                                                                }
+
                                                                                 java.sql.Statement stm1 = connectDB.createStatement();
                                                                                 if (createNewFileRbtn.isSelected()) {
                                                                                     java.sql.Statement stmnz1 = connectDB.createStatement();
@@ -7626,41 +7794,54 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                     java.sql.Statement stmtx = connectDB.createStatement();
 
                                                                                     if (manualNo) {
+                                                                                        java.sql.ResultSet rss1x = null;
                                                                                         java.sql.Statement pss1x = connectDB.createStatement();
-                                                                                        java.sql.ResultSet rss1x = pss1x.executeQuery("select nextval('outpatient_no_seq')");
+                                                                                        if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("PSYCHIATRY")) {
+                                                                                            rss1x = pss1x.executeQuery("select nextval('psychiatry_no_seq')");
+
+                                                                                        } else {
+                                                                                            rss1x = pss1x.executeQuery("select nextval('outpatient_no_seq')");
+
+                                                                                        }
                                                                                         while (rss1x.next()) {
                                                                                             patNos = rss1x.getObject(1).toString();
+                                                                                            if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("PSYCHIATRY")) {
 
-                                                                                            if (incYr) {
-                                                                                                if (preFix.equalsIgnoreCase("noPrefix")) {
-                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
-                                                                                                    while (rss1.next()) {
-                                                                                                        patientNo2 = rss1.getObject(1).toString();
-                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
-                                                                                                    }
-                                                                                                } else {
-                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
-                                                                                                    while (rss1.next()) {
-                                                                                                        patientNo2 = rss1.getObject(1).toString();
-                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
-                                                                                                    }
-                                                                                                }
+                                                                                                patientNo2 = patNos;
+                                                                                                patientNumberTxt.setText(patNos);
+
                                                                                             } else {
-                                                                                                if (preFix.equalsIgnoreCase("noPrefix")) {
-                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')");
-                                                                                                    while (rss1.next()) {
-                                                                                                        patientNo2 = rss1.getObject(1).toString();
-                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                if (incYr) {
+                                                                                                    if (preFix.equalsIgnoreCase("noPrefix")) {
+                                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
+                                                                                                        while (rss1.next()) {
+                                                                                                            patientNo2 = rss1.getObject(1).toString();
+                                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')||'/'||'" + yrs + "'");
+                                                                                                        while (rss1.next()) {
+                                                                                                            patientNo2 = rss1.getObject(1).toString();
+                                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                        }
                                                                                                     }
                                                                                                 } else {
-                                                                                                    java.sql.Statement pss1 = connectDB.createStatement();
-                                                                                                    java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')");
-                                                                                                    while (rss1.next()) {
-                                                                                                        patientNo2 = rss1.getObject(1).toString();
-                                                                                                        patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                    if (preFix.equalsIgnoreCase("noPrefix")) {
+                                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select lpad('" + patNos + "'," + digitNo + ",'0')");
+                                                                                                        while (rss1.next()) {
+                                                                                                            patientNo2 = rss1.getObject(1).toString();
+                                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        java.sql.Statement pss1 = connectDB.createStatement();
+                                                                                                        java.sql.ResultSet rss1 = pss1.executeQuery("select '" + preFix + "'||lpad('" + patNos + "'," + digitNo + ",'0')");
+                                                                                                        while (rss1.next()) {
+                                                                                                            patientNo2 = rss1.getObject(1).toString();
+                                                                                                            patientNumberTxt.setText(rss1.getObject(1).toString());
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             }
@@ -7685,6 +7866,13 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
 
                                                                                         javax.swing.JOptionPane.showMessageDialog(this, "Patient registration successful for Patient Number :[" + patientNumberTxt.getText() + "] and Name : [" + firstNameTxt.getText() + " " + surNameTxt.getText() + "]", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
+                                                                                        if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("PSYCHIATRY")) {
+                                                                                            com.afrisoftech.reports.PsychiatryRegFormPdf regForm = new com.afrisoftech.reports.PsychiatryRegFormPdf();
+                                                                                            regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
+                                                                                        } else {
+                                                                                            com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
+                                                                                            regForm.callPdf(connectDB, patientNumberTxt.getText(), "OP");
+                                                                                        }
                                                                                     } else {
                                                                                         if (patientNumberTxt.getText().toString().equalsIgnoreCase("") | patientNumberTxt.getText().toString().equalsIgnoreCase(" ") | patientNumberTxt.getText().toString().equalsIgnoreCase("  ") | patientNumberTxt.getText().toString().equalsIgnoreCase("   ") | patientNumberTxt.getText().toString().equalsIgnoreCase("    ")) {
                                                                                             // if(jTextField3.getText().toString().equalsIgnoreCase("") | jTextField3.getText().toString().equalsIgnoreCase(" ").concat("")){
@@ -7738,8 +7926,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                                                     pstmt1.setObject(19, districtCmbx.getSelectedItem());
                                                                                     pstmt1.setString(20, locationTxt.getSelectedItem().toString());
                                                                                     pstmt1.setString(21, currentResidenceTxt.getText());
-                                                                                    pstmt1.setString(22, jTextField25.getText());
-                                                                                    pstmt1.setString(23, jTextField26.getText());
+                                                                                    pstmt1.setString(22, chiefTxt.getText());
+                                                                                    pstmt1.setString(23, subChiefTxt.getText());
                                                                                     pstmt1.setObject(24, informationSourceCmbx.getSelectedItem());
                                                                                     pstmt1.setObject(25, educationLevelCmbx.getSelectedItem());
                                                                                     pstmt1.setObject(26, occupationCmbx.getSelectedItem());
@@ -8113,7 +8301,6 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                                                             selectedStatusgender = selectedchkbx;
                                                             selectedStatus = selectedchkbx1;
 
-                                                            //  com.afrisoftech.reports.PatientRegFormPdf.connectDB = connectDB;
                                                             com.afrisoftech.reports.PatientRegFormPdf regForm = new com.afrisoftech.reports.PatientRegFormPdf();
                                                             String accidentDate = "";
                                                             if (patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
@@ -8373,8 +8560,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 this.ageTxt.setText(dbObject.getDBObject(rset.getObject(31), "-"));
                 this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
-                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
-                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.chiefTxt.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.subChiefTxt.setText(dbObject.getDBObject(rset.getObject(30), "-"));
                 // jTextField12.setText(dbObject.getDBObject(rset.getObject(6), "-"));
                 //  dbObject.getDBObject(rset1.getObject(3), "-")
             }
@@ -8458,11 +8645,27 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
             if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("RTA")) {
                 billindDetailsTabbedPane.setSelectedComponent(rtaPanel);
             }
-        }        // TODO add your handling code here:
+        }
+        if(patientCategoryCmbx.getSelectedItem().toString().equalsIgnoreCase("PSYCHIATRY")){
+            cSheetNoLbl.setText("Assigned Clinic");
+            cSheetNoTxt.setVisible(false);
+            specialtyClinicCmbx2.setVisible(true);
+        }else{
+            cSheetNoLbl.setText("C-Sheet Number");
+            cSheetNoTxt.setVisible(true);
+            specialtyClinicCmbx2.setVisible(false);
+            
+        }
+
+
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_patientCategoryCmbxActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        //jButton301.setEnabled(false);
+        
+
+//jButton301.setEnabled(false);
         //jButton3.setEnabled(false);
         patientNumberTxt.grabFocus();
         paymentModeCmbx.setSelectedItem("Cash");
@@ -8494,8 +8697,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setEditable(false);
         locationTxt.setEditable(false);
         currentResidenceTxt.setEditable(false);
-        jTextField25.setEditable(false);
-        jTextField26.setEditable(false);
+        chiefTxt.setEditable(false);
+        subChiefTxt.setEditable(false);
         idPassportTxt.setEditable(false);
         emailAddTxt.setEditable(false);
         jTextField20.setEditable(false);
@@ -8528,8 +8731,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         ageTxt.setText("");
         locationTxt.setSelectedItem("-");
         currentResidenceTxt.setText("");
-        jTextField25.setText("");
-        jTextField26.setText("");
+        chiefTxt.setText("");
+        subChiefTxt.setText("");
         // jButton301.setEnabled(true);
         //jButton3.setEnabled(true);
 
@@ -8892,7 +9095,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonPanelHierarchyChanged
 
     private void ageYrsTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_ageYrsTxtCaretUpdate
-        if (ageYrsTxt.getText().length() > 0 ) {//&& !ageYrsTxt.getText().matches("0.") && !ageYrsTxt.getText().matches(".") && !ageYrsTxt.getText().matches("0")
+        if (ageYrsTxt.getText().length() > 0) {//&& !ageYrsTxt.getText().matches("0.") && !ageYrsTxt.getText().matches(".") && !ageYrsTxt.getText().matches("0")
             try {
                 java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT current_date - round(? * 365.25)::int");
                 pstmt.setInt(1, Integer.parseInt(ageYrsTxt.getText()));
@@ -8905,8 +9108,8 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
                 javax.swing.JOptionPane.showMessageDialog(this, sq.getMessage());
                 sq.printStackTrace();
             }
-            
-            System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>"+ageYrsTxt.getText().length());
+
+            System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>" + ageYrsTxt.getText().length());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_ageYrsTxtCaretUpdate
@@ -9024,7 +9227,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_countyofResidenceCmbxActionPerformed
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-      if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
+        if (patientSpecialityCmbx.getSelectedItem().toString().contains("ALL")) {
             reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
         } else {
             reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time,(SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no , (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND clinic ilike '" + patientSpecialityCmbx.getSelectedItem().toString() + "' AND transaction_type = 'Registration'  order by 3"));
@@ -9034,9 +9237,10 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_refreshBtnActionPerformed
 
     private void seachPatTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_seachPatTxtCaretUpdate
-        if(seachPatTxt.getCaretPosition()>3)
-        reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE (patient_no ilike '%"+seachPatTxt.getText()+"%' OR name ilike '%"+seachPatTxt.getText()+"%') AND date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
-         // TODO add your handling code here:
+        if (seachPatTxt.getCaretPosition() > 3) {
+            reportsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT patient_no, initcap(name) as patient_name, input_date::time(0) as registration_time, (SELECT tel_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as tel_no , (SELECT id_no FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no LIMIT 1) as id_no, (SELECT home_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as birth_county, (SELECT residence_county FROM hp_patient_register WHERE hp_patient_visit.patient_no = hp_patient_register.patient_no) as residence_county, comments as NEW_OR_REVISIT, test as home_address, department as category, payment as pay_mode, age::int, gender, marital_status, clinic, user_name as registrar from hp_patient_visit WHERE (patient_no ilike '%" + seachPatTxt.getText() + "%' OR name ilike '%" + seachPatTxt.getText() + "%') AND date between '" + startDatePicker.getDate() + "' AND  '" + endDatePicker.getDate() + "' AND transaction_type = 'Registration' order by 3"));
+        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_seachPatTxtCaretUpdate
 
     private void enrollFingerPrintBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollFingerPrintBtnActionPerformed
@@ -9066,7 +9270,7 @@ public class PatientRegisterIntfr extends javax.swing.JInternalFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_enrollFingerPrintBtnActionPerformed
-public void getPatientDetails(String patientNo) {
+    public void getPatientDetails(String patientNo) {
         inpatientActivation = false;
         //  jComboBox2.setSelectedItem(jSearchTable.getValueAt(jSearchTable.getSelectedRow(), 0));
         patientNumberTxt.setText(patientNo);
@@ -9125,8 +9329,8 @@ public void getPatientDetails(String patientNo) {
                 this.datePickerYOB.setDate(Date.valueOf(String.valueOf(dbObject.getDBObject(rset.getDate("year_of_birth"), ""))));
                 this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
-                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
-                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.chiefTxt.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.subChiefTxt.setText(dbObject.getDBObject(rset.getObject(30), "-"));
                 this.nhifNumberTxt.setText(rset.getString("nhif_number"));
                 this.placeOfBirthTxt.setText(rset.getString("birth_place"));
                 if (rset.getBoolean("nhif_status")) {
@@ -9308,7 +9512,7 @@ public void getPatientDetails(String patientNo) {
         patientSearchDialog.setVisible(true);
 
     }
-    
+
     public java.lang.String getShiftNumber() {
         try {
 
@@ -9333,12 +9537,36 @@ public void getPatientDetails(String patientNo) {
 
     }
 
+    public boolean allowManualNos() {
+        boolean mandatory = false;
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+
+            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT allow_manual_no FROM pb_patient_names ");
+
+            while (rset.next()) {
+
+                mandatory = rset.getBoolean(1);
+
+            }
+
+        } catch (java.sql.SQLException sqlExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
+        }
+
+        return mandatory;
+
+    }
+
     public boolean enforceTelphone_id() {
         boolean mandatory = false;
         try {
 
             java.sql.Statement stmt = connectDB.createStatement();
-            
 
             // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
             java.sql.ResultSet rset = stmt.executeQuery("SELECT telephone_idno_mandatory FROM pb_patient_names ");
@@ -9414,8 +9642,8 @@ public void getPatientDetails(String patientNo) {
                 this.ageTxt.setText(dbObject.getDBObject(rset.getObject(31), "-"));
                 this.locationTxt.setSelectedItem(dbObject.getDBObject(rset.getObject(27), "-"));
                 this.currentResidenceTxt.setText(dbObject.getDBObject(rset.getObject(28), "-"));
-                this.jTextField25.setText(dbObject.getDBObject(rset.getObject(29), "-"));
-                this.jTextField26.setText(dbObject.getDBObject(rset.getObject(30), "-"));
+                this.chiefTxt.setText(dbObject.getDBObject(rset.getObject(29), "-"));
+                this.subChiefTxt.setText(dbObject.getDBObject(rset.getObject(30), "-"));
                 // jTextField12.setText(dbObject.getDBObject(rset.getObject(6), "-"));
                 //  dbObject.getDBObject(rset1.getObject(3), "-")
             }
@@ -9518,15 +9746,15 @@ public void getPatientDetails(String patientNo) {
             }
         }
     }
-    
+
     public class NewPatientFile extends Thread {
 
         @Override
         public void run() {
             createNewPatient();
-             //To change body of generated methods, choose Tools | Templates.
+            //To change body of generated methods, choose Tools | Templates.
         }
-        
+
     }
 
     // jSearchDialog.dispose();
@@ -9592,6 +9820,7 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JLabel ageLbl;
     private javax.swing.JTextField ageTxt;
     private javax.swing.JFormattedTextField ageYrsTxt;
+    private javax.swing.JComboBox<String> authorityCbx;
     private javax.swing.JTabbedPane billindDetailsTabbedPane;
     private javax.swing.JPanel bioDataPanel;
     private javax.swing.JButton bookingBtn;
@@ -9609,6 +9838,7 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JTextField cardSerialNoTxt;
     private javax.swing.JTextField cardsSoldTxt;
     private javax.swing.JTextField cellPhoneNoTxt;
+    private javax.swing.JTextField chiefTxt;
     private javax.swing.JButton clearFieldsBtn;
     private javax.swing.JLabel clinicNumberLbl;
     private javax.swing.JTextField clinicNumberTxt;
@@ -9671,6 +9901,10 @@ public void getPatientDetails(String patientNo) {
     public static javax.swing.JDialog fingerPrintDialog;
     public static javax.swing.JLabel fingerprintIconLabel;
     private javax.swing.JTextField firstNameTxt;
+    private javax.swing.JTextField gSRelationshipTxt;
+    private javax.swing.JTextField gsAddressTxt;
+    private javax.swing.JTextField gsNameTxt;
+    private javax.swing.JTextField gsTelephoneNoTxt;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton helpBtn;
     private javax.swing.JLabel idNoLbl;
@@ -9748,6 +9982,7 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -9768,6 +10003,8 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel1111;
     private javax.swing.JPanel jPanel121;
     private javax.swing.JPanel jPanel2;
@@ -9825,8 +10062,6 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField3111;
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField361;
@@ -9847,6 +10082,7 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JCheckBox nhifChbx;
     private javax.swing.JTextField nhifNumberTxt;
     private javax.swing.JPanel nhifPanel;
+    private javax.swing.JTextField noOfChildrenTxt;
     private javax.swing.JCheckBox nokChkbx;
     private javax.swing.JPanel nokDetails;
     private javax.swing.JTextField nokNameTxt;
@@ -9879,6 +10115,7 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JPanel previousPanel;
     private javax.swing.JScrollPane previousVisitsScrollPane;
     private javax.swing.JTable previousVisitsTable;
+    private javax.swing.JComboBox purposeCbx;
     private javax.swing.JButton readSmartCardBtn;
     private javax.swing.JComboBox referralCountyCmbx;
     private javax.swing.JLabel referralCountyLbl;
@@ -9928,9 +10165,11 @@ public void getPatientDetails(String patientNo) {
     private javax.swing.JComboBox servicePointCmbx;
     private javax.swing.JLabel spacerLbl;
     private javax.swing.JComboBox specialtyClinicCmbx;
+    private javax.swing.JComboBox specialtyClinicCmbx2;
     private javax.swing.JLabel specialtyClinicLbl;
     private javax.swing.JButton startBtn;
     private com.afrisoftech.lib.DatePicker startDatePicker;
+    private javax.swing.JTextField subChiefTxt;
     private javax.swing.JTextField surNameTxt;
     private javax.swing.JButton takeSnapBtn;
     private javax.swing.JComboBox typeofAccidentCmbx;

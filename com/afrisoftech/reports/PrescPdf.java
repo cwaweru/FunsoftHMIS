@@ -4,6 +4,7 @@
 //import java.lang.*;
 package com.afrisoftech.reports;
 
+import com.afrisoftech.lib.HosPrescriptionsDatePanel;
 import java.awt.Point;
 import java.awt.Color;
 import java.io.FileOutputStream;
@@ -46,6 +47,7 @@ public class PrescPdf implements java.lang.Runnable {
     java.lang.Process prThread;
     
     boolean all = false;
+    private String doctorAccount;
 
     public void PrescPdf(java.sql.Connection connDb, java.lang.String combox, boolean alll) {
         memNo = combox;
@@ -340,11 +342,11 @@ public class PrescPdf implements java.lang.Runnable {
                         System.out.println(datenowSql.toString());
 
                        // java.lang.Object listofStaffNos[] = this.getListofStaffNos();
-                        com.lowagie.text.pdf.PdfPTable table1 = new com.lowagie.text.pdf.PdfPTable(7);
+                        com.lowagie.text.pdf.PdfPTable table1 = new com.lowagie.text.pdf.PdfPTable(8);
                         //  com.lowagie.text.Table table = new com.lowagie.text.Table(7);
 
                         // table.endHeaders();
-                        int headerwidths[] = {15, 15, 30, 15, 15, 15, 15};
+                        int headerwidths[] = {15, 15, 40, 15, 15, 15, 15, 15};
 
                         table1.setWidths(headerwidths);
                         //  if (docPdf.getPageNumber() > 1) {
@@ -354,7 +356,7 @@ public class PrescPdf implements java.lang.Runnable {
 
                         table1.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
-                        table1.getDefaultCell().setColspan(7);
+                        table1.getDefaultCell().setColspan(8);
 
                         Phrase phrase = new Phrase();
 
@@ -367,7 +369,7 @@ public class PrescPdf implements java.lang.Runnable {
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.ResultSet rset3 = st3.executeQuery("select header_name from pb_header");
                             while (rset3.next()) {
-                                table1.getDefaultCell().setColspan(7);
+                                table1.getDefaultCell().setColspan(8);
 
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 phrase = new Phrase(rset3.getObject(1).toString(), pFontHeader11);
@@ -387,9 +389,9 @@ public class PrescPdf implements java.lang.Runnable {
 
                     try {
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(7);
 
-                        int headerwidths[] = {30, 25, 20, 20, 20, 20};
+                        int headerwidths[] = {30, 25, 20, 20, 20, 20, 20};
 
                         table.setWidths(headerwidths);
 
@@ -397,7 +399,7 @@ public class PrescPdf implements java.lang.Runnable {
 
                         table.getDefaultCell().setBorder(Rectangle.BOTTOM);
 
-                        table.getDefaultCell().setColspan(6);
+                        table.getDefaultCell().setColspan(7);
 
                         Phrase phrase = new Phrase();
 
@@ -418,7 +420,7 @@ public class PrescPdf implements java.lang.Runnable {
                             //  java.sql.ResultSet rset3 = st3.executeQuery("select hospital_name,postal_code||' '||box_no||' '||town,main_telno||' '||other_telno,initcap(street),main_faxno,email,website,room_no from pb_hospitalprofile");
                             java.sql.ResultSet rset2 = st2.executeQuery("select distinct patient_no from pb_doctors_request where inv_no = '" + memNo + "'");
                             while (rset2.next()) {
-                                table.getDefaultCell().setColspan(6);
+                                table.getDefaultCell().setColspan(7);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 memNo1 = rset2.getObject(1).toString();
@@ -433,14 +435,14 @@ public class PrescPdf implements java.lang.Runnable {
                                 condition = " and inv_no = '" + memNo + "' ";
                             }
 
-                            java.sql.ResultSet rset1 = st1.executeQuery("select service,requisition_no,bed_no,dosage,time_due from pb_doctors_request where revenue_code ilike '%pharm%' "+condition+" ORDER BY service asc");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset1 = st1.executeQuery("select service,requisition_no,bed_no,dosage,time_due, paid from pb_doctors_request where revenue_code ilike '%pharm%' "+condition+" ORDER BY service asc");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             java.sql.ResultSet rset5 = st5.executeQuery("select distinct inv_no,initcap(doctor) from pb_doctors_request where revenue_code ilike '%pharm%' and inv_no = '" + memNo + "'");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
-                            java.sql.ResultSet rset6 = st6.executeQuery("select distinct curr_date::time(0) from pb_doctors_request where revenue_code ilike '%pharm%' and inv_no = '" + memNo + "'");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset6 = st6.executeQuery("select distinct curr_date::timestamp(0) from pb_doctors_request where revenue_code ilike '%pharm%' and inv_no = '" + memNo + "'");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
                             java.sql.ResultSet rset8 = st8.executeQuery("SELECT TO_CHAR(current_timestamp(0),'FMDay FMDD/ MM/ YY HH12::MI')");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
                             while (rset8.next()) {
-                                table.getDefaultCell().setColspan(6);
+                                table.getDefaultCell().setColspan(7);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                                 date12 = rset8.getObject(1).toString();
@@ -462,7 +464,7 @@ public class PrescPdf implements java.lang.Runnable {
                             phrase = new Phrase("PRESCRIPTION", pFontHeader11);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(3);
+                            table.getDefaultCell().setColspan(4);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
                             phrase = new Phrase("Printed on:" + "\t" + date12, pFontHeader1);
                             table.addCell(phrase);
@@ -470,65 +472,140 @@ public class PrescPdf implements java.lang.Runnable {
 
                             while (rset6.next()) {
 
+                                table.getDefaultCell().setColspan(1);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Presc. Time: ", pFontHeader1);
+                                table.addCell(phrase);
+                                
                                 table.getDefaultCell().setColspan(2);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Presc. Time: " + rset6.getString(1), pFontHeader1);
+                                phrase = new Phrase(rset6.getString(1), pFontHeader1);
                                 table.addCell(phrase);
                             }
                             while (rset5.next()) {
 
-                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setColspan(1);
 
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Presc. No: " + "\t" + rset5.getString(1).toUpperCase(), pFontHeader1);
+                                phrase = new Phrase("Presc. No: ", pFontHeader1);
+
+                                table.addCell(phrase);
+                                
+                                
+                                table.getDefaultCell().setColspan(3);
+
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(rset5.getString(1).toUpperCase(), pFontHeader1);
 
                                 table.addCell(phrase);
 
-                                table.getDefaultCell().setColspan(2);
-                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Doctor A/C: " + "\t" + rset5.getString(2).toUpperCase(), pFontHeader1);
-
-                                table.addCell(phrase);
+                               doctorAccount = rset5.getString(2).toUpperCase();
 
                             }
 
-                            if (memNo.startsWith("O")) {
+                            if (HosPrescriptionsDatePanel.opdRdbtn.isSelected()) {
+                              //  if (memNo.startsWith("O")) {
                                 java.sql.ResultSet rset = st.executeQuery("select initcap(first_name||' '||second_name),funsoft_patient_age(year_of_birth::date),sex,tel_no,initcap(description),initcap(payer) from hp_patient_register where patient_no = '" + memNo1 + "'");
 
                                 while (rset.next()) {
 
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Patient No.:", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
                                     table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Patient No.:  " + memNo1.toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase(memNo1.toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
-
-                                    table.getDefaultCell().setColspan(2);
+                                    
+                                    
+                                                                        
+                                    
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Age:  " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
-                                    table.addCell(phrase);
+                                    // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
+                                    phrase = new Phrase("Patient Name : ", pFontHeader1);
 
-                                    table.getDefaultCell().setColspan(2);
-                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Gender:  " + dbObject.getDBObject(rset.getObject(3), "-").toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
-
+                                    
+                                    
+                                    
+                                    
                                     table.getDefaultCell().setColspan(3);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
-                                    phrase = new Phrase("Patient Name : " + dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
 
                                     table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Age", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(2);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Scheme Name", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                                                    
+                                    table.getDefaultCell().setColspan(3);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(5), "-").toUpperCase(), pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Gender", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(2);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-").toUpperCase(), pFontHeader1);
+                                    table.addCell(phrase);
+
+                                                                        
+
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Tel No.", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
                                     table.getDefaultCell().setColspan(3);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("TEl No.: " + dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
                                     table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(2);
-                                    phrase = new Phrase("Scheme:  " + dbObject.getDBObject(rset.getObject(5), "-").toUpperCase(), pFontHeader1);
-                                    table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(4);
+                                    
+                                table.getDefaultCell().setColspan(1);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase("Doctor A/C", pFontHeader1);
+
+                                table.addCell(phrase);
+                                
+                                table.getDefaultCell().setColspan(2);
+                                table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                phrase = new Phrase(doctorAccount, pFontHeader1);
+
+                                table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Payer: " + dbObject.getDBObject(rset.getObject(6), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase("Payer", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                        table.getDefaultCell().setColspan(3);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-").toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
                                 }
                             } else {
@@ -536,43 +613,120 @@ public class PrescPdf implements java.lang.Runnable {
 
                                 while (rset.next()) {
 
-                                    table.getDefaultCell().setColspan(2);
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase("Patient No.:  " + memNo1.toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
-
+                                    
                                     table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Age:  " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+                                    phrase = new Phrase(memNo1.toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
 
-                                    table.getDefaultCell().setColspan(2);
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Gender:  " + dbObject.getDBObject(rset.getObject(3), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase("Age:  ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
                                     table.addCell(phrase);
 
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase("Gender:  ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(3), "-").toUpperCase(), pFontHeader1);
+                                    table.addCell(phrase);
+
+                                    table.getDefaultCell().setColspan(1);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
+                                    phrase = new Phrase("Patient Name : ", pFontHeader1);
+
+                                    table.addCell(phrase);
+                                    
+                                    
                                     table.getDefaultCell().setColspan(3);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
-                                    phrase = new Phrase("Patient Name : " + dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
 
                                     table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(3);
+                                    
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("TEl No.: " + dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+                                    phrase = new Phrase("TEl No.: ", pFontHeader1);
                                     table.addCell(phrase);
+                                    
+                                                                        table.getDefaultCell().setColspan(2);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                    
+                                    table.getDefaultCell().setColspan(1);
+                                    phrase = new Phrase("Scheme:  ", pFontHeader1);
+                                    table.addCell(phrase);
+                                    
+                                                                    
                                     table.getDefaultCell().setColspan(2);
-                                    phrase = new Phrase("Scheme:  " + dbObject.getDBObject(rset.getObject(5), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(5), "-").toUpperCase(), pFontHeader1);
                                     table.addCell(phrase);
-                                    table.getDefaultCell().setColspan(4);
+                                    
+                                    table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Payer: " + dbObject.getDBObject(rset.getObject(6), "-").toUpperCase(), pFontHeader1);
+                                    phrase = new Phrase("Payer: ", pFontHeader1);
                                     table.addCell(phrase);
+                                    
+                                        table.getDefaultCell().setColspan(3);
+                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+                                    phrase = new Phrase(dbObject.getDBObject(rset.getObject(6), "-").toUpperCase(), pFontHeader1);
+                                    table.addCell(phrase);
+//                                    
+//                                    table.getDefaultCell().setColspan(3);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    phrase = new Phrase("Patient No.:  " + memNo1.toUpperCase(), pFontHeader1);
+//                                    table.addCell(phrase);
+//
+//                                    table.getDefaultCell().setColspan(2);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    phrase = new Phrase("Age:  " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+//                                    table.addCell(phrase);
+//
+//                                    table.getDefaultCell().setColspan(2);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    phrase = new Phrase("Gender:  " + dbObject.getDBObject(rset.getObject(3), "-").toUpperCase(), pFontHeader1);
+//                                    table.addCell(phrase);
+//
+//                                    table.getDefaultCell().setColspan(4);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
+//                                    phrase = new Phrase("Patient Name : " + dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
+//
+//                                    table.addCell(phrase);
+//                                    table.getDefaultCell().setColspan(3);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    phrase = new Phrase("TEl No.: " + dbObject.getDBObject(rset.getObject(4), "-"), pFontHeader1);
+//                                    table.addCell(phrase);
+//                                    table.getDefaultCell().setColspan(3);
+//                                    phrase = new Phrase("Scheme:  " + dbObject.getDBObject(rset.getObject(5), "-").toUpperCase(), pFontHeader1);
+//                                    table.addCell(phrase);
+//                                    table.getDefaultCell().setColspan(4);
+//                                    table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
+//                                    phrase = new Phrase("Payer: " + dbObject.getDBObject(rset.getObject(6), "-").toUpperCase(), pFontHeader1);
+//                                    table.addCell(phrase);
                                 }
                             }
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
-                            table.getDefaultCell().setBorderWidth(Rectangle.TOP);
+                            table.getDefaultCell().setBorderWidth(Rectangle.TOP | Rectangle.BOTTOM);
                             table.getDefaultCell().setColspan(1);
                             table.getDefaultCell().setColspan(2);
                             phrase = new Phrase("Description", pFontHeader1);
@@ -590,6 +744,9 @@ public class PrescPdf implements java.lang.Runnable {
                             phrase = new Phrase("Dosage", pFontHeader1);
                             table.addCell(phrase);
                             phrase = new Phrase("Days", pFontHeader1);
+                            table.addCell(phrase);
+                            
+                                                        phrase = new Phrase("Served", pFontHeader1);
                             table.addCell(phrase);
 
                             while (rset1.next()) {
@@ -617,28 +774,36 @@ public class PrescPdf implements java.lang.Runnable {
                                 phrase = new Phrase(dbObject.getDBObject(rset1.getObject(4), "-"), pFontHeader);
 
                                 table.addCell(phrase);
-                                phrase = new Phrase(dbObject.getDBObject(rset1.getObject(5), "-"), pFontHeader);
-
+                                phrase = new Phrase(dbObject.getDBObject(rset1.getObject(5), "-"), pFontHeader);                    
                                 table.addCell(phrase);
-                                table.getDefaultCell().setColspan(6);
+                                
+                                if(rset1.getBoolean(6)){
+                                phrase = new Phrase("YES", pFontHeader);                               
+                                table.addCell(phrase);
+                                } else {
+                                phrase = new Phrase("NO", pFontHeader);                               
+                                table.addCell(phrase);                                    
+                                }
+                                
+                                table.getDefaultCell().setColspan(7);
                                 phrase = new Phrase("  ", pFontHeader1);
                                 table.addCell(phrase);
 
                             }
 
-                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setColspan(7);
                             phrase = new Phrase("  ", pFontHeader1);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setColspan(7);
                             phrase = new Phrase("  ", pFontHeader1);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setColspan(7);
                             phrase = new Phrase("  ", pFontHeader1);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(6);
+                            table.getDefaultCell().setColspan(7);
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 

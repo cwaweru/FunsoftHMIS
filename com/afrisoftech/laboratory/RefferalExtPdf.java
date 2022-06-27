@@ -336,11 +336,18 @@ public class RefferalExtPdf implements java.lang.Runnable {
                         table1.getDefaultCell().setBackgroundColor(java.awt.Color.WHITE);
                         table1.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
                         
+                        table1.getDefaultCell().setBorder(Rectangle.BOX);
+                        table1.getDefaultCell().setBorderColor(Color.BLACK);
+                        table1.getDefaultCell().setColspan(3);
+                        table1.getDefaultCell().setFixedHeight(70);
+                        table1.getDefaultCell().setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+                        table1.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
+                        
                         try {
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.ResultSet rset3 = st3.executeQuery("select header_name,current_date from pb_header");
                             while (rset3.next()){
-                                table1.getDefaultCell().setColspan(8);
+                                table1.getDefaultCell().setColspan(5);
                             
                             table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
                             phrase = new Phrase(rset3.getObject(1).toString(), pFontHeader1);
@@ -372,16 +379,16 @@ public class RefferalExtPdf implements java.lang.Runnable {
                         table.setWidthPercentage((100));
                         
                         
-                        table.getDefaultCell().setBorder(Rectangle.BOTTOM);
+                        //table.getDefaultCell().setBorder(Rectangle.BOTTOM);
                         
                         table.getDefaultCell().setColspan(1);
                         Phrase phrase = new Phrase("");
                         phrase = new Phrase("  ", pFontHeader);
                         
-                        table.addCell(phrase);
+                        //table.addCell(phrase);
                         
                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
-                        table.getDefaultCell().setColspan(2);
+                        table.getDefaultCell().setColspan(3);
                         phrase = new Phrase("Printed on : " +date, pFontHeader);
                         
                         table.addCell(phrase);

@@ -18,6 +18,8 @@ public class TransferInvoicePdf implements java.lang.Runnable {
     java.util.Date beginDate = null;
     java.util.Date endDate = null;
     java.lang.String bankName = null;
+    String yearS=""; 
+    String monthS="";
     String letter_det = null;
     String addresse = null;
     String contact = null;
@@ -406,12 +408,13 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                         table.getDefaultCell().setColspan(2);
                         phrase = new Phrase("", pFontHeader);
+                        table.getDefaultCell().setFixedHeight(50);
                         table.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
 
                         table.getDefaultCell().setColspan(2);
                         phrase = new Phrase(contacts, pFontHeader);
                         table.addCell(phrase);
-
+                        table.getDefaultCell().setFixedHeight(16);
 
                         try {
                             /*
@@ -447,22 +450,27 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setColspan(2);
                              phrase = new Phrase("Date : "+monthString+" "+yearString, pFontHeader);
+                             yearS=yearString;
+                             monthS =monthString;
 
                             //table.addCell(phrase);
                             table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(5);
+                            
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
+                            table.getDefaultCell().setColspan(7);
                             phrase = new Phrase(" ", pFontHeader);
-                            table.addCell(phrase);
+                            //table.addCell(phrase);
 
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Invoice", pFontHeader);
+                            //table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("Payroll Summary", pFontHeader10);
 
                             table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(7);
+                            table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
 
-                            phrase = new Phrase(" KEMRI/Welcome Trust Research Programme \n kilifi", pFontHeader);
+                            phrase = new Phrase(" Mathari National Teaching & Referral Hospital", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -540,6 +548,7 @@ public class TransferInvoicePdf implements java.lang.Runnable {
                             java.sql.Statement st2 = connectDB.createStatement();
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.Statement st4 = connectDB.createStatement();
+                            int staffCount = 0;
 
 
 
@@ -552,6 +561,12 @@ public class TransferInvoicePdf implements java.lang.Runnable {
                                 java.sql.ResultSet rset2 = st3.executeQuery("SELECT SUM(ep.amount)*2 FROM posting ep WHERE ep.staff_no = '" + listofStaffNos[j] + "' AND ep.date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND description ILIKE 'N.S.S.F%' ");
                                 java.sql.ResultSet rset3 = st4.executeQuery("SELECT SUM(ep.amount) FROM posting ep WHERE ep.staff_no = '" + listofStaffNos[j] + "' AND ep.date BETWEEN '" + beginDate + "' AND '" + endDate + "' AND description ILIKE 'P.A.Y.E%' ");
 
+                                java.sql.ResultSet rsetd = st.executeQuery("SELECT COUNT( DISTINCT staff_no) FROM posting  WHERE date BETWEEN '" + beginDate + "' AND '" + endDate + "'");
+                               while (rsetd.next()) {
+
+                                    staffCount =  rsetd.getInt(1);
+
+                                }
 
                                 while (rset.next()) {
 
@@ -651,7 +666,7 @@ public class TransferInvoicePdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase("Bank Charges", pFontHeader);
 
-                            table.addCell(phrase);
+                            //table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(2);
 
@@ -659,13 +674,13 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(0.00)), pFontHeader);
 
-                            table.addCell(phrase);
+                            //table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(5);
                             table.getDefaultCell().setBorder(Rectangle.BOTTOM | Rectangle.TOP | Rectangle.LEFT | Rectangle.RIGHT);
 
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                            phrase = new Phrase("Being payroll costs for month", pFontHeader);
+                            phrase = new Phrase("Being payroll costs for month "+monthS+" "+yearS+" ["+staffCount+" Employees]", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -691,7 +706,7 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setColspan(7);
 
-                            phrase = new Phrase("Make all payments to (KEPI-MOH THIKA) A/C No: 4174356900", pFontHeader);
+                            phrase = new Phrase("Make all payments from KCB A/C No: 1102198919 KICC Branch Nairobi.", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -701,7 +716,110 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
                             table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Prepared by : ", pFontHeader);
+                            phrase = new Phrase("Prepared by (HR Manager): ", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Name..............................................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            
+                            
+                            
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Signature........................................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            
+                             
+                            table.getDefaultCell().setColspan(7);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Date...............................................................", pFontHeader);
+
+                            table.addCell(phrase);
+
+                             table.getDefaultCell().setColspan(14);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("Checked by (Head of Accounts): ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Name..............................................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(7);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                             
+                            
+
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Signature........................................................", pFontHeader);
+
+                            table.addCell(phrase);
+
+                             
+                            table.getDefaultCell().setColspan(7);
+                            phrase = new Phrase(" ", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+
+                            table.getDefaultCell().setColspan(5);
+                            phrase = new Phrase("Date...............................................................", pFontHeader);
+
+                            table.addCell(phrase);
+                            
+                            
+                            table.getDefaultCell().setColspan(14);
+
+                            phrase = new Phrase("  ", pFontHeader);
+
+                            table.addCell(phrase);
+
+                            table.getDefaultCell().setColspan(2);
+                            phrase = new Phrase("Approved by (AIE Holder): ", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -713,7 +831,7 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             phrase = new Phrase("  ", pFontHeader);
 
-                            table.addCell(phrase);
+                            //table.addCell(phrase);
 
                             table.getDefaultCell().setColspan(2);
                             phrase = new Phrase(" ", pFontHeader);
@@ -724,13 +842,17 @@ public class TransferInvoicePdf implements java.lang.Runnable {
                             phrase = new Phrase("Signature........................................................", pFontHeader);
 
                             table.addCell(phrase);
+
                             table.getDefaultCell().setColspan(7);
 
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
+                            
+                            
+                            
                             table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("", pFontHeader);
+                            phrase = new Phrase(" ", pFontHeader);
 
                             table.addCell(phrase);
 
@@ -744,42 +866,9 @@ public class TransferInvoicePdf implements java.lang.Runnable {
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
-                            table.getDefaultCell().setColspan(7);
-
-                            phrase = new Phrase("  ", pFontHeader);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase("Approved by : ", pFontHeader);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(5);
-                            phrase = new Phrase("Name..............................................................", pFontHeader);
-
-                            table.addCell(phrase);
-                            table.getDefaultCell().setColspan(7);
-
-                            phrase = new Phrase("  ", pFontHeader);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(2);
-                            phrase = new Phrase(" ", pFontHeader);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(5);
-                            phrase = new Phrase("Signature........................................................", pFontHeader);
-
-                            table.addCell(phrase);
-
-                            table.getDefaultCell().setColspan(7);
-
-                            phrase = new Phrase("  ", pFontHeader);
-
-                            table.addCell(phrase);
+                            
+                            
+                            
                             phrase = new Phrase("  ", pFontHeader);
 
                             table.addCell(phrase);
@@ -806,7 +895,7 @@ public class TransferInvoicePdf implements java.lang.Runnable {
 
                             table.addCell(phrase);
 
-                            phrase = new Phrase("For any clarifications concerning this invoice: contact......................................... ", pFontHeaderx);
+                            phrase = new Phrase("For any clarifications concerning this payroll, contact head of accounts ", pFontHeaderx);
 
                             table.addCell(phrase);
 

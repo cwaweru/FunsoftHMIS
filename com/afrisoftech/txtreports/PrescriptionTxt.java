@@ -130,7 +130,9 @@ public class PrescriptionTxt implements java.lang.Runnable {
             biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
             biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
             biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
-            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT};
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT,
+            biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_LEFT
+        };
 
         int horizontalAlignments2[] = {biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_CENTER,
             biz.systempartners.txtreports.Phrase.HORIZONTAL_ALIGNMENT_CENTER};
@@ -194,9 +196,9 @@ public class PrescriptionTxt implements java.lang.Runnable {
             // System.out.println(colSizes2[i]);
         }
 
-        double floats5[] = {40, 15, 15, 15, 15};
+        double floats5[] = {40, 12, 12, 12, 12, 12};
 
-        int colSizes5[] = textReport.createTableHeader(5, floats5);
+        int colSizes5[] = textReport.createTableHeader(6, floats5);
 
         for (int i = 0; i < colSizes5.length; i++) {
             // System.out.println(colSizes2[i]);
@@ -301,7 +303,7 @@ public class PrescriptionTxt implements java.lang.Runnable {
         }
 
 
-        String columnModel1[] = {"    ", "     ", " ", "     ", " "};
+        String columnModel1[] = {"    ", "     ", " ", "     ", " ", "  "};
         //  String columnModel1[] = {"Rev.Code","Description", "Qty", "Price @", "Amt"};
 
 
@@ -322,9 +324,9 @@ public class PrescriptionTxt implements java.lang.Runnable {
 
         int integers[] = colSizes;
 
-        biz.systempartners.txtreports.PlainTextTable table1 = new biz.systempartners.txtreports.PlainTextTable(5);
+        biz.systempartners.txtreports.PlainTextTable table1 = new biz.systempartners.txtreports.PlainTextTable(6);
 
-        biz.systempartners.txtreports.PlainTextTable table11 = new biz.systempartners.txtreports.PlainTextTable(5);
+        biz.systempartners.txtreports.PlainTextTable table11 = new biz.systempartners.txtreports.PlainTextTable(6);
 
         biz.systempartners.txtreports.PlainTextTable table2 = new biz.systempartners.txtreports.PlainTextTable(2);
 
@@ -377,7 +379,7 @@ public class PrescriptionTxt implements java.lang.Runnable {
             System.out.println("This is the no " + Receipt);
             java.sql.ResultSet rset3 = st3.executeQuery("select header,footer from ac_receipt_header");
             java.sql.ResultSet rset1 = st1.executeQuery("select CURRENT_TIMESTAMP(0)::date");
-            java.sql.ResultSet rset5 = st5.executeQuery("select initcap(service),requisition_no,bed_no,dosage,time_due from pb_doctors_request where inv_no = '" + Receipt + "'  group by service,requisition_no,bed_no,dosage,time_due");
+            java.sql.ResultSet rset5 = st5.executeQuery("select initcap(service),requisition_no,bed_no,dosage,time_due, paid from pb_doctors_request where inv_no = '" + Receipt + "'  group by service,requisition_no,bed_no,dosage,time_due, paid");
             java.sql.ResultSet rset6 = st6.executeQuery("select distinct current_user");
             if (rHeader.equalsIgnoreCase("True")) {
 
@@ -392,12 +394,11 @@ public class PrescriptionTxt implements java.lang.Runnable {
 
                 table11.addCell("DOS");
                 table11.addCell("DAYS");
+                table11.addCell("SERVED");
 
 
 
                 while (rset5.next()) {
-
-
 
                     table1.addCell(dbObject.getDBObject(rset5.getObject(1), "-"));
 
@@ -408,8 +409,12 @@ public class PrescriptionTxt implements java.lang.Runnable {
                     table1.addCell(dbObject.getDBObject(rset5.getObject(4), "-"));
 
                     table1.addCell(dbObject.getDBObject(rset5.getObject(5), "-"));
-
-                // table1.addCell(dbObject.getDBObject(rset5.getObject(2), "-"));
+                    
+                    if(rset5.getBoolean(6)){
+                    table1.addCell("YES");
+                    } else {
+                     table1.addCell("NO");  
+                    }
 
                 }
 
@@ -550,9 +555,9 @@ public class PrescriptionTxt implements java.lang.Runnable {
             textReport.drawHorizontalLine(integers);
 
             //  textReport.addTable(table3, colSizes3, ColumnModelTitle3, horizontalAlignments3);
-            textReport.addTable(table3, colSizes5, columnModel1, horizontalAlignments1);
+        //    textReport.addTable(table3, colSizes5, columnModel1, horizontalAlignments1);
 
-            textReport.drawHorizontalLine(integers);
+        //    textReport.drawHorizontalLine(integers);
 
             textReport.addTable(signat, colSizeTitle, ColumnModelTitle, horizontalAlignmentsTitle);
 

@@ -44,6 +44,30 @@ public class UserName {
 
     }
     
+    
+    public static String getUserFullName(java.sql.Connection connectDB, String username) {
+
+        String userName = "-";
+        try {
+            java.sql.PreparedStatement pstmtUser = connectDB.prepareStatement("SELECT distinct f_name || ' '|| l_name from secure_menu_access where login_name = '"+username+"' order by 1 limit 1");
+
+            java.sql.ResultSet rsetUser = pstmtUser.executeQuery();
+
+            while (rsetUser.next()) {
+
+                userName = rsetUser.getString(1).toUpperCase();
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), ex.getMessage());
+            Logger.getLogger(UserName.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return userName;
+
+    }
+    
     public static String getPayrollAuthorization() {
         java.sql.Connection connectDB = HospitalMain.connectDB;
         String passwd ="ALLC123";      

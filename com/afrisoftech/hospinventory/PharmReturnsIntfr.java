@@ -37,6 +37,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
     private boolean DirectRev;
     private Double totalreturn;
     private String activity;
+    int returnDays = 30;
 
     public PharmReturnsIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -47,6 +48,7 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         pConnDB = pconnDB;
 
         initComponents();
+        returnDays = drugReturnDays();
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
@@ -1297,6 +1299,30 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
         setBounds(0, 0, 1149, 514);
     }// </editor-fold>//GEN-END:initComponents
 
+    public int drugReturnDays() {
+        int days = 30;
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+
+            // java.sql.ResultSet rset = stmt.executeQuery("SELECT shift_no FROM ac_shifts WHERE cash_point = '"+System.getProperty("cashpoint")+"' AND user_name = current_user AND (status = 'Running' OR status = 'Suspended')");
+            java.sql.ResultSet rset = stmt.executeQuery("SELECT drug_return_days FROM pb_patient_names ");
+
+            while (rset.next()) {
+
+                days = rset.getInt(1);
+
+            }
+
+        } catch (java.sql.SQLException sqlExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
+        }
+
+        return days;
+
+    }
     private void pharmacyChbxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pharmacyChbxActionPerformed
         //this.jTextField4.setText(this.jCheckBox6.getText());        // Add your handling code here:
     }//GEN-LAST:event_pharmacyChbxActionPerformed
@@ -2891,10 +2917,10 @@ public class PharmReturnsIntfr extends javax.swing.JInternalFrame {
             System.out.println(sqlex.getMessage());
         }
 
-        pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'" + glCodeTxt.getText() + "' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND trans_date > (current_date-30) and  item not like '%DISPENSING FEE%'"));
+        pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT item AS DESCRIPTION, issuing as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, total as TOTAL, store_name as DEPARTMENT,  item_code as ITEM_CODE, '-' as STRENGTH,'" + glCodeTxt.getText() + "' as gl_code FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%'  AND trans_date > (current_date-"+returnDays+") and  item not like '%DISPENSING FEE%'"));
 
         // transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and store_name ilike '%"+departmentCmbx.getSelectedItem().toString()+"%' ORDER BY 1 ASC "));
-        transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and trans_date::date>current_date-30 ORDER BY 1 ASC "));
+        transNocmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT transaction_no FROM st_sub_stores WHERE issiued_to ilike  '%" + patientNumberTxt.getText() + "%' and trans_date::date>current_date-"+returnDays+" ORDER BY 1 ASC "));
         // pharmacyReturnsTbl.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,
 //                "SELECT description AS DESCRIPTION, quantity as QTY, false as RETURN, price as UNITPRICE, 0 AS DISCOUNT, amount as TOTAL, main_service as DEPARTMENT, (select item_code FROM st_stock_item WHERE hp_pharmacy.description=st_stock_item.item_code) as item_code, '-' as STRENGTH, gl_code FROM hp_pharmacy where patient_no = '" + patientNumberTxt.getText() + "'  AND main_service ilike '%pharmacy%'"));
 //

@@ -5,10 +5,21 @@
  */
 package com.afrisoftech.laboratory;
 
+import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.web.WebView;
+import javafx.application.Platform;
+//import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 //
 
 /**
@@ -25,6 +36,13 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     boolean getList;
     private String paidPatients;
     private String pendingPatients;
+    javax.swing.JInternalFrame pacsInternalFrame = com.afrisoftech.hospital.HospitalMain.pacsViewerIntfr;
+    private int pacsCount = 0;
+    private WebView webView;
+    String uuid = null;
+    //javax.swing.JTextField patientNameTxt = null;
+    //javax.swing.JTextField uidTxt = null;
+    //final JFXPanel jfxPanel = new JFXPanel();
 
     public XrayResIntfr(java.sql.Connection connDb, org.netbeans.lib.sql.pool.PooledConnectionSource pconnDB) {
 
@@ -54,8 +72,24 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
+        matchPatientDialog = new javax.swing.JDialog();
+        jSearchPanel3 = new javax.swing.JPanel();
+        jButton53 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        uuidMatchTxt = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jButton54 = new javax.swing.JButton();
+        uidMatchTxt = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        currentNoTxt = new javax.swing.JTextField();
+        currentNameTxt = new javax.swing.JTextField();
+        searchTextField1 = new javax.swing.JTextField();
+        paidScrollPane1 = new javax.swing.JScrollPane();
+        paidResultsTable1 = new com.afrisoftech.dbadmin.JXTable() ;
+        radiographerTabbedPane = new javax.swing.JTabbedPane();
+        waitList2ConfirmPanel = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         confirmScrollPane = new javax.swing.JScrollPane();
         confirmRequestsTable = new com.afrisoftech.dbadmin.JXTable() ;
@@ -64,13 +98,13 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         paySpacerLbl = new javax.swing.JLabel();
         submitForPayBtn = new javax.swing.JButton();
         cancleBtn = new javax.swing.JButton();
-        jPanel21 = new javax.swing.JPanel();
+        paidPendingPanel = new javax.swing.JPanel();
         jPanel211 = new javax.swing.JPanel();
         paidScrollPane = new javax.swing.JScrollPane();
         paidResultsTable = new com.afrisoftech.dbadmin.JXTable() ;
 
         jLabel14 = new javax.swing.JLabel();
-        jPanel31 = new javax.swing.JPanel();
+        reportingPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jComboBox41 = new javax.swing.JComboBox();
@@ -81,6 +115,8 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         nooffilmTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         xrayTextField = new javax.swing.JTextField();
+        uidTxt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         radiographerReportTxt = new javax.swing.JTextArea();
@@ -88,7 +124,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         patientNoTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        patientNameTxt = new javax.swing.JTextField();
         maleCheckBox = new javax.swing.JCheckBox();
         femaleCheckBox = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
@@ -135,16 +171,211 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         clearButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        pacsDicomViewerBtn1 = new javax.swing.JButton();
+        resultsPanel = new javax.swing.JPanel();
+        radiographerResultsJscrl = new javax.swing.JScrollPane();
         radiologyResultsTable = new com.afrisoftech.dbadmin.JXTable();
-        jPanel4 = new javax.swing.JPanel();
+        pacsDicomViewerBtn = new javax.swing.JButton();
+        resultsButtonPanel = new javax.swing.JPanel();
+        closeFormBtn = new javax.swing.JButton();
+        refreshResultsListingBtn = new javax.swing.JButton();
+        spacerLbl = new javax.swing.JLabel();
+        radiographerHeaderPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        xraydatePicker = new com.afrisoftech.lib.DatePicker();
+        xrayEndDatePicker = new com.afrisoftech.lib.DatePicker();
         refreshbutton = new javax.swing.JButton();
         searchTextField = new javax.swing.JTextField();
         outPatientChkbx = new javax.swing.JCheckBox();
         inPatientChkbx = new javax.swing.JCheckBox();
+        jLabel15 = new javax.swing.JLabel();
+        xrayStartDatePicker = new com.afrisoftech.lib.DatePicker();
+
+        matchPatientDialog.setModal(true);
+        matchPatientDialog.setUndecorated(true);
+        matchPatientDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jSearchPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jSearchPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jButton53.setText("Save Details");
+        jButton53.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton53ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel3.add(jButton53, gridBagConstraints);
+
+        jLabel12.setText("UUID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jSearchPanel3.add(jLabel12, gridBagConstraints);
+
+        uuidMatchTxt.setEditable(false);
+        uuidMatchTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(uuidMatchTxt, gridBagConstraints);
+
+        jLabel17.setText("UID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jSearchPanel3.add(jLabel17, gridBagConstraints);
+
+        jButton54.setText("Dispose");
+        jButton54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton54ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel3.add(jButton54, gridBagConstraints);
+
+        uidMatchTxt.setEditable(false);
+        uidMatchTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(uidMatchTxt, gridBagConstraints);
+
+        jLabel33.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Match Dicom to Request Form");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jSearchPanel3.add(jLabel33, gridBagConstraints);
+
+        jLabel27.setText("Current Patient No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jSearchPanel3.add(jLabel27, gridBagConstraints);
+
+        jLabel34.setText("Current Patient Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        jSearchPanel3.add(jLabel34, gridBagConstraints);
+
+        currentNoTxt.setEditable(false);
+        currentNoTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(currentNoTxt, gridBagConstraints);
+
+        currentNameTxt.setEditable(false);
+        currentNameTxt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jSearchPanel3.add(currentNameTxt, gridBagConstraints);
+
+        searchTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Search patient by number/Name"));
+        searchTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                searchTextField1CaretUpdate(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jSearchPanel3.add(searchTextField1, gridBagConstraints);
+
+        paidScrollPane1.setAutoscrolls(true);
+
+        paidResultsTable1.setRowHeight(26);
+        javax.swing.table.TableColumn column2s = null;
+        for (int i = 0; i < paidResultsTable.getColumnCount(); i++) {
+            column2s = paidResultsTable.getColumnModel().getColumn(i);
+            if (i == 0) {
+
+                column2s.setPreferredWidth(500); // item description column is bigger
+            } else {
+
+                column2s.setPreferredWidth(100);
+
+            }
+        }
+
+        paidScrollPane.setViewportView(paidResultsTable);
+        paidResultsTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paidResultsTable1MouseClicked(evt);
+            }
+        });
+        paidScrollPane1.setViewportView(paidResultsTable1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 30.0;
+        jSearchPanel3.add(paidScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        matchPatientDialog.getContentPane().add(jSearchPanel3, gridBagConstraints);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -161,14 +392,14 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+        radiographerTabbedPane.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        radiographerTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
+                radiographerTabbedPaneMouseClicked(evt);
             }
         });
 
-        jPanel5.setLayout(new java.awt.GridBagLayout());
+        waitList2ConfirmPanel.setLayout(new java.awt.GridBagLayout());
 
         jPanel22.setLayout(new java.awt.GridBagLayout());
 
@@ -176,226 +407,12 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         confirmRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Date", "Pat No.", "Pat Name", "Mode", "Service", "Qty", "Amount", "No", "Doctor", "Bill", "Bed No", "Time"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         confirmRequestsTable.setRowHeight(26);
 
         javax.swing.table.TableColumn column = null;
@@ -472,239 +489,17 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 3.0;
-        jPanel5.add(jPanel22, gridBagConstraints);
+        waitList2ConfirmPanel.add(jPanel22, gridBagConstraints);
 
-        jTabbedPane1.addTab("CONFIRM X-RAY REQUESTS", jPanel5);
+        radiographerTabbedPane.addTab("CONFIRM X-RAY REQUESTS", waitList2ConfirmPanel);
 
-        jPanel21.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jPanel21.setLayout(new java.awt.GridBagLayout());
+        paidPendingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        paidPendingPanel.setLayout(new java.awt.GridBagLayout());
 
         jPanel211.setLayout(new java.awt.GridBagLayout());
 
         paidScrollPane.setAutoscrolls(true);
 
-        paidResultsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Date", "Pat No.", "Pat Name", "Mode", "Service", "Qty", "Amount", "No", "Doctor", "Approve", "Bed No", "Time", "Cancel"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         paidResultsTable.setRowHeight(26);
 
         javax.swing.table.TableColumn column2 = null;
@@ -742,19 +537,19 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 200.0;
-        jPanel21.add(jPanel211, gridBagConstraints);
+        paidPendingPanel.add(jPanel211, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel21.add(jLabel14, gridBagConstraints);
+        paidPendingPanel.add(jLabel14, gridBagConstraints);
 
-        jTabbedPane1.addTab("PENDING PAID X-RAY REQUESTS", jPanel21);
+        radiographerTabbedPane.addTab("PENDING PAID X-RAY REQUESTS", paidPendingPanel);
 
-        jPanel31.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "X-RAY POSTING", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
-        jPanel31.setLayout(new java.awt.GridBagLayout());
+        reportingPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "X-RAY POSTING", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        reportingPanel.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Select patient here"));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -870,6 +665,26 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(xrayTextField, gridBagConstraints);
 
+        uidTxt.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(uidTxt, gridBagConstraints);
+
+        jLabel11.setText("UID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel2.add(jLabel11, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -945,14 +760,14 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jTextField1.setEditable(false);
+        patientNameTxt.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jTextField1, gridBagConstraints);
+        jPanel1.add(patientNameTxt, gridBagConstraints);
 
         buttonGroup3.add(maleCheckBox);
         maleCheckBox.setText("MALE");
@@ -1160,7 +975,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1175,7 +990,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1190,7 +1005,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -1199,11 +1014,25 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         jButton5.setMnemonic('h');
         jButton5.setText("Help");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         actionPanel.add(jButton5, gridBagConstraints);
+
+        pacsDicomViewerBtn1.setText("PACS/Dicom Viewer");
+        pacsDicomViewerBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacsDicomViewerBtn1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        actionPanel.add(pacsDicomViewerBtn1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -1219,11 +1048,11 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 20.0;
-        jPanel31.add(jPanel1, gridBagConstraints);
+        reportingPanel.add(jPanel1, gridBagConstraints);
 
-        jTabbedPane1.addTab("POST X-Ray/Radiology Results - Radiographer Report", jPanel31);
+        radiographerTabbedPane.addTab("POST X-Ray/Radiology Results - Radiographer Report", reportingPanel);
 
-        jPanel7.setLayout(new java.awt.GridBagLayout());
+        resultsPanel.setLayout(new java.awt.GridBagLayout());
 
         radiologyResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1238,15 +1067,76 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                 radiologyResultsTableMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(radiologyResultsTable);
+        radiographerResultsJscrl.setViewportView(radiologyResultsTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 200.0;
+        resultsPanel.add(radiographerResultsJscrl, gridBagConstraints);
+
+        pacsDicomViewerBtn.setText("Click to view Dicom images");
+        pacsDicomViewerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacsDicomViewerBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsPanel.add(pacsDicomViewerBtn, gridBagConstraints);
+
+        resultsButtonPanel.setLayout(new java.awt.GridBagLayout());
+
+        closeFormBtn.setText("Close form");
+        closeFormBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeFormBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(closeFormBtn, gridBagConstraints);
+
+        refreshResultsListingBtn.setText("Refresh results listing");
+        refreshResultsListingBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshResultsListingBtnActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(refreshResultsListingBtn, gridBagConstraints);
+
+        spacerLbl.setForeground(new java.awt.Color(0, 51, 255));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 100.0;
+        gridBagConstraints.weighty = 1.0;
+        resultsButtonPanel.add(spacerLbl, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel7.add(jScrollPane4, gridBagConstraints);
+        resultsPanel.add(resultsButtonPanel, gridBagConstraints);
 
-        jTabbedPane1.addTab("Results Listing", jPanel7);
+        radiographerTabbedPane.addTab("Results Listing", resultsPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1254,24 +1144,24 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 500.0;
-        getContentPane().add(jTabbedPane1, gridBagConstraints);
+        getContentPane().add(radiographerTabbedPane, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick category...", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 153))); // NOI18N
-        jPanel4.setLayout(new java.awt.GridBagLayout());
+        radiographerHeaderPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tick category...", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 153))); // NOI18N
+        radiographerHeaderPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel6.setText("Date");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 1.0;
-        jPanel4.add(jLabel6, gridBagConstraints);
+        jLabel6.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        radiographerHeaderPanel.add(jLabel6, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(xraydatePicker, gridBagConstraints);
+        radiographerHeaderPanel.add(xrayEndDatePicker, gridBagConstraints);
 
         refreshbutton.setText("Refresh Requests Listing");
         refreshbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -1285,7 +1175,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(refreshbutton, gridBagConstraints);
+        radiographerHeaderPanel.add(refreshbutton, gridBagConstraints);
 
         searchTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Search patient by number"));
         searchTextField.addCaretListener(new javax.swing.event.CaretListener() {
@@ -1296,11 +1186,11 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(searchTextField, gridBagConstraints);
+        radiographerHeaderPanel.add(searchTextField, gridBagConstraints);
 
         buttonGroup4.add(outPatientChkbx);
         outPatientChkbx.setSelected(true);
@@ -1311,7 +1201,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(outPatientChkbx, gridBagConstraints);
+        radiographerHeaderPanel.add(outPatientChkbx, gridBagConstraints);
 
         buttonGroup4.add(inPatientChkbx);
         inPatientChkbx.setText("IN-Patient");
@@ -1322,23 +1212,48 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel4.add(inPatientChkbx, gridBagConstraints);
+        radiographerHeaderPanel.add(inPatientChkbx, gridBagConstraints);
+
+        jLabel15.setText("Begin Date");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        radiographerHeaderPanel.add(jLabel15, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        radiographerHeaderPanel.add(xrayStartDatePicker, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanel4, gridBagConstraints);
+        getContentPane().add(radiographerHeaderPanel, gridBagConstraints);
 
-        setBounds(0, 0, 786, 499);
+        setBounds(0, 0, 1244, 499);
     }// </editor-fold>//GEN-END:initComponents
 
     private void paidResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidResultsTableMouseClicked
+
+        System.err.println("Name again " + paidResultsTable.getValueAt(0, 2).toString());
+        System.err.println("Select Row " + paidResultsTable.getSelectedRow());
+
+        System.err.println("Name " + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString());
+        String patientNames = paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString();
+
         patientNoTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 1).toString());
-        jTextField1.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString());
+        patientNameTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 2).toString());
         receiptTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 12).toString());
         xrayTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 7).toString());
         doctorTextField.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 8).toString());
+        if (paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 14) != null) {
+            uidTxt.setText(paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 14).toString());
+        }
         getList = false;
         try {
 
@@ -1354,7 +1269,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     if (outPatientChkbx.isSelected()) {
                         java.sql.Statement stmtTable113 = connectDB.createStatement();
 
-                        java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("SELECT DISTINCT  funsoft_patient_age(pr.year_of_birth::date) as age, pb.gender FROM  pb_doctors_request pb, hp_patient_register pr WHERE  "
+                        java.sql.ResultSet rsetTable113 = stmtTable113.executeQuery("SELECT DISTINCT  funsoft_patient_age(pr.year_of_birth::date) as age, pb.gender,pb.diagnosis FROM  pb_doctors_request pb, hp_patient_register pr WHERE  "
                                 + "  pb.paid = true and"
                                 + " pb.patient_no = pr.patient_no AND request_id  = '" + paidResultsTable.getValueAt(paidResultsTable.getSelectedRow(), 10).toString().trim() + "'");
 
@@ -1366,7 +1281,9 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                             } else {
                                 this.femaleCheckBox.setSelected(true);
                             }
+                            otherInformationTxt.setText((rsetTable113.getString("diagnosis")));
                         }
+
                     }
                     // Get age and gender for IN-patient
                     if (inPatientChkbx.isSelected()) {
@@ -1423,7 +1340,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     }
                 }
             }
-            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND date::date > '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY input_date DESC LIMIT 1");
+            java.sql.PreparedStatement pstmtClinicals = connectDB.prepareStatement("SELECT typeof_test, comments, description FROM hp_clinical_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND date::date > '" + xrayEndDatePicker.getDate() + "'::date - 2 ORDER BY input_date DESC LIMIT 1");
 
             java.sql.ResultSet rsetClinical = pstmtClinicals.executeQuery();
 
@@ -1446,7 +1363,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         }
         getList = true;
         refreshbutton.doClick();
-        jTabbedPane1.setSelectedIndex(2);
+        radiographerTabbedPane.setSelectedIndex(2);
         //   this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         // Add your handling code here:
     }//GEN-LAST:event_paidResultsTableMouseClicked
@@ -1493,9 +1410,17 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 //        try {
 //            if (java.lang.Double.valueOf(nooffilmTextField.getText()) > 0) {
 
+        boolean addPdfToDicom = false;
         if (!patientNoTxt.getText().isEmpty()) {
-
-            {
+            if (uuid != null) {
+                if (!uuid.isEmpty()) {
+                    uuid = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemUUID(connectDB, uidTxt.getText());
+                    addPdfToDicom = true;
+                }
+            }
+            if (nooffilmTextField.getText().isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Enter the number of films used", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            } else {
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
 
                 long dateNow = calendar.getTimeInMillis();
@@ -1552,26 +1477,30 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                         xrayTestTable.getCellEditor().stopCellEditing();
                     }
 
+                    String xrayNo = null;
                     for (int i = 0; i < xrayTestTable.getRowCount(); i++) {
                         if (xrayTestTable.getModel().getValueAt(0, 2) != null) {
                             if (Boolean.parseBoolean(xrayTestTable.getValueAt(0, 2).toString())) {
                                 int docCount = 0;
-                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no) FROM hp_xray_results WHERE patient_no = ? AND doc_no = ? AND examination ilike ? AND doc_no != '' AND notes IS NULL");
+                                java.sql.PreparedStatement pstmt1 = connectDB.prepareStatement("SELECT count(patient_no),xray_no  FROM hp_xray_results WHERE patient_no = ? AND examination ilike ? AND ((doc_no = ? AND  doc_no != '') or uuid = '" + uuid + "') AND (notes IS NULL or notes = '') GROUP BY 2");
                                 pstmt1.setString(1, patientNoTxt.getText());
-                                pstmt1.setString(2, receiptTxt.getText());
-                                pstmt1.setObject(3, xrayTestTable.getValueAt(0, 0));
+                                pstmt1.setString(3, receiptTxt.getText());
+                                pstmt1.setObject(2, xrayTestTable.getValueAt(0, 0));
                                 java.sql.ResultSet rset1 = pstmt1.executeQuery();
                                 while (rset1.next()) {
                                     docCount = rset1.getInt(1);
+                                    xrayNo = rset1.getString(2);
                                 }
+                                System.err.println("SELECT count(patient_no) FROM hp_xray_results WHERE patient_no = '" + patientNoTxt.getText() + "' AND examination ilike '" + xrayTestTable.getValueAt(0, 0) + "' AND ((doc_no = '" + receiptTxt.getText() + "' AND  doc_no != '') or uuid = '" + uuid + "') AND (notes IS NULL or notes = '')");
                                 System.out.println("Doc Count : [" + docCount + "]");
                                 if (docCount < 1) {
                                     java.sql.PreparedStatement pstmt = connectDB.prepareStatement("INSERT INTO hp_xray_results VALUES("
                                             + "?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
                                     pstmt.setString(1, patientNoTxt.getText());
-                                    pstmt.setString(2, jTextField1.getText());
+                                    pstmt.setString(2, patientNameTxt.getText());
                                     pstmt.setString(3, billNo);
+                                    xrayNo = billNo;
                                     pstmt.setObject(4, ageTxt.getText());
                                     pstmt.setObject(5, Sex);
                                     pstmt.setString(6, radiographerReportTxt.getText());
@@ -1600,39 +1529,41 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                                     pstmt.setObject(28, null);
                                     pstmt.setObject(29, null);
                                     pstmt.setObject(30, null);
+                                    //pstmt.setObject(31, "");
                                     pstmt.execute();
 
                                 } else {
-                                    java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET notes = ? WHERE patient_no = ? AND doc_no = ? AND doc_no IS NOT NULL AND doc_no != ''");
+                                    java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET notes = ?, user_name = current_user WHERE patient_no = ? AND ((doc_no = ? AND doc_no IS NOT NULL AND doc_no != '') OR uuid = '" + uuid + "' )");
                                     pstmtUpdate.setString(1, radiographerReportTxt.getText());
                                     pstmtUpdate.setString(2, patientNoTxt.getText());
                                     pstmtUpdate.setString(3, receiptTxt.getText());
                                     pstmtUpdate.executeUpdate();
 
-                                    System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
-                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                            + " requisition_no='X-RAY' and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
-
-                                    java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
-                                            + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
-                                            + " requisition_no='X-RAY'  and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
-                                    pstmt46.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
-                                            + "WHERE "
-                                            + " service = '" + xrayTestTable.getValueAt(0, 0).toString() + "' "
-                                            + "AND patient_no = '" + patientNoTxt.getText() + "' and "
-                                            + " doctor = '" + xrayTestTable.getValueAt(0, 4).toString() + "' ");
-                                    pstmt462.executeUpdate();
-
-                                    java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
-                                            + "WHERE "
-                                            + " upper(service) = '" + xrayTestTable.getValueAt(0, 0).toString().toUpperCase() + "' "
-                                            + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xrayTestTable.getValueAt(0, 3).toString() + "' "
-                                            + "  ");
-                                    pstmtPatientCard.executeUpdate();
-
                                 }
+
+                                System.out.println("\n\n\n\n\n\n\n\n\nUPDATE pb_doctors_request "
+                                        + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                        + " requisition_no='X-RAY' and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+
+                                java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request "
+                                        + "SET results = true,posted_to_lab='" + xrayTextField.getText() + "' WHERE "
+                                        + " requisition_no='X-RAY'  and request_id  = '" + xrayTestTable.getValueAt(0, 3).toString().trim() + "'");
+                                pstmt46.executeUpdate();
+
+                                java.sql.PreparedStatement pstmt462 = connectDB.prepareStatement("UPDATE hp_patient_billing SET collected = true "
+                                        + "WHERE "
+                                        + " service = '" + xrayTestTable.getValueAt(0, 0).toString() + "' "
+                                        + "AND patient_no = '" + patientNoTxt.getText() + "' and "
+                                        + " doctor = '" + xrayTestTable.getValueAt(0, 4).toString() + "' ");
+                                pstmt462.executeUpdate();
+
+                                java.sql.PreparedStatement pstmtPatientCard = connectDB.prepareStatement("UPDATE hp_patient_card SET collected = true "
+                                        + "WHERE "
+                                        + " upper(service) = '" + xrayTestTable.getValueAt(0, 0).toString().toUpperCase() + "' "
+                                        + "AND patient_no = '" + patientNoTxt.getText() + "' AND reference = '" + xrayTestTable.getValueAt(0, 3).toString() + "' "
+                                        + "  ");
+                                pstmtPatientCard.executeUpdate();
+
                             }
                         }
                     }
@@ -1640,16 +1571,24 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     connectDB.setAutoCommit(true);
                     this.saveresultsButton.setEnabled(false);
 
-                    javax.swing.JOptionPane.showMessageDialog(this, "X-RAY report posted successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    System.err.println("Xray No " + xrayNo);
+                    System.err.println("Xray date " + xrayEndDatePicker.getDate());
+                    System.err.println("Xray date 2 " + xrayEndDatePicker.getDate());
+                    System.err.println("Xray  uuid " + uuid);
+                    System.err.println("Xray pat no  " + patientNoTxt.getText());
 
                     com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-                    policy.XrayResultPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText());
+                    policy.XrayResultPdf(connectDB, xrayEndDatePicker.getDate(), xrayEndDatePicker.getDate(), patientNoTxt.getText(), addPdfToDicom, uuid, xrayNo);
 
+                    javax.swing.JOptionPane.showMessageDialog(this, "X-RAY report posted successfully", "Confirmation Message!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                    //System.err.println("+++"+com.afrisoftech.hospital.HospitalMain.radiologyPdfPath);
+                    //com.afrisoftech.lib.RadiologyRequestJSON.addPdfToUUID(connectDB, uuid, com.afrisoftech.hospital.HospitalMain.radiologyPdfPath, doctorTextField.getText(), patientNameTxt.getText());
                     this.saveresultsButton.setEnabled(true);
                     patientNoTxt.setText("");
 
-                    jTextField1.setText("");
+                    patientNameTxt.setText("");
                     //jTextField2.setText("");
 
                     ageTxt.setText("");
@@ -2148,59 +2087,119 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_confirmRequestsTableMouseClicked
 
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        if (jTabbedPane1.getSelectedIndex() == 2) {
+    private void radiographerTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiographerTabbedPaneMouseClicked
+        if (radiographerTabbedPane.getSelectedIndex() == 2) {
             getList = false;
         } else {
             getList = true;
         }
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
+    }//GEN-LAST:event_radiographerTabbedPaneMouseClicked
 
     private void refreshbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshbuttonActionPerformed
         runGetListThread();
+//        Thread getListThread = new GetListThread();
+//        getListThread.start();
+
+//        Thread getConfirmListThread = new GetConfirmListThread();
+//        getConfirmListThread.start();
         runconfirmGetListThread();
-        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, doctor as doctor_requesting, user_name as radiologist, doc_read as read FROM hp_xray_results WHERE date::date >= '" + xraydatePicker.getDate() + "'::date - 2 ORDER BY 1,3,4"));
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, ( doctor) AS doctor_requesting, user_name as radiologist,uid,uuid, doc_read as read,false as match_patient FROM hp_xray_results WHERE date::date BETWEEN '" + xrayStartDatePicker.getDate() + "' AND '" + xrayEndDatePicker.getDate() + "' ORDER BY 1,3,4"));
+
+        spacerLbl.setText("Displaying " + radiologyResultsTable.getRowCount() + " reported procedures.");
+
     }//GEN-LAST:event_refreshbuttonActionPerformed
+
+    class GetListThread extends Thread {
+
+        @Override
+        public void run() {
+            runGetListThread();
+        }
+    }
+
+    class GetConfirmListThread extends Thread {
+
+        @Override
+        public void run() {
+            runconfirmGetListThread();
+        }
+    }
 
     private void searchTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextFieldCaretUpdate
         if (outPatientChkbx.isSelected()) {
             if (searchTextField.getCaretPosition() >= 3) {
-                this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                        + "false as Approve,request_id as Request_id,time_due,notes "
+                /*this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,( doctor) AS doctor,"
+                        + "false as Approve,request_id as Request_id,time_due,notes ,  (SELECT uid FROM hp_lims_request hlr WHERE bed_no = request_no and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
                         + " FROM pb_doctors_request pb WHERE"
                         + " (pb.revenue_code ilike 'X-RAY%' OR pb.revenue_code ilike 'XRAY%') and  paid = true AND"
-                        + " collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60 "
+                        + " collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 60 "
                         + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') "
                         + " UNION "
+                        + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 )  AS uid"
+                        + " FROM ac_cash_collection  WHERE  patient_no ilike '%" + searchTextField.getText() + "%' and "
+                        + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
+                        + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2 "
+                        + " UNION "
                         + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description as service, quantity, debit, "
-                        + "receipt_no as Request_no, '' as doctor, false as Approve, receipt_no as Request_id, now()::time(0)::varchar as time_due, '' as notes from ac_cash_collection WHERE patient_no ilike '%" + searchTextField.getText() + "%' AND "
-                        + "date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 4 AND patient_no NOT IN (SELECT DISTINCT patient_no FROM pb_doctors_request WHERE "
-                        + "(revenue_code ilike 'X-RAY%' OR revenue_code ilike 'XRAY%') and  paid = true AND trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 60) AND "
+                        + "receipt_no as Request_no, '' as doctor, false as Approve, receipt_no as Request_id, now()::time(0)::varchar as time_due, '' as notes, '' as uid from ac_cash_collection WHERE patient_no ilike '%" + searchTextField.getText() + "%' AND "
+                        + "date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 4 AND patient_no NOT IN (SELECT DISTINCT patient_no FROM pb_doctors_request WHERE "
+                        + "(revenue_code ilike 'X-RAY%' OR revenue_code ilike 'XRAY%') and  paid = true AND trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 60) AND "
                         + " ((SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) "
                         + " ILIKE 'X-RAY%' OR (SELECT activity FROM pb_activity where ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY%') "
-                        + "ORDER BY trans_date asc"));
+                        + "ORDER BY trans_date asc"));*/
+
+                this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                        + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, "
+                        + "(SELECT uid FROM hp_lims_request hlr WHERE (pb.bed_no = hlr.request_id OR hlr.request_id = (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) ) and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                        + " FROM pb_doctors_request pb WHERE"
+                        + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                        + " results = false and trans_date::date  > current_date - 2 and patient_no ilike '%" + searchTextField.getText() + "%' "
+                        + " UNION "
+                        + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 ) AS uid"
+                        + " FROM ac_cash_collection WHERE"
+                        + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY' ) AND "
+                        + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) and patient_no ilike '%" + searchTextField.getText() + "%' AND date > current_date -2"
+                        + " UNION "
+                        + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                        + " FROM hp_patient_card hpc WHERE collected = false AND "
+                        + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                        + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date::date > current_date -2  and patient_no ilike '%" + searchTextField.getText() + "%'"
+                        + "ORDER BY 1 asc"));
 
                 this.confirmRequestsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
                         + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                         + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb"
                         + " WHERE (pb.revenue_code ilike 'X-RAY%' OR pb.revenue_code ilike 'XRAY%')"
-                        + " and paid = false AND collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2"
+                        + " and paid = false AND collected = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date - 2"
                         + " and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_patient_visit WHERE patient_no ILIKE '%" + searchTextField.getText() + "%') ORDER BY trans_date asc"));
 
             }
         } else {
             if (searchTextField.getCaretPosition() >= 3) {
                 this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                        + "false as Approve,request_id as Request_id,time_due,notes "
+                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                        + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, (SELECT uid FROM hp_lims_request hlr WHERE pb.bed_no = hlr.request_id and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
                         + " FROM pb_doctors_request pb WHERE"
-                        + " (pb.revenue_code ilike 'X-RAY%' OR pb.revenue_code ilike 'XRAY%') AND"
-                        + " collected = false and trans_date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
-                        + "and patient_no ilike '%" + searchTextField.getText() + "%' AND patient_no IN (SELECT patient_no FROM hp_admission WHERE patient_no ILIKE '%" + searchTextField.getText() + "%' AND discharge = false)"
-                        + "UNION SELECT DISTINCT date::date as trans_date, patient_no, funsoft_get_patient_name(patient_no) as patient_name, payment_mode, service, dosage as quantity,"
-                        + " debit as amount, reference AS Request_no, '' as doctor, false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, '' as notes FROM hp_patient_card WHERE upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND collected = false AND date::date > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
-                        + "  and patient_no ilike '%" + searchTextField.getText() + "%' ORDER BY trans_date asc"));
+                        + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                        + " results = false and trans_date::date  > current_date - 2 and patient_no ilike '%" + searchTextField.getText() + "%' "
+                        + " UNION "
+                        + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 ) AS uid"
+                        + " FROM ac_cash_collection WHERE"
+                        + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY' ) AND "
+                        + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) and patient_no ilike '%" + searchTextField.getText() + "%' AND date > current_date -2"
+                        + " UNION "
+                        + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                        + " FROM hp_patient_card hpc WHERE collected = false AND "
+                        + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                        + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date::date > current_date -2  and patient_no ilike '%" + searchTextField.getText() + "%'"
+                        + "ORDER BY 1 asc"));
 
 //                this.confirmrequeststable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
 //                        + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
@@ -2215,7 +2214,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private void patientCardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientCardBtnActionPerformed
         com.afrisoftech.reports.PatientCardPdf policyReport = new com.afrisoftech.reports.PatientCardPdf();//connectDB, transdatePicker.getDate(), transdatePicker.getDate(),nameNoTxt.getText());
 //
-        policyReport.PatientCardPdf(connectDB, xraydatePicker.getDate(), xraydatePicker.getDate(), patientNoTxt.getText(),false);
+        policyReport.PatientCardPdf(connectDB, xrayEndDatePicker.getDate(), xrayEndDatePicker.getDate(), patientNoTxt.getText(), false);
         // TODO add your handling code here:
     }//GEN-LAST:event_patientCardBtnActionPerformed
 
@@ -2223,9 +2222,28 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_patientNoTxtActionPerformed
 
+    
+    private void setDetails() {
+        uidMatchTxt.setText(radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 7).toString());
+        uuidMatchTxt.setText(radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 8).toString());
+        currentNoTxt.setText(radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString());
+        currentNameTxt.setText(radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 2).toString());
+        
+    }
     private void radiologyResultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiologyResultsTableMouseClicked
 
+        if (radiologyResultsTable.getSelectedColumn() == 10) {
+
+            setDetails();
+
+            System.out.println("Showing dialog");
+            matchPatientDialog.setSize(800, 500);
+            matchPatientDialog.setLocationRelativeTo(null);
+            matchPatientDialog.setVisible(true);
+
+        }else{
         java.util.Date dates = null;
+        uuid = radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 8).toString();
 
         try {
             java.sql.PreparedStatement pstmt = connectDB.prepareStatement("SELECT ?::date");
@@ -2240,7 +2258,10 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         }
         com.afrisoftech.reports.XrayResultPdf policy = new com.afrisoftech.reports.XrayResultPdf();
 
-        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString());
+        policy.XrayResultPdf(connectDB, dates, dates, radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 1).toString(), false, "", radiologyResultsTable.getValueAt(radiologyResultsTable.getSelectedRow(), 3).toString());
+
+        pacsDicomViewerBtn.doClick();
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_radiologyResultsTableMouseClicked
@@ -2256,7 +2277,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     pstmt4611.setObject(1, confirmRequestsTable.getValueAt(i, 7).toString().trim());
                     pstmt4611.setString(2, confirmRequestsTable.getValueAt(i, 4).toString().toUpperCase());
                     pstmt4611.executeUpdate();
-                    
+
                 } catch (java.sql.SQLException sqe) {
                     sqe.printStackTrace();
                     javax.swing.JOptionPane.showMessageDialog(this, sqe.getMessage());
@@ -2265,9 +2286,10 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         }
         javax.swing.JOptionPane.showMessageDialog(this, "Request(s) submitted to pay point.");
         refreshbutton.doClick();
-        jTabbedPane1.setSelectedIndex(1);
+        radiographerTabbedPane.setSelectedIndex(1);
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getList = true;
+        pacsDicomViewerBtn.doClick();
 // TODO add your handling code here:
     }//GEN-LAST:event_submitForPayBtnActionPerformed
 
@@ -2288,10 +2310,233 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             }
         }
         refreshbutton.doClick();
-        jTabbedPane1.setSelectedIndex(1);
+        radiographerTabbedPane.setSelectedIndex(1);
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getList = true;// TODO add your handling code here:
     }//GEN-LAST:event_cancleBtnActionPerformed
+
+    private void pacsDicomViewerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacsDicomViewerBtnActionPerformed
+
+        if (uuid != null && !uuid.isEmpty()) {
+
+            if (java.awt.Desktop.isDesktopSupported()) {
+
+                String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+                String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+
+                try {
+                    //                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://pacs:Password_123@" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid));
+                } catch (IOException ex) {
+                    Logger.getLogger(ConsultationIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+
+//                //        SwingUtilities.invokeLater(() -> {
+//                    // PacsViewerMain jFrameTest = new PacsViewerMain();
+//                    //new javax.swing.JInternalFrame("Pulseset HMIS :: Orthanc Dicom/PACS Viewer");
+//                    // jFrameTest.setTitle("Orthanc Dicom/PACS Viewer");
+//                    // jFrameTest.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//                    //        pacsInternalFrame = new javax.swing.JInternalFrame("Pulseset HMIS PACS/Dicom Viewer");
+//                    //        com.afrisoftech.hospital.HospitalMain.saccopn.add(pacsInternalFrame);//, javax.swing.JLayeredPane.DEFAULT_LAYER);
+//                //        try {
+//                    //            pacsInternalFrame.setSelected(true);
+//                    //        } catch (java.beans.PropertyVetoException pvt) {
+//                    //        }
+//                //        pacsInternalFrame.setVisible(false);
+//                pacsInternalFrame.setDefaultCloseOperation(javax.swing.JInternalFrame.HIDE_ON_CLOSE);
+//
+//                pacsCount = pacsCount++;
+//                pacsInternalFrame.setSize(com.afrisoftech.hospital.HospitalMain.saccopn.getSize());
+//
+//                Platform.runLater(() -> {
+//
+//                    //  jFrameTest.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+//                    if (pacsCount < 1) {
+//                        // jfxPanel =
+//                        //  jFrameTest.add(jfxPanel);
+//                        pacsInternalFrame.add(jfxPanel);
+//                        webView = new WebView();
+//                        jfxPanel.setScene(new Scene(webView));
+//                    }
+//                    //jFrameTest.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
+//                    //    jFrameTest.setVisible(true);
+//                    pacsInternalFrame.setVisible(true);
+//                    pacsInternalFrame.setEnabled(true);
+//                    pacsInternalFrame.setMaximizable(true);
+//                    pacsInternalFrame.setClosable(true);
+//                    pacsInternalFrame.setResizable(true);
+//                    pacsInternalFrame.setIconifiable(true);
+//                    //            try {
+//                        //                pacsInternalFrame.setSelected(true);
+//                        //            } catch (PropertyVetoException ex) {
+//                        //                ex.printStackTrace();
+//                        //            }
+//                    try {
+//                        pacsInternalFrame.setMaximum(true);
+//                    } catch (PropertyVetoException ex) {
+//                        ex.printStackTrace();
+//                    }
+//                    //            try {
+//                        //                pacsInternalFrame.setIcon(true);
+//                        //            } catch (PropertyVetoException ex) {
+//                        //                ex.printStackTrace();
+//                        //            }
+//                    //);
+//                // Create a trust manager that does not validate certificate chains
+//                TrustManager[] trustAllCerts = new TrustManager[]{
+//                    new X509TrustManager() {
+//                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//                            return null;
+//                        }
+//
+//                        public void checkClientTrusted(
+//                            java.security.cert.X509Certificate[] certs, String authType) {
+//                        }
+//
+//                        public void checkServerTrusted(
+//                            java.security.cert.X509Certificate[] certs, String authType) {
+//                        }
+//                    }
+//                };
+//
+//                // Install the all-trusting trust manager
+//                try {
+//                    SSLContext sc = SSLContext.getInstance("SSL");
+//                    sc.init(null, trustAllCerts, new java.security.SecureRandom());
+//                    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+//                } catch (GeneralSecurityException e) {
+//                }
+//                webView.getEngine().setJavaScriptEnabled(true);
+//                webView.getEngine().getCreatePopupHandler(); //setOnAlert(null);
+//                //webView.getEngine().load("http://localhost:8042/");
+//
+//                String PacsServerIP = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerIPAdd(connectDB);
+//                String PacsPort = com.afrisoftech.lib.RadiologyRequestJSON.getPacsServerPort(connectDB);
+//                //String uuid = radiologyResultsTbl.getValueAt(radiologyResultsTbl.getSelectedRow(), 5).toString();
+//
+//                System.out.println("Selected study UUID [" + uuid + "]");
+//
+//                webView.getEngine().load("http://" + PacsServerIP + ":" + PacsPort + "/osimis-viewer/app/index.html?study=" + uuid);
+//            });
+//            //        });
+//
+//    //      com.afrisoftech.laboratory.PatHistIntfr comp = new com.afrisoftech.laboratory.PatHistIntfr(connectDB, pConnDB);
+//    //       if (!pacsInternalFrame.isClosed()) {
+//        //       } else {
+//        pacsInternalFrame.setVisible(true);
+//
+//        //       }
+//        this.invalidate();
+//        this.validate();
+//        this.updateUI();
+            }
+
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a patient Dicom study to view", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacsDicomViewerBtnActionPerformed
+
+    private void refreshResultsListingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshResultsListingBtnActionPerformed
+
+        radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, ( doctor) AS doctor_requesting, user_name as radiologist,uid,uuid, doc_read as read,false as match_patient FROM hp_xray_results WHERE date::date BETWEEN '" + xrayStartDatePicker.getDate() + "' AND '" + xrayEndDatePicker.getDate() + "' ORDER BY 1,3,4"));
+
+        spacerLbl.setText("Displaying " + radiologyResultsTable.getRowCount() + " reported procedures.");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshResultsListingBtnActionPerformed
+
+    private void closeFormBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeFormBtnActionPerformed
+
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeFormBtnActionPerformed
+
+    private void pacsDicomViewerBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacsDicomViewerBtn1ActionPerformed
+        if (!uidTxt.getText().trim().isEmpty()) {
+
+            uuid = com.afrisoftech.lib.RadiologyRequestJSON.getOrthanoSystemUUID(connectDB, uidTxt.getText());
+
+            System.err.println(">>>>" + uuid);
+
+            if (uuid != null && !uuid.isEmpty()) {
+                pacsDicomViewerBtn.doClick();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "UID "+uidTxt.getText()+" has no associated image on the PACs server", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "The selected request is has no UID to link to the PACs server", "Error selecting Dicom study", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacsDicomViewerBtn1ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+        //System.err.println(""+sampleRegDialog.getSize());
+        radiologyResultsTable.setValueAt(false, radiologyResultsTable.getSelectedRow(), 10);
+        matchPatientDialog.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton54ActionPerformed
+
+    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+        String pattNo = paidResultsTable1.getValueAt(paidResultsTable1.getSelectedRow(), 1).toString();
+        String pattName = paidResultsTable1.getValueAt(paidResultsTable1.getSelectedRow(), 2).toString();
+        String examm = paidResultsTable1.getValueAt(paidResultsTable1.getSelectedRow(), 4).toString();
+        int openShift = javax.swing.JOptionPane.showConfirmDialog(this, "Update dicom to patient "+pattName, "Confirm..", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+                    if (openShift == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+            java.sql.PreparedStatement pstmtUpdate = connectDB.prepareStatement("UPDATE hp_xray_results SET patient_no = ?, patient_name = ?, examination = ? WHERE uuid = ?  ");
+            pstmtUpdate.setString(1, pattNo);
+            pstmtUpdate.setString(2, pattName);
+            pstmtUpdate.setString(3, examm);
+             pstmtUpdate.setString(4, uuidMatchTxt.getText());
+            pstmtUpdate.executeUpdate();
+           
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Update  Successful.", "Confirmation Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+           
+            matchPatientDialog.dispose();
+             radiologyResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT date, patient_no, patient_name, xray_no, examination, ( doctor) AS doctor_requesting, user_name as radiologist,uid,uuid, doc_read as read,false as match_patient FROM hp_xray_results WHERE date::date BETWEEN '" + xrayStartDatePicker.getDate() + "' AND '" + xrayEndDatePicker.getDate() + "' ORDER BY 1,3,4"));
+
+
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+                    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton53ActionPerformed
+
+    private void searchTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchTextField1CaretUpdate
+        if (searchTextField1.getCaretPosition() >= 3) {
+            this.paidResultsTable1.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
+                        + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                        + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, "
+                        + "(SELECT uid FROM hp_lims_request hlr WHERE (pb.bed_no = hlr.request_id OR hlr.request_id = (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) ) and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                        + " FROM pb_doctors_request pb WHERE"
+                        + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
+                        + " results = false and trans_date::date  > current_date - 2 and (patient_no ilike '%" + searchTextField1.getText() + "%' or patient_name ilike '%" + searchTextField1.getText() + "%' )  "
+                        + " UNION "
+                        + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 ) AS uid"
+                        + " FROM ac_cash_collection WHERE"
+                        + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY' ) AND "
+                        + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) and ( patient_no ilike '%" + searchTextField1.getText() + "%' or dealer ilike '%" + searchTextField1.getText() + "%' ) AND date > current_date -2"
+                        + " UNION "
+                        + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
+                        + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                        + " FROM hp_patient_card hpc WHERE collected = false AND "
+                        + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                        + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date::date > current_date -2  and  ( patient_no ilike '%" + searchTextField1.getText() + "%' or funsoft_get_patient_name(patient_no) ilike '%" + searchTextField1.getText() + "%' ) "
+                
+                        + "ORDER BY 1 asc"));
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_searchTextField1CaretUpdate
+
+    private void paidResultsTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paidResultsTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paidResultsTable1MouseClicked
     private void populateTable1(java.lang.String patient_no) {
     }
 
@@ -2328,62 +2573,78 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtTable11 = connectDB.createStatement();
 
             // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select date,patient_no,name,payment,'false' as bill from hp_patient_visit where transaction_type ilike 'reg%' and date = current_date  ORDER BY date");
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) FROM  pb_doctors_request pb, pb_activity pa"
-                    + " WHERE pb.requisition_no ilike 'X-RAY' "
-                    + " and paid = true AND collected = false and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' ");
-
-            while (rsetTable11.next()) {
-                patNo = rsetTable11.getInt(1);
-                paidPatients = rsetTable11.getString(1);
-
-            }
-            System.out.println("SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                    + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
-                    + " FROM pb_doctors_request pb WHERE (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no \n" +
-                    " AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND "
+//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) FROM  pb_doctors_request pb, pb_activity pa"
+//                    + " WHERE pb.requisition_no ilike 'X-RAY' "
+//                    + " and paid = true AND collected = false and trans_date  BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayenddatePicker.getDate()) + "' ");
+//
+//            while (rsetTable11.next()) {
+//                patNo = rsetTable11.getInt(1);
+//                paidPatients = rsetTable11.getString(1);
+//
+//            }
+            System.out.println("SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                    + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, (SELECT uid FROM hp_lims_request hlr WHERE pb.bed_no = hlr.request_id and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM pb_doctors_request pb WHERE"
                     + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
-                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + " results = false and trans_date::date  > current_date - 2 "
                     + " UNION "
                     + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes "
-                    + " FROM ac_cash_collection WHERE  receipt_no NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND  "
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 ) AS uid"
+                    + " FROM ac_cash_collection WHERE"
                     + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date > current_date -2"
                     + " UNION "
                     + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes "
-                    + " FROM hp_patient_card WHERE collected = false AND "
-                    + " ((SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM hp_patient_card hpc WHERE collected = false AND "
+                    + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date::date > current_date -2 "
                     + "ORDER BY 1 asc");
             this.paidResultsTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, ""
-                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,bed_no as Request_No,doctor,"
-                    + "false as Approve,request_id as Request_id,time_due,(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes "
-                    + " FROM pb_doctors_request pb WHERE (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no \n" +
-                    " AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND "
+                    + "SELECT DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,(SELECT bed_no FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_No,  doctor  AS doctor,"
+                    + "false as Approve,(SELECT request_id FROM pb_doctors_request pr WHERE pr.trans_date = pb.trans_date AND pr.patient_no = pb.patient_no AND pr.service = pb.service ORDER BY pr.trans_date DESC LIMIT 1) as Request_id,time_due,"
+                    + "(SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) as receipt_no,notes, "
+                    + "(SELECT uid FROM hp_lims_request hlr WHERE (pb.bed_no = hlr.request_id OR hlr.request_id = (SELECT doctor FROM hp_patient_billing WHERE hp_patient_billing.patient_no = pb.patient_no AND pb.inv_no = hp_patient_billing.inpatient_no LIMIT 1) ) and hlr.patient_no = pb.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM pb_doctors_request pb WHERE"
                     + " (pb.requisition_no ilike 'X-RAY' or pb.requisition_no ilike 'XRAY') AND paid = true AND"
-                    + " results = false and trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + " results = false and trans_date::date  > current_date - 2 "
                     + " UNION "
-                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes "
-                    + " FROM ac_cash_collection WHERE  receipt_no NOT IN (select doc_no from hp_xray_results where date > current_date - 4) AND  "
-                    + " ((SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "SELECT DISTINCT date as trans_date,patient_no, dealer as patient_name,payment_mode,description as service,quantity, debit as amount, receipt_no as  Request_No,'' as doctor,"
+                    + "false as Approve, receipt_no as Request_id,now()::time(0)::varchar as time_due,receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE ac_cash_collection.receipt_no = hlr.request_id and hlr.patient_no = ac_cash_collection.patient_no and test ilike  description  LIMIT 1 ) AS uid"
+                    + " FROM ac_cash_collection WHERE"
+                    + " ((SELECT department FROM pb_activity WHERE ac_cash_collection.activity_code = pb_activity.code) ilike 'XRY' ) AND "
+                    + "  UPPER(patient_no || '' ||description) NOT IN (SELECT UPPER(patient_no || '' || service) FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date > current_date -2"
                     + " UNION "
-                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, patient_no as  Request_No,'' as doctor,"
-                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes "
-                    + " FROM hp_patient_card WHERE collected = false AND "
-                    + " ((SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'X-RAY' or (SELECT activity FROM pb_activity WHERE hp_patient_card.main_service = pb_activity.activity) ilike 'XRAY') AND "
-                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 ) AND date::date  > '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2 "
+                    + "SELECT DISTINCT date::date as trans_date,patient_no, funsoft_get_patient_name(patient_no) as patient_name,payment_mode, service as service, dosage as quantity, debit as amount, reference as  Request_No,'' as doctor,"
+                    + "false as Approve, reference as Request_id, now()::time(0)::varchar as time_due, reference as receipt_no, '' as notes , (SELECT uid FROM hp_lims_request hlr WHERE hpc.reference = request_no and hlr.patient_no = hpc.patient_no and test ilike  service  LIMIT 1 ) as uid "
+                    + " FROM hp_patient_card hpc WHERE collected = false AND "
+                    + " upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(department) = upper('XRY')) AND "
+                    + "  patient_no NOT IN (SELECT patient_no FROM pb_doctors_request WHERE trans_date::date  > current_date - 2) AND date::date > current_date -2 "
                     + "ORDER BY 1 asc"));
 
+            javax.swing.table.TableColumn column2 = null;
+            for (int l = 0; l < paidResultsTable.getColumnCount(); l++) {
+                column2 = paidResultsTable.getColumnModel().getColumn(l);
+                if (l == 2) {
+
+                    column2.setPreferredWidth(300); // item description column is bigger
+                } else if (i == 1 || i == 4) {
+
+                    column2.setPreferredWidth(150);
+
+                } else {
+                    column2.setPreferredWidth(100);
+                }
+            }
+
+            paidScrollPane.setViewportView(paidResultsTable);
             //}
             if (patNo > 5) {
 
-                this.jLabel14.setText("Queue Long '" + patNo + "' Patients Are Waiting For Xray");
+                this.jLabel14.setText("Queue Long '" + paidResultsTable.getRowCount() + "' Patients are waiting for radiology services");
                 this.jLabel14.setForeground(new java.awt.Color(255, 0, 51));
             } else {
-                this.jLabel14.setText("Queue Going Smoothly Only '" + patNo + "' Patients Waiting");
+                this.jLabel14.setText("Queue has '" + paidResultsTable.getRowCount() + "' patients waiting");
                 this.jLabel14.addNotify();
 
                 this.jLabel14.setForeground(new java.awt.Color(51, 51, 255));
@@ -2407,20 +2668,19 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
         int patNo = 0;
         try {
 
-            java.sql.Statement stmtTable11 = connectDB.createStatement();
-
-            // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select date,patient_no,name,payment,'false' as bill from hp_patient_visit where transaction_type ilike 'reg%' and date = current_date  ORDER BY date");
-            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) from pb_doctors_request pb, pb_activity pa"
-                    + " WHERE  pb.posted_to_lab='DOC POSTING' and  "
-                    + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' and paid = false AND collected = false "
-                    + "and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "' ");
-
-            while (rsetTable11.next()) {
-                patNo = rsetTable11.getInt(1);
-                pendingPatients = rsetTable11.getString(1);
-
-            }
-
+//            java.sql.Statement stmtTable11 = connectDB.createStatement();
+//
+//            // java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select date,patient_no,name,payment,'false' as bill from hp_patient_visit where transaction_type ilike 'reg%' and date = current_date  ORDER BY date");
+//            java.sql.ResultSet rsetTable11 = stmtTable11.executeQuery("SELECT DISTINCT count(patient_no) from pb_doctors_request pb, pb_activity pa"
+//                    + " WHERE  pb.posted_to_lab='DOC POSTING' and  "
+//                    + " pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' and paid = false AND collected = false "
+//                    + "and trans_date ='" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "' ");
+//
+//            while (rsetTable11.next()) {
+//                patNo = rsetTable11.getInt(1);
+//                pendingPatients = rsetTable11.getString(1);
+//
+//            }
             System.out.println("select trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                     + "bed_no  as Request_No,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb, pb_activity pa"
                     + " WHERE pb.posted_to_lab='DOC POSTING' and pb.requisition_no='X-RAY' and pb.gl_code = pa.code AND pa.department ILIKE 'XRY' and paid = false AND collected = false and trans_date >= "
@@ -2429,7 +2689,7 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
                     + "select DISTINCT trans_date,patient_no,patient_name,pb.payment_mode,service,quantity,amount,inv_no,doctor,false as bill,"
                     + "request_id as Request_id,time_due,false as cancel,revenue_code,gl_code  from pb_doctors_request pb "
                     + " WHERE (pb.requisition_no ilike 'X-RAY' OR pb.requisition_no ilike 'XRAY') "
-                    + " and paid = false AND collected = false and trans_date::date  >= '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xraydatePicker.getDate()) + "'::date - 2"
+                    + " and paid = false AND collected = false and trans_date::date  BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayStartDatePicker.getDate()) + "'::date AND  '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(xrayEndDatePicker.getDate()) + "'::date "
                     + " AND pb.bed_no NOT IN (SELECT DISTINCT inpatient_no FROM hp_patient_billing hp WHERE hp.inpatient_no = pb.bed_no AND hp.collected = true AND UPPER(pb.service) = UPPER(hp.service)) ORDER BY trans_date asc"));
 
         } catch (Exception sqlExec) {
@@ -2439,23 +2699,23 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
-
-        javax.swing.table.TableColumn column2 = null;
-        for (int l = 0; l < paidResultsTable.getColumnCount(); l++) {
-            column2 = paidResultsTable.getColumnModel().getColumn(l);
-            if (l == 2) {
-
-                column2.setPreferredWidth(300); // item description column is bigger
-            } else if (i == 1 || i == 4) {
-
-                column2.setPreferredWidth(150);
-
-            } else {
-                column2.setPreferredWidth(100);
-            }
-        }
-
-        paidScrollPane.setViewportView(paidResultsTable);
+//
+//        javax.swing.table.TableColumn column2 = null;
+//        for (int l = 0; l < paidResultsTable.getColumnCount(); l++) {
+//            column2 = paidResultsTable.getColumnModel().getColumn(l);
+//            if (l == 2) {
+//
+//                column2.setPreferredWidth(300); // item description column is bigger
+//            } else if (i == 1 || i == 4) {
+//
+//                column2.setPreferredWidth(150);
+//
+//            } else {
+//                column2.setPreferredWidth(100);
+//            }
+//        }
+//
+//        paidScrollPane.setViewportView(paidResultsTable);
 
         javax.swing.table.TableColumn column = null;
         for (int m = 0; m < confirmRequestsTable.getColumnCount(); m++) {
@@ -2476,10 +2736,10 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
 
         if (patNo > 5) {
 
-            this.jLabel1.setText("Queue Long '" + patNo + "' Patients Are Waiting For Xray");
+            this.jLabel1.setText("Long queue, " + confirmRequestsTable.getRowCount() + " patients are waiting for radiology services.");
             this.jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         } else {
-            this.jLabel1.setText("Queue Going Smoothly Only '" + patNo + "' Patients Waiting");
+            this.jLabel1.setText("Queue has " + confirmRequestsTable.getRowCount() + " patients are waiting for radiology services");
             this.jLabel1.addNotify();
 
             this.jLabel1.setForeground(new java.awt.Color(51, 51, 255));
@@ -2496,20 +2756,32 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JButton cancleBtn;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextArea clinicalHistoryTxt;
+    private javax.swing.JButton closeFormBtn;
     private javax.swing.JTable confirmRequestsTable;
     private javax.swing.JScrollPane confirmScrollPane;
+    private javax.swing.JTextField currentNameTxt;
+    private javax.swing.JTextField currentNoTxt;
     private javax.swing.JTextField doctorTextField;
     private javax.swing.JCheckBox femaleCheckBox;
     private javax.swing.JCheckBox inPatientChkbx;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton53;
+    private javax.swing.JButton jButton54;
     private javax.swing.JComboBox jComboBox41;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2518,48 +2790,62 @@ public class XrayResIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel211;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel621;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jSearchPanel3;
     private javax.swing.JTextField jTextField3621;
     private javax.swing.JCheckBox maleCheckBox;
+    private javax.swing.JDialog matchPatientDialog;
     private javax.swing.JTextField nooffilmTextField;
     private javax.swing.JTextArea otherInformationTxt;
     private javax.swing.JCheckBox outPatientChkbx;
+    private javax.swing.JButton pacsDicomViewerBtn;
+    private javax.swing.JButton pacsDicomViewerBtn1;
+    private javax.swing.JPanel paidPendingPanel;
     private javax.swing.JTable paidResultsTable;
+    private javax.swing.JTable paidResultsTable1;
     private javax.swing.JScrollPane paidScrollPane;
+    private javax.swing.JScrollPane paidScrollPane1;
     private javax.swing.JButton patientCardBtn;
+    private javax.swing.JTextField patientNameTxt;
     private javax.swing.JTextField patientNoTxt;
     private javax.swing.JLabel paySpacerLbl;
     private javax.swing.JTextArea physicalExamTxt;
     private javax.swing.JTextArea provisionalDiagnosisTxt;
+    private javax.swing.JPanel radiographerHeaderPanel;
     private javax.swing.JTextArea radiographerReportTxt;
+    private javax.swing.JScrollPane radiographerResultsJscrl;
+    private javax.swing.JTabbedPane radiographerTabbedPane;
     private javax.swing.JTable radiologyResultsTable;
     private javax.swing.JTextField receiptTxt;
+    private javax.swing.JButton refreshResultsListingBtn;
     private javax.swing.JButton refreshbutton;
+    private javax.swing.JPanel reportingPanel;
+    private javax.swing.JPanel resultsButtonPanel;
+    private javax.swing.JPanel resultsPanel;
     private javax.swing.JButton saveresultsButton;
     private javax.swing.JTextField searchTextField;
+    private javax.swing.JTextField searchTextField1;
+    private javax.swing.JLabel spacerLbl;
     private javax.swing.JButton submitForPayBtn;
+    private javax.swing.JTextField uidMatchTxt;
+    private javax.swing.JTextField uidTxt;
+    private javax.swing.JTextField uuidMatchTxt;
+    private javax.swing.JPanel waitList2ConfirmPanel;
     private javax.swing.JPanel waitingListActionsPanel;
+    private com.afrisoftech.lib.DatePicker xrayEndDatePicker;
+    private com.afrisoftech.lib.DatePicker xrayStartDatePicker;
     private javax.swing.JTable xrayTestTable;
     private javax.swing.JTextField xrayTextField;
-    private com.afrisoftech.lib.DatePicker xraydatePicker;
     // End of variables declaration//GEN-END:variables
 }

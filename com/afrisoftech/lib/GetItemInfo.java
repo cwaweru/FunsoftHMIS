@@ -497,7 +497,7 @@ public class GetItemInfo {
             System.err.println("SELECT COUNT(*) FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
                     + " UNION "
                     + "SELECT COUNT(*) FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
-            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT COUNT(*) FROM hp_patient_billing WHERE doctor = ? AND patient_no = ? AND UPPER(revenue_code) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')"
+            java.sql.PreparedStatement pst = connectDB.prepareStatement("SELECT COUNT(*) FROM ac_cash_collection WHERE receipt_no = ? AND patient_no = ? AND UPPER(activity_code) IN (SELECT UPPER(code) FROM pb_activity WHERE department = 'XRY')"
                     + " UNION "
                     + "SELECT COUNT(*) FROM hp_patient_card WHERE reference = ? AND patient_no = ? AND UPPER(main_service) IN (SELECT UPPER(activity) FROM pb_activity WHERE department = 'XRY')");
             

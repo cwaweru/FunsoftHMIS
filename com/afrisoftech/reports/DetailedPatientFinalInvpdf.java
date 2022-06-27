@@ -21,6 +21,8 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
     double osBalance1 = 0.00;
     double current = 0.00;
     String ks;
+    String dd = "";
+    String pN = "";
     public static java.sql.Connection connectDB = null;
     public java.lang.String dbUserName = null;
     org.netbeans.lib.sql.pool.PooledConnectionSource pConnDB = null;
@@ -446,6 +448,7 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
                                 table1.getDefaultCell().setColspan(3);
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase2 = new Phrase("Patient No:  ".toUpperCase() + dbObject.getDBObject(rset.getObject(1), "-").toUpperCase(), pFontHeader1);
+                                pN = rset.getString(1);
                                 //table1.addCell(phrase);
 
                                 table1.getDefaultCell().setColspan(3);
@@ -525,6 +528,7 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase7 = new Phrase("Discharge Date: ".toUpperCase() + dbObject.getDBObject(rsetc.getObject(2), "-").toUpperCase(), pFontHeader1);
                                 table1.getDefaultCell().setColspan(6);
+                                dd = rsetc.getString(2);
 
                                 table1.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 phrase8 = new Phrase("No.of Days : ".toUpperCase() + dbObject.getDBObject(rsetc.getObject(3), "-").toUpperCase(), pFontHeader1);
@@ -560,7 +564,7 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
 
                         com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(6);
 
-                        int headerwidths[] = {12, 45, 5, 8, 15, 15};
+                        int headerwidths[] = {12, 45, 8, 8, 15, 15};
 
                         table.setWidths(headerwidths);
                         table.setHeaderRows(1);
@@ -605,7 +609,7 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
                             java.sql.ResultSet rsetTotals = st2.executeQuery("select sum(debit - credit) from hp_patient_card where visit_id = '" + memNo + "' and service != 'N.H.I.F' AND service not ilike 'Receipt%' AND service not ilike 'Receipt Adj'   AND service not ilike '%DIFF '  AND service not ilike 'Discou%' AND service != 'Invoice'");
 
                             java.sql.ResultSet rset11 = st11.executeQuery(" select initcap(CASE WHEN (service ilike 'receipt' AND service = main_service) THEN service||' - '||requisition_no ELSE main_service END) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' "
-                                    + "AND (service = 'N.H.I.F' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  or service ilike '%DIFF '  OR service ilike 'Discou%')\n "
+                                    + "AND (service = 'N.H.I.F' or service = 'Waiver' or service ilike 'Receipt%' or service ilike 'Receipt Adj'  or service ilike '%DIFF '  OR service ilike 'Discou%')\n "
                                     + " group by service, main_service,requisition_no order by service");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 ////CWW; 18/11/2020; to prevent reversed invoices failing to appear on the invoice thus resulting in over-payments on invoices                            
 //                                                        java.sql.ResultSet rset11 = st11.executeQuery(" select initcap(CASE WHEN (service ilike 'receipt' AND service = main_service) THEN service||' - '||requisition_no ELSE main_service END) as service,sum(dosage)::int,sum(credit-debit) from hp_patient_card where visit_id = '" + memNo + "' "
@@ -899,24 +903,57 @@ public class DetailedPatientFinalInvpdf implements java.lang.Runnable {
                             table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                             phrase = new Phrase(" ", pFontHeader11);
                             table.addCell(phrase);
-                            java.sql.PreparedStatement pstmtUser = connectDB.prepareStatement("SELECT (SELECT upper(f_name||' '||l_name) FROM secure_menu_access where login_name = current_user order by 1 limit 1), date_part('day', now()::date) ||'-'||date_part('month', now()::date) ||'-'||date_part('year', now()::date)");
+                            
+                            java.sql.PreparedStatement pstmtUser = null;
+                            java.sql.ResultSet rsetUser = null;
+                            
+                            if(dd != null){
+                            pstmtUser = connectDB.prepareStatement(" SELECT * , discharge_time as dd FROM hp_patient_discharge where patient_no = '"+pN+"' and discharge_date = '"+dd+"' ");
 
-                            java.sql.ResultSet rsetUser = pstmtUser.executeQuery();
+                            rsetUser = pstmtUser.executeQuery();
+                            
+                            
+
+                            
+                            while (rsetUser.next()) {
+                                table.getDefaultCell().setColspan(3);
+                                phrase = new Phrase("Prepared  by : ".toUpperCase() + com.afrisoftech.lib.UserName.getUserFullName(connectDB, rsetUser.getString("user_name") ), pFontHeader11);
+                                table.addCell(phrase);
+                                table.getDefaultCell().setColspan(3);
+                                phrase = new Phrase("Date : ".toUpperCase() + rsetUser.getString("discharge_date")+" "+rsetUser.getString("dd"), pFontHeader11);
+                                table.addCell(phrase);
+                                
+                                
+                                
+
+                            }
+                            
+                            table.getDefaultCell().setColspan(12);
+                            phrase = new Phrase(" ".toUpperCase(), pFontHeader11);
+                            table.addCell(phrase);
+                            }
+                                
+                            
+                            
+                            pstmtUser = connectDB.prepareStatement("SELECT (SELECT upper(f_name||' '||l_name) FROM secure_menu_access where login_name = current_user order by 1 limit 1), date_part('day', now()::date) ||'-'||date_part('month', now()::date) ||'-'||date_part('year', now()::date) || ' ' ||now()::TIME(0)  ");
+                            rsetUser = pstmtUser.executeQuery();
 
                             while (rsetUser.next()) {
                                 table.getDefaultCell().setColspan(3);
                                 phrase = new Phrase("Printed by : ".toUpperCase() + rsetUser.getString(1), pFontHeader11);
                                 table.addCell(phrase);
                                 table.getDefaultCell().setColspan(3);
-                                phrase = new Phrase("Print Date : ".toUpperCase() + rsetUser.getString(2), pFontHeader11);
+                                phrase = new Phrase("Date : ".toUpperCase() + rsetUser.getString(2), pFontHeader11);
                                 table.addCell(phrase);
+                                
+                                table.getDefaultCell().setColspan(6);
+                                phrase = new Phrase("Signature : ______________________".toUpperCase(), pFontHeader11);
+                                table.addCell(phrase);
+                                docPdf.add(table);
 
                             }
 
-                            table.getDefaultCell().setColspan(6);
-                            phrase = new Phrase("Signature : __________________________________________".toUpperCase(), pFontHeader11);
-                            table.addCell(phrase);
-                            docPdf.add(table);
+                            
 
                         } catch (java.sql.SQLException SqlExec) {
 

@@ -111,7 +111,7 @@ public class SendMail {
 
     public static void main(String args[]) throws Exception {
 
-        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+//        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
         new SendMail().sendSSLMessage(sendTo, emailSubjectTxt,
                 emailMsgTxt, emailFromAddress);

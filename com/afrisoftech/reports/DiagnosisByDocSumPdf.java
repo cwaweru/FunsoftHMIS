@@ -425,7 +425,7 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
 
                                 phrase = new Phrase(dbObject.getDBObject(rset11.getObject(1), "-"), pFontHeader);
                                 //  osBalance = osBalance + rset1.getDouble(2);
-                                osBalance1 = rset11.getDouble(1);
+                                //osBalance1 = rset11.getDouble(1);
                                 // table.addCell(phrase);
                             }
 
@@ -451,8 +451,44 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
                                     table.getDefaultCell().setColspan(1);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
+                                    
+                                    java.sql.PreparedStatement st = connectDB.prepareStatement("select count(*) from (select DISTINCT (patient_no) as patient_no,date_recorded::date,initcap(patient_name),initcap(disease), comments from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) "
+                                    + " UNION SELECT DISTINCT patient_no, date,initcap(patient_name), typeof_test, comments  FROM public.hp_clinical_results WHERE patient_no NOT IN (select DISTINCT (patient_no) as patient_no from hp_patient_diagnosis WHERE date_recorded::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1)))) AND date::date BETWEEN ? AND ? and ((UPPER(user_name) = UPPER(?) or UPPER(user_name) = (SELECT DISTINCT UPPER(login_name) from secure_menu_access where UPPER(f_name || ' '|| l_name) = UPPER(?) LIMIT 1))) ) AS foo");
 
-                                    phrase = new Phrase(dbObject.getDBObject(rset1.getObject(1), "-"), pFontNum);
+                                    int cases = 0;
+                                    
+                                    String memNo = listofAct1[k].toString();
+                                    st.setDate(1, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st.setDate(2, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st.setObject(3, memNo);
+                            
+                            st.setObject(4, memNo);
+                            
+                            st.setDate(5, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st.setDate(6, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st.setObject(7, memNo);
+                            
+                            st.setObject(8, memNo);
+                            
+                            st.setDate(9, com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDate));
+
+                            st.setDate(10, com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDate));
+
+                            st.setObject(11, memNo);
+                            
+                            st.setObject(12, memNo);
+                                    java.sql.ResultSet rset = st.executeQuery();
+                                    while (rset.next()) {
+                                       cases =  rset.getInt(1);
+                                    }
+                                    
+                                    
+
+                                    phrase = new Phrase(dbObject.getDBObject(cases, "-"), pFontNum);
                                     osBalance = rset1.getDouble(1);
                                     // osBalance1 = osBalance + rset1.getDouble(2);
                                     table.addCell(phrase);
@@ -461,9 +497,9 @@ public class DiagnosisByDocSumPdf implements java.lang.Runnable {
                                     //table.addCell(phrase);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance * 100 / osBalance1)), pFontNum);
-                                    //   osBalance1 = osBalance1 + rset1.getDouble(5);
-                                    table.addCell(phrase);
+//                                    phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(java.lang.String.valueOf(osBalance * 100 / osBalance1)), pFontNum);
+                                       osBalance1 = osBalance1 + cases;
+                                    table.addCell("");
 
                                 }
                             }

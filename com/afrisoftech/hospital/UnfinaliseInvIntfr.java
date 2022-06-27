@@ -881,7 +881,7 @@ public class UnfinaliseInvIntfr extends javax.swing.JInternalFrame {
 
                             if (rebateType) {
                                 Double nhifDiff = 0.00;
-                                java.sql.PreparedStatement pstmtDiff = connectDB.prepareStatement("SELECT transaction_type, sum(debit-credit) FROM ac_ledger WHERE patient_no = '" + patientNumberTxt.getText() + "' and transaction_time::date = '" + invoiceDate + "'::date AND service_type ilike '% DIFF ' and transaction_type ilike '% Rebate' group by 1");
+                                java.sql.PreparedStatement pstmtDiff = connectDB.prepareStatement("SELECT transaction_type, sum(debit-credit) FROM ac_ledger WHERE patient_no = '" + patientNumberTxt.getText() + "' and transaction_time::date = '" + invoiceDate + "'::date AND service_type ilike '% DIFF' and transaction_type ilike '% Rebate' group by 1");
                                 java.sql.ResultSet rsetDiff = pstmtDiff.executeQuery();
                                 while (rsetDiff.next()) {
                                     nhifDiff = rsetDiff.getDouble(2);

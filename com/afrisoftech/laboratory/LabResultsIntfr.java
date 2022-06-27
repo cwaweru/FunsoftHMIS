@@ -2769,7 +2769,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints.weighty = 200.0;
         verificationPanel.add(jPanel212, gridBagConstraints);
 
-        jLabel24.setText("Start date for displayed listing of results");
+        jLabel24.setText("Set date range for displayed listing of results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -3030,7 +3030,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -3056,7 +3056,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -3072,7 +3072,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -3081,7 +3081,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
         gridBagConstraints.weightx = 1.0;
@@ -3132,7 +3132,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -3145,7 +3145,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -3926,6 +3926,7 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                             + " reference as Request_No, now()::time(0), visit_id, '' as Specimen, '' as Test_notes,"
                             + "  reference as receipt_no, scheme as scheme_name  "
                             + "FROM hp_patient_card WHERE main_service ilike '%Laboratory%' AND date >= now()::date - 2 "
+                            + " AND UPPER(patient_no || '-' ||service || '-' || date::date ) NOT IN (SELECT UPPER(patient_no ||'-'||service ||'-'||trans_date ) FROM pb_doctors_request WHERE  trans_date >= now()::date - 2 ) "
                             + " AND collected = false AND  UPPER(reference || '-' ||service  )  NOT IN (SELECT UPPER(request_id ||'-'||service) FROM hp_specimen_register)"
                             + " UNION "
                             + "SELECT date as trans_date, patient_no, dealer as patient_name, payment_mode, description, quantity, debit, transaction_no, '' as doctor, false as Register_sample,"
@@ -4788,7 +4789,13 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
                                 pstmt21.setDouble(11, 0);
                                 pstmt21.setDate(13, com.afrisoftech.lib.SQLDateFormat.getSQLDate(mainDatePicker.getDate()));
                                 pstmt21.setObject(18, jTextField82.getText());
-                                pstmt21.setString(12, resultsNarrativeTable.getValueAt(i, 1).toString());
+                                if(resultsNarrativeTable.getValueAt(i, 1).toString().contains("true")){
+                                pstmt21.setString(12, "Positive");
+                                } else if(resultsNarrativeTable.getValueAt(i, 1).toString().contains("false")) {
+                                  pstmt21.setString(12, "Negative");  
+                                } else {
+                                    pstmt21.setString(12, resultsNarrativeTable.getValueAt(i, 1).toString());
+                                }
                                 pstmt21.setString(20, user);
                                 pstmt21.setObject(17, resultsVerifierCmbx.getSelectedItem().toString());
                                 pstmt21.setTimestamp(14, new java.sql.Timestamp(java.util.Calendar.getInstance().getTimeInMillis()));
@@ -5031,7 +5038,8 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
         // jTextField1.setText(jSearchTable2.getValueAt(jSearchTable2.getSelectedRow(), 1).toString());
 //        jTextField91.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 0).toString());
         //   jTextField10.setText(jSearchTable21.getValueAt(jSearchTable21.getSelectedRow(), 2).toString());
-
+        String resultStatus = null;
+        boolean status = false;
         for (int k = 0; k < resultsSITable.getRowCount(); k++) {
             for (int r = 0; r < resultsSITable.getColumnCount(); r++) {
                 resultsSITable.getModel().setValueAt(null, k, r);
@@ -5048,65 +5056,100 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
             java.sql.Statement stmt = connectDB.createStatement();
             java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-            java.sql.ResultSet rset = stmtTable1.executeQuery("SELECT DISTINCT status,specimen FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "'");
+            java.sql.ResultSet rset = stmtTable1.executeQuery("SELECT DISTINCT status,specimen,notes FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "'");
 
             while (rset.next()) {
 
                 jTextField10.setText(rset.getObject(1).toString());
                 labDisciplineTxt.setText(rset.getObject(2).toString());
+                resultStatus = rset.getString(3);
+                status = rset.getBoolean(1);
+                
             }
         } catch (java.sql.SQLException sqlExec) {
             sqlExec.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
 
         }
+         System.out.println("Results status notes ["+resultStatus+"]");
         int i = 0;
-        if (this.jTextField10.getText().toLowerCase().startsWith("t")) {
+        if (status && !resultStatus.contains("Positive")) {
             this.resultsSIPanel.setVisible(true);
             this.resultsNarrativePanel.setVisible(false);
-            try {
-                java.sql.Statement stmt = connectDB.createStatement();
+//            try {
+//                java.sql.Statement stmt = connectDB.createStatement();
+//
+//                java.sql.Statement stmtTable1 = connectDB.createStatement();
+//
+//                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT DISTINCT typeof_test,units,lower_limit,upper_limit,parameter_order FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' AND status = true ORDER BY parameter_order asc");
 
-                java.sql.Statement stmtTable1 = connectDB.createStatement();
-
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,units,lower_limit,upper_limit,parameter_order FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' AND status = true ORDER BY parameter_order asc");
-
-                while (rsetTable1.next()) {
-                    System.out.println("Working at table row " + i);
-                    resultsSITable.setValueAt(rsetTable1.getObject(1), i, 0);
-                    resultsSITable.setValueAt(rsetTable1.getObject(2), i, 2);
-                    resultsSITable.setValueAt(rsetTable1.getObject(3), i, 3);
-                    resultsSITable.setValueAt(rsetTable1.getObject(4), i, 4);
-                    i++;
-                }
-
-            } catch (java.sql.SQLException sqlExec) {
-                sqlExec.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-            }
-        } else {
-            try {
+                resultsSITable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT typeof_test,null AS results, units,lower_limit,upper_limit,parameter_order FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' AND status = true ORDER BY parameter_order asc"));
+//                while (rsetTable1.next()) {
+//                    System.out.println("Working at table row " + i);
+//                    resultsSITable.setValueAt(rsetTable1.getObject(1), i, 0);
+//                    resultsSITable.setValueAt(rsetTable1.getObject(2), i, 2);
+//                    resultsSITable.setValueAt(rsetTable1.getObject(3), i, 3);
+//                    resultsSITable.setValueAt(rsetTable1.getObject(4), i, 4);
+//                    i++;
+//                }
+//
+//            } catch (java.sql.SQLException sqlExec) {
+//                sqlExec.printStackTrace();
+//                javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//            }
+        } else if(resultStatus.contains("Positive") && !status){
+             System.out.println("For positive or negative results");
+//                    try {
                 this.resultsNarrativePanel.setVisible(true);
                 this.resultsSIPanel.setVisible(false);
                 this.saveResultsBtn.setVisible(true);
-                java.sql.Statement stmt = connectDB.createStatement();
+//                java.sql.Statement stmt = connectDB.createStatement();
 
-                java.sql.Statement stmtTable1 = connectDB.createStatement();
+//                java.sql.Statement stmtTable1 = connectDB.createStatement();
 
-                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,status,parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order");
+//                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test, false as tick_if_positive, parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order");
 
-                while (rsetTable1.next()) {
-                    System.out.println("Working at table row " + i);
-                    resultsNarrativeTable.setValueAt(rsetTable1.getObject(1), i, 0);
-                    i++;
-                }
+                resultsNarrativeTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB,"SELECT DISTINCT typeof_test, false as tick_if_positive, parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order"));
+                
+//                while (rsetTable1.next()) {
+//                    System.out.println("Working at table row " + i);
+//                    resultsNarrativeTable.setValueAt(rsetTable1.getObject(1), i, 0);
+//                    i++;
+//                }
+//
+//            } catch (java.sql.SQLException sqlExec) {
+//                sqlExec.printStackTrace();
+//                javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//            }    
+        
+        } else if(!resultStatus.contains("Positive") && !status){
+//           try{ 
+                this.resultsNarrativePanel.setVisible(true);
+                this.resultsSIPanel.setVisible(false);
+                this.saveResultsBtn.setVisible(true);
+//                this.resultsNarrativePanel.setVisible(true);
+//                this.resultsSIPanel.setVisible(false);
+//                this.saveResultsBtn.setVisible(true);
+//                java.sql.Statement stmt = connectDB.createStatement();
+//
+//                java.sql.Statement stmtTable1 = connectDB.createStatement();
+//
+//                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT DISTINCT typeof_test,status,parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order");
 
-            } catch (java.sql.SQLException sqlExec) {
-                sqlExec.printStackTrace();
-                javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-            }
+                resultsNarrativeTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT DISTINCT typeof_test, '' as result_narration, parameter_order FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(labTestTable.getSelectedRow(), 1) + "' and status = false ORDER BY parameter_order"));
+//                while (rsetTable1.next()) {
+//                    System.out.println("Working at table row " + i);
+//                    resultsNarrativeTable.setValueAt(rsetTable1.getObject(1), i, 0);
+//                    i++;
+//                }
+//
+//            } catch (java.sql.SQLException sqlExec) {
+//                sqlExec.printStackTrace();
+//                javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//            }
         }        // TODO add your handling code here:
 }//GEN-LAST:event_labTestTableMouseClicked
 
@@ -5526,65 +5569,65 @@ public class LabResultsIntfr extends javax.swing.JInternalFrame implements java.
 
                 }
                 int s = 0;
-                if (this.jTextField10.getText().toLowerCase().startsWith("t")) {
-                    // this.jPanel11.setVisible(true);
-                    this.resultsNarrativePanel.setVisible(false);
-                    try {
-                        java.sql.Statement stmt = connectDB.createStatement();
-
-                        java.sql.Statement stmtTable1 = connectDB.createStatement();
-
-                        java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,units,lower_limit,upper_limit FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(0, 1) + "' AND status = true ORDER BY oid asc");
-
-                        while (rsetTable1.next()) {
-
-                            System.out.println("Working at table row " + s);
-                            resultsSITable.setValueAt(rsetTable1.getObject(1), s, 0);
-                            resultsSITable.setValueAt(rsetTable1.getObject(2), s, 2);
-                            resultsSITable.setValueAt(rsetTable1.getObject(3), s, 3);
-                            resultsSITable.setValueAt(rsetTable1.getObject(4), s, 4);
-
-                            s++;
-
-                            //                i = i + i;
-                            //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
-                        }
-
-                    } catch (java.sql.SQLException sqlExec) {
-
-                        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-                    }
-                } else {
-                    try {
-                        this.resultsNarrativePanel.setVisible(true);
-                        // this.jPanel11.setVisible(false);
-                        java.sql.Statement stmt = connectDB.createStatement();
-
-                        java.sql.Statement stmtTable1 = connectDB.createStatement();
-
-                        java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,status FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(0, 1) + "' and status = false");
-
-                        while (rsetTable1.next()) {
-
-                            System.out.println("Working at table row " + s);
-                            resultsNarrativeTable.setValueAt(rsetTable1.getObject(1), s, 0);
-                            // jTable2.setValueAt(rsetTable1.getObject(2), i, 1);
-                            //  jTable2.setValueAt(rsetTable1.getObject(3), i, 2);
-                            //jTable1.setValueAt(rsetTable1.getObject(4), i, 3);
-
-                            s++;
-
-                            //                i = i + i;
-                            //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
-                        }
-
-                    } catch (java.sql.SQLException sqlExec) {
-                        sqlExec.printStackTrace();
-                        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
-
-                    }
-                }
+//                if (this.jTextField10.getText().toLowerCase().startsWith("t")) {
+//                    // this.jPanel11.setVisible(true);
+//                    this.resultsNarrativePanel.setVisible(false);
+//                    try {
+//                        java.sql.Statement stmt = connectDB.createStatement();
+//
+//                        java.sql.Statement stmtTable1 = connectDB.createStatement();
+//
+//                        java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,units,lower_limit,upper_limit FROM pb_lab_standards WHERE code = '" + this.labTestTable.getValueAt(0, 1) + "' AND status = true ORDER BY oid asc");
+//
+//                        while (rsetTable1.next()) {
+//
+//                            System.out.println("Working at table row " + s);
+//                            resultsSITable.setValueAt(rsetTable1.getObject(1), s, 0);
+//                            resultsSITable.setValueAt(rsetTable1.getObject(2), s, 2);
+//                            resultsSITable.setValueAt(rsetTable1.getObject(3), s, 3);
+//                            resultsSITable.setValueAt(rsetTable1.getObject(4), s, 4);
+//
+//                            s++;
+//
+//                            //                i = i + i;
+//                            //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
+//                        }
+//
+//                    } catch (java.sql.SQLException sqlExec) {
+//
+//                        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//                    }
+//                } else {
+//                    try {
+//                        this.resultsNarrativePanel.setVisible(true);
+//                        // this.jPanel11.setVisible(false);
+//                        java.sql.Statement stmt = connectDB.createStatement();
+//
+//                        java.sql.Statement stmtTable1 = connectDB.createStatement();
+//
+//                        java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("SELECT typeof_test,status FROM pb_lab_standards where code = '" + this.labTestTable.getValueAt(0, 1) + "' and status = false");
+//
+//                        while (rsetTable1.next()) {
+//
+//                            System.out.println("Working at table row " + s);
+//                            resultsNarrativeTable.setValueAt(rsetTable1.getObject(1), s, 0);
+//                            // jTable2.setValueAt(rsetTable1.getObject(2), i, 1);
+//                            //  jTable2.setValueAt(rsetTable1.getObject(3), i, 2);
+//                            //jTable1.setValueAt(rsetTable1.getObject(4), i, 3);
+//
+//                            s++;
+//
+//                            //                i = i + i;
+//                            //            jTable1.setValueAt(rsetTable1.getObject(1), i, 0);
+//                        }
+//
+//                    } catch (java.sql.SQLException sqlExec) {
+//                        sqlExec.printStackTrace();
+//                        javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+//
+//                    }
+//                }
                 t = paidTable.getRowCount();
                 this.refreshListingsBtn.doClick();
             }

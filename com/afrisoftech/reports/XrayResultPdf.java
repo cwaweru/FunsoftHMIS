@@ -15,6 +15,7 @@ public class XrayResultPdf implements java.lang.Runnable {
     com.afrisoftech.lib.DBObject dbObject;
     java.util.Date beginDate = null;
     java.util.Date endDate = null;
+    boolean addToPacs =false;
     double osBalance = 0.00;
     double current = 0.00;
     public static java.sql.Connection connectDB = null;
@@ -29,9 +30,16 @@ public class XrayResultPdf implements java.lang.Runnable {
     com.lowagie.text.Font pFontHeader11 = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD);
     java.lang.Runtime rtThreadSample = java.lang.Runtime.getRuntime();
     java.lang.Process prThread;
+    String patientNameTxt = null;
+    String uuid = "";
+    String doctorTextField = "";
+    String xray_no = null;
 
-    public void XrayResultPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox) {
+    public void XrayResultPdf(java.sql.Connection connDb, java.util.Date begindate, java.util.Date endate, java.lang.String combox, boolean addToPac, String uuidx,String xrayNo) {
         PatNo = combox;
+        addToPacs = addToPac;
+        uuid =uuidx;
+        xray_no = xrayNo;
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
@@ -336,6 +344,7 @@ public class XrayResultPdf implements java.lang.Runnable {
                             java.sql.Statement st = connectDB.createStatement();
                             java.sql.Statement st3 = connectDB.createStatement();
                             java.sql.Statement st1 = connectDB.createStatement();
+                            boolean approved = true;
                             java.sql.ResultSet rset3 = st3.executeQuery("select header_name from pb_header");
                             while (rset3.next()) {
                                 table.getDefaultCell().setColspan(6);
@@ -355,20 +364,21 @@ public class XrayResultPdf implements java.lang.Runnable {
 
                             table.getDefaultCell().setBorderColor(java.awt.Color.WHITE);
 
-                            java.sql.ResultSet rset = st.executeQuery("select distinct upper(patient_no),upper(patient_name) FROM hp_xray_results WHERE patient_no = '" + PatNo + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                            java.sql.ResultSet rset = st.executeQuery("select distinct upper(patient_no),upper(patient_name) FROM hp_xray_results WHERE patient_no = '" + PatNo + "'  ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
                             //table.getDefaultCell().setBorderColor(java.awt.Color.BLACK);
                             table.getDefaultCell().setBorderWidth(Rectangle.TOP);
                             while (rset.next()) {
 
                                 table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                phrase = new Phrase("Patient No.:  " + dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
+                                phrase = new Phrase("Service No.:  " + dbObject.getDBObject(rset.getObject(1), "-"), pFontHeader1);
                                 table.addCell(phrase);
 
                                 table.getDefaultCell().setColspan(4);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                 // phrase = new Phrase("Patient Name  "+rset.getObject(2).toString(), pFontHeader);
                                 phrase = new Phrase("Patient Name : " + dbObject.getDBObject(rset.getObject(2), "-"), pFontHeader1);
+                                patientNameTxt = dbObject.getDBObject(rset.getObject(2), "-");
 
                                 table.addCell(phrase);
                             }
@@ -378,11 +388,11 @@ public class XrayResultPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(6);
                                 phrase = new Phrase(" ", pFontHeader1);
                                 table.addCell(phrase);
-                                java.sql.ResultSet rsetx = stx.executeQuery("select distinct xray_no,upper(examination),date,(doctor) from hp_xray_results where xray_no = '" + listofAct[j] + "' and date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                                java.sql.ResultSet rsetx = stx.executeQuery("select distinct xray_no,upper(examination),date,(doctor) from hp_xray_results where xray_no = '" + listofAct[j] + "' AND patient_no = '"+PatNo+"'  ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
-                                java.sql.ResultSet rset1 = st1.executeQuery("select initcap(notes), radiologist_notes from hp_xray_results where xray_no = '" + listofAct[j] + "' and date BETWEEN '" + beginDate + "' AND '" + endDate + "' order by date");
+                                java.sql.ResultSet rset1 = st1.executeQuery("select (notes), radiologist_notes from hp_xray_results where xray_no = '" + listofAct[j] + "'  AND patient_no = '"+PatNo+"'  order by date limit 1");
                                 // union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
-                                java.sql.ResultSet rsetr = str.executeQuery("select distinct upper(user_name),upper(xray_manager) from hp_xray_results where xray_no = '" + listofAct[j] + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
+                                java.sql.ResultSet rsetr = str.executeQuery("select distinct upper(user_name),upper(xray_manager) from hp_xray_results where xray_no = '" + listofAct[j] + "' AND patient_no = '"+PatNo+"'  ");// union select date::date,initcap(service) as service,dosage,reference,credit from hp_patient_card where patient_no = '"+memNo+"' and credit > 0 order by date");
 
                                 while (rsetx.next()) {
                                     table.getDefaultCell().setColspan(2);
@@ -418,7 +428,7 @@ public class XrayResultPdf implements java.lang.Runnable {
                                     table.addCell(phrase);
 
                                     table.getDefaultCell().setColspan(4);
-                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getObject(4), "-"), pFontHeader1);
+                                    phrase = new Phrase(dbObject.getDBObject(rsetx.getString(4), "-"), pFontHeader1);
                                     table.addCell(phrase);
 
                                 }
@@ -460,6 +470,14 @@ public class XrayResultPdf implements java.lang.Runnable {
 
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
                                     phrase = new Phrase(dbObject.getDBObject(rset1.getObject(2), "-"), pFontHeader);
+                                    
+                                    if(rset1.getObject(2) != null){
+                                        if(rset1.getString(2).isEmpty()){
+                                            approved =false;
+                                        }
+                                    }else{
+                                        approved =false;
+                                    }
 
                                     table.addCell(phrase);
                                 }
@@ -475,10 +493,14 @@ public class XrayResultPdf implements java.lang.Runnable {
                                     table.getDefaultCell().setBorderWidth(Rectangle.TOP);
                                     table.getDefaultCell().setColspan(2);
                                     table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_LEFT);
-                                    phrase = new Phrase("Performed By :  " + dbObject.getDBObject(rsetr.getObject(1), "-"), pFontHeader1);
+                                    phrase = new Phrase("Performed By :  " + dbObject.getDBObject( rsetr.getString(1), "-"), pFontHeader1);
                                     table.addCell(phrase);
                                     table.getDefaultCell().setColspan(4);
-                                    phrase = new Phrase("Verified By :  " + dbObject.getDBObject(rsetr.getObject(2), "-"), pFontHeader1);
+                                    if(approved)
+                                        phrase = new Phrase("Verified By :  " + dbObject.getDBObject(rsetr.getString(2), "-"), pFontHeader1);
+                                    else
+                                        phrase = new Phrase("Verified By :  " + dbObject.getDBObject("", "-"), pFontHeader1);
+                                    doctorTextField = dbObject.getDBObject(rsetr.getObject(2), "-");
                                     table.addCell(phrase);
                                 }
                             }
@@ -516,6 +538,13 @@ public class XrayResultPdf implements java.lang.Runnable {
             docPdf.close();
             docPdf.close();
             com.afrisoftech.lib.PDFRenderer.renderPDF(tempFile);
+            if(addToPacs){
+            com.afrisoftech.hospital.HospitalMain.radiologyPdfPath = tempFile.getAbsolutePath();
+            
+            System.err.println(uuid+"<<<<<+++>>>>>>>"+com.afrisoftech.hospital.HospitalMain.radiologyPdfPath);
+            
+            com.afrisoftech.lib.RadiologyRequestJSON.addPdfToUUID(connectDB, uuid, com.afrisoftech.hospital.HospitalMain.radiologyPdfPath, doctorTextField, patientNameTxt);
+            }
 
         } catch (java.io.IOException IOexec) {
 
@@ -533,8 +562,9 @@ public class XrayResultPdf implements java.lang.Runnable {
         try {
 
             java.sql.Statement stmt1 = connectDB.createStatement();
+            System.err.println("Query : >>>>"+"SELECT DISTINCT xray_no FROM hp_xray_results WHERE xray_no ilike '"+xray_no+"' AND patient_no = '" + this.PatNo + "'  ORDER BY 1 ASC");
 
-            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT xray_no FROM hp_xray_results WHERE patient_no = '" + this.PatNo + "' AND date BETWEEN '" + beginDate + "' AND '" + endDate + "' ORDER BY 1 ASC ");
+            java.sql.ResultSet rSet1 = stmt1.executeQuery("SELECT DISTINCT xray_no FROM hp_xray_results WHERE xray_no ilike '"+xray_no+"' AND patient_no = '" + this.PatNo + "'  ORDER BY 1 ASC ");
 
             while (rSet1.next()) {
 

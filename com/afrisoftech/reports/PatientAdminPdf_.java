@@ -367,9 +367,9 @@ public class PatientAdminPdf_ implements java.lang.Runnable {
 
                     try {
 
-                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(11);
+                        com.lowagie.text.pdf.PdfPTable table = new com.lowagie.text.pdf.PdfPTable(10);
 
-                        int headerwidths[] = {8, 15, 12, 30, 10, 10, 30, 10, 10, 10, 20};
+                        int headerwidths[] = {8, 15, 12, 30, 10, 10, 30, 10, 10,  20};
 
                         table.setWidths(headerwidths);
 
@@ -419,7 +419,7 @@ public class PatientAdminPdf_ implements java.lang.Runnable {
                         table.addCell(phrase);
                         
                         phrase = new Phrase("ID No", pFontHeader);
-                        table.addCell(phrase);
+                        //table.addCell(phrase);
 
                      //   table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 

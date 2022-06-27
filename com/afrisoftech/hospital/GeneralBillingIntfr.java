@@ -8231,10 +8231,14 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
 
                             if (patientPaymode.contains("Scheme")) {
                                 boolean serviceSchemeExclusion = com.afrisoftech.lib.GLCodesFactory.getServiceSchemeExclusionStatus(connectDB, schemeNameTxt.getText(), discreetServicesTbl.getValueAt(i, 0).toString(), discreetServicesTbl.getValueAt(i, 4).toString());
+                                System.err.println( discreetServicesTbl.getValueAt(i, 0).toString()+ " <Exc Status>  "+serviceSchemeExclusion);
                                 if (serviceSchemeExclusion) {
                                     patientPaymode = com.afrisoftech.lib.GLCodesFactory.getDefaultPaymode(connectDB);
+                                    
                                 }
                             }
+                            
+                            System.err.println("Payment Mode >>>>"+patientPaymode);
 
                             java.sql.Statement stm121q = connectDB.createStatement();
                             java.sql.ResultSet rse121 = stm121q.executeQuery("select activity from pb_activity where code ='" + discreetServicesTbl.getValueAt(i, 4).toString() + "'");
@@ -9003,6 +9007,19 @@ public class GeneralBillingIntfr extends javax.swing.JInternalFrame {
                 // Printout for the bill if connected to a thermal printer or other printer only for scheme/insurance patients
                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme") && opdChkbx.isSelected()) {
                     com.afrisoftech.txtreports.GokBillingTxt billPrint = new com.afrisoftech.txtreports.GokBillingTxt(connectDB, patientNameTxt.getText(), billTotalTxt.getText(), transNo, "Scheme");
+                }
+                
+                // Forward to PACs 
+                if (ipdChkbx.isSelected() || paymentModeCmbx.getSelectedItem().toString().contains("Scheme") && com.afrisoftech.lib.RadiologyRequestJSON.isPacsEnabled(connectDB)) {
+                    if (com.afrisoftech.lib.GetItemInfo.checkRadiologyItems(transNo, patientNumberTxt.getText(), connectDB)) {
+                        String patType=null;
+                        if (opdChkbx.isSelected()) {
+                            patType = "OP";
+                        }else{
+                            patType = "IP";
+                        }
+                                com.afrisoftech.funsoft.mobilepay.MobilePayAPI.sendRadiologyRequestToPACs(connectDB, "eJGuuIQvhjHiqM5W1f9cFavsH39Wjcs3", transNo, patientNumberTxt.getText(), patientNameTxt.getText(), paymentModeCmbx.getSelectedItem().toString(), schemeNameTxt.getText(), com.afrisoftech.lib.LabRequestJSON.getLabRequester(connectDB, transNo, patientNumberTxt.getText()), patType,transNo);
+                  }
                 }
 
                 // Forward LIMS requets

@@ -118,7 +118,7 @@ public class SalesPrefsIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         mainPanel.add(jLabel1, gridBagConstraints);
 
-        paymodeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT payment_mode FROM public.pb_paymentmodes ORDER BY 1")
+        paymodeCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT DISTINCT initcap(payment_mode) FROM public.pb_paymentmodes ORDER BY 1")
         );
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;

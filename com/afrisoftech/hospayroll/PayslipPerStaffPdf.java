@@ -441,7 +441,8 @@ public class PayslipPerStaffPdf implements java.lang.Runnable {
                                 table.getDefaultCell().setColspan(2);
                                 table.getDefaultCell().setFixedHeight(30);
                                 table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_CENTER);
-                                table.addCell(Image.getInstance(System.getProperty("company.logo")));
+                                //table.addCell(Image.getInstance(System.getProperty("company.logo")));
+                                table.addCell(Image.getInstance(com.afrisoftech.lib.CompanyLogo.getPath2Logo()));
                                 table.getDefaultCell().setFixedHeight(16);
                                // table.getDefaultCell().setLeading(15,15);
                                 

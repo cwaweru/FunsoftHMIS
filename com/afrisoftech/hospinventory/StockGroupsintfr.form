@@ -89,7 +89,7 @@
                 <Component class="javax.swing.JTable" name="itemsTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="15" rowCount="400">
+                      <Table columnCount="16" rowCount="400">
                         <Column editable="true" title="Stock Item Code" type="java.lang.Object"/>
                         <Column editable="true" title="Description" type="java.lang.Object"/>
                         <Column editable="true" title="Strength" type="java.lang.Object"/>
@@ -506,10 +506,26 @@
                         <Column editable="true" title="Mark Up" type="java.lang.Double"/>
                         <Column editable="true" title="Auto Billing" type="java.lang.Boolean"/>
                         <Column editable="false" title="OID" type="java.lang.Object"/>
+                        <Column editable="true" title="Classification" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -589,8 +605,8 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemsTableMousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xd;&#xa;            Class[] types = new Class [] {&#xd;&#xa;                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Object.class&#xd;&#xa;            };&#xd;&#xa;            boolean[] canEdit = new boolean [] {&#xd;&#xa;                true, true, true, true, true, true, true, true, true, false, true, true, true, true, false&#xd;&#xa;            };&#xd;&#xa;&#xd;&#xa;            public Class getColumnClass(int columnIndex) {&#xd;&#xa;                return types [columnIndex];&#xd;&#xa;            }&#xd;&#xa;&#xd;&#xa;            public boolean isCellEditable(int rowIndex, int columnIndex) {&#xd;&#xa;                return canEdit [columnIndex];&#xd;&#xa;            }&#xd;&#xa;        };"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cmbox5 = new javax.swing.JComboBox();&#xa;&#xa;        cmbox5.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT genre_desc FROM st_packing ORDER BY 1&quot;));&#xa;&#xa;        javax.swing.table.TableColumn seditor1 = this.itemsTable.getColumn(&quot;Formulation&quot;);&#xa;&#xa;        seditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmbox5));&#xa;&#xa;        cmbox5.addActionListener(new java.awt.event.ActionListener() {&#xa;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;&#xa;                cmbox5ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;&#xa;cmbox51 = new javax.swing.JComboBox();&#xa;&#xa;        cmbox51.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT description FROM st_price_category ORDER BY 1&quot;));&#xa;&#xa;        javax.swing.table.TableColumn seditor11 = this.itemsTable.getColumn(&quot;Price Category&quot;);&#xa;&#xa;        seditor11.setCellEditor(new javax.swing.DefaultCellEditor(cmbox51));&#xa;&#xa;        cmbox51.addActionListener(new java.awt.event.ActionListener() {&#xa;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;&#xa;                cmbox51ActionPerformed(evt);&#xa;            }&#xa;        });"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.afrisoftech.dbadmin.JTable(){&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class&#xa;    };&#xa;    boolean[] canEdit = new boolean [] {&#xa;        true, true, true, true, true, true, true, true, true, false, true, true, true, true, false, true&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    public boolean isCellEditable(int rowIndex, int columnIndex) {&#xa;        return canEdit [columnIndex];&#xa;    }&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="cmbox5 = new javax.swing.JComboBox();&#xa;&#xa;        cmbox5.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT genre_desc FROM st_packing ORDER BY 1&quot;));&#xa;&#xa;        javax.swing.table.TableColumn seditor1 = this.itemsTable.getColumn(&quot;Formulation&quot;);&#xa;&#xa;        seditor1.setCellEditor(new javax.swing.DefaultCellEditor(cmbox5));&#xa;&#xa;        cmbox5.addActionListener(new java.awt.event.ActionListener() {&#xa;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;&#xa;                cmbox5ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;&#xa;cmbox51 = new javax.swing.JComboBox();&#xa;&#xa;        cmbox51.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT description FROM st_price_category ORDER BY 1&quot;));&#xa;&#xa;        javax.swing.table.TableColumn seditor11 = this.itemsTable.getColumn(&quot;Price Category&quot;);&#xa;&#xa;        seditor11.setCellEditor(new javax.swing.DefaultCellEditor(cmbox51));&#xa;&#xa;        cmbox51.addActionListener(new java.awt.event.ActionListener() {&#xa;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;&#xa;                cmbox51ActionPerformed(evt);&#xa;            }&#xa;        });&#xa;&#xa;&#xa;        javax.swing.JComboBox cmbox5xx = new javax.swing.JComboBox();&#xa;        cmbox5xx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { &quot;-&quot;,&quot;Common&quot;, &quot;Antibiotic&quot;, &quot;Special&quot; }));&#xa;        javax.swing.table.TableColumn seditor11xx = this.itemsTable.getColumn(&quot;Classification&quot;);&#xa;        seditor11xx.setCellEditor(new javax.swing.DefaultCellEditor(cmbox5xx));"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -912,7 +928,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                <Component class="javax.swing.JRadioButton" name="mainStoreRdBtn">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
@@ -921,7 +937,7 @@
                     <Property name="text" type="java.lang.String" value="Main Store"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mainStoreRdBtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -929,7 +945,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                <Component class="javax.swing.JRadioButton" name="subStoreRdBtn">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup1"/>
@@ -937,7 +953,7 @@
                     <Property name="text" type="java.lang.String" value="Sub Store"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subStoreRdBtnActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

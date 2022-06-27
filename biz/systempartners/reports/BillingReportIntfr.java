@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-//import org.openide.util.Exceptions;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -22,11 +22,6 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
     int rows, j;
     String invoiceString = null, header = "";
     String query = null;
-    com.afrisoftech.lib.PeriodicDates periodicDates = null;
-    com.afrisoftech.timeseries.AgeingSeries ageingSeries = null;
-    com.afrisoftech.timeseries.DailyAgeing dailySeries = null;
-    java.util.Date ageingDates[][] = null;
-    int iterations = 0;
 
     /**
      * Creates new form BillingReportIntfr
@@ -60,14 +55,36 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         openReportBtn = new javax.swing.JButton();
         beginDatePicker = new com.afrisoftech.lib.DatePicker();
         endDatePicker = new com.afrisoftech.lib.DatePicker();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        glsymmary = new javax.swing.JCheckBox();
+        departmentsymmary = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        revenueSummaryTbl = new com.afrisoftech.dbadmin.JXTable();
+        jTable6 = new com.afrisoftech.dbadmin.JXTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listDetailTbl = new com.afrisoftech.dbadmin.JXTable();
+        jTable1 = new com.afrisoftech.dbadmin.JXTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new com.afrisoftech.dbadmin.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new com.afrisoftech.dbadmin.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new com.afrisoftech.dbadmin.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new com.afrisoftech.dbadmin.JTable();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable7 = new com.afrisoftech.dbadmin.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable8 = new com.afrisoftech.dbadmin.JTable();
 
         jLabel4.setText("jLabel4");
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,14 +106,14 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Begin Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("End Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
         jPanel1.add(jLabel2, gridBagConstraints);
@@ -117,55 +134,93 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(openReportBtn, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(beginDatePicker, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(endDatePicker, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Cash", "NHIF", "Other Schemes" }));
+        buttonGroup1.add(glsymmary);
+        glsymmary.setText("Summary(GL Code)");
+        glsymmary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                glsymmaryActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(glsymmary, gridBagConstraints);
+
+        buttonGroup1.add(departmentsymmary);
+        departmentsymmary.setText("Summary (Departmental)");
+        departmentsymmary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentsymmaryActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(departmentsymmary, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("Wards");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(jLabel3, gridBagConstraints);
+
+        jComboBox1.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' UNION select ward_name from hp_wards   order by 1"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 5);
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel1.add(jComboBox1, gridBagConstraints);
+
+        jCheckBox1.setText("Directorate");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(jCheckBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        revenueSummaryTbl.setModel(new javax.swing.table.DefaultTableModel(
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        revenueSummaryTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                revenueSummaryTblMouseClicked(evt);
+                jTable6MouseClicked(evt);
             }
         });
-        jScrollPane6.setViewportView(revenueSummaryTbl);
+        jScrollPane6.setViewportView(jTable6);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -177,7 +232,7 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        listDetailTbl.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -185,12 +240,12 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
 
             }
         ));
-        listDetailTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listDetailTblMouseClicked(evt);
+                jTable1MouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(listDetailTbl);
+        jScrollPane1.setViewportView(jTable1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -198,281 +253,538 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jTabbedPane1.addTab("Detailed List", jPanel2);
+        jTabbedPane1.addTab("Invoices", jPanel2);
+
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jScrollPane2, gridBagConstraints);
+
+        jTabbedPane1.addTab("Invoice Details", jPanel3);
+
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel4.add(jScrollPane3, gridBagConstraints);
+
+        jTabbedPane1.addTab("Invoice BreakDown", jPanel4);
+
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable4MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable4);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jScrollPane4, gridBagConstraints);
+
+        jTabbedPane1.addTab("Directorate", jPanel5);
+
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+            }
+        ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jTable5);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(jScrollPane5, gridBagConstraints);
+
+        jTabbedPane1.addTab("Departmental Summary", jPanel6);
+
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable7);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel8.add(jScrollPane7, gridBagConstraints);
+
+        jTabbedPane1.addTab("GL Summary", jPanel8);
+
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable8);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel9.add(jScrollPane8, gridBagConstraints);
+
+        jTabbedPane1.addTab("Settlement BreakDown", jPanel9);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 10.0;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jTabbedPane1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void loadTable(javax.swing.JTable jTable, int tableSize, String[] COLUMNS) {
 
-        System.out.println(java.util.Arrays.toString(COLUMNS));
         DefaultTableModel model = new DefaultTableModel(COLUMNS, 0);
         jTable.setModel(model);
 
-        for (int k = 0; k <= tableSize; k++) {
+        for (int k = 0; k < tableSize; k++) {
             model.addRow(new Object[]{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null});
         }
         jTable.setModel(model);
     }
 
     public void loadReport() {
+        
+        String originalInput = "test input";
+String encodedString = java.util.Base64.getEncoder().encodeToString(originalInput.getBytes());
+
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        //String[] COLUMNS = {"Invoice No", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee", "Plaster Technology", "Occupational Theraphy", "Obs", "Caretaker", "Total", "Cash", "Nhif", "Nhif Civil", "Waivers", "Nhif Loss", "MOH", "Individual", "Others Schemes"};
+        String[] COLUMNS = {"Invoice No", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee", "Plaster Technology", "Occupational Theraphy", "Obs", "Caretaker", "Total", "Cash", "Nhif", "Nhif Civil", "Waivers", "Nhif Loss", "MOH", "Individual", "Others Schemes"};
         try {
-            int count = 0;
             java.sql.Statement stmtTable1c = connectDB.createStatement();
-            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
-                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
-                            + " OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
-                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
-                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
-                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
-                                    + "UNION ALL\n"
-                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
-                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
-                  //  rsetTable1c = stmtTable1c.executeQuery("select count(*)  from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ");
-            while (rsetTable1c.next()) {
-                count = rsetTable1c.getInt(1);
-                //count = 2;
-            }
-
-            int deptMulttiplier = 3;
-            int addedColumns = 6;
-
-            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                deptMulttiplier = 1;
-                addedColumns = 4;
-            }
-
-            count = count * deptMulttiplier;
-
-            String[] COLUMNS = new String[count + addedColumns];
-            COLUMNS[0] = "Date";
-            int i = 1;
-            System.err.println("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
-                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
-                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
-                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
-                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
-                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
-                                    + "UNION ALL\n"
-                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
-                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1 ");
-            rsetTable1c = stmtTable1c.executeQuery("select activity from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
-                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
-                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
-                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
-                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
-                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
-                                    + "UNION ALL\n"
-                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
-                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
-            while (rsetTable1c.next()) {
-                System.err.println(">>>>>>>>>>>>>>>>>" + rsetTable1c.getString(1));
-                if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Cash";
-                    i++;
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - NHIF";
-                    i++;
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Scheme";
-                    i++;
-                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Cash";
-                    i++;
-                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - NHIF";
-                    i++;
-                } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
-                    COLUMNS[i] = rsetTable1c.getString(1).toUpperCase() + " - Scheme";
-                    i++;
-                }
-            }
-            if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                COLUMNS[i] = "Total" + " - Cash";
-                i++;
-                COLUMNS[i] = "Total" + " - NHIF";
-                i++;
-                COLUMNS[i] = "Total" + " - Scheme";
-                i++;
-            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
-                COLUMNS[i] = "Total" + " - Cash";
-                i++;
-            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
-                COLUMNS[i] = "Total" + " - NHIF";
-                i++;
-            } else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
-                COLUMNS[i] = "Total" + " - Scheme";
-                i++;
-            }
-
-            COLUMNS[i] = "Exemptions";
-            i++;
-
-            COLUMNS[i] = "Waivers";
-            i++;
-
-            System.err.println("SELECT DATE_PART('days', AGE('" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "', '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "') )");
-            int tableSize = 0;
-            rsetTable1c = stmtTable1c.executeQuery("SELECT DATE_PART('days', AGE('" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "', '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "') )  ");
-            while (rsetTable1c.next()) {
-                tableSize = rsetTable1c.getInt(1);
-            }
-
-            loadTable(revenueSummaryTbl, tableSize + 1, COLUMNS);
-
-            iterations = tableSize;//endDatePicker.getDate() - beginDatePicker.getDate();
-            ageingSeries = new com.afrisoftech.timeseries.AgeingSeries(1, endDatePicker.getDate());
-            dailySeries = new com.afrisoftech.timeseries.DailyAgeing(iterations + 1, endDatePicker.getDate());
-
-            java.lang.Object[][] rangeDates = ageingSeries.getAgeingDateSeries();
-
-            java.lang.Object[][] dailyDates = dailySeries.getAgeingDateSeries();
-            double columnTotals[] = new double[rangeDates.length];
-            int z = rangeDates.length;
-
-            for (int x = 0; x < rangeDates.length; x++) {
-                try {
-                    java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-                    com.afrisoftech.lib.DateFormatter dateFormatter = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "MMMM");
-
-                    java.lang.String monthString = dateFormatter.getDateString();
-
-                    com.afrisoftech.lib.DateFormatter dateFormatters = new com.afrisoftech.lib.DateFormatter(dateFormat.parse(rangeDates[x][0].toString().trim()), "yyyy");
-
-                    java.lang.String yearString = dateFormatters.getDateString();
-                } catch (java.text.ParseException prs) {
-                    prs.printStackTrace();
-                }
-                j = 0;
-
-                java.lang.Object[] listofAct = this.getListofActivities();
-                for (int f = 0; f < listofAct.length; f++) {
-                    double dayCash = 0.00;
-                    double dayNHIF = 0.00;
-                    double dayScheme = 0.00;
-                    int pp = 0;
-                    System.err.println(">>>>>" + listofAct[f]);
-                    revenueSummaryTbl.setValueAt(listofAct[f], f, pp);
-                    pp++;
-                    //rsetTable1c = stmtTable1c.executeQuery("select activity,code from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  )  ORDER BY 1   ");
-                    rsetTable1c = stmtTable1c.executeQuery("select activity,code from pb_activity where  (activity_category ILIKE 'PLID' OR activity_category ILIKE 'I') AND "
-                    + "( code IN (SELECT activity_code FROM ac_ledger WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "'  ) "
-                            + "OR code IN (SELECT activity_code FROM (SELECT  pb.activity,ac.activity_code, SUM(ac.debit-ac.credit) as amt from \n"
-                                    + "ac_cash_collection ac ,pb_activity pb where ac.date BETWEEN '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' AND '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"'  \n"
-                                    + "AND ac.activity_code NOT IN (select code  as main_service from pb_activity where activity_category='PR') AND\n"
-                                    + " ac.transaction_type NOT ILIKE 'Banking%' and pb.code = ac.activity_code    GROUP BY pb.activity,ac.activity_code \n"
-                                    + "UNION ALL\n"
-                                    + "SELECT ac.main_service_,pb.code, SUM(ac.amount_allocated_) AS amt from funsoft_revenue_break_down('"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) +"' , '"+com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate())+"') \n"
-                                    + "ac ,pb_activity pb where    UPPER(pb.activity) = UPPER(ac.main_service_)   GROUP BY 1, 2 ) AS foo ) ) ORDER BY 1  ");
-                    while (rsetTable1c.next()) {
-                        double deptDayCash = 0.00;
-                        double deptDayNHIF = 0.00;
-                        double deptDayScheme = 0.00;
-
-                        java.sql.Statement pstmt2 = connectDB.createStatement();
-                        //System.err.println(" select * from funsoft_cash_sales_per_dept('"+listofAct[f]+"'::date,'"+listofAct[f]+"'::date,'"+rsetTable1c.getString(2)+"')");
-                        java.sql.ResultSet rs2 = pstmt2.executeQuery("  select * from funsoft_cash_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(2) + "')");
-
-                        while (rs2.next()) {
-                            deptDayCash = rs2.getDouble(1);
-
-                        }
-
-                        //funsoft_nhif_credit_sales_per_dept
-                        rs2 = pstmt2.executeQuery("  select * from funsoft_nhif_credit_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(1) + "')");
-                        while (rs2.next()) {
-                            deptDayNHIF = rs2.getDouble(1);
-
-                        }
-
-                        rs2 = pstmt2.executeQuery("  select * from funsoft_not_nhif_credit_sales_per_dept('" + listofAct[f] + "'::date,'" + listofAct[f] + "'::date,'" + rsetTable1c.getString(1) + "')");
-                        while (rs2.next()) {
-                            deptDayScheme = rs2.getDouble(1);
-
-                        }
-
-                        if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                            revenueSummaryTbl.setValueAt(deptDayCash, f, pp);
-                            dayCash += deptDayCash;
-                            pp++;
-                            revenueSummaryTbl.setValueAt(deptDayNHIF, f, pp);
-                            dayNHIF += deptDayNHIF;
-                            pp++;
-                            revenueSummaryTbl.setValueAt(deptDayScheme, f, pp);
-                            dayScheme += deptDayScheme;
-                            pp++;
-                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
-                            revenueSummaryTbl.setValueAt(deptDayCash, f, pp);
-                            dayCash += deptDayCash;
-                            pp++;
-                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
-                            revenueSummaryTbl.setValueAt(deptDayNHIF, f, pp);
-                            dayNHIF += deptDayNHIF;
-                            pp++;
-                        }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
-                            revenueSummaryTbl.setValueAt(deptDayScheme, f, pp);
-                            dayScheme += deptDayScheme;
-                            pp++;
-                        }
-
-                    }
-
-                    if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                        revenueSummaryTbl.setValueAt(dayCash, f, pp);
-                        pp++;
-                        revenueSummaryTbl.setValueAt(dayNHIF, f, pp);
-                        pp++;
-                        revenueSummaryTbl.setValueAt(dayScheme, f, pp);
-                        pp++;
-                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Cash")) {
-                        revenueSummaryTbl.setValueAt(dayCash, f, pp);
-                        pp++;
-                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("NHIF")) {
-                        revenueSummaryTbl.setValueAt(dayNHIF, f, pp);
-                        pp++;
-                    }else if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("Other Schemes")) {
-                        revenueSummaryTbl.setValueAt(dayScheme, f, pp);
-                        pp++;
-                    }
-
-                    double waiver = 0.00;
-                    double exemption = 0.00;
-                    java.sql.PreparedStatement psetwav = connectDB.prepareStatement("select sum(debit-credit) FROM ac_ledger WHERE transaction_time::date = '" + listofAct[f] + "'  AND transaction_type ilike 'waiver%'");
-                    java.sql.ResultSet rsetwav = psetwav.executeQuery();
-
-                    while (rsetwav.next()) {
-                        waiver = rsetwav.getDouble(1);
-                    }
-
-                    java.sql.PreparedStatement psetwn2 = connectDB.prepareStatement("select sum(debit-credit) FROM ac_ledger WHERE transaction_time::date = '" + listofAct[f] + "'  AND transaction_type ilike 'exemption%'");
-                    java.sql.ResultSet rsetwn2 = psetwn2.executeQuery();
-
-                    while (rsetwn2.next()) {
-                        exemption = rsetwn2.getDouble(1);
-                    }
-
-                    revenueSummaryTbl.setValueAt(waiver, f, pp);
-                    pp++;
-                    revenueSummaryTbl.setValueAt(exemption, f, pp);
-                    pp++;
-
-                    j++;
-                }
-            }
-
+            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select invoice_no from hp_admission where ward='" + jComboBox1.getSelectedItem().toString() + "' and (discharge_date ::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "') ");
+            j = 0;
             double total = 0.0;
+            java.sql.Statement stmtTable1cu = connectDB.createStatement();
+            java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select count(*)  from hp_admission where ward='" + jComboBox1.getSelectedItem().toString() + "' and (discharge_date ::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "') ");
+            if (rsetTable1cu.next()) {
+                loadTable(jTable1, rsetTable1cu.getInt(1) + 1, COLUMNS);
 
-            revenueSummaryTbl.setValueAt("Total", j, 0);
-            for (int h = 1; h < revenueSummaryTbl.getColumnCount(); h++) {
-                revenueSummaryTbl.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(revenueSummaryTbl, h), j, h);
             }
+
+            while (rsetTable1c.next()) {
+
+                jTable1.setValueAt(dbObject.getDBObject(rsetTable1c.getString(1), "-"), j, 0);
+                System.out.println(rsetTable1c.getString(1));
+
+                //get bedcharges 
+                java.sql.Statement stmtTable1 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable1 = stmtTable1.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (service='Bed Fees' or service='DAILY BED CHARGES') ");
+                while (rsetTable1.next()) {
+                    System.out.println(rsetTable1.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable1.getDouble(1), "0.00"), j, 1);
+                    total = total + rsetTable1.getDouble(1);
+                }
+
+                //get admission fee 
+                java.sql.Statement stmtTable12 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable12 = stmtTable12.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and service='Admission Fees' ");
+                while (rsetTable12.next()) {
+                    System.out.println(rsetTable12.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable12.getDouble(1), "0.00"), j, 2);
+
+                    total = total + rsetTable12.getDouble(1);
+                }
+                //get nurses fee 
+                java.sql.Statement stmtTable120 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable120 = stmtTable120.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (service='Nursing Daily Charges' or service='Nursing/Professional Fees')");
+                while (rsetTable120.next()) {
+                    System.out.println(rsetTable120.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable120.getDouble(1), "0.00"), j, 3);
+                    total = total + rsetTable120.getDouble(1);
+                }
+
+                //get pharmacy fee 
+                java.sql.Statement stmtTable123 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable123 = stmtTable123.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service ilike '%Pharmacy%' ");
+                while (rsetTable123.next()) {
+                    System.out.println(rsetTable123.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable123.getDouble(1), "0.00"), j, 4);
+                    total = total + rsetTable123.getDouble(1);
+                }
+                //get theater fee 
+                java.sql.Statement stmtTable1234 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable1234 = stmtTable1234.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and ((main_service ilike '%theatre%' or  main_service ilike '%Surgery%') and main_service not ilike '%pharmacy%') ");
+                while (rsetTable1234.next()) {
+                    System.out.println(rsetTable1234.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable1234.getDouble(1), "0.00"), j, 5);
+
+                    total = total + rsetTable1234.getDouble(1);
+                }
+                //get laboratory fee 
+                java.sql.Statement stmtTable41 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable41 = stmtTable41.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service ILIKE '%Laboratory%' or main_service ilike 'Memorial-Laboratory Services') ");
+                while (rsetTable41.next()) {
+                    System.out.println(rsetTable41.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable41.getDouble(1), "0.00"), j, 6);
+
+                    total = total + rsetTable41.getDouble(1);
+                }
+
+                //get doctors fee 
+                java.sql.Statement stmtTable410 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable410 = stmtTable410.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service ilike '%cons%' or main_service='Consultancy Ledger') ");
+                while (rsetTable410.next()) {
+                    System.out.println(rsetTable410.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable410.getDouble(1), "0.00"), j, 7);
+
+                    total = total + rsetTable410.getDouble(1);
+                }
+                //get SUPPLIES fee 
+                java.sql.Statement stmtTable4613 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4613 = stmtTable4613.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service ilike '%supplies%' or main_service ilike '%store%') and main_service not ilike '%drug%' ");
+                while (rsetTable4613.next()) {
+                    System.out.println(rsetTable4613.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4613.getDouble(1), "0.00"), j, 8);
+                    total = total + rsetTable4613.getDouble(1);
+                }
+
+                //get CCU fee 
+                java.sql.Statement stmtTable4610 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4610 = stmtTable4610.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Ccu Ward' or main_service='CCU WARD') ");
+                while (rsetTable4610.next()) {
+                    System.out.println(rsetTable4610.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4610.getDouble(1), "0.00"), j, 9);
+                    total = total + rsetTable4610.getDouble(1);
+                }
+
+                //get ICU fee 
+                java.sql.Statement stmtTable4690 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4690 = stmtTable4690.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Icu Ward' or main_service='ICU WARD' or main_service='Memorial-Icu') ");
+                while (rsetTable4690.next()) {
+                    System.out.println(rsetTable4690.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4690.getDouble(1), "0.00"), j, 10);
+                    total = total + rsetTable4690.getDouble(1);
+                }
+
+                //get HCU fee 
+                java.sql.Statement stmtTable4590 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4590 = stmtTable4590.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Hdu Ward' or main_service='HDU WARD') ");
+                while (rsetTable4590.next()) {
+                    System.out.println(rsetTable4590.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4590.getDouble(1), "0.00"), j, 11);
+                    total = total + rsetTable4590.getDouble(1);
+                }
+
+                //get Nutrition fee 
+                java.sql.Statement stmtTable4591 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4591 = stmtTable4591.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Nutrition' or main_service='NUTRITION' or main_service ilike 'Memorial-Nutritional Services') ");
+                while (rsetTable4591.next()) {
+                    System.out.println(rsetTable4591.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4591.getDouble(1), "0.00"), j, 12);
+                    total = total + rsetTable4591.getDouble(1);
+                }
+
+                //get NHIF diff fee 
+                java.sql.Statement stmtTable4592 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4592 = stmtTable4592.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service='NHIF DIFF ' ");
+                while (rsetTable4592.next()) {
+                    System.out.println(rsetTable4592.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4592.getDouble(1), "0.00"), j, 13);
+                    total = total + rsetTable4592.getDouble(1);
+                }
+
+                //get Mental Health fee 
+                java.sql.Statement stmtTable4593 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4593 = stmtTable4593.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Mental Health' or main_service='MENTAL HEALTH' ) ");
+                while (rsetTable4593.next()) {
+                    System.out.println(rsetTable4593.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4593.getDouble(1), "0.00"), j, 14);
+                    total = total + rsetTable4593.getDouble(1);
+                }
+
+                //get E.N.T fee 
+                java.sql.Statement stmtTable4594 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4594 = stmtTable4594.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service='E.N.T' ");
+                while (rsetTable4594.next()) {
+                    System.out.println(rsetTable4594.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4594.getDouble(1), "0.00"), j, 15);
+                    total = total + rsetTable4594.getDouble(1);
+                }
+
+                //get ORTHOPAEDIC TECHNOLOGY fee 
+                java.sql.Statement stmtTable4595 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4595 = stmtTable4595.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service='ORTHOPAEDIC TECHNOLOGY' ");
+                while (rsetTable4595.next()) {
+                    System.out.println(rsetTable4595.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4595.getDouble(1), "0.00"), j, 16);
+                    total = total + rsetTable4595.getDouble(1);
+                }
+
+                //get  Transport Services fee 
+                java.sql.Statement stmtTable4596 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4596 = stmtTable4596.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Transport Services' or main_service='TRANSPORT SERVICES') ");
+                while (rsetTable4596.next()) {
+                    System.out.println(rsetTable4596.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4596.getDouble(1), "0.00"), j, 17);
+                    total = total + rsetTable4596.getDouble(1);
+                }
+
+                //get Radiology and Imaging fee 
+                java.sql.Statement stmtTable4597 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4597 = stmtTable4597.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Radiology and Imaging' or main_service='RADIOLOGY AND IMAGING') ");
+                while (rsetTable4597.next()) {
+                    System.out.println(rsetTable4597.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4597.getDouble(1), "0.00"), j, 18);
+                    total = total + rsetTable4597.getDouble(1);
+                }
+
+                //get Physiotherapy fee 
+                java.sql.Statement stmtTable4598 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4598 = stmtTable4598.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Physiotherapy' or main_service='PHYSIOTHERAPY') ");
+                while (rsetTable4598.next()) {
+                    System.out.println(rsetTable4598.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4598.getDouble(1), "0.00"), j, 19);
+                    total = total + rsetTable4598.getDouble(1);
+                }
+
+                //get Plaster Technology fee 
+                java.sql.Statement stmtTable4599 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4599 = stmtTable4599.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Plaster Technology' or main_service='PLASTER TECHNOLOGY') ");
+                while (rsetTable4599.next()) {
+                    System.out.println(rsetTable4599.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4599.getDouble(1), "0.00"), j, 20);
+                    total = total + rsetTable4599.getDouble(1);
+                }
+
+                //get Memorial-Occupational Theraphy fee 
+                java.sql.Statement stmtTable4511 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4511 = stmtTable4511.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and (main_service='Memorial-Occupational Theraphy' or main_service='OCCUPATIONAL THERAPY' or main_service='Occupational Therapy') ");
+                while (rsetTable4511.next()) {
+                    System.out.println(rsetTable4511.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4511.getDouble(1), "0.00"), j, 21);
+                    total = total + rsetTable4511.getDouble(1);
+                }
+
+                //get obs fee 
+                java.sql.Statement stmtTable4513 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4513 = stmtTable4513.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service='Obstetrics And Gynaecology'");
+                while (rsetTable4513.next()) {
+                    System.out.println(rsetTable4513.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4513.getDouble(1), "0.00"), j, 22);
+                    total = total + rsetTable4513.getDouble(1);
+                }
+                //get caretakers fee 
+                java.sql.Statement stmtTable4913 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4913 = stmtTable4913.executeQuery("select sum(debit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and service='Caretakers Fees per DAY'");
+                while (rsetTable4913.next()) {
+                    System.out.println(rsetTable4913.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4913.getDouble(1), "0.00"), j, 23);
+                    total = total + rsetTable4913.getDouble(1);
+                }
+
+                jTable1.setValueAt(total, j, 24);
+
+                //cash 
+                java.sql.Statement stmtTable451 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable451 = stmtTable451.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and service='Receipt' ");
+                while (rsetTable451.next()) {
+                    System.out.println(rsetTable451.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable451.getDouble(1), "0.00"), j, 25);
+
+                }
+                // NHIF scheme
+                java.sql.Statement stmtTable4051 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4051 = stmtTable4051.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and scheme='N.H.I.F' and service not ilike 'NHIF DIFF ' and main_service!='WAIVERS' ");
+                while (rsetTable4051.next()) {
+                    System.out.println(rsetTable4051.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4051.getDouble(1), "0.00"), j, 26);
+
+                }
+
+                //NHIF CIVIL SERVICE
+                java.sql.Statement stmtTable4059 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4059 = stmtTable4059.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and scheme='NHIF-CIVIL SERVICE SCHEME' AND credit>0 AND main_service!='WAIVERS' ");
+                while (rsetTable4059.next()) {
+                    System.out.println(rsetTable4059.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4059.getDouble(1), "0.00"), j, 27);
+
+                }
+
+//                                 //WAIVERS
+//                        java.sql.Statement stmtTable4089 = connectDB.createStatement();
+//                        java.sql.ResultSet rsetTable4089 = stmtTable4089.executeQuery("select sum(credit) from hp_patient_card where invoice_no='"+rsetTable1c.getString(1)+"' and main_service='WAIVERS' ");
+//                        while (rsetTable4089.next()) {
+//                               System.out.println(rsetTable4089.getString(1));
+//                               jTable1.setValueAt(dbObject.getDBObject(rsetTable4089.getDouble(1), "0.00"),j,26);
+//                               
+//                            } 
+                //                                 //WAIVERS
+                java.sql.Statement stmtTable4089 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4089 = stmtTable4089.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and scheme='WAIVERS BY MANAGEMENT' ");
+                while (rsetTable4089.next()) {
+                    System.out.println(rsetTable4089.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4089.getDouble(1), "0.00"), j, 28);
+
+                }
+                //                                 //NHIF
+                java.sql.Statement stmtTable409 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable409 = stmtTable409.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and main_service='NHIF DIFF'");
+                while (rsetTable409.next()) {
+                    System.out.println(rsetTable409.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable409.getDouble(1), "0.00"), j, 29);
+
+                }
+                //                                 //MOH
+                java.sql.Statement stmtTable4019 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4019 = stmtTable4019.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and scheme='MOH-HOSPITAL MANAGEMENT SERVICE DIFF FUND' ");
+                while (rsetTable4019.next()) {
+                    System.out.println(rsetTable4019.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable4019.getDouble(1), "0.00"), j, 30);
+
+                }
+
+                //Creditors
+                java.sql.Statement stmtTable419 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable419 = stmtTable419.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and isurer='INDIVINDUALS'   ");
+                while (rsetTable419.next()) {
+                    System.out.println(rsetTable419.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable419.getDouble(1), "0.00"), j, 31);
+
+                }
+                //Other Creditors
+                java.sql.Statement stmtTable19 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable19 = stmtTable19.executeQuery("select sum(credit) from hp_patient_card where invoice_no='" + rsetTable1c.getString(1) + "' and "
+                        + "isurer!='INDIVINDUALS' and "
+                        + "scheme!='MOH-HOSPITAL MANAGEMENT SERVICE DIFF FUND' and"
+                        + " main_service!='NHIF DIFF' and scheme!='WAIVERS BY MANAGEMENT' and"
+                        + " not (scheme='NHIF-CIVIL SERVICE SCHEME' AND credit>0 AND main_service!='WAIVERS') and "
+                        + "not (scheme='N.H.I.F' and service not ilike 'NHIF DIFF ' and main_service!='WAIVERS') and "
+                        + "service!='Receipt'");
+                while (rsetTable19.next()) {
+                    System.out.println(rsetTable19.getString(1));
+                    jTable1.setValueAt(dbObject.getDBObject(rsetTable19.getDouble(1), "0.00"), j, 32);
+
+                }
+
+                j++;
+                total = 0.0;
+            }
+            jTable1.setValueAt("Total", j, 0);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 1), j, 1);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 2), j, 2);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 3), j, 3);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 4), j, 4);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 5), j, 5);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 6), j, 6);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 7), j, 7);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 8), j, 8);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 9), j, 9);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 10), j, 10);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 11), j, 11);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 12), j, 12);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 13), j, 13);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 14), j, 14);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 15), j, 15);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 16), j, 16);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 17), j, 17);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 18), j, 18);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 19), j, 19);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 20), j, 20);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 21), j, 21);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 22), j, 22);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 23), j, 23);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 24), j, 24);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 25), j, 25);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 26), j, 26);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 27), j, 27);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 28), j, 28);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 29), j, 29);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 30), j, 30);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 31), j, 31);
+            jTable1.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, 32), j, 32);
 
         } catch (SQLException ex) {
             Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
@@ -485,64 +797,1389 @@ public class BillingReportIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_openReportBtnActionPerformed
 
-    private void listDetailTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listDetailTblMouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
 
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+//        if (jTable1.getSelectedRow() == j && jTable1.getSelectedColumn() != 0) {
+//            for (int l = 0; l < jTable4.getRowCount(); l++) {
+//                for (int r = 0; r < jTable4.getColumnCount(); r++) {
+//                    jTable4.getModel().setValueAt(null, l, r);
+//                }
+//            }
+//            int selectedColumn = jTable1.getSelectedColumn();
+//
+//            String[] COLUMNS = {"", ""};
+//            invoiceString = "(";
+//            for (int r = 0; r < jTable1.getRowCount() - 1; r++) {
+//                if (r == jTable1.getRowCount() - 2) {
+//                    invoiceString = invoiceString + "invoice_no='" + "" + jTable1.getValueAt(r, 0) + "') ";
+//                } else {
+//                    invoiceString = invoiceString + "invoice_no='" + "" + jTable1.getValueAt(r, 0) + "' or ";
+//                }
+//
+//            }
+//
+//            
+//
+//            try {
+//                java.sql.Statement stmtTable1cu = connectDB.createStatement();
+//                java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select count(*) from  (select main_service,sum(debit) from hp_patient_card where " + query + " group by 1) s");
+//                if (rsetTable1cu.next()) {
+//                    loadTable(jTable4, rsetTable1cu.getInt(1) + 4, COLUMNS);
+//                }
+//
+//                jTable4.setValueAt(header.toUpperCase(), 0, 0);
+//                jTable4.setValueAt("View Detailed", 0, 1);
+//                jTable4.setValueAt("Name".toUpperCase(), 2, 0);
+//                jTable4.setValueAt("Amount".toUpperCase(), 2, 1);
+//                //get pharmacy fee 
+//                java.sql.Statement stmtTable123 = connectDB.createStatement();
+//                java.sql.ResultSet rsetTable123 = stmtTable123.executeQuery("select main_service,sum(debit) from hp_patient_card where " + query + " group by 1");
+//                int t = 3;
+//                double totals = 0.0;
+//                while (rsetTable123.next()) {
+//                    System.out.println(rsetTable123.getString(1));
+//                    jTable4.setValueAt(rsetTable123.getString(1), t, 0);
+//                    jTable4.setValueAt(dbObject.getDBObject(rsetTable123.getDouble(2), "0.00"), t, 1);
+//                    totals = totals + rsetTable123.getDouble(2);
+//                    t++;
+//                }
+//                jTable4.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(totals), t, 1);
+//            } catch (Exception t) {
+//                t.printStackTrace();
+//            }
+//            jTabbedPane1.setSelectedIndex(3);
+//        } else
+        if (jTable1.getSelectedColumn() == 0) {
 
+            for (int l = 0; l < jTable2.getRowCount(); l++) {
+                for (int r = 0; r < jTable2.getColumnCount(); r++) {
+                    jTable2.getModel().setValueAt(null, l, r);
+                }
+            }
+            String[] COLUMNS = {"", "", "", ""};
+
+            try {
+                java.sql.Statement stmtTable1cu = connectDB.createStatement();
+                java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select count(*) from  (select sum(debit),sum(credit),main_service from hp_patient_card where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "' group by 3 order by 3 asc) s");
+                if (rsetTable1cu.next()) {
+                    loadTable(jTable2, rsetTable1cu.getInt(1) + 8, COLUMNS);
+                    rows = rsetTable1cu.getInt(1) + 8;
+                }
+
+                java.sql.Statement stmtTable4597 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4597 = stmtTable4597.executeQuery("select patient_no,patient_name,discharge_date,invoice_no,ward from hp_admission where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "'");
+                if (rsetTable4597.next()) {
+
+                    System.out.println(rsetTable4597.getString(1));
+                    jTable2.setValueAt("Patient No:", 0, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable4597.getString(1), "-"), 0, 1);
+                    jTable2.setValueAt("View Breakdown", 0, 3);
+
+                    jTable2.setValueAt("Patient Name:", 1, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable4597.getString(2), "-"), 1, 1);
+
+                    jTable2.setValueAt("Discharge Date:", 2, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable4597.getString(3), "-"), 2, 1);
+
+                    jTable2.setValueAt("Invoice No:", 3, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable4597.getString(4), "-"), 3, 1);
+
+                    jTable2.setValueAt("Ward:", 4, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable4597.getString(5), "-"), 4, 1);
+
+                    jTable2.setValueAt("Description", 6, 0);
+                    jTable2.setValueAt("Debit", 6, 1);
+                    jTable2.setValueAt("Credit", 6, 2);
+                    jTable2.setValueAt("Running Balance", 6, 3);
+
+                }
+
+                java.sql.Statement stmtTable459 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable459 = stmtTable459.executeQuery("select sum(debit),sum(credit),main_service from hp_patient_card where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' group by 3 order by 3 asc");
+                int j = 7;
+                double balance = 0.0, debit = 0.0, credit = 0.0;
+                while (rsetTable459.next()) {
+                    System.out.println(rsetTable459.getString(1));
+                    debit = debit + rsetTable459.getDouble(1);
+                    credit = credit + rsetTable459.getDouble(2);
+                    balance = balance + (rsetTable459.getDouble(1) - rsetTable459.getDouble(2));
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable459.getString(3), "-"), j, 0);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable459.getDouble(1), "-"), j, 1);
+                    jTable2.setValueAt(dbObject.getDBObject(rsetTable459.getDouble(2), "-"), j, 2);
+                    jTable2.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(balance), j, 3);
+                    j++;
+                }
+                jTable2.setValueAt(debit, j, 1);
+                jTable2.setValueAt(credit, j, 2);
+                jTable2.setValueAt(credit - debit, j, 3);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jTabbedPane1.setSelectedIndex(2);
+
+        }
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-    }//GEN-LAST:event_listDetailTblMouseClicked
+    }//GEN-LAST:event_jTable1MouseClicked
 
-    private void revenueSummaryTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revenueSummaryTblMouseClicked
-
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_revenueSummaryTblMouseClicked
+        if (jTable2.getSelectedColumn() == 3 && jTable2.getSelectedRow() == 0) {
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            for (int l = 0; l < jTable3.getRowCount(); l++) {
+                for (int r = 0; r < jTable3.getColumnCount(); r++) {
+                    jTable3.getModel().setValueAt(null, l, r);
+                }
+            }
+            String[] COLUMNS = {"", "", "", "", "", ""};
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+            try {
+                java.sql.Statement stmtTable1cu = connectDB.createStatement();
+                java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select count(*) from (select debit,credit,service,date::date,user_name from hp_patient_card where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "'  order by 3 asc) t");
+                if (rsetTable1cu.next()) {
+                    loadTable(jTable3, rsetTable1cu.getInt(1) + rows, COLUMNS);
 
-    }//GEN-LAST:event_jLabel4MouseClicked
-    public java.lang.Object[] getListofActivities() {
-        int interval = 0;
-        java.lang.Object[][] rangeDates = dailySeries.getAgeingDateSeries();
-        java.lang.Object[][] monthDates = ageingSeries.getAgeingDateSeries();
+                }
+                java.sql.Statement stmtTable4597 = connectDB.createStatement();
+                java.sql.ResultSet rsetTable4597 = stmtTable4597.executeQuery("select patient_no,patient_name,discharge_date,invoice_no,ward from hp_admission where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "'");
+                if (rsetTable4597.next()) {
 
-        java.lang.Object[] listofActivities = null;
+                    System.out.println(rsetTable4597.getString(1));
+                    jTable3.setValueAt("Patient No:", 0, 0);
+                    jTable3.setValueAt(dbObject.getDBObject(rsetTable4597.getString(1), "-"), 0, 1);
+                    // jTable3.setValueAt("View Breakdown",0,3);
 
-        java.util.Vector listActVector = new java.util.Vector(1, 1);
+                    jTable3.setValueAt("Patient Name:", 1, 0);
+                    jTable3.setValueAt(dbObject.getDBObject(rsetTable4597.getString(2), "-"), 1, 1);
 
-        //for (int k = 0;  k < monthDates.length; k++){
-        for (int k = monthDates.length - 1; k >= 0; k--) {
+                    jTable3.setValueAt("Discharge Date:", 2, 0);
+                    jTable3.setValueAt(dbObject.getDBObject(rsetTable4597.getString(3), "-"), 2, 1);
 
-            for (int t = 0; t < rangeDates.length; t++) {
+                    jTable3.setValueAt("Invoice No:", 3, 0);
+                    jTable3.setValueAt(dbObject.getDBObject(rsetTable4597.getString(4), "-"), 3, 1);
 
-                listActVector.addElement(rangeDates[t][k]);
+                    jTable3.setValueAt("Ward:", 4, 0);
+                    jTable3.setValueAt(dbObject.getDBObject(rsetTable4597.getString(5), "-"), 4, 1);
 
+                    jTable3.setValueAt("Date", 6, 0);
+                    jTable3.setValueAt("Description", 6, 1);
+                    jTable3.setValueAt("Debit", 6, 2);
+                    jTable3.setValueAt("Credit", 6, 3);
+                    jTable3.setValueAt("Running Balance", 6, 4);
+                    jTable3.setValueAt("User", 6, 5);
+
+                }
+                double debit = 0.0, credit = 0.0;
+                int j = 7;
+                java.sql.Statement pst2 = connectDB.createStatement();
+                java.sql.ResultSet rsv = pst2.executeQuery("select distinct  main_service from  hp_patient_card where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "'  order by 1 asc");
+                while (rsv.next()) {
+
+                    jTable3.setValueAt(rsv.getObject(1).toString().toUpperCase(), j, 0);
+                    java.sql.Statement stmtTable459 = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable459 = stmtTable459.executeQuery("select debit,credit,service,date::date,user_name from hp_patient_card where invoice_no='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() + "' and main_service='" + rsv.getObject(1).toString() + "' order by 3 asc");
+                    j = j + 1;
+                    String user = null;
+                    double balance = 0.0;
+                    while (rsetTable459.next()) {
+                        java.sql.Statement pst2v3 = connectDB.createStatement();
+                        java.sql.ResultSet rsv3 = pst2v3.executeQuery("select distinct concat(f_name,' ',l_name) as name from secure_menu_access where login_name='" + rsetTable459.getString(5) + "'");
+                        if (rsv3.next()) {
+                            user = rsv3.getObject(1).toString();
+
+                        }
+
+                        debit = debit + rsetTable459.getDouble(1);
+                        credit = credit + rsetTable459.getDouble(2);
+                        System.out.println(rsetTable459.getString(1));
+                        balance = balance + (rsetTable459.getDouble(1) - rsetTable459.getDouble(2));
+
+                        jTable3.setValueAt(dbObject.getDBObject(rsetTable459.getString(4), "-"), j, 0);
+                        jTable3.setValueAt(dbObject.getDBObject(rsetTable459.getString(3), "-"), j, 1);
+                        jTable3.setValueAt(dbObject.getDBObject(rsetTable459.getDouble(1), "-"), j, 2);
+                        jTable3.setValueAt(dbObject.getDBObject(rsetTable459.getDouble(2), "-"), j, 3);
+                        jTable3.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(balance), j, 4);
+                        jTable3.setValueAt(user, j, 5);
+                        j++;
+                    }
+                }
+                jTable3.setValueAt(debit, j, 2);
+                jTable3.setValueAt(credit, j, 3);
+                jTable3.setValueAt(credit - debit, j, 4);
+            } catch (SQLException ex) {
+                Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jTabbedPane1.setSelectedIndex(3);
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void glsymmaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_glsymmaryActionPerformed
+        // TODO add your handling code here:
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        for (int l = 0; l < jTable6.getRowCount(); l++) {
+            for (int r = 0; r < jTable6.getColumnCount(); r++) {
+                jTable6.getModel().setValueAt(null, l, r);
             }
         }
+        //HERE
+        try {
+            // String[] COLUMNS = {"Ward", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee", "Plaster Technology", "Occupational Theraphy","Obs","Caretaker","Total","Cash","Nhif","Nhif Civil","Waivers","Nhif Loss","MOH","Individual","Others Schemes"};
 
-        listofActivities = listActVector.toArray();
-        System.out.println("Done list of activities ...");
-        return listofActivities;
+            int deptCount = 0;
+            int count = 1;
+            java.sql.Statement stmtTable1cux = connectDB.createStatement();
+            java.sql.ResultSet rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT main_service) from hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' )");
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT main_service) from hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jComboBox1.getSelectedItem().toString() + "') AND  discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' )");
 
-    }
+            }
+            if (rsetTable1cux.next()) {
+                deptCount = rsetTable1cux.getInt(1);
+
+            }
+            String[] COLUMNS = new String[deptCount + 14];
+            COLUMNS[0] = "Ward";
+
+            stmtTable1cux = connectDB.createStatement();
+            rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT main_service from hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) AND  main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl') order by 1");
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT main_service from hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jComboBox1.getSelectedItem().toString() + "') AND  discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) AND  main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) order by 1");
+
+            }
+            while (rsetTable1cux.next()) {
+                COLUMNS[count] = rsetTable1cux.getString(1);
+                System.err.println("GL code  here " + rsetTable1cux.getString(1));
+                count++;
+
+            }
+
+            COLUMNS[count] = "Total";
+
+            COLUMNS[count + 1] = "";
+            COLUMNS[count + 2] = "CASH RECIEPTS";
+            COLUMNS[count + 3] = "NHIF REBATES";
+            COLUMNS[count + 4] = "NHIF LOSS";
+            COLUMNS[count + 5] = "NHIF GAIN";
+            COLUMNS[count + 6] = "NHIF SCHEME";
+            COLUMNS[count + 7] = "STAFF GUARANTORS";
+            COLUMNS[count + 8] = "INDIVIDUAL CREDITS";
+            COLUMNS[count + 9] = "CORPORATES CREDITS";
+            COLUMNS[count + 10] = "WAIVERS GRANTED";
+            COLUMNS[count + 11] = "NHIF NON CLAIMABLE";
+            COLUMNS[count + 12] = "GRAND TOTAL";
+
+            java.sql.Statement stmtTable1cu = connectDB.createStatement();
+            //java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery(" select count(*) from hp_wards");
+            java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select COUNT(DISTINCT ward) from hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ");
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                System.err.println("Searching for Single Ward " + jComboBox1.getSelectedItem().toString());
+                rsetTable1cu = stmtTable1cu.executeQuery(" select count(*) from hp_wards WHERE ward_name ilike '" + jComboBox1.getSelectedItem().toString() + "' ");
+            }
+            if (rsetTable1cu.next()) {
+                loadTable(jTable6, rsetTable1cu.getInt(1) + 10, COLUMNS);
+
+            }
+
+            java.sql.Statement stmtTable1329 = connectDB.createStatement();
+            //java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select ward_name from hp_wards   order by ward_name");
+            java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select DISTINCT ward from hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' order by ward");
+
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1329 = stmtTable1329.executeQuery("select ward_name from hp_wards WHERE ward_name ilike '" + jComboBox1.getSelectedItem().toString() + "' order by ward_name");
+
+            }
+            int z = 0;
+            while (rsetTable1329.next()) {
+
+                //start
+                try {
+
+//
+//                    }
+                    System.err.println("Working for ward " + rsetTable1329.getString(1));
+
+                    jTable6.setValueAt(rsetTable1329.getString(1), z, 0);
+                    double total = 0.0;
+                    int totalCoulumn = 0;
+                    java.sql.Statement stmtTable1c = connectDB.createStatement();
+
+                    for (int p = 1; p <= deptCount; p++) {
+                        
+                         
+ 
+                    java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card hp,hp_admission ha where hp.invoice_no = ha.invoice_no and\n" +
+                   " ward = '" + rsetTable1329.getString(1) + "' and  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' \n" +
+                   " and upper(main_service) = upper('" + jTable6.getColumnName(p) + "') \n" +
+                   " and service != 'Receipt' and hp.transaction_type = 'Billing' ");
+
+//                        java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card where invoice_no IN \n"
+//                                + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+//                                + " and upper(main_service) = upper('" + jTable6.getColumnName(p) + "') and service != 'Receipt' and transaction_type = 'Billing' ");
+                        System.err.println("select sum(debit-credit) from hp_patient_card hp,hp_admission ha where hp.invoice_no = ha.invoice_no and\n" +
+                   " ward = '" + rsetTable1329.getString(1) + "' and  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' \n" +
+                   "  and upper(main_service) = upper('" + jTable6.getColumnName(p) + "') \n" +
+                   " and service != 'Receipt' and hp.transaction_type = 'Billing' ");
+
+//                                    
+                        while (rsetTable1c.next()) {
+//                            jTable6.setValueAt(rsetTable1c.getString(1), z, p);
+                            jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, p);
+
+                            total = total + rsetTable1c.getDouble(1);
+                        }
+
+                        totalCoulumn = p;
+                    }
+
+                    jTable6.setValueAt(total, z, totalCoulumn + 1);
+
+                    jTable6.setValueAt(null, z, totalCoulumn + 2);
+                    total = 0.00;
+
+                    //Cash Cases
+                    java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and (upper(service) = upper('Receipt') OR upper(service) ilike upper('Deposit on Admission%')) and main_service not ilike '%Invoice%' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 3);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF Cases
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('N.H.I.F')  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(rsetTable1c.getString(1), z, totalCoulumn + 4);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF LOSS
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND credit>0 ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 5);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF GAIN
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND debit>0 ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 6);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF SCHEME
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) ILIKE upper('NHIF%')  and upper(scheme) NOT ILIKE upper('NHIF NON CLAIMABLE%') ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 7);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Staff Guarantors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'STAFF GUARANTORS') and credit>0  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 8);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Individual creditors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'INDIVINDUALS') and transaction_type ='Receipts' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 9);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Coporate Creditors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') AND (scheme) NOT  ILIKE ('NHIF%')  and transaction_type ='Receipts' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 10);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Waived Patients
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('WAIVERS BY MANAGEMENT')  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 11);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Exempetd Patients
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('NHIF NON CLAIMABLE') ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 12);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    jTable6.setValueAt(total, z, totalCoulumn + 13);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                z++;
+
+                //end            
+            }
+            jTable6.setValueAt("Total", z, 0);
+            for (int p = 1; p < jTable6.getColumnCount(); p++) {
+                System.out.println("Columm total " + p);
+                jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable6, p)), z, p);
+            }
+
+        } catch (Exception y) {
+            y.printStackTrace();
+        }
+        //THERE
+
+        // jTabbedPane1.setSelectedIndex(5);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_glsymmaryActionPerformed
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        if (jTable6.getValueAt(jTable6.getSelectedRow(), 0).toString().equalsIgnoreCase("Total")) {
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("CASH RECIEPTS")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,requisition_no as recipt_no,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where ( invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date "
+                            + "between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + "  ) and (upper(service) = upper('Receipt') OR upper(service) ilike upper('Deposit on Admission%') )and main_service not ilike '%Invoice%'  union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            //casesss
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("NHIF REBATES")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,service as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('N.H.I.F')   union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("NHIF LOSS")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,service as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND credit>0   union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("NHIF GAIN")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,service as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND debit>0   union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("NHIF SCHEMES")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') AND scheme ilike 'NHIF%' AND scheme not ilike 'NHIF NON CLAIMABLE' and transaction_type ='Receipts'"
+                                    + " union select 'TOTAL', '',null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("STAFF GUARANTORS")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date, scheme, invoice_no,(credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'STAFF GUARANTORS') and credit>0  union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("INDIVIDUAL CREDITS")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date, scheme, invoice_no,(credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'INDIVINDUALS') and transaction_type ='Receipts'   union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("CORPORATES CREDITS")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date, scheme, invoice_no,(credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') AND (scheme) NOT ILIKE ('NHIF%') and transaction_type ='Receipts' union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("WAIVERS GRANTED")) {
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,scheme as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE  discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('WAIVERS BY MANAGEMENT') union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            System.err.println(jTable6.getColumnName(jTable6.getSelectedColumn()).toString() +"NHIF NON CLAIMABLE" );
+            if (jTable6.getColumnName(jTable6.getSelectedColumn()).toString().equalsIgnoreCase("NHIF NON CLAIMABLE")) {
+                System.err.println(" select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,scheme as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('NHIF NON CLAIMABLE')  union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc");
+                
+                jTable8.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, " select patient_no,(SELECT first_name  || ' ' || second_name || ' ' || last_name FROM hp_inpatient_register WHERE  hp_inpatient_register.patient_no = hp_patient_card.patient_no LIMIT 1) AS patient_name,date::date,scheme as scheme,invoice_no, (credit-debit) as amount,(SELECT ward FROM hp_admission WHERE hp_admission.visit_id = hp_patient_card.visit_id LIMIT 1) AS ward from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('NHIF NON CLAIMABLE')  union select 'TOTAL','', null as date,'','',0.00,'' order by 6 desc"));
+
+                
+                
+                for (int i = 0; i < jTable8.getRowCount(); i++) {
+                    if (jTable8.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                        jTable8.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable8, 5), i, 5);
+                    }
+                }
+            }
+            
+            jTabbedPane1.setSelectedIndex(7);
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+        if (jTable6.getSelectedColumn() == 0) {
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+            for (int l = 0; l < jTable1.getRowCount(); l++) {
+                for (int r = 0; r < jTable1.getColumnCount(); r++) {
+                    jTable1.getModel().setValueAt(null, l, r);
+                }
+            }
+            //HERE
+            if (glsymmary.isSelected()) {
+
+                // String[] COLUMNS = {"Ward", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee", "Plaster Technology", "Occupational Theraphy","Obs","Caretaker","Total","Cash","Nhif","Nhif Civil","Waivers","Nhif Loss","MOH","Individual","Others Schemes"};
+                try {
+                    int deptCount = 0;
+                    int count = 2;
+                    java.sql.Statement stmtTable1cux = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT main_service) from hp_patient_card WHERE ( invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) OR invoice_no IN (SELECT invoice_no FROM hp_patient_card WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%'  )) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+                    if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                        rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT main_service) from hp_patient_card WHERE (invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward)  =  upper('" + jComboBox1.getSelectedItem().toString() + "')  AND  discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) OR invoice_no IN (SELECT invoice_no FROM hp_patient_card WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%') ) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+                    }
+
+                    if (rsetTable1cux.next()) {
+                        deptCount = rsetTable1cux.getInt(1);
+
+                    }
+                    String[] COLUMNS = new String[deptCount + 17];
+                    COLUMNS[0] = "Invoice No";
+                    COLUMNS[1] = "Patient No";
+
+                    stmtTable1cux = connectDB.createStatement();
+                    rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT main_service from hp_patient_card WHERE ( invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) OR invoice_no IN ( SELECT invoice_no FROM hp_patient_card WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%') ) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+                    if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                        rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT main_service from hp_patient_card WHERE ( invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward)  =  upper('" + jComboBox1.getSelectedItem().toString() + "') AND  discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) OR invoice_no IN (SELECT invoice_no FROM hp_patient_card WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%' )) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+                    }
+                    while (rsetTable1cux.next()) {
+                        COLUMNS[count] = rsetTable1cux.getString(1);
+                        System.err.println("GL code  here " + rsetTable1cux.getString(1));
+                        count++;
+
+                    }
+
+                    COLUMNS[count] = "Total";
+
+                    COLUMNS[count + 1] = "";
+                    COLUMNS[count + 2] = "CASH RECIEPTS";
+                    COLUMNS[count + 3] = "NHIF REBATES";
+                    COLUMNS[count + 4] = "NHIF LOSS";
+                    COLUMNS[count + 5] = "NHIF GAIN";
+                    COLUMNS[count + 6] = "NHIF SCHEME";
+                    COLUMNS[count + 7] = "STAFF GUARANTORS";
+                    COLUMNS[count + 8] = "INDIVIDUAL CREDITS";
+                    COLUMNS[count + 9] = "CORPORATES CREDITS";
+                    COLUMNS[count + 10] = "WAIVERS GRANTED";
+                    COLUMNS[count + 11] = "NHIF NON CLAIMABLE";
+                    COLUMNS[count + 12] = "GRAND TOTAL";
+                    COLUMNS[count + 13] = "PATIENT NAME";
+
+                    java.sql.Statement stmtTable1cu = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery(" select count(*) from hp_admission where discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND ward = '" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "'  ");
+                    if (rsetTable1cu.next()) {
+                        loadTable(jTable1, rsetTable1cu.getInt(1) + 10, COLUMNS);
+
+                    }
+                    java.sql.Statement stmtTable1329 = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select invoice_no,patient_no,patient_name from hp_admission where discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND ward = '" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "' UNION select DISTINCT invoice_no,patient_no,(SELECT first_name || ' ' || second_name || ' ' || last_name  from hp_inpatient_register WHERE hp_inpatient_register.patient_no=patient_no LIMIT 1) AS name from hp_patient_card where transaction_type ilike 'Receipt' and date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%' AND 'Farewell Home' = '" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "' ");
+                    int z = 0;
+                    while (rsetTable1329.next()) {
+
+                        //start
+                        try {
+
+//
+//                    }
+                            System.err.println("Working for invoice " + rsetTable1329.getString(1));
+                            String patName = rsetTable1329.getString(3);
+
+                            jTable1.setValueAt(rsetTable1329.getString(1), z, 0);
+                            jTable1.setValueAt(rsetTable1329.getString(2), z, 1);
+                            double total = 0.0;
+                            int totalCoulumn = 0;
+                            java.sql.Statement stmtTable1c = connectDB.createStatement();
+
+                            for (int p = 2; p <= deptCount + 1; p++) {
+                                java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(main_service) = upper('" + jTable1.getColumnName(p) + "') and service != 'Receipt' ");
+
+//                                    
+                                while (rsetTable1c.next()) {
+                                    jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, p);
+                                    total = total + rsetTable1c.getDouble(1);
+                                }
+
+                                totalCoulumn = p;
+                            }
+
+                            jTable1.setValueAt(total, z, totalCoulumn + 1);
+
+                            jTable1.setValueAt(null, z, totalCoulumn + 2);
+                            total = 0.00;
+
+                            //Cash Cases
+                            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and (Upper(service) = upper('Receipt') OR upper(service) ilike ('Deposit on Admission%') ) and main_service not ilike '%Invoice%' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 3);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF Cases
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "'  and upper(service) = upper('N.H.I.F')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 4);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF LOSS
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(service) ilike upper('NHIF DIFF%') AND credit>0 ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 5);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF GAIN 
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(service) ilike upper('NHIF DIFF%') AND debit>0 ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 6);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF SCHEME 
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) ilike upper('NHIF%') AND  upper(scheme) not ilike upper('NHIF NON CLAIMABLE%') AND  transaction_type ='Receipts'");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 7);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Staff Guarantors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "'  and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'STAFF GUARANTORS') and credit>0  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 8);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Individual creditors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'INDIVINDUALS') and transaction_type ='Receipts' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 9);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Coporate Creditors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "' and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') and upper(scheme) NOT ilike  upper('NHIF%')  and transaction_type ='Receipts' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 10);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Waived Patients
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "' and upper(scheme) = upper('WAIVERS BY MANAGEMENT')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 11);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NON CLAIMABLE Patients
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) = upper('NHIF NON CLAIMABLE')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 12);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            jTable1.setValueAt(total, z, totalCoulumn + 13);
+                             jTable1.setValueAt(patName, z, totalCoulumn + 14);
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        z++;
+
+                        //end            
+                    }
+                    jTable1.setValueAt("Total", z, 0);
+                    for (int p = 2; p < jTable1.getColumnCount()-1; p++) {
+                        System.out.println("Columm total " + p);
+                        jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, p)), z, p);
+                    }
+
+                } catch (Exception y) {
+                    y.printStackTrace();
+                }
+            } else {
+                try {
+                    // String[] COLUMNS = {"Ward", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee",   jTable6.getValueAt(jTable6.getSelectedRow(), 0)"Plaster Technology", "Occupational Theraphy","Obs","Caretaker","Total","Cash","Nhif","Nhif Civil","Waivers","Nhif Loss","MOH","Individual","Others Schemes"};
+
+                    int deptCount = 0;
+                    int count = 2;
+                    java.sql.Statement stmtTable1cux = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT section_name) FROM pb_activity WHERE (activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "') AND discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ))   ) AND  (activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+                    if (rsetTable1cux.next()) {
+                        deptCount = rsetTable1cux.getInt(1);
+
+                    }
+                    String[] COLUMNS = new String[deptCount + 16];
+                    COLUMNS[0] = "Invoice No";
+                    COLUMNS[1] = "Patient No";
+
+                    stmtTable1cux = connectDB.createStatement();
+                    //rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT main_service from hp_patient_card WHERE ( invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) OR invoice_no IN ( SELECT invoice_no FROM hp_patient_card WHERE date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND invoice_no ILIKE 'FW%') ) AND main_service IN (SELECT activity FROM pb_activity WHERE activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+                    rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT section_name FROM pb_activity WHERE (activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "') AND discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ))   ) AND  (activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+                    while (rsetTable1cux.next()) {
+                        COLUMNS[count] = rsetTable1cux.getString(1);
+                        System.err.println("GL code  here " + rsetTable1cux.getString(1));
+                        count++;
+
+                    }
+
+                    COLUMNS[count] = "Total";
+
+                    COLUMNS[count + 1] = "";
+                    COLUMNS[count + 2] = "CASH RECIEPTS";
+                    COLUMNS[count + 3] = "NHIF REBATES";
+                    COLUMNS[count + 4] = "NHIF LOSS";
+                    COLUMNS[count + 5] = "NHIF GAIN";
+                    COLUMNS[count + 6] = "NHIF SCHEME";
+                    COLUMNS[count + 7] = "STAFF GUARANTORS";
+                    COLUMNS[count + 8] = "INDIVIDUAL CREDITS";
+                    COLUMNS[count + 9] = "CORPORATES CREDITS";
+                    COLUMNS[count + 10] = "WAIVERS GRANTED";
+                    COLUMNS[count + 11] = "NHIF NON CLAIMABLE";
+                    COLUMNS[count + 12] = "GRAND TOTAL";
+                    COLUMNS[count + 13] = "PATIENT NAME";
+
+                    java.sql.Statement stmtTable1cu = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery(" select count(*) from hp_admission where discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND ward = '" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "'  ");
+                    if (rsetTable1cu.next()) {
+                        loadTable(jTable1, rsetTable1cu.getInt(1) + 10, COLUMNS);
+
+                    }
+                    java.sql.Statement stmtTable1329 = connectDB.createStatement();
+                    java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select invoice_no,patient_no,patient_name from hp_admission where discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' AND ward = '" + jTable6.getValueAt(jTable6.getSelectedRow(), 0) + "'  ");
+                    int z = 0;
+                    while (rsetTable1329.next()) {
+
+                        //start
+                        try {
+
+//
+//                    }
+                            System.err.println("Working for invoice " + rsetTable1329.getString(1));
+                            String patName = rsetTable1329.getString(3);
+
+                            jTable1.setValueAt(rsetTable1329.getString(1), z, 0);
+                            jTable1.setValueAt(rsetTable1329.getString(2), z, 1);
+                            double total = 0.0;
+                            int totalCoulumn = 0;
+                            java.sql.Statement stmtTable1c = connectDB.createStatement();
+
+                            for (int p = 2; p <= deptCount + 1; p++) {
+                                java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(main_service) IN (SELECT upper(activity) FROM pb_activity WHERE upper(section_name) =  upper('" + jTable1.getColumnName(p) + "') ) and service != 'Receipt' ");
+
+//                                    
+                                while (rsetTable1c.next()) {
+                                    jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, p);
+                                    total = total + rsetTable1c.getDouble(1);
+                                }
+
+                                totalCoulumn = p;
+                            }
+
+                            jTable1.setValueAt(total, z, totalCoulumn + 1);
+
+                            jTable1.setValueAt(null, z, totalCoulumn + 2);
+                            total = 0.00;
+
+                            //Cash Cases
+                            java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and (Upper(service) = upper('Receipt') OR upper(service) ilike ('Deposit on Admission%') ) and main_service not ilike '%Invoice%' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 3);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF Cases
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "'  and upper(service) = upper('N.H.I.F')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 4);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF LOSS
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(service) ilike upper('NHIF DIFF%') AND credit>0 ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 5);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF GAIN 
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(service) ilike upper('NHIF DIFF%') AND debit>0 ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 6);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NHIF SCHEME 
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) ilike upper('NHIF%') AND  upper(scheme) not ilike upper('NHIF NON CLAIMABLE%') AND  transaction_type ='Receipts'");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 7);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Staff Guarantors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "'  and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'STAFF GUARANTORS') and credit>0  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 8);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Individual creditors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'INDIVINDUALS') and transaction_type ='Receipts' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 9);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Coporate Creditors
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "' and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') and upper(scheme) NOT ilike  upper('NHIF%')  and transaction_type ='Receipts' ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 10);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //Waived Patients
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no = '" + rsetTable1329.getString(1) + "' and upper(scheme) = upper('WAIVERS BY MANAGEMENT')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 11);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            //NON CLAIMABLE Patients
+                            rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no  = '" + rsetTable1329.getString(1) + "'  and upper(scheme) = upper('NHIF NON CLAIMABLE')  ");
+
+                            while (rsetTable1c.next()) {
+                                jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 12);
+                                total = total + rsetTable1c.getDouble(1);
+                            }
+
+                            jTable1.setValueAt(total, z, totalCoulumn + 13);
+                            jTable1.setValueAt(patName, z, totalCoulumn + 14);
+
+                        } catch (SQLException ex) {
+                            Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        z++;
+
+                        //end            
+                    }
+                    jTable1.setValueAt("Total", z, 0);
+                    for (int p = 2; p < jTable1.getColumnCount()-1; p++) {
+                        System.out.println("Columm total " + p);
+                        jTable1.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable1, p)), z, p);
+                    }
+
+                } catch (Exception y) {
+                    y.printStackTrace();
+                }
+            }
+            //THERE
+
+            jTabbedPane1.setSelectedIndex(1);
+            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable6MouseClicked
+
+    private void departmentsymmaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentsymmaryActionPerformed
+        // TODO add your handling code here:
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        for (int l = 0; l < jTable6.getRowCount(); l++) {
+            for (int r = 0; r < jTable6.getColumnCount(); r++) {
+                jTable6.getModel().setValueAt(null, l, r);
+            }
+        }
+        //HERE
+        try {
+            // String[] COLUMNS = {"Ward", "Bed Fees", "Admission Fees", "Nursing Fees", "Pharmacy", "Theatre", "Laboratory", "Doctors Fees", "Supplies", "CCU", "ICU", "HCU", "Nutrition", "NHIF Diff", "Mental Health", "E.N.T", "Orth Tech", "Transport", "Radiology", "physiology fee", "Plaster Technology", "Occupational Theraphy","Obs","Caretaker","Total","Cash","Nhif","Nhif Civil","Waivers","Nhif Loss","MOH","Individual","Others Schemes"};
+
+            int deptCount = 0;
+            int count = 1;
+            java.sql.Statement stmtTable1cux = connectDB.createStatement();
+            java.sql.ResultSet rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT section_name) FROM pb_activity WHERE (activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ))  ) AND ( activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl') ");
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1cux = stmtTable1cux.executeQuery(" SELECT COUNT(DISTINCT section_name) FROM pb_activity WHERE (activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jComboBox1.getSelectedItem().toString() + "') AND discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ))   ) AND  (activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+            }
+            if (rsetTable1cux.next()) {
+                deptCount = rsetTable1cux.getInt(1);
+
+            }
+
+            System.err.println("Dept Count " + deptCount);
+            String[] COLUMNS = new String[deptCount + 14];
+            COLUMNS[0] = "Ward";
+
+            stmtTable1cux = connectDB.createStatement();
+            rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT section_name from pb_activity WHERE (activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE  discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ))  ) AND section_name is not null AND  (activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1cux = stmtTable1cux.executeQuery(" SELECT DISTINCT section_name from pb_activity WHERE ( activity IN (SELECT DISTINCT main_service FROM hp_patient_card WHERE invoice_no IN (SELECT invoice_no FROM hp_admission WHERE upper(ward) = upper('" + jComboBox1.getSelectedItem().toString() + "')  AND discharge_date::date BETWEEN '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )) ) AND section_name is not null AND  (activity_category ilike 'I' or activity_category ilike 'PLID' OR category_class ilike 'Bl' ) ");
+
+            }
+            while (rsetTable1cux.next()) {
+                COLUMNS[count] = rsetTable1cux.getString(1);
+                System.err.println("GL code  here " + rsetTable1cux.getString(1));
+                count++;
+
+            }
+
+            COLUMNS[count] = "Total";
+
+            COLUMNS[count + 1] = "";
+            COLUMNS[count + 2] = "CASH RECIEPTS";
+            COLUMNS[count + 3] = "NHIF REBATES";
+            COLUMNS[count + 4] = "NHIF LOSS";
+            COLUMNS[count + 5] = "NHIF GAIN";
+            COLUMNS[count + 6] = "NHIF SCHEMES";
+            COLUMNS[count + 7] = "STAFF GUARANTORS";
+            COLUMNS[count + 8] = "INDIVIDUAL CREDITS";
+            COLUMNS[count + 9] = "CORPORATES CREDITS";
+            COLUMNS[count + 10] = "WAIVERS GRANTED";
+            COLUMNS[count + 11] = "NHIF NON CLAIMABLE";
+            COLUMNS[count + 12] = "GRAND TOTAL";
+
+            java.sql.Statement stmtTable1cu = connectDB.createStatement();
+            java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery("select COUNT(DISTINCT ward)+1 from hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ");
+           
+            //java.sql.ResultSet rsetTable1cu = stmtTable1cu.executeQuery(" select count(*)+1 from hp_wards");
+
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                System.err.println("Searching for Single Ward " + jComboBox1.getSelectedItem().toString());
+                rsetTable1cu = stmtTable1cu.executeQuery(" select count(*) from hp_wards WHERE ward_name ilike '" + jComboBox1.getSelectedItem().toString() + "' ");
+            }
+
+            if (rsetTable1cu.next()) {
+                int cc = rsetTable1cu.getInt(1);
+
+                loadTable(jTable6, cc + 10, COLUMNS);
+
+            }
+
+            java.sql.Statement stmtTable1329 = connectDB.createStatement();
+            //java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select ward_name from hp_wards order by 1");
+            java.sql.ResultSet rsetTable1329 = stmtTable1329.executeQuery("select DISTINCT ward from hp_admission WHERE discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' order by ward");
+
+            if (!jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rsetTable1329 = stmtTable1329.executeQuery("select ward_name from hp_wards WHERE ward_name ilike '" + jComboBox1.getSelectedItem().toString() + "' order by ward_name");
+
+            }
+            int z = 0;
+            while (rsetTable1329.next()) {
+
+                //start
+                try {
+
+//
+//                    }
+                    System.err.println("Working for ward " + rsetTable1329.getString(1));
+
+                    jTable6.setValueAt(rsetTable1329.getString(1), z, 0);
+                    double total = 0.0;
+                    int totalCoulumn = 0;
+                    java.sql.Statement stmtTable1c = connectDB.createStatement();
+
+                    for (int p = 1; p <= deptCount; p++) {
+                        //if(!rsetTable1329.getString(1).equalsIgnoreCase("Farewell Home")){
+                        
+                        java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card hp, hp_admission ha where hp.invoice_no = ha.invoice_no and \n"
+                                + " ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' \n"
+                                + " and upper(main_service) IN  ( SELECT upper(activity) FROM pb_activity WHERE section_name ilike '" + jTable6.getColumnName(p) + "') and service != 'Receipt' and hp.transaction_type = 'Billing' ");
+//                        
+//                        java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(debit-credit) from hp_patient_card where invoice_no IN \n"
+//                                + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+//                                + " and upper(main_service) IN  ( SELECT upper(activity) FROM pb_activity WHERE section_name ilike '" + jTable6.getColumnName(p) + "') and service != 'Receipt' and transaction_type = 'Billing' ");
+                        System.err.println("select sum(debit-credit) from hp_patient_card where invoice_no IN \n"
+                                + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                                + " and upper(main_service) = upper('" + jTable6.getColumnName(p) + "') ");
+
+//                                    
+                        while (rsetTable1c.next()) {
+                            jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, p);
+                            total = total + rsetTable1c.getDouble(1);
+                        }
+
+                        totalCoulumn = p;
+                    }
+
+                    jTable6.setValueAt(total, z, totalCoulumn + 1);
+
+                    jTable6.setValueAt(null, z, totalCoulumn + 2);
+                    total = 0.00;
+
+                    //Cash Casesss
+                    java.sql.ResultSet rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where ( invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date "
+                            + "between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + "  ) and (upper(service) = upper('Receipt') OR upper(service) ilike upper('Deposit on Admission%') )and main_service not ilike '%Invoice%' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 3);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF Cases
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('N.H.I.F')  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 4);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF LOSS
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND credit>0 ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 5);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF gain
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(service) = upper('NHIF DIFF ') AND debit>0 ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 6);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //NHIF SCHEMES
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') AND scheme ilike 'NHIF%' AND scheme not ilike 'NHIF NON CLAIMABLE' and transaction_type ='Receipts' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 7);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Staff Guarantors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'STAFF GUARANTORS') and credit>0  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 8);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Individual creditors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name = 'INDIVINDUALS') and transaction_type ='Receipts' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 9);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Coporate Creditors
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) != upper('WAIVERS BY MANAGEMENT') and upper(scheme) IN (SELECT upper(scheme_name) FROM ac_schemes WHERE payer_name != 'INDIVINDUALS' AND payer_name != 'STAFF GUARANTORS') AND (scheme) NOT ILIKE ('NHIF%') and transaction_type ='Receipts' ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 10);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Waived Patients
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('WAIVERS BY MANAGEMENT')  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 11);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    //Non claimable Patients
+                    rsetTable1c = stmtTable1c.executeQuery("select sum(credit-debit) from hp_patient_card where invoice_no IN \n"
+                            + "(SELECT invoice_no FROM hp_admission WHERE ward = '" + rsetTable1329.getString(1) + "' and discharge_date::date between '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' )\n"
+                            + " and upper(scheme) = upper('NHIF NON CLAIMABLE')  ");
+
+                    while (rsetTable1c.next()) {
+                        jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(rsetTable1c.getDouble(1)), z, totalCoulumn + 12);
+                        total = total + rsetTable1c.getDouble(1);
+                    }
+
+                    jTable6.setValueAt(total, z, totalCoulumn + 13);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(BillingReportIntfr.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                z++;
+
+                //end            
+            }
+            jTable6.setValueAt("Total", z, 0);
+            for (int p = 1; p < jTable6.getColumnCount(); p++) {
+                System.out.println("Columm total " + p);
+                jTable6.setValueAt(com.afrisoftech.lib.CurrencyFormatter.getFormattedDouble(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable6, p)), z, p);
+            }
+
+        } catch (Exception y) {
+            y.printStackTrace();
+        }
+        //THERE
+
+        // jTabbedPane1.setSelectedIndex(5);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));        // TODO add your handling code here:
+    }//GEN-LAST:event_departmentsymmaryActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        try {
+
+            java.sql.Statement stmt = connectDB.createStatement();
+            java.sql.ResultSet rset = null;
+
+            if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("-")) {
+                rset = stmt.executeQuery("select  distinct visit_id from hp_patient_card where visit_id IN \n"
+                        + "(select visit_id from hp_admission where discharge_date::date between '2018-12-01' and '2019-12-31' and invoice_no"
+                        + " ilike 'I%' and check_out = true  )\n"
+                        + "AND invoice_no not ilike 'I%'");
+
+                System.err.println("select  distinct visit_id from hp_patient_card where visit_id IN \n"
+                        + "(select visit_id from hp_admission where discharge_date::date between '2018-12-01' and '2019-12-31' and invoice_no"
+                        + " ilike 'I%' and check_out = true  )\n"
+                        + "AND invoice_no not ilike 'I%'");
+            } else {
+                rset = stmt.executeQuery("select  distinct visit_id from hp_patient_card where visit_id IN \n"
+                        + "(select visit_id from hp_admission where discharge_date::date between '2018-12-01' and '2019-12-31' and invoice_no"
+                        + " ilike 'I%' and check_out = true AND ward = '" + jComboBox1.getSelectedItem().toString() + "')\n"
+                        + "AND invoice_no not ilike 'I%'");
+            }
+            System.err.println("select  distinct visit_id from hp_patient_card where visit_id IN \n"
+                    + "(select visit_id from hp_admission where discharge_date::date between '2018-12-01' and '2019-12-31' and invoice_no"
+                    + " ilike 'I%' and check_out = true AND ward = '" + jComboBox1.getSelectedItem().toString() + "')\n"
+                    + "AND invoice_no not ilike 'I%'");
+
+            while (rset.next()) {
+                System.err.println("Working on Visit ID ....." + rset.getString(1));
+                java.sql.Statement stmta = connectDB.createStatement();
+                java.sql.ResultSet rseta = stmta.executeQuery("SELECT invoice_no from hp_admission where visit_id = '" + rset.getString(1) + "' ");
+                while (rseta.next()) {
+                    System.err.println("Picked the invoice no " + rseta.getString(1));
+                    java.sql.PreparedStatement pstmt112 = connectDB.prepareStatement("Update hp_patient_card set invoice_no = '" + rseta.getString(1) + "' where ip_no = 'IP' and visit_id = '" + rset.getString(1) + "'  ");
+                    pstmt112.executeUpdate();
+                    System.err.println("Update hp_patient_card set invoice_no = '" + rseta.getString(1) + "' where visit_id = '" + rset.getString(1) + "' ");
+                    System.err.println("Updated ...... ");
+
+                }
+
+            }
+
+            System.err.println("Done..................");
+        } catch (java.sql.SQLException sqlExec) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, sqlExec.getMessage());
+
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        jTable5.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT section_name as department,sum(debit-credit) from hp_patient_card,pb_activity where upper(main_service) = upper(activity) \n"
+                + "        and service != 'Receipt' and transaction_type = 'Billing' AND upper(sub_category) = upper('" + jTable4.getValueAt(jTable4.getSelectedRow(), 0) + "') AND invoice_no IN \n"
+                + "        (SELECT invoice_no FROM hp_admission where discharge_date::date BETWEEN  '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) GROUP BY 1  union select 'TOTAL', 0.00 order by 2 desc"));
+
+        for (int i = 0; i < jTable5.getRowCount(); i++) {
+            if (jTable5.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                jTable5.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable5, 1), i, 1);
+            }
+        }
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTabbedPane1.setSelectedIndex(5);
+    }//GEN-LAST:event_jTable4MouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        jTable4.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT sub_category as directorate,sum(debit-credit) from hp_patient_card,pb_activity where upper(main_service) = upper(activity) \n"
+                + "        and service != 'Receipt' and transaction_type = 'Billing' AND invoice_no IN \n"
+                + "        (SELECT invoice_no FROM hp_admission where discharge_date::date BETWEEN  '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) GROUP BY 1 union select 'TOTAL', 0.00 order by 2 desc "));
+
+        for (int i = 0; i < jTable4.getRowCount(); i++) {
+            if (jTable4.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                jTable4.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable4, 1), i, 1);
+            }
+        }
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTabbedPane1.setSelectedIndex(4);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        jTable7.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT activity as gl_name,sum(debit-credit) from hp_patient_card,pb_activity where upper(main_service) = upper(activity) \n"
+                + "        and service != 'Receipt' and transaction_type = 'Billing' AND upper(section_name) = upper('" + jTable5.getValueAt(jTable5.getSelectedRow(), 0) + "') AND invoice_no IN \n"
+                + "        (SELECT invoice_no FROM hp_admission where discharge_date::date BETWEEN  '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(beginDatePicker.getDate()) + "' AND '" + com.afrisoftech.lib.SQLDateFormat.getSQLDate(endDatePicker.getDate()) + "' ) GROUP BY 1  union select 'TOTAL', 0.00 order by 2 desc"));
+
+        for (int i = 0; i < jTable7.getRowCount(); i++) {
+            if (jTable7.getValueAt(i, 0).toString().equalsIgnoreCase("TOTAL")) {
+                jTable7.setValueAt(com.afrisoftech.lib.TableColumnTotal.getTableColumnTotal(jTable7, 1), i, 1);
+            }
+        }
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTabbedPane1.setSelectedIndex(6);   // TODO add your handling code here:
+    }//GEN-LAST:event_jTable5MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.afrisoftech.lib.DatePicker beginDatePicker;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox departmentsymmary;
     private com.afrisoftech.lib.DatePicker endDatePicker;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JCheckBox glsymmary;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable listDetailTbl;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTable jTable8;
     private javax.swing.JButton openReportBtn;
-    private javax.swing.JTable revenueSummaryTbl;
     // End of variables declaration//GEN-END:variables
 }

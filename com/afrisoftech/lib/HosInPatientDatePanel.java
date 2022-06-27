@@ -19,7 +19,7 @@ public class HosInPatientDatePanel extends javax.swing.JDialog {
 
     java.util.Vector dateStartEnd = null;
 
-    javax.swing.JSpinner beginDateSpinner = null;
+    javax.swing.JSpinner beginDateSpinner = null; 
 
     javax.swing.JSpinner endDateSpinner = null;
 

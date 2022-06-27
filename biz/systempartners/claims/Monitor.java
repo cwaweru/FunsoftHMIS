@@ -99,7 +99,7 @@ public class Monitor {
         
         + "password.pwd";
 
-        Security.addProvider( new com.sun.net.ssl.internal.ssl.Provider());
+      //  Security.addProvider( new com.sun.net.ssl.internal.ssl.Provider());
 
 
         try {

@@ -444,7 +444,7 @@
                     <Component class="javax.swing.JComboBox" name="removeGroupCmbx">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group ORDER BY groname&quot;)" type="code"/>
+                          <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE &apos;pg_%&apos; ORDER BY groname &quot;)" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -617,7 +617,7 @@
                 <Component class="javax.swing.JComboBox" name="targetGroupCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group ORDER BY groname&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE &apos;pg_%&apos; ORDER BY groname&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -832,7 +832,7 @@
                 <Component class="javax.swing.JComboBox" name="userGroupCmbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group ORDER BY groname&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE &apos;pg_%&apos; ORDER BY groname &quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -1091,10 +1091,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="removeGroupCmbx3">
+                <Component class="javax.swing.JComboBox" name="groupUpdateCbx">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group  EXCEPT SELECT rolname FROM pg_catalog.pg_authid WHERE rolvaliduntil::date = &apos;1970-01-01&apos; ORDER BY groname&quot;)" type="code"/>
+                      <Connection code="com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, &quot;SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE &apos;pg_%&apos; ORDER BY groname&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Constraints>

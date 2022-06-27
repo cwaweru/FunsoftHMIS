@@ -161,7 +161,7 @@ public class GLCodesFactory {
             javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
         }
 
-        
+            System.err.println("Default Pay mode >>"+paymode);
             return paymode;
             
         

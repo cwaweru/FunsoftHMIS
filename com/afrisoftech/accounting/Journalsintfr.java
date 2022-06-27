@@ -4002,7 +4002,7 @@ public class Journalsintfr extends javax.swing.JInternalFrame {
                                     AccDesc = rse12.getObject(2).toString();
                                 }
 
-                                java.sql.PreparedStatement pstmtpt = connectDB.prepareStatement("insert into eient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
+                                java.sql.PreparedStatement pstmtpt = connectDB.prepareStatement("insert into hp_patient_card values(?,?,?,?,?,?,?, ?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)");
                                 pstmtpt.setObject(1, patientControlAccountTable.getValueAt(q, 0).toString());
                                 if (transactionTypeCmbx.getSelectedItem().toString().contains("Receipt")) {
                                     pstmtpt.setObject(2, "Receipt");

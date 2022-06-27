@@ -2178,11 +2178,11 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if ((amountPaidTxt.getText().length() > 0) && payment.isSelected()) {
             System.out.println("the amnt to pay is " + toPayBalance + " and the amnt am paying is" + Double.valueOf(amountPaidTxt.getText().trim()));
-            if ((Double.valueOf(amountPaidTxt.getText().trim()) > Double.valueOf(toPayBalance))) {
+            /*if ((Double.valueOf(amountPaidTxt.getText().trim()) > Double.valueOf(toPayBalance))) {
                 amountPaidTxt.setText("0");
                 System.out.println("the amnt now to pay is " + toPayBalance + " and the amnt am paying is" + Double.valueOf(amountPaidTxt.getText().trim()));
                 javax.swing.JOptionPane.showMessageDialog(this, "Please Ensure you put Amount less than or equal to Balance to Pay");
-            }
+            }*/
         }
          if (amountPaidTxt.getText().length() > 0 && paymentModeCmbx.getSelectedItem().toString().contains("Pesa") && mobilePayTokenBalanceTxt.getText().length() > 0 ) {
              if ((Double.valueOf(mobilePayTokenBalanceTxt.getText().trim().replace(",", "")) > 0)) {
@@ -2458,8 +2458,8 @@ public class InpatientDepositIntfr extends javax.swing.JInternalFrame {
 
     private void mobilepayTxSearchTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_mobilepayTxSearchTxtCaretUpdate
 
-        if (mobilepayTxSearchTxt.getText().length() > 5) {
-            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE  mobile_tx_id NOT IN (SELECT transaction_id  FROM mobile_payment_deactivations) AND mobilepay_alert = false AND account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' AND (date::date >= current_date - " + mobile_tx_validity_days + " OR mobile_tx_id IN (SELECT transaction_id FROM mobile_payament_activations WHERE date_active = current_date)) ORDER BY account_no"));
+        if (mobilepayTxSearchTxt.getText().length() > 2) {
+            mobilepayTxtSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "SELECT transaction_time::time(0), mobile_tx_id, account_no, date, paid_amount, upper(dealer) as client_name, journal_no as paybill_no, mobilepay_alert as processed FROM public.mobile_payments WHERE  mobile_tx_id NOT IN (SELECT transaction_id  FROM mobile_payment_deactivations) AND mobilepay_alert = false AND ( account_no ilike '%" + mobilepayTxSearchTxt.getText() + "%' OR mobile_tx_id ilike '%" + mobilepayTxSearchTxt.getText() + "%' ) AND (date::date >= current_date - " + mobile_tx_validity_days + " OR mobile_tx_id IN (SELECT transaction_id FROM mobile_payament_activations WHERE date_active = current_date)) ORDER BY account_no"));
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_mobilepayTxSearchTxtCaretUpdate

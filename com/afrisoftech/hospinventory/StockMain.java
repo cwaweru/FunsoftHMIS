@@ -441,6 +441,8 @@ public class StockMain extends javax.swing.JFrame {
         reprintJobCardjMenuItemmnit = new javax.swing.JMenuItem();
         assignedJobCardjMenuItemmnit = new javax.swing.JMenuItem();
         sworkloadmnit = new javax.swing.JMenuItem();
+        pharmacyMn = new javax.swing.JMenu();
+        reprintPrescriptionsmnit = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         storesLedgerReportsmnit = new javax.swing.JMenuItem();
         lnfmn = new javax.swing.JMenu();
@@ -588,10 +590,10 @@ public class StockMain extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 500.0;
         getContentPane().add(mainPanel, gridBagConstraints);
 
-        purchasemb.setPreferredSize(new java.awt.Dimension(354, 35));
+        purchasemb.setPreferredSize(new java.awt.Dimension(354, 21));
         purchasemb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 purchasembMouseClicked(evt);
@@ -944,7 +946,7 @@ public class StockMain extends javax.swing.JFrame {
 
         requisitionsmn.setText("Requisitions");
 
-        rcvbrrequismnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        rcvbrrequismnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         rcvbrrequismnit.setMnemonic('b');
         rcvbrrequismnit.setText("Raise Internal Requisitions (S11 Vouchers)");
         rcvbrrequismnit.addActionListener(new java.awt.event.ActionListener() {
@@ -954,7 +956,7 @@ public class StockMain extends javax.swing.JFrame {
         });
         requisitionsmn.add(rcvbrrequismnit);
 
-        analysereqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        analysereqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         analysereqmnit.setMnemonic('a');
         analysereqmnit.setText("Analyse Internal Requisitions");
         analysereqmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -964,7 +966,7 @@ public class StockMain extends javax.swing.JFrame {
         });
         requisitionsmn.add(analysereqmnit);
 
-        externalreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        externalreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         externalreqmnit.setMnemonic('e');
         externalreqmnit.setText("External Purchase Requisition");
         externalreqmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -974,7 +976,7 @@ public class StockMain extends javax.swing.JFrame {
         });
         requisitionsmn.add(externalreqmnit);
 
-        internalreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        internalreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         internalreqmnit.setMnemonic('I');
         internalreqmnit.setText("Raise Purchase Requisitions");
         internalreqmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -984,7 +986,7 @@ public class StockMain extends javax.swing.JFrame {
         });
         requisitionsmn.add(internalreqmnit);
 
-        raiseprocreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        raiseprocreqmnit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         raiseprocreqmnit.setMnemonic('l');
         raiseprocreqmnit.setText("Analyse Purchase Requisitions");
         raiseprocreqmnit.addActionListener(new java.awt.event.ActionListener() {
@@ -2621,6 +2623,18 @@ public class StockMain extends javax.swing.JFrame {
         mtcemn.add(jobCardsjMenumnit);
 
         reportsmn.add(mtcemn);
+
+        pharmacyMn.setText("Pharmacy Reports");
+
+        reprintPrescriptionsmnit.setText("Re-Print prescriptions");
+        reprintPrescriptionsmnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reprintPrescriptionsmnitActionPerformed(evt);
+            }
+        });
+        pharmacyMn.add(reprintPrescriptionsmnit);
+
+        reportsmn.add(pharmacyMn);
         reportsmn.add(jSeparator14);
 
         storesLedgerReportsmnit.setText("Stores Ledger Reports");
@@ -3012,7 +3026,7 @@ public class StockMain extends javax.swing.JFrame {
             }
             getMainClass().setCursor(java.awt.Cursor.DEFAULT_CURSOR);
             stop();
-           // destroy();
+            // destroy();
         }
     }
 
@@ -5599,6 +5613,14 @@ public class StockMain extends javax.swing.JFrame {
         dates.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_patientperstoremnitActionPerformed
 
+    private void reprintPrescriptionsmnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reprintPrescriptionsmnitActionPerformed
+
+        com.afrisoftech.lib.HosPrescriptionsDatePanel dates = new com.afrisoftech.lib.HosPrescriptionsDatePanel(this, pConnDB, true, 1234, connectDB);
+
+        dates.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reprintPrescriptionsmnitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6298,6 +6320,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem patientmnit;
     private javax.swing.JMenuItem patientperstoremnit;
     private javax.swing.JMenuItem pendreqbydepmnit;
+    private javax.swing.JMenu pharmacyMn;
     private javax.swing.JMenu pharmacymn;
     public static javax.swing.JMenuItem pharmacyoperatinsmnit;
     private javax.swing.JMenuItem pharmacyopmnit;
@@ -6330,6 +6353,7 @@ public class StockMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem rejectionMenu;
     private javax.swing.JMenu reportsmn;
     private javax.swing.JMenuItem reprintJobCardjMenuItemmnit;
+    private javax.swing.JMenuItem reprintPrescriptionsmnit;
     private javax.swing.JMenuItem reqbydepmnit;
     private javax.swing.JMenuItem reqbyreqperstoremnit;
     private javax.swing.JMenuItem reqmgtmnit;

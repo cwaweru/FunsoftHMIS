@@ -1218,6 +1218,36 @@ public class ChangePatPaymodeIntfr extends javax.swing.JInternalFrame {
                 if (paymentModeCmbx.getSelectedItem().toString().equalsIgnoreCase("Scheme")) {
 
                     try {
+                        int slipNo = 0;
+                        String user = null;
+                        java.sql.Statement stm = connectDB.createStatement();
+                        java.sql.ResultSet rs = stm.executeQuery("select nextval('creditslip_no_seq'),current_user");
+                        while (rs.next()) {
+                            slipNo = rs.getInt(1);
+                             user = rs.getObject(2).toString();
+                        }
+                                                                                                                
+                                                                                                                
+                        java.sql.PreparedStatement pstmt2a = connectDB.prepareStatement("INSERT INTO credit_acc_slip VALUES(?,?,?,?,?,?, ?, ?,?,?,?,?,?)");
+
+                        pstmt2a.setString(1, patientNoTxt.getText());
+                        pstmt2a.setString(2, patientNameTxt.getText() );
+                        pstmt2a.setString(3, schemeNameTxt.getText());
+                        pstmt2a.setString(4, schemeNameTxt.getText());
+                        pstmt2a.setDouble(5, 0.00);
+                        pstmt2a.setInt(6, slipNo);
+                        pstmt2a.setDate(8, com.afrisoftech.lib.SQLDateFormat.getSQLDate(datePicker.getDate()));
+                        pstmt2a.setString(7, user);
+                        pstmt2a.setString(9, schemeAccountNoTxt.getText());
+                        pstmt2a.setString(10, memberNoTxt.getText());
+                        pstmt2a.setString(11, memberNameTxt.getText());
+                        pstmt2a.setString(12, "");
+                        pstmt2a.setDouble(13, 0.00);
+                        
+                        //                                     pstmt2a.setObject(13,jTextField12.getText());
+                        pstmt2a.executeUpdate();
+                        
+                        
                         java.sql.PreparedStatement pstmt = connectDB.prepareStatement("begin work; UPDATE hp_patient_register set description = '" + schemeNameTxt.getText() + "',pay_mode = '" + this.paymentModeCmbx.getSelectedItem().toString() + "',payer = '" + schemeManagerTxt.getText() + "',account_no = '" + schemeAccountNoTxt.getText() + "',card_no ='" + memberNoTxt.getText() + "',expiry_date = null,member_name ='" + memberNameTxt.getText() + "' WHERE patient_no  ='" + patientNoTxt.getText() + "';commit work");
                         pstmt.executeUpdate();
 

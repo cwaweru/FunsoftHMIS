@@ -648,9 +648,9 @@ public class ShiftReportPdf implements java.lang.Runnable {
 
                                         table.getDefaultCell().setHorizontalAlignment(PdfCell.ALIGN_RIGHT);
 
-                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetex2.getString(1), "0.00")), pFontHeader1);
+                                        phrase = new Phrase(new com.afrisoftech.sys.Format2Currency().Format2Currency(dbObject.getDBObject(rsetex2.getString(3), "0.00")), pFontHeader1);
                                         table.addCell(phrase);
-                                        mpayTotal = mpayTotal + rsetex2.getDouble(1);
+                                        mpayTotal = mpayTotal + rsetex2.getDouble(3);
                                     }
 
                                 } else {

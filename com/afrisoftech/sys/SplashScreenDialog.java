@@ -85,6 +85,7 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
     javax.swing.ImageIcon desktopPaneIcon;
     //  private String exeptionsMode;
     private String exemptionsMode;
+    private String remoteAccess;
 
     //    java.util.Properties sysProp;
     /**
@@ -289,6 +290,10 @@ public class SplashScreenDialog extends javax.swing.JDialog implements java.lang
                 claimFromAddress = appProp.getProperty("claims.from.address", "claims@systempartners.biz");
 
                 System.setProperty("claims.from.address", claimFromAddress);
+                
+                remoteAccess = appProp.getProperty("remote.access", "false");
+                
+                System.setProperty("remote.access", remoteAccess);
 
                 propInFile.close();
 

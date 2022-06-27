@@ -1120,10 +1120,10 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             mainItemstbl.addAncestorListener(new javax.swing.event.AncestorListener() {
                 public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 }
-                public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-                }
                 public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
                     mainItemstblAncestorMoved(evt);
+                }
+                public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 }
             });
             mainItemstbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1268,7 +1268,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             gridBagConstraints.weighty = 1.0;
             jPanel23.add(paymentModeCmbx, gridBagConstraints);
 
-            storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select stores from store_allocation where user_name = current_user and type ilike 'bill'"));
+            storeNameCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "select '-' UNION select stores from store_allocation where user_name = current_user and type ilike 'bill' ORDER BY 1"));
             storeNameCmbx.setSelectedIndex(0);
             storeNameCmbx.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1294,7 +1294,7 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
             jPanel23.add(jLabel3, gridBagConstraints);
 
             gLCodeTxt.setEditable(false);
-            gLCodeTxt.setText(com.afrisoftech.lib.StoreFactory.getStoreName(connectDB));
+            //gLCodeTxt.setText(com.afrisoftech.lib.StoreFactory.getStoreName(connectDB));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 1;
             gridBagConstraints.gridy = 9;
@@ -2532,8 +2532,10 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
         java.util.Date periodTo = null;
         java.util.Date toDaysDate = null;
         boolean smartcard = false;
+        if (storeNameCmbx.getSelectedItem().toString().equalsIgnoreCase("-") || gLCodeTxt.getText().isEmpty()) {
+          javax.swing.JOptionPane.showMessageDialog(new java.awt.Frame(), "Select a valid store to dispense the items from", "Caution Message", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
-        if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
+        }else   if (paymentModeCmbx.getSelectedItem().toString().contains("Pesa")) {
             String payerTelephoneNumber = null;
 
             System.out.println("Payer Mobile Telephone Number : [" + payerMobileTelephoneNumberTxt.getText().replace("-", "").length() + "]");

@@ -73,6 +73,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
     private String claimFromAddress;
     // dbServerIp = this.getdbServerIpAdd();
     public static String version;
+    private String remoteAccess;
 
     /**
      * Creates new form logindlg
@@ -140,7 +141,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Login Dialog [Funsoft ERP/ I-HMIS/UHCMIS Version 9.0 Rel. 2.0] ");
+        setTitle("Login Dialog [Funsoft ERP/ I-HMIS/UHCMIS Version 10.0 Rel. 1.0] ");
         setFont(new java.awt.Font("Lucida Sans", 1, 10)); // NOI18N
         setModal(true);
         setName("syslogindlg"); // NOI18N
@@ -612,6 +613,10 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                 System.setProperty("claims.from.address", claimFromAddress);
 
                 System.setProperty("smtp.port.number", appProp.getProperty("smtp.port.number", "25"));
+                
+                remoteAccess = appProp.getProperty("remote.access", "false");
+                
+                System.setProperty("remote.access", remoteAccess);
 
                 propInFile.close();
 
@@ -708,9 +713,10 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                 // connDB.setClientInfo("ApplicationName", "Funsoft I-HMIS");
                 pconnDB = this.getPooledConnectionSource();
 
-                retrieveFunsoftProperties(connDB);
+                
 
                 if ((connDB != null) && (pconnDB != null)) {
+                    retrieveFunsoftProperties(connDB);
 
                     javax.swing.SwingUtilities.updateComponentTreeUI(splashScreen);
 
@@ -1064,7 +1070,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
                     + "&requireSSL=true", userName, passWord);
 
             //  connection.
-            version = "9.0 R 2.0";
+            version = "10.0 R 1.0";
 
             String current_version = com.afrisoftech.lib.VersionControl.VersionControl(connection);
             if (com.afrisoftech.lib.VersionControl.ActiveVersion(connection) == Boolean.TRUE) {
@@ -1081,7 +1087,7 @@ public class Login2Hospital extends javax.swing.JDialog implements java.lang.Run
         } catch (java.sql.SQLException sqlExec) {
 
             sqlExec.printStackTrace();
-            this.setVisible(true);
+            //this.setVisible(true);
 
             javax.swing.JOptionPane.showMessageDialog(new javax.swing.JFrame(), "ERROR : Logon denied due to incorrect username & password,\n network disconnection or dataserver not running!\n\nERROR DETAILS : \n[" + sqlExec.getMessage() + "]");
 

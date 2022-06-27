@@ -161,7 +161,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         jLabel593 = new javax.swing.JLabel();
         departmentCmbx1 = new javax.swing.JComboBox();
         targetGroupLbl2 = new javax.swing.JLabel();
-        removeGroupCmbx3 = new javax.swing.JComboBox();
+        groupUpdateCbx = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
         middleNameTxt1 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -587,7 +587,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         removeGroupPanel.add(dropGroupBtn, gridBagConstraints);
 
-        removeGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        removeGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname "));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -715,7 +715,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         assignGroupMembersPanel.add(targetGroupLbl, gridBagConstraints);
 
-        targetGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        targetGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname"));
         targetGroupCmbx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 targetGroupCmbxActionPerformed(evt);
@@ -907,7 +907,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel2.add(targetGroupLbl1, gridBagConstraints);
 
-        userGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group ORDER BY groname"));
+        userGroupCmbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname "));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -1160,7 +1160,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
         jPanel8.add(targetGroupLbl2, gridBagConstraints);
 
-        removeGroupCmbx3.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group  EXCEPT SELECT rolname FROM pg_catalog.pg_authid WHERE rolvaliduntil::date = '1970-01-01' ORDER BY groname"));
+        groupUpdateCbx.setModel(com.afrisoftech.lib.ComboBoxModel.ComboBoxModel(connectDB, "SELECT groname FROM pg_catalog.pg_group WHERE groname NOT ILIKE 'pg_%' ORDER BY groname"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -1169,7 +1169,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 20);
-        jPanel8.add(removeGroupCmbx3, gridBagConstraints);
+        jPanel8.add(groupUpdateCbx, gridBagConstraints);
 
         jLabel24.setText("Middle Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -3792,6 +3792,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
     private void changeUserGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserGroupBtnActionPerformed
         java.lang.String[] listSet = null;
+        System.err.println("Group called......");
 
         java.sql.ResultSet rsetArray = null;
 
@@ -3850,23 +3851,26 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             java.sql.Statement stmt = connectDB.createStatement();
 
-            java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx3.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
+            java.sql.ResultSet rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + groupUpdateCbx.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
+            System.err.println("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + groupUpdateCbx.getSelectedItem().toString() + "'  AND sys_name ilike 'Hospital_Main' ORDER BY menu_list");
 
             while (rs.next()) {
+                System.err.println("Picked rights.....");
 
                 arraySet = rs.getArray(1);
 
             }
             java.sql.Statement pstmt = connectDB.createStatement();
             java.sql.PreparedStatement pmstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET menu_list = ?, group_name = ?  WHERE login_name = ? AND sys_name ilike 'hospital_main'");
+            System.err.println("UPDATE secure_menu_access SET menu_list = ?, group_name = ?  WHERE login_name = ? AND sys_name ilike 'hospital_main'");
 
             pmstmt.setArray(1, arraySet);
-            pmstmt.setObject(2, currentGroupCmbx.getSelectedItem().toString());
-            pmstmt.setObject(3, usernameCmbx.getSelectedItem().toString());
+            pmstmt.setObject(2, groupUpdateCbx.getSelectedItem().toString());
+            pmstmt.setObject(3, logonNameTxt1.getText());
 
             pmstmt.executeUpdate();
 
-            rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + removeGroupCmbx3.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_inventory' ORDER BY menu_list");
+            rs = stmt.executeQuery("SELECT menu_list from secure_menu_access_group WHERE login_name = '" + groupUpdateCbx.getSelectedItem().toString() + "'  AND sys_name ilike 'hospital_inventory' ORDER BY menu_list");
             while (rs.next()) {
                 arraySet = rs.getArray(1);
                 System.err.println("Working for hos inventory");
@@ -3874,7 +3878,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
 
             pmstmt = connectDB.prepareStatement("UPDATE secure_menu_access SET menu_list = ?, group_name = ?  WHERE login_name = ? AND sys_name ilike 'hospital_inventory' ");
             pmstmt.setArray(1, arraySet);
-            pmstmt.setObject(2, removeGroupCmbx3.getSelectedItem().toString());
+            pmstmt.setObject(2, groupUpdateCbx.getSelectedItem().toString());
             pmstmt.setObject(3, logonNameTxt1.getText());
             pmstmt.executeUpdate();
             System.err.println("Done for Working for hos inventory");
@@ -3885,7 +3889,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                     + "            )"
                     + "    VALUES (?, ?)");
             pstmtChangeControl.setString(1, "CHANGE_OF_USER_GROUP");
-            pstmtChangeControl.setString(2, usernameCmbx.getSelectedItem().toString());
+            pstmtChangeControl.setString(2, logonNameTxt1.getText().toString());
             pstmtChangeControl.execute();
 //            connectDB.commit();
 //            connectDB.setAutoCommit(true);
@@ -4257,12 +4261,15 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                 pstmt.setString(5, personalNoTxt1.getText());
                 pstmt.setString(6, telephoneNoTxt1.getText());
                 pstmt.setString(7, emailAddressTxt1.getText());
-                pstmt.setObject(8, removeGroupCmbx3.getSelectedItem());
+                pstmt.setObject(8, groupUpdateCbx.getSelectedItem());
                 pstmt.setString(9, idNoTxt1.getText());
                 pstmt.setString(10, logonNameTxt1.getText());
 
                 pstmt.executeUpdate();
-                if (!initialGroup.equalsIgnoreCase(removeGroupCmbx3.getSelectedItem().toString())) {
+                System.err.println("Initial Group >>>>>"+initialGroup);
+                System.err.println("Moved to gro Group >>>>>"+groupUpdateCbx.getSelectedItem().toString());
+                if (!initialGroup.equalsIgnoreCase(groupUpdateCbx.getSelectedItem().toString())) {
+                    System.err.println("Group Change called......");
                     changeUserGroupBtn.doClick();
                 }
                 javax.swing.JOptionPane.showMessageDialog(this, "User Details updated successfully.");
@@ -4324,10 +4331,10 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
                 telephoneNoTxt1.setText(rset.getString(6));
                 emailAddressTxt1.setText(rset.getString(7));
                 idNoTxt1.setText(rset.getString(9));
-                removeGroupCmbx3.setSelectedItem(rset.getString(8));
+                groupUpdateCbx.setSelectedItem(rset.getString(8));
 
             }
-            initialGroup = removeGroupCmbx3.getSelectedItem().toString();
+            initialGroup = groupUpdateCbx.getSelectedItem().toString();
             //personalNoTxt1.setEditable(false);
         } catch (java.sql.SQLException sqe) {
             sqe.printStackTrace();
@@ -4546,6 +4553,7 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JTextField firstNameTxt;
     private javax.swing.JTextField firstNameTxt1;
     private javax.swing.JPanel groupManagementPanel;
+    private javax.swing.JComboBox groupUpdateCbx;
     private javax.swing.JTabbedPane groupsManagerPane;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel headerPanel1;
@@ -4686,7 +4694,6 @@ public class UsersetupHospitalIntfr extends javax.swing.JInternalFrame {
     private javax.swing.JPanel registerGroupPanel;
     private javax.swing.JButton registerNewGroupBtn;
     private javax.swing.JComboBox removeGroupCmbx;
-    private javax.swing.JComboBox removeGroupCmbx3;
     private javax.swing.JPanel removeGroupPanel;
     private javax.swing.JButton removeUserBtn;
     private javax.swing.JComboBox removeUserCmbx;

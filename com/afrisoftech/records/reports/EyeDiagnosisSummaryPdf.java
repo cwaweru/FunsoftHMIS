@@ -15,7 +15,7 @@ public class EyeDiagnosisSummaryPdf implements java.lang.Runnable {
 
     java.util.Date beginDate = null;
     ////java.awt.Desktop deskTop = Desktop.getDesktop();
-    java.util.Date endDate = null;
+    java.util.Date endDate = null; 
     int numberSeq = 0;
     java.lang.String Categ = null;
     java.lang.String ReportType = null;
