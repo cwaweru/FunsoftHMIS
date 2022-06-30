@@ -4399,7 +4399,12 @@ public class PatientsBillingIntfr extends javax.swing.JInternalFrame {
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(),false);
+            String patTypee = null;
+            if (outPatientChkbx.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(),false, patTypee);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The prescription number MUST be set in order to print the prescription.");
         }

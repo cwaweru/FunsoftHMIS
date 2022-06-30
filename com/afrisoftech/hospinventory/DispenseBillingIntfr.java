@@ -2457,7 +2457,12 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-        policy.PrescPdf(connectDB, receiptNo,false);
+         String patTypee = null;
+            if(opdChkbx.isSelected())
+                patTypee = "OP";
+            else
+                               patTypee = "IP";
+        policy.PrescPdf(connectDB, receiptNo,false, patTypee);
 
         // Add your handling code here:
     }//GEN-LAST:event_prescriptionBillingTableMouseClicked
@@ -2664,7 +2669,12 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo,false);
+                         String patTypee = null;
+            if(opdChkbx.isSelected())
+                patTypee = "OP";
+            else
+                               patTypee = "IP";
+                        policy.PrescPdf(connectDB, receiptNo,false, patTypee);
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = false, collected = false where inv_no = '" + doctorPrescriptionListingTable.getValueAt(doctorPrescriptionListingTable.getSelectedRow(), 3).toString() + "'");
                         pstmt46.executeUpdate();
@@ -3093,11 +3103,18 @@ public class DispenseBillingIntfr extends javax.swing.JInternalFrame implements 
     private void printPrescriptionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrescriptionBtnActionPerformed
         if (prescriptionNoTxt.getText().length() > 1) {
             
+            String patTypee = null;
+            if(opdChkbx.isSelected())
+                patTypee = "OP";
+            else
+                               patTypee = "IP";
+
+            
             com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, patientNoTxt.getText(), nameTxt.getText(), prescriptionNoTxt.getText(), paymentModeTxt.getText());
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(),false);
+            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(),false, patTypee);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The prescription number MUST be set in order to print the prescription.");
         }

@@ -48,13 +48,15 @@ public class PrescPdf implements java.lang.Runnable {
     
     boolean all = false;
     private String doctorAccount;
+    String patType = null;
 
-    public void PrescPdf(java.sql.Connection connDb, java.lang.String combox, boolean alll) {
+    public void PrescPdf(java.sql.Connection connDb, java.lang.String combox, boolean alll, String patTypee) {
         memNo = combox;
 
         dbObject = new com.afrisoftech.lib.DBObject();
 
         connectDB = connDb;
+        patType = patTypee;
         all= alll;
   //       beginDate = begindate;
 
@@ -505,7 +507,7 @@ public class PrescPdf implements java.lang.Runnable {
 
                             }
 
-                            if (HosPrescriptionsDatePanel.opdRdbtn.isSelected()) {
+                            if (patType.startsWith("O")) {
                               //  if (memNo.startsWith("O")) {
                                 java.sql.ResultSet rset = st.executeQuery("select initcap(first_name||' '||second_name),funsoft_patient_age(year_of_birth::date),sex,tel_no,initcap(description),initcap(payer) from hp_patient_register where patient_no = '" + memNo1 + "'");
 

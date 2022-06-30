@@ -5940,7 +5940,12 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(), false);
+            String patTypee = null;
+            if (opChbx.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(), false,patTypee);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The prescription number MUST be set in order to print the prescription.");
         }
@@ -5955,7 +5960,12 @@ public class PatientsBillingIntfr_ extends javax.swing.JInternalFrame {
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(), true);
+            String patTypee = null;
+            if (opSchemeptsChkbx.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+            policy1.PrescPdf(connectDB, prescriptionNoTxt.getText(), true, patTypee);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The prescription number MUST be set in order to print the prescription.");
         }   // TODO add your handling code here:

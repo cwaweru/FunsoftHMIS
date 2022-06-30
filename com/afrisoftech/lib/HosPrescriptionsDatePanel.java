@@ -676,8 +676,13 @@ public class HosPrescriptionsDatePanel extends javax.swing.JDialog {
                   com.afrisoftech.txtreports.PrescriptionTxt policy = new com.afrisoftech.txtreports.PrescriptionTxt(connectDB, patientNoTxt.getText(), patientNameTxt.getText(), prescriptionNo, paymentMode);
 
                   com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
+                  String patTypee = null;
+            if (opdRdbtn.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
 
-                  policy1.PrescPdf(connectDB, prescriptionNo,false);
+                  policy1.PrescPdf(connectDB, prescriptionNo,false, patTypee);
                   
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The patient file and prescription number MUST be set in order to print the prescription.");
@@ -772,7 +777,12 @@ public class HosPrescriptionsDatePanel extends javax.swing.JDialog {
 
             com.afrisoftech.reports.PrescPdf policy1 = new com.afrisoftech.reports.PrescPdf();
 
-            policy1.PrescPdf(connectDB, prescriptionNo,false);
+            String patTypee = null;
+            if (opdRdbtn.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+            policy1.PrescPdf(connectDB, prescriptionNo,false, patTypee);
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "The patient file and prescription number MUST be set in order to print the prescription.");
         }

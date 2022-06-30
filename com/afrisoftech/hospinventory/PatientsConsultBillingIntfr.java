@@ -3250,7 +3250,12 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-        policy.PrescPdf(connectDB, receiptNo,false);
+        String patTypee = null;
+            if (jCheckBox1.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+        policy.PrescPdf(connectDB, receiptNo,false,patTypee);
 
     // Add your handling code here:
     }//GEN-LAST:event_jTable121MouseClicked
@@ -3462,7 +3467,12 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo,false);
+                        String patTypee = null;
+            if (jCheckBox1.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+                        policy.PrescPdf(connectDB, receiptNo,false, patTypee);
 
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where inv_no = '" + jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString() + "'");
@@ -3610,7 +3620,12 @@ public class PatientsConsultBillingIntfr extends javax.swing.JInternalFrame impl
 
                         com.afrisoftech.reports.PrescPdf policy = new com.afrisoftech.reports.PrescPdf();
 
-                        policy.PrescPdf(connectDB, receiptNo,false);
+                        String patTypee = null;
+            if (jCheckBox1.isSelected())
+                patTypee = "OP";
+            else
+                patTypee = "IP";
+                        policy.PrescPdf(connectDB, receiptNo,false, patTypee);
 
 
                         java.sql.PreparedStatement pstmt46 = connectDB.prepareStatement("UPDATE pb_doctors_request SET paid = true,collected = false where inv_no = '" + jTable12.getValueAt(jTable12.getSelectedRow(), 3).toString() + "'");
