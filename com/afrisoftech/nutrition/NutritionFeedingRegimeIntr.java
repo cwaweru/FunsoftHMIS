@@ -12,7 +12,7 @@ import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import org.jdalbey.timechooser.TimeChooser;
-import test.testing;
+//import test.testing;
 /**
  *
  * @author wgitau@systempartners.biz
