@@ -1266,7 +1266,7 @@ public class OtherRecptintfr extends javax.swing.JInternalFrame {
 
     private void searchGLCodesTxtCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_searchGLCodesTxtCaretUpdate
         
-        glCodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + searchGLCodesTxt.getText().toString() + "%' AND category_class ilike 'plid' AND activity not ilike '%exemption%' AND activity not ilike '%abscond%'  AND  activity not ilike '%waiver%' order by activity"));
+        glCodeSearchTable.setModel(com.afrisoftech.dbadmin.TableModel.createTableVectors(connectDB, "select activity as scheme,code from pb_activity where activity ILIKE '" + searchGLCodesTxt.getText().toString() + "%' AND (category_class ilike 'plid' OR category_class ilike 'pi') AND activity not ilike '%exemption%' AND activity not ilike '%abscond%'  AND  activity not ilike '%waiver%' order by activity"));
         
         glCodeSearchTable.setShowHorizontalLines(false);
         jSearchScrollPane11.setViewportView(glCodeSearchTable);

@@ -366,8 +366,8 @@ public class ChangePeriodintfr extends javax.swing.JInternalFrame {
             java.sql.Statement stmtf = connectDB.createStatement();
             java.sql.ResultSet rsetf = stmtf.executeQuery("select '"+jTextField5.getText()+"','"+jTextField9.getText()+"'");
             while (rsetf.next()){
-                periodFrom = new java.util.Date(rsetf.getDate(1).getTime());
-                periodTo = new java.util.Date(rsetf.getDate(2).getTime());
+            //    periodFrom = new java.util.Date(rsetf.getDate(1).getTime());
+            //    periodTo = new java.util.Date(rsetf.getDate(2).getTime());
             }
             
             
